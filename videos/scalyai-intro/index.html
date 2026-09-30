@@ -99,53 +99,94 @@
         data-composition-src="compositions/components/headline-slam.html"
         data-variable-values='{"text":"¿Todo a mano?","accent_word_index":2,"accent":"green","shadow":false}'
         data-start="0"
-        data-duration="2.2"
+        data-duration="2.3"
         data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 2.2–4.8 build: tools get connected -->
+      <!-- 1.8–4.8 build: tools get connected (push-up in, overlapping the hook's whip-out) -->
       <div
         id="scene-tools"
         data-composition-id="scene-tools"
         data-composition-src="compositions/scene-tools.html"
-        data-start="2.2"
+        data-start="1.8"
+        data-duration="3"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 4.35–6.95 punch: 2 semanas / ROI en 6 (push-left in) -->
+      <div
+        id="scene-roi"
+        data-composition-id="scene-roi"
+        data-composition-src="compositions/scene-roi.html"
+        data-start="4.35"
         data-duration="2.6"
         data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 4.8–7.0 punch: 2 semanas / ROI en 6 -->
+      <!-- 6.55–7.35 brand wipe: the site's CTA gradient sweeps across and hands off to the logo -->
       <div
-        id="scene-roi"
-        data-composition-id="scene-roi"
-        data-composition-src="compositions/scene-roi.html"
-        data-start="4.8"
-        data-duration="2.2"
-        data-track-index="1"
+        id="brand-wipe"
+        data-composition-id="brand-wipe"
+        data-composition-src="compositions/brand-wipe.html"
+        data-start="6.55"
+        data-duration="0.8"
+        data-track-index="3"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 7.0–10.0 resolve (registry: logo-brand-close) -->
+      <!-- 6.9–10.0 resolve (registry: logo-brand-close), revealed as the wipe leaves -->
       <div
         id="logo-brand-close"
         data-composition-id="logo-brand-close"
         data-composition-src="compositions/components/logo-brand-close.html"
         data-variable-values='{"wordmark":"ScalyAI","tagline":"Software e IA a la medida de tu negocio","url":"scalyai.dev","accent":"green","exit":"none"}'
-        data-start="7"
-        data-duration="3"
-        data-track-index="1"
+        data-start="6.9"
+        data-duration="3.1"
+        data-track-index="2"
         data-width="1920"
         data-height="1080"
       ></div>
     </div>
 
     <script>
-      // All motion lives in the sub-compositions; the runtime nests their timelines.
+      // Scene motion lives in the sub-compositions; the main timeline owns only the
+      // scene-to-scene transitions, tweening the host slots while they overlap.
       const tl = gsap.timeline({ paused: true });
+
+      // 1 · hook → tools (1.8–2.3): push up with motion blur on both frames.
+      tl.to("#headline-slam", { y: -1080, filter: "blur(10px)", duration: 0.5, ease: "power3.inOut" }, 1.8);
+      tl.fromTo(
+        "#scene-tools",
+        { y: 1080, filter: "blur(10px)" },
+        { y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.inOut" },
+        1.8,
+      );
+
+      // 2 · tools → ROI (4.35–4.8): push left with motion blur on both frames.
+      tl.to("#scene-tools", { x: -1920, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 4.35);
+      tl.fromTo(
+        "#scene-roi",
+        { x: 1920, filter: "blur(10px)" },
+        { x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
+        4.35,
+      );
+
+      // 3 · ROI → logo (6.55–7.35): brand-wipe covers the frame at 6.9; the ROI
+      //     frame drifts right under it and the logo lockup settles in as it clears.
+      tl.to("#scene-roi", { x: 160, scale: 0.96, duration: 0.35, ease: "power3.in" }, 6.55);
+      tl.fromTo(
+        "#logo-brand-close",
+        { x: -120, scale: 1.04 },
+        { x: 0, scale: 1, duration: 0.6, ease: "power3.out" },
+        6.9,
+      );
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>
