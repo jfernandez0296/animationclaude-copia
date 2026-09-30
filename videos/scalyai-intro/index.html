@@ -7,30 +7,44 @@
     <script src="assets/vendor/gsap.min.js"></script>
     <style>
       @font-face {
-        font-family: "Inter";
-        src: url("assets/fonts/Inter-400-latin.woff2") format("woff2");
-        font-weight: 400 500;
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-400-latin.woff2") format("woff2");
+        font-weight: 400;
         font-style: normal;
       }
       @font-face {
-        font-family: "Inter";
-        src: url("assets/fonts/Inter-700-latin.woff2") format("woff2");
-        font-weight: 600 900;
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2");
+        font-weight: 500 600;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2");
+        font-weight: 800 900;
         font-style: normal;
       }
 
-      /* ScalyAI palette — the one place colors live */
+      /* ScalyAI brand palette (sampled from scalyai.dev) — the one place colors live */
       :root {
-        --bg: transparent; /* logo-brand-close paints var(--bg); keep the stage glow visible */
-        --stage: #0b1020;
-        --fg: #f5f7fa;
-        --muted: #94a3b8;
-        --brand: #2ee6a8;
-        --accent: #7c8cff;
-        --pill: #141b30;
-        --pill-line: #26304d;
-        --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-        --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+        --bg: transparent; /* logo-brand-close paints var(--bg); keep the stage visible */
+        --stage: #f0f0e8; /* cream page background */
+        --fg: #061a36; /* navy headings */
+        --muted: #4f626b; /* slate body copy */
+        --brand: #007a82; /* teal accent */
+        --accent: #42cfd2; /* cyan end of the CTA gradient */
+        --accent-2: #20748c;
+        --navy-2: #0e3a5e; /* navy start of the CTA gradient */
+        --pill: #ffffff;
+        --pill-line: #d6dbd2;
+        --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+        --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
       }
 
       * {
@@ -83,7 +97,7 @@
         id="headline-slam"
         data-composition-id="headline-slam"
         data-composition-src="compositions/components/headline-slam.html"
-        data-variable-values='{"text":"¿Todo a mano?","accent_word_index":2,"accent":"green","shadow":true}'
+        data-variable-values='{"text":"¿Todo a mano?","accent_word_index":2,"accent":"green","shadow":false}'
         data-start="0"
         data-duration="2.2"
         data-track-index="1"

@@ -12,8 +12,8 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
-            color: var(--fg, #f5f7fa);
-            font-family: var(--font-display, Inter, system-ui, sans-serif);
+            color: var(--fg, #061a36);
+            font-family: var(--font-display, system-ui, sans-serif);
           }
           #scene-roi-clip {
             position: absolute;
@@ -40,21 +40,21 @@
           }
           .sr-num {
             display: inline-block;
-            color: var(--brand, #2ee6a8);
+            color: var(--brand, #007a82);
           }
           .sr-sub {
-            color: var(--muted, #94a3b8);
+            color: var(--muted, #4f626b);
           }
 
           /* shimmer-sweep, adapted: the light band runs through the glyphs only */
           .sr-shine {
             background-image: linear-gradient(
               110deg,
-              var(--muted, #94a3b8) 0%,
-              var(--muted, #94a3b8) 40%,
-              #ffffff 50%,
-              var(--muted, #94a3b8) 60%,
-              var(--muted, #94a3b8) 100%
+              var(--muted, #4f626b) 0%,
+              var(--muted, #4f626b) 40%,
+              var(--accent, #42cfd2) 50%,
+              var(--muted, #4f626b) 60%,
+              var(--muted, #4f626b) 100%
             );
             background-size: 300% 100%;
             background-position: 100% 0;
@@ -91,8 +91,8 @@
             // glow on the beat
             tl.fromTo(
               root.querySelectorAll(".sr-num"),
-              { textShadow: "0 0 0px rgba(46,230,168,0)" },
-              { textShadow: "0 0 46px rgba(46,230,168,0.75)", duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" },
+              { textShadow: "0 0 0px rgba(66,207,210,0)" },
+              { textShadow: "0 0 40px rgba(66,207,210,0.55)", duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" },
               1.15,
             );
             // shimmer-sweep across line 2
