@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scene 2 — tools</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-tools" data-width="1920" data-height="1080" data-duration="2.6" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            color: var(--fg, #f5f7fa);
+            font-family: var(--font-body, Inter, system-ui, sans-serif);
+          }
+          #scene-tools-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .st-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 120px 160px;
+            gap: 56px;
+            text-align: center;
+          }
+          .st-title {
+            display: flex;
+            gap: 26px;
+            font-family: var(--font-display, Inter, system-ui, sans-serif);
+            font-size: 96px;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.05;
+          }
+          .st-word {
+            display: inline-block;
+          }
+          .st-accent {
+            color: var(--brand, #2ee6a8);
+          }
+          .st-tools {
+            position: relative;
+            display: flex;
+            gap: 36px;
+            padding-bottom: 40px;
+          }
+          .st-pill {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 22px 40px;
+            border-radius: 999px;
+            background: var(--pill, #141b30);
+            border: 2px solid var(--pill-line, #26304d);
+            font-size: 44px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+          }
+          .st-dot {
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--muted, #94a3b8);
+          }
+          .st-link {
+            position: absolute;
+            left: 40px;
+            right: 40px;
+            bottom: 0;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--brand, #2ee6a8), var(--accent, #7c8cff));
+          }
+        </style>
+
+        <div id="scene-tools-clip" class="clip" data-start="0" data-duration="2.6" data-track-index="0">
+          <div class="st-content">
+            <h2 class="st-title">
+              <span class="st-word">Conectamos</span>
+              <span class="st-word">tus</span>
+              <span class="st-word st-accent">herramientas</span>
+            </h2>
+            <div class="st-tools">
+              <div class="st-pill"><span class="st-dot"></span>CRM</div>
+              <div class="st-pill"><span class="st-dot"></span>WhatsApp</div>
+              <div class="st-pill"><span class="st-dot"></span>Excel</div>
+              <div class="st-pill"><span class="st-dot"></span>ERP</div>
+              <div class="st-link"></div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) {
+              return root.querySelectorAll(s);
+            };
+            var BRAND = "#2ee6a8";
+            var LINE = "#26304d";
+            var MUTED = "#94a3b8";
+            var tl = gsap.timeline({ paused: true });
+
+            // word_reveal headline
+            tl.fromTo(q(".st-word"), { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power4.out" }, 0.05);
+            // pills: scale_punch, staggered
+            tl.fromTo(q(".st-pill"), { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.45, stagger: 0.12, ease: "back.out(2.2)" }, 0.45);
+            // connector: underline_sweep links the tools
+            tl.fromTo(q(".st-link"), { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, 1.0);
+            // color_shift: every tool turns "connected"
+            tl.fromTo(q(".st-pill"), { borderColor: LINE }, { borderColor: BRAND, duration: 0.3, stagger: 0.1, ease: "power1.out", immediateRender: false }, 1.1);
+            tl.fromTo(q(".st-dot"), { backgroundColor: MUTED }, { backgroundColor: BRAND, duration: 0.3, stagger: 0.1, ease: "power1.out" }, 1.1);
+            // exit: scale_out
+            tl.fromTo(q(".st-content"), { autoAlpha: 1, scale: 1 }, { autoAlpha: 0, scale: 1.06, duration: 0.3, ease: "power2.in", immediateRender: false }, 2.3);
+
+            tl.seek(0);
+            window.__timelines["scene-tools"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

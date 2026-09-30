@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stage background</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="stage-bg" data-width="1920" data-height="1080" data-duration="10" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background: var(--stage, #0b1020);
+          }
+          .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+              linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+            background-size: 80px 80px;
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+          }
+          .bg-glow {
+            position: absolute;
+            left: 24%;
+            top: 13%;
+            width: 52%;
+            height: 74%;
+            border-radius: 50%;
+            background: radial-gradient(
+              circle,
+              rgba(46, 230, 168, 0.18) 0%,
+              rgba(124, 140, 255, 0.08) 45%,
+              transparent 70%
+            );
+          }
+        </style>
+
+        <div id="stage-bg-clip" class="clip" data-start="0" data-duration="10" data-track-index="0">
+          <div class="bg-grid"></div>
+          <div class="bg-glow"></div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var tl = gsap.timeline({ paused: true });
+            // slow glow drift across the whole piece
+            tl.fromTo(
+              root.querySelector(".bg-glow"),
+              { x: -140, y: 20, scale: 0.95 },
+              { x: 140, y: -20, scale: 1.08, duration: 10, ease: "sine.inOut" },
+              0,
+            );
+            tl.seek(0);
+            window.__timelines["stage-bg"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

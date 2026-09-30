@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <!-- GSAP 3.14.2, vendored so renders work offline -->
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/Inter-400-latin.woff2") format("woff2");
+        font-weight: 400 500;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/Inter-700-latin.woff2") format("woff2");
+        font-weight: 600 900;
+        font-style: normal;
+      }
+
+      /* ScalyAI palette — the one place colors live */
+      :root {
+        --bg: transparent; /* logo-brand-close paints var(--bg); keep the stage glow visible */
+        --stage: #0b1020;
+        --fg: #f5f7fa;
+        --muted: #94a3b8;
+        --brand: #2ee6a8;
+        --accent: #7c8cff;
+        --pill: #141b30;
+        --pill-line: #26304d;
+        --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+        --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--stage);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: var(--fg);
+        font-family: var(--font-body);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- track 0: stage (grid + drifting glow) -->
+      <div
+        id="stage-bg"
+        data-composition-id="stage-bg"
+        data-composition-src="compositions/stage-bg.html"
+        data-start="0"
+        data-duration="10"
+        data-track-index="0"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 0.0–2.2 hook (registry: headline-slam) -->
+      <div
+        id="headline-slam"
+        data-composition-id="headline-slam"
+        data-composition-src="compositions/components/headline-slam.html"
+        data-variable-values='{"text":"¿Todo a mano?","accent_word_index":2,"accent":"green","shadow":true}'
+        data-start="0"
+        data-duration="2.2"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 2.2–4.8 build: tools get connected -->
+      <div
+        id="scene-tools"
+        data-composition-id="scene-tools"
+        data-composition-src="compositions/scene-tools.html"
+        data-start="2.2"
+        data-duration="2.6"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 4.8–7.0 punch: 2 semanas / ROI en 6 -->
+      <div
+        id="scene-roi"
+        data-composition-id="scene-roi"
+        data-composition-src="compositions/scene-roi.html"
+        data-start="4.8"
+        data-duration="2.2"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 7.0–10.0 resolve (registry: logo-brand-close) -->
+      <div
+        id="logo-brand-close"
+        data-composition-id="logo-brand-close"
+        data-composition-src="compositions/components/logo-brand-close.html"
+        data-variable-values='{"wordmark":"ScalyAI","tagline":"Software e IA a la medida de tu negocio","url":"scalyai.dev","accent":"green","exit":"none"}'
+        data-start="7"
+        data-duration="3"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+    </div>
+
+    <script>
+      // All motion lives in the sub-compositions; the runtime nests their timelines.
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "category": "kinetic-type",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": { "w": 1920, "h": 1080, "aspect": "16:9" },
+  "style": "Dark tech, confident and clean. Deep navy stage, a slow teal glow, faint grid. One accent color carries every key word.",
+  "palette": ["#0B1020", "#F5F7FA", "#94A3B8", "#2EE6A8", "#7C8CFF"],
+  "font": "Inter",
+  "beats": [0.58, 3.2, 5.3, 7.95],
+  "export": "mp4",
+  "asset_needs": [],
+  "block": "headline-slam + logo-brand-close + shimmer-sweep",
+  "customize": {
+    "headline-slam": { "text": "¿Todo a mano?", "accent_word_index": 2, "accent": "green", "duration": 2.2 },
+    "logo-brand-close": { "wordmark": "ScalyAI", "tagline": "Software e IA a la medida de tu negocio", "url": "scalyai.dev", "accent": "green", "duration": 3 },
+    "shimmer-sweep": { "target": "#s3-line2", "at": 6.1 }
+  },
+  "content": {
+    "source": "scalyai.dev (site blocked by network egress; copy taken from its public search listing)",
+    "scenes": [
+      { "id": "s1-hook", "start": 0, "end": 2.2, "text": "¿Todo a mano?", "emphasis_words": ["mano?"], "emotion": "provocation", "motion": "headline-slam: scale-down slam, 3-frame shake, whip up", "beats": [0.58] },
+      { "id": "s2-build", "start": 2.2, "end": 4.8, "text": "Conectamos tus herramientas — CRM · WhatsApp · Excel · ERP", "emphasis_words": ["herramientas"], "emotion": "relief", "motion": "word_reveal headline, pills scale_punch staggered, connector underline_sweep links them, pills color_shift to accent", "beats": [3.2] },
+      { "id": "s3-punch", "start": 4.8, "end": 7.0, "text": "Listo en 2 semanas. ROI medible en 6.", "emphasis_words": ["2", "6"], "emotion": "confidence", "motion": "slide_bottom lines, numbers scale_punch + glow, shimmer sweep on line 2, scale_out exit", "beats": [5.3, 6.0] },
+      { "id": "s4-resolve", "start": 7.0, "end": 10.0, "text": "ScalyAI. — Software e IA a la medida de tu negocio — scalyai.dev", "emphasis_words": ["."], "emotion": "trust", "motion": "logo-brand-close: letter cascade, accent period pop, tagline + url settle, still hold", "beats": [7.95] }
+    ]
+  }
+}
