@@ -6,7 +6,7 @@
   </head>
   <body>
     <template>
-      <div id="root" data-composition-id="stage-bg" data-width="1920" data-height="1080" data-duration="10" data-fps="30">
+      <div id="root" data-composition-id="stage-bg" data-width="1920" data-height="1080" data-duration="12" data-fps="30">
         <style>
           #root {
             position: absolute;
@@ -40,7 +40,7 @@
           }
         </style>
 
-        <div id="stage-bg-clip" class="clip" data-start="0" data-duration="10" data-track-index="0">
+        <div id="stage-bg-clip" class="clip" data-start="0" data-duration="12" data-track-index="0">
           <div class="bg-grid"></div>
           <div class="bg-glow"></div>
         </div>
@@ -53,7 +53,7 @@
             tl.fromTo(
               root.querySelector(".bg-glow"),
               { x: -140, y: 20, scale: 0.95 },
-              { x: 140, y: -20, scale: 1.08, duration: 10, ease: "sine.inOut" },
+              { x: 140, y: -20, scale: 1.08, duration: 12, ease: "sine.inOut" },
               0,
             );
             tl.seek(0);

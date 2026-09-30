@@ -1,6 +1,6 @@
 {
   "category": "kinetic-type",
-  "duration_s": 10,
+  "duration_s": 12,
   "fps": 30,
   "canvas": {
     "w": 1920,
@@ -52,7 +52,7 @@
       {
         "id": "s1-hook",
         "start": 0,
-        "end": 2.2,
+        "end": 2.3,
         "text": "¿Todo a mano?",
         "emphasis_words": [
           "mano?"
@@ -65,29 +65,29 @@
       },
       {
         "id": "s2-build",
-        "start": 2.2,
-        "end": 4.8,
-        "text": "Conectamos tus herramientas — CRM · WhatsApp · Excel · ERP",
+        "start": 1.8,
+        "end": 6.2,
+        "text": "Conectamos tus herramientas — chatbot de WhatsApp en un celular + CRM · WhatsApp · Excel · ERP",
         "emphasis_words": [
           "herramientas"
         ],
         "emotion": "relief",
-        "motion": "word_reveal headline, pills scale_punch staggered, connector underline_sweep links them, pills color_shift to accent",
+        "motion": "split: pills 3D flip; phone rises with settling tilt; chat bubbles pop from tail corners, typing indicator, CRM receipt",
         "beats": [
           3.2
         ]
       },
       {
         "id": "s3-punch",
-        "start": 4.8,
-        "end": 7.0,
+        "start": 5.75,
+        "end": 8.65,
         "text": "Listo en 2 semanas. ROI medible en 6.",
         "emphasis_words": [
           "2",
           "6"
         ],
         "emotion": "confidence",
-        "motion": "slide_bottom lines, numbers scale_punch + glow, shimmer sweep on line 2, scale_out exit",
+        "motion": "slot-machine digit roll 0→2 / 0→6, left-to-right mask reveal, glow + shimmer",
         "beats": [
           5.3,
           6.0
@@ -95,14 +95,14 @@
       },
       {
         "id": "s4-resolve",
-        "start": 7.0,
-        "end": 10.0,
+        "start": 8.6,
+        "end": 12.0,
         "text": "ScalyAI. — Software e IA a la medida de tu negocio — scalyai.dev",
         "emphasis_words": [
           "."
         ],
         "emotion": "trust",
-        "motion": "logo-brand-close: letter cascade, accent period pop, tagline + url settle, still hold",
+        "motion": "logo-brand-close letter cascade, accent period pop, tagline word-by-word blur-in",
         "beats": [
           7.95
         ]
