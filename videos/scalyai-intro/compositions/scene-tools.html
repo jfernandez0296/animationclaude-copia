@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Scene 2 — tools</title>
+    <title>Scene 2 — tools + chatbot phone</title>
   </head>
   <body>
     <template>
@@ -21,80 +21,261 @@
           }
           .st-content {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             width: 100%;
             height: 100%;
-            padding: 120px 160px;
-            gap: 56px;
-            text-align: center;
+            padding: 90px 180px 90px 160px;
+            gap: 80px;
+          }
+
+          /* ── left column: message + tools ── */
+          .st-copy {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 36px;
           }
           .st-title {
-            display: flex;
-            gap: 26px;
             font-family: var(--font-display, system-ui, sans-serif);
-            font-size: 96px;
+            font-size: 104px;
             font-weight: 800;
-            letter-spacing: -0.035em;
-            line-height: 1.05;
+            letter-spacing: -0.04em;
+            line-height: 1;
           }
-          .st-word {
-            display: inline-block;
+          .st-title-line {
+            display: block;
           }
           .st-accent {
             color: var(--brand, #007a82);
           }
+          .st-sub {
+            max-width: 780px;
+            color: var(--muted, #4f626b);
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.3;
+          }
           .st-tools {
             position: relative;
             display: flex;
-            gap: 36px;
-            padding-bottom: 40px;
+            gap: 22px;
+            padding-bottom: 30px;
           }
           .st-pill {
             display: flex;
             align-items: center;
-            gap: 18px;
-            padding: 22px 40px;
+            gap: 14px;
+            padding: 16px 30px;
             border-radius: 999px;
             background: var(--pill, #ffffff);
             box-shadow: 0 10px 30px rgba(6, 26, 54, 0.08);
             border: 2px solid var(--pill-line, #d6dbd2);
-            font-size: 44px;
+            font-size: 34px;
             font-weight: 600;
             letter-spacing: -0.01em;
           }
           .st-dot {
             display: block;
-            width: 16px;
-            height: 16px;
+            width: 13px;
+            height: 13px;
             border-radius: 50%;
             background: var(--muted, #4f626b);
           }
           .st-link {
             position: absolute;
-            left: 40px;
-            right: 40px;
+            left: 30px;
+            right: 30px;
             bottom: 0;
-            height: 6px;
+            height: 5px;
             border-radius: 3px;
             background: linear-gradient(90deg, var(--navy-2, #0e3a5e), var(--accent-2, #20748c), var(--accent, #42cfd2));
+          }
+
+          /* ── right column: phone running the ScalyAI chatbot ── */
+          .st-phone {
+            position: relative;
+            flex: 0 0 auto;
+            width: 440px;
+            height: 900px;
+            padding: 14px;
+            border-radius: 66px;
+            background: var(--fg, #061a36);
+            box-shadow:
+              0 40px 80px rgba(6, 26, 54, 0.22),
+              0 12px 24px rgba(6, 26, 54, 0.12);
+          }
+          .st-screen {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 52px;
+            background: #eaf1ee;
+          }
+          .st-notch {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            width: 120px;
+            height: 34px;
+            margin-left: -60px;
+            border-radius: 20px;
+            background: var(--fg, #061a36);
+          }
+          .st-chat-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 66px 26px 20px;
+            background: linear-gradient(120deg, var(--navy-2, #0e3a5e), var(--accent-2, #20748c));
+            color: #ffffff;
+          }
+          .st-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: var(--accent, #42cfd2);
+            color: var(--fg, #061a36);
+            font-size: 28px;
+            font-weight: 800;
+          }
+          .st-head-name {
+            font-size: 29px;
+            font-weight: 700;
+            line-height: 1.2;
+          }
+          .st-head-status {
+            font-size: 21px;
+            font-weight: 500;
+            opacity: 0.85;
+          }
+          .st-thread {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 30px 22px;
+          }
+          .st-msg {
+            max-width: 88%;
+            padding: 18px 24px;
+            border-radius: 28px;
+            font-size: 29px;
+            font-weight: 500;
+            line-height: 1.3;
+            box-shadow: 0 2px 6px rgba(6, 26, 54, 0.08);
+          }
+          .st-msg-user {
+            align-self: flex-end;
+            border-bottom-right-radius: 8px;
+            background: #cdeeea;
+            color: var(--fg, #061a36);
+          }
+          .st-msg-bot {
+            align-self: flex-start;
+            border-bottom-left-radius: 8px;
+            background: #ffffff;
+            color: var(--fg, #061a36);
+          }
+          .st-msg-strong {
+            color: var(--brand, #007a82);
+            font-weight: 700;
+          }
+          .st-receipt {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 14px;
+            background: #eaf6f4;
+            color: var(--brand, #007a82);
+            font-size: 24px;
+            font-weight: 700;
+            white-space: nowrap;
+          }
+          .st-check {
+            display: block;
+            width: 26px;
+            height: 26px;
+            flex: 0 0 26px;
+          }
+          .st-bot-slot {
+            overflow: hidden;
+          }
+          .st-typing {
+            display: flex;
+            width: fit-content;
+            align-self: flex-start;
+            gap: 8px;
+            padding: 18px 22px;
+            border-radius: 24px;
+            border-bottom-left-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 2px 6px rgba(6, 26, 54, 0.08);
+          }
+          .st-typing-dot {
+            display: block;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--muted, #4f626b);
           }
         </style>
 
         <div id="scene-tools-clip" class="clip" data-start="0" data-duration="3" data-track-index="0">
           <div class="st-content">
-            <h2 class="st-title">
-              <span class="st-word">Conectamos</span>
-              <span class="st-word">tus</span>
-              <span class="st-word st-accent">herramientas</span>
-            </h2>
-            <div class="st-tools">
-              <div class="st-pill"><span class="st-dot"></span>CRM</div>
-              <div class="st-pill"><span class="st-dot"></span>WhatsApp</div>
-              <div class="st-pill"><span class="st-dot"></span>Excel</div>
-              <div class="st-pill"><span class="st-dot"></span>ERP</div>
-              <div class="st-link"></div>
+            <div class="st-copy">
+              <h2 class="st-title">
+                <span class="st-title-line">Conectamos tus</span>
+                <span class="st-title-line st-accent">herramientas</span>
+              </h2>
+              <p class="st-sub">Tu chatbot atiende en WhatsApp y registra todo en tu CRM.</p>
+              <div class="st-tools">
+                <div class="st-pill"><span class="st-dot"></span>CRM</div>
+                <div class="st-pill"><span class="st-dot"></span>WhatsApp</div>
+                <div class="st-pill"><span class="st-dot"></span>Excel</div>
+                <div class="st-pill"><span class="st-dot"></span>ERP</div>
+                <div class="st-link"></div>
+              </div>
+            </div>
+
+            <div class="st-phone">
+              <div class="st-screen">
+                <div class="st-notch"></div>
+                <div class="st-chat-head">
+                  <div class="st-avatar">S</div>
+                  <div>
+                    <div class="st-head-name">ScalyAI Bot</div>
+                    <div class="st-head-status">en línea</div>
+                  </div>
+                </div>
+                <div class="st-thread">
+                  <div class="st-msg st-msg-user st-m1">Hola, ¿tienen stock de la talla M?</div>
+                  <div class="st-bot-slot">
+                    <div class="st-typing" data-layout-allow-overflow="true">
+                      <span class="st-typing-dot"></span><span class="st-typing-dot"></span><span class="st-typing-dot"></span>
+                    </div>
+                  </div>
+                  <div class="st-msg st-msg-bot st-m2">¡Sí! Quedan <span class="st-msg-strong">8 unidades</span>. ¿Te la reservo?</div>
+                  <div class="st-msg st-msg-user st-m3">Sí, por favor</div>
+                  <div class="st-msg st-msg-bot st-m4">
+                    Listo, pedido reservado.
+                    <div class="st-receipt">
+                      <svg class="st-check" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="11" fill="#007a82" />
+                        <path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      Pedido #1042 · CRM
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -105,23 +286,59 @@
             var q = function (s) {
               return root.querySelectorAll(s);
             };
+            var el = function (s) {
+              return root.querySelector(s);
+            };
             var BRAND = "#007a82";
             var LINE = "#d6dbd2";
             var MUTED = "#4f626b";
             var tl = gsap.timeline({ paused: true });
 
+            // phone: rises in from below with a small tilt that settles
+            tl.fromTo(
+              el(".st-phone"),
+              { autoAlpha: 0, y: 260, rotation: 6 },
+              { autoAlpha: 1, y: 0, rotation: 0, duration: 0.7, ease: "power4.out" },
+              0.25,
+            );
+            // subtitle: soft fade-up
+            tl.fromTo(el(".st-sub"), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.4);
             // pills: 3D card flip, centre-out
             tl.fromTo(
               q(".st-pill"),
               { autoAlpha: 0, rotationX: -95, y: 36, transformPerspective: 900, transformOrigin: "50% 100%" },
               { autoAlpha: 1, rotationX: 0, y: 0, duration: 0.6, stagger: { each: 0.1, from: "center" }, ease: "back.out(1.6)" },
-              0.5,
+              0.55,
             );
             // connector: underline_sweep links the tools
             tl.fromTo(q(".st-link"), { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, 1.1);
             // color_shift: every tool turns "connected"
             tl.fromTo(q(".st-pill"), { borderColor: LINE }, { borderColor: BRAND, duration: 0.3, stagger: 0.1, ease: "power1.out", immediateRender: false }, 1.2);
             tl.fromTo(q(".st-dot"), { backgroundColor: MUTED }, { backgroundColor: BRAND, duration: 0.3, stagger: 0.1, ease: "power1.out" }, 1.2);
+
+            // chat: each bubble pops from its tail corner
+            var pop = function (target, origin, at) {
+              tl.fromTo(
+                target,
+                { autoAlpha: 0, scale: 0.4, transformOrigin: origin },
+                { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2)" },
+                at,
+              );
+            };
+            pop(el(".st-m1"), "100% 100%", 0.6);
+            // typing indicator: appears, dots bob twice, then collapses as the reply lands
+            tl.fromTo(el(".st-bot-slot"), { height: 0 }, { height: 47, duration: 0.2, ease: "power2.out" }, 0.8);
+            pop(el(".st-typing"), "0% 100%", 0.8);
+            tl.fromTo(
+              q(".st-typing-dot"),
+              { y: 0 },
+              { y: -8, duration: 0.14, stagger: 0.07, yoyo: true, repeat: 3, ease: "sine.inOut" },
+              0.95,
+            );
+            tl.to(el(".st-bot-slot"), { height: 0, autoAlpha: 0, duration: 0.15, ease: "power2.in" }, 1.3);
+            pop(el(".st-m2"), "0% 100%", 1.35);
+            pop(el(".st-m3"), "100% 100%", 1.75);
+            pop(el(".st-m4"), "0% 100%", 2.05);
 
             tl.seek(0);
             window.__timelines["scene-tools"] = tl;
