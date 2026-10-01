@@ -1,0 +1,146 @@
+{
+  "category": "kinetic-type",
+  "duration_s": 60,
+  "fps": 30,
+  "canvas": {
+    "w": 1920,
+    "h": 1080,
+    "aspect": "16:9"
+  },
+  "style": "60 s, YouTube. Story arc night to day with ten beats; brand cream palette from scalyai.dev; layered depth (orbs, perspective floor, rings, dust), 3D cards, slow camera push-ins, nine distinct transitions. Last 10 s calm for YouTube end screens. No audio.",
+  "palette": [
+    "#F0F0E8",
+    "#061A36",
+    "#007A82",
+    "#4F626B",
+    "#0E3A5E",
+    "#20748C",
+    "#42CFD2"
+  ],
+  "font": "Manrope",
+  "beats": [
+    0.58,
+    3.2,
+    5.3,
+    7.95
+  ],
+  "export": "mp4",
+  "asset_needs": [],
+  "block": "headline-slam + logo-brand-close + shimmer-sweep",
+  "customize": {
+    "headline-slam": {
+      "text": "¿Todo a mano?",
+      "accent_word_index": 2,
+      "accent": "green",
+      "duration": 2.2
+    },
+    "logo-brand-close": {
+      "wordmark": "ScalyAI",
+      "tagline": "Software e IA a la medida de tu negocio",
+      "url": "scalyai.dev",
+      "accent": "green",
+      "duration": 3
+    },
+    "shimmer-sweep": {
+      "target": "#s3-line2",
+      "at": 6.1
+    }
+  },
+  "content": {
+    "source": "scalyai.dev copy from public listing + user screenshot (site blocked by network egress). Real: tagline, tools, 2 weeks / ROI in 6, CTA. To verify: S/1.500 and S/10k-S/500k (from search listing). Illustrative (labelled on screen): 11:40 p. m. case, 12 h, 18 h, 1.240, chart, order #1042.",
+    "scenes": [
+      {
+        "id": "01-night",
+        "start": 0,
+        "end": 5.0,
+        "chapter": "El problema",
+        "text": "11:40 p. m. Un cliente escribe. Nadie responde. Ya le compro a otro.",
+        "motion": "flip clock, 3D notification, hours counter, VENTA PERDIDA stamp"
+      },
+      {
+        "id": "02-tasks",
+        "start": 4.3,
+        "end": 10.5,
+        "chapter": "El problema",
+        "text": "De dia, todo a mano. Ahora, se hacen solas.",
+        "motion": "sunrise circular reveal, chaos, letter swap, scanner ticks tasks, sparks"
+      },
+      {
+        "id": "03-brand",
+        "start": 10.0,
+        "end": 18.0,
+        "chapter": "La marca",
+        "text": "Esto es ScalyAI. Software e IA a la medida de tu negocio. Automatizamos lo repetitivo / Ponemos tus datos a trabajar / Ordenamos tu operacion.",
+        "motion": "letter flip-in from centre, tagline blur-in, 3 value cards in 3D, spotlight each"
+      },
+      {
+        "id": "04-chat",
+        "start": 17.5,
+        "end": 22.5,
+        "chapter": "La solucion",
+        "text": "Conectamos tus herramientas. El mismo mensaje de las 11:40 p. m. recibe respuesta.",
+        "motion": "3D phone, halo, badges, chat in 2 s"
+      },
+      {
+        "id": "05-flow",
+        "start": 22.0,
+        "end": 27.7,
+        "chapter": "La solucion",
+        "text": "Un solo flujo. Cero copiar y pegar.",
+        "motion": "3D flow plane, packet #1042, ripples, branch to a person"
+      },
+      {
+        "id": "06-dashboard",
+        "start": 27.1,
+        "end": 31.9,
+        "chapter": "La solucion",
+        "text": "A la manana, todo se mide.",
+        "motion": "circular reveal, typewriter flash, 3D tiles, slot KPIs, elastic bars"
+      },
+      {
+        "id": "07-how",
+        "start": 31.4,
+        "end": 40.0,
+        "chapter": "Como trabajamos",
+        "text": "Sin proyectos eternos. 1 Elegimos un proceso. 2 Lo conectamos y lo ponemos a funcionar. 3 Medimos el retorno. Empezamos con un piloto, no con una apuesta.",
+        "motion": "diagonal wipe, blur-rise letters, 3D steps, travelling dot, spring banner"
+      },
+      {
+        "id": "08-promise",
+        "start": 39.5,
+        "end": 42.45,
+        "chapter": "Como trabajamos",
+        "text": "Listo en 2 semanas. ROI medible en 6.",
+        "motion": "push down, slot digits, shock rings, sparks"
+      },
+      {
+        "id": "09-pymes",
+        "start": 41.9,
+        "end": 49.1,
+        "chapter": "Como trabajamos",
+        "text": "Hecho para PyMEs. S/10k a S/500k al mes. Paquetes desde S/1.500. Se empieza con un piloto.",
+        "motion": "barn-door open, zoom-land letters, range slider, price slot roll"
+      },
+      {
+        "id": "10-close",
+        "start": 49.2,
+        "end": 60.0,
+        "chapter": "Tu turno",
+        "text": "ScalyAI. Software e IA a la medida de tu negocio. Conversemos de tu proximo piloto. 30 minutos, sin tarjeta, sin compromiso.",
+        "motion": "brand wipe, letter cascade, rings, sparks, sheen, CTA spring; calm hold for YouTube end screens"
+      }
+    ],
+    "transitions": [
+      "sunrise circle",
+      "zoom-through",
+      "push up",
+      "push left",
+      "circle from centre",
+      "diagonal wipe",
+      "push down",
+      "barn doors",
+      "brand-gradient wipe"
+    ],
+    "story": "Un cliente escribe a las 11:40 p. m. y nadie responde (venta perdida). De dia todo es manual. ScalyAI activa la automatizacion: el mismo mensaje recibe respuesta, el pedido #1042 recorre un flujo conectado, a la manana todo se mide, 2 semanas / ROI en 6, y la invitacion a conversar."
+  }
+}

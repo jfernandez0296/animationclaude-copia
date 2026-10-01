@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scene 3 — 2 semanas / ROI en 6</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-roi" data-width="1920" data-height="1080" data-duration="2.95" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            color: var(--fg, #061a36);
+            font-family: var(--font-display, system-ui, sans-serif);
+          }
+          #scene-roi-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .sr-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 120px 160px;
+            gap: 48px;
+            text-align: center;
+          }
+          .sr-line {
+            display: block;
+            font-size: 120px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            white-space: nowrap;
+          }
+          .sr-num {
+            display: inline-block;
+          }
+          /* slot-machine digit: a clipped window over a vertical strip of digits */
+          .sr-roll {
+            height: 1.05em;
+            overflow: hidden;
+            vertical-align: bottom;
+          }
+          .sr-strip {
+            display: flex;
+            flex-direction: column;
+          }
+          .sr-strip > span {
+            display: block;
+            height: 1.05em;
+            line-height: 1.05;
+          }
+          .sr-num-color {
+            color: var(--brand, #007a82);
+          }
+          .sr-sub {
+            color: var(--muted, #4f626b);
+          }
+
+          /* shimmer-sweep, adapted: the light band runs through the glyphs only */
+          .sr-shine {
+            background-image: linear-gradient(
+              110deg,
+              var(--muted, #4f626b) 0%,
+              var(--muted, #4f626b) 40%,
+              var(--accent, #42cfd2) 50%,
+              var(--muted, #4f626b) 60%,
+              var(--muted, #4f626b) 100%
+            );
+            background-size: 300% 100%;
+            background-position: 100% 0;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+          }
+        </style>
+
+        <div id="scene-roi-clip" class="clip" data-start="0" data-duration="2.95" data-track-index="0">
+          <div class="sr-content">
+            <div class="sr-line sr-line-1">Listo en <span class="sr-num sr-num-color sr-roll"><span class="sr-strip sr-strip-1" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span></span></span> semanas.</div>
+            <div class="sr-line-wrap">
+              <div class="sr-line sr-line-2">
+                <span class="sr-sub sr-shine">ROI medible en</span> <span class="sr-num sr-num-color sr-roll"><span class="sr-strip sr-strip-2" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></span></span><span class="sr-sub">.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var el = function (s) {
+              return root.querySelector(s);
+            };
+            var tl = gsap.timeline({ paused: true });
+
+            // "2": slot-machine roll 0 → 2
+            tl.fromTo(el(".sr-strip-1"), { yPercent: 0 }, { yPercent: -66.667, duration: 0.7, ease: "power3.out" }, 0.4);
+            // line 2: mask reveal, left to right
+            tl.fromTo(
+              el(".sr-line-wrap"),
+              { clipPath: "inset(-10% 100% -10% 0%)" },
+              { clipPath: "inset(-10% 0% -10% 0%)", duration: 0.55, ease: "power2.inOut" },
+              0.7,
+            );
+            // "6": longer roll 0 → 6, landing just after the mask opens
+            tl.fromTo(el(".sr-strip-2"), { yPercent: 0 }, { yPercent: -85.714, duration: 0.8, ease: "power3.out" }, 0.9);
+            // glow on the beat
+            tl.fromTo(
+              root.querySelectorAll(".sr-num"),
+              { textShadow: "0 0 0px rgba(66,207,210,0)" },
+              { textShadow: "0 0 40px rgba(66,207,210,0.55)", duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" },
+              1.45,
+            );
+            // shimmer-sweep across line 2
+            tl.fromTo(el(".sr-shine"), { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.7, ease: "power2.inOut" }, 1.4);
+
+            // billboard entry: the whole statement stands up in 3D, then a slow camera push-in
+            tl.fromTo(el(".sr-content"), { rotationX: -26, y: 40, transformPerspective: 1400, transformOrigin: "50% 100%" }, { rotationX: 0, y: 0, duration: 0.9, ease: "power3.out" }, 0);
+            tl.fromTo(el(".sr-content"), { scale: 1 }, { scale: 1.05, duration: 2.95, ease: "none" }, 0);
+
+            // when the numbers land: three shock rings and a spark burst from the centre
+            var clip = document.getElementById("scene-roi-clip");
+            var rr = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            }(33);
+            for (var ri = 0; ri < 3; ri++) {
+              var ring = document.createElement("div");
+              ring.style.cssText = "position:absolute;left:810px;top:390px;width:300px;height:300px;border-radius:50%;border:5px solid #42cfd2;opacity:0;pointer-events:none;";
+              clip.appendChild(ring);
+              tl.fromTo(ring, { scale: 0.3, autoAlpha: 0.85 }, { scale: 4.6, autoAlpha: 0, duration: 1.1, ease: "power2.out" }, 1.3 + ri * 0.2);
+            }
+            for (var si = 0; si < 18; si++) {
+              var sp = document.createElement("div");
+              var big = 8 + Math.round(rr() * 10);
+              sp.style.cssText = "position:absolute;left:954px;top:534px;width:" + big + "px;height:" + big + "px;border-radius:50%;opacity:0;pointer-events:none;background:" + (si % 2 ? "#42cfd2" : "#007a82") + ";";
+              clip.appendChild(sp);
+              var a = (si / 18) * Math.PI * 2 + rr() * 0.4;
+              var d = 260 + rr() * 380;
+              tl.fromTo(sp, { x: 0, y: 0, autoAlpha: 1, scale: 1 }, { x: Math.cos(a) * d, y: Math.sin(a) * d * 0.7, autoAlpha: 0, scale: 0.2, duration: 0.9 + rr() * 0.4, ease: "power3.out" }, 1.35);
+            }
+
+            tl.seek(0);
+            window.__timelines["scene-roi"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

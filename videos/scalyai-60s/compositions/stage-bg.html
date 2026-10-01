@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stage background: layered depth</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="stage-bg" data-width="1920" data-height="1080" data-duration="60" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background: var(--stage, #f0f0e8);
+          }
+          #stage-bg-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .bg-layer {
+            position: absolute;
+            inset: 0;
+          }
+          .bg-base {
+            background: radial-gradient(ellipse at 50% 38%, #fcfcf8 0%, #f0f0e8 52%, #e2e5da 100%);
+          }
+
+          /* soft light orbs, each drifting on its own path (depth by parallax) */
+          .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+          }
+          .bg-o1 {
+            left: -8%;
+            top: -22%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(66, 207, 210, 0.34) 0%, rgba(66, 207, 210, 0.12) 40%, transparent 68%);
+          }
+          .bg-o2 {
+            right: -10%;
+            bottom: -30%;
+            width: 1100px;
+            height: 1100px;
+            background: radial-gradient(circle, rgba(0, 122, 130, 0.26) 0%, rgba(0, 122, 130, 0.09) 42%, transparent 68%);
+          }
+          .bg-o3 {
+            left: 38%;
+            top: 20%;
+            width: 760px;
+            height: 760px;
+            background: radial-gradient(circle, rgba(14, 58, 94, 0.14) 0%, rgba(14, 58, 94, 0.05) 45%, transparent 68%);
+          }
+
+          /* perspective floor grid that streams toward the camera */
+          .bg-floor {
+            position: absolute;
+            left: -30%;
+            right: -30%;
+            bottom: 0;
+            height: 52%;
+            overflow: hidden;
+            perspective: 620px;
+            -webkit-mask-image: linear-gradient(to top, #000 8%, transparent 92%);
+            mask-image: linear-gradient(to top, #000 8%, transparent 92%);
+          }
+          .bg-floor-grid {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -12%;
+            height: 220%;
+            transform-origin: 50% 100%;
+            transform: rotateX(70deg);
+            background-image:
+              linear-gradient(rgba(0, 122, 130, 0.2) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(0, 122, 130, 0.2) 2px, transparent 2px);
+            background-size: 120px 120px;
+          }
+
+          /* dashed rings that slowly spin at different speeds */
+          .bg-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px dashed rgba(0, 122, 130, 0.22);
+          }
+          .bg-r1 {
+            left: 1180px;
+            top: 80px;
+            width: 520px;
+            height: 520px;
+          }
+          .bg-r2 {
+            left: 1020px;
+            top: -80px;
+            width: 840px;
+            height: 840px;
+            border-color: rgba(66, 207, 210, 0.3);
+          }
+          .bg-r3 {
+            left: -260px;
+            top: 560px;
+            width: 640px;
+            height: 640px;
+            border-color: rgba(14, 58, 94, 0.16);
+          }
+
+          .bg-dot {
+            position: absolute;
+            border-radius: 50%;
+          }
+          .bg-vignette {
+            background: radial-gradient(ellipse at 50% 46%, transparent 52%, rgba(6, 26, 54, 0.12) 100%);
+            pointer-events: none;
+          }
+        </style>
+
+        <div id="stage-bg-clip" class="clip" data-start="0" data-duration="60" data-track-index="0">
+          <div class="bg-layer bg-base"></div>
+          <div class="bg-orb bg-o1" data-layout-allow-overflow="true"></div>
+          <div class="bg-orb bg-o2" data-layout-allow-overflow="true"></div>
+          <div class="bg-orb bg-o3" data-layout-allow-overflow="true"></div>
+          <div class="bg-floor"><div class="bg-floor-grid" data-layout-allow-overflow="true"></div></div>
+          <div class="bg-ring bg-r1" data-layout-allow-overflow="true"></div>
+          <div class="bg-ring bg-r2" data-layout-allow-overflow="true"></div>
+          <div class="bg-ring bg-r3" data-layout-allow-overflow="true"></div>
+          <div class="bg-layer bg-dots"></div>
+          <div class="bg-layer bg-vignette"></div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var el = function (s) {
+              return root.querySelector(s);
+            };
+            var tl = gsap.timeline({ paused: true });
+
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+
+            // orbs: long, slow, different paths so the light seems to move through the scenes
+            var path1 = [[380, 170, 1.2], [-80, 260, 0.9], [260, -40, 1.15], [-200, 120, 1.0], [340, 220, 1.2], [60, -20, 0.95]];
+            var path2 = [[-420, -150, 1.18], [60, -260, 0.92], [-240, 40, 1.1], [-380, -200, 1.0], [100, -120, 1.15], [-160, 60, 0.95]];
+            var path3 = [[-500, 120, 1.3], [300, -60, 0.85], [-260, 180, 1.2], [420, -100, 0.9]];
+            path1.forEach(function (p, i) { tl.to(el(".bg-o1"), { x: p[0], y: p[1], scale: p[2], duration: 10, ease: "sine.inOut" }, i * 10); });
+            path2.forEach(function (p, i) { tl.to(el(".bg-o2"), { x: p[0], y: p[1], scale: p[2], duration: 10, ease: "sine.inOut" }, i * 10); });
+            path3.forEach(function (p, i) { tl.to(el(".bg-o3"), { x: p[0], y: p[1], scale: p[2], duration: 15, ease: "sine.inOut" }, i * 15); });
+
+            // floor grid streams toward the camera for the whole film
+            tl.fromTo(el(".bg-floor-grid"), { backgroundPosition: "0px 0px" }, { backgroundPosition: "0px 3840px", duration: 60, ease: "none" }, 0);
+
+            // rings spin
+            tl.fromTo(el(".bg-r1"), { rotation: 0 }, { rotation: 720, duration: 60, ease: "none" }, 0);
+            tl.fromTo(el(".bg-r2"), { rotation: 0 }, { rotation: -720, duration: 60, ease: "none" }, 0);
+            tl.fromTo(el(".bg-r3"), { rotation: 0 }, { rotation: 720, duration: 60, ease: "none" }, 0);
+
+            // dust: 40 dots rising at different speeds, twinkling (seeded, deterministic)
+            var layer = el(".bg-dots");
+            var r = rng(5);
+            for (var i = 0; i < 40; i++) {
+              var d = document.createElement("div");
+              d.className = "bg-dot";
+              var size = 5 + Math.round(r() * 11);
+              var cyan = r() > 0.4;
+              d.style.width = size + "px";
+              d.style.height = size + "px";
+              d.style.left = Math.round(r() * 1900) + "px";
+              d.style.top = Math.round(120 + r() * 980) + "px";
+              d.style.background = cyan ? "rgba(66,207,210,0.75)" : "rgba(0,122,130,0.55)";
+              d.style.opacity = "0";
+              layer.appendChild(d);
+              var rise = 320 + r() * 1040;
+              var tw = 1.4 + r() * 2.2;
+              var reps = Math.max(1, Math.floor(60 / tw) - 1);
+              tl.fromTo(d, { y: 0 }, { y: -rise, duration: 60, ease: "none" }, 0);
+              tl.fromTo(d, { opacity: 0.05 }, { opacity: 0.35 + r() * 0.5, duration: tw, ease: "sine.inOut", yoyo: true, repeat: reps }, r() * 2);
+            }
+
+            tl.seek(0);
+            window.__timelines["stage-bg"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>
