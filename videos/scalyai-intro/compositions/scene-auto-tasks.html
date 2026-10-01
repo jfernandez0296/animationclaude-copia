@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Scene — tareas que se automatizan</title>
+    <title>Acto 2: del caos manual a las tareas que se hacen solas</title>
   </head>
   <body>
     <template>
-      <div id="root" data-composition-id="scene-auto-tasks" data-width="1920" data-height="1080" data-duration="5.3" data-fps="30">
+      <div id="root" data-composition-id="scene-auto-tasks" data-width="1920" data-height="1080" data-duration="6.2" data-fps="30">
         <style>
           #root {
             position: absolute;
@@ -19,6 +19,14 @@
             position: absolute;
             inset: 0;
           }
+          .sa-bg {
+            position: absolute;
+            inset: 0;
+            background:
+              radial-gradient(circle at 18% 8%, rgba(66, 207, 210, 0.3), transparent 46%),
+              radial-gradient(circle at 88% 92%, rgba(0, 122, 130, 0.2), transparent 46%),
+              radial-gradient(ellipse at 50% 38%, #fcfcf8 0%, #f0f0e8 52%, #e2e5da 100%);
+          }
           .sa-content {
             display: flex;
             align-items: center;
@@ -29,16 +37,19 @@
             gap: 60px;
           }
 
-          /* ── left: message ── */
+          /* left: the story headline swaps from "a mano" to "solas" */
           .sa-copy {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+            position: relative;
             flex: 0 0 auto;
+            width: 700px;
+            height: 520px;
           }
           .sa-title {
+            position: absolute;
+            left: 0;
+            top: 20px;
             font-family: var(--font-display, system-ui, sans-serif);
-            font-size: 100px;
+            font-size: 104px;
             font-weight: 800;
             letter-spacing: -0.04em;
             line-height: 1;
@@ -49,23 +60,41 @@
           .sa-accent {
             color: var(--brand, #007a82);
           }
+          .sa-coral {
+            color: #e0584a;
+          }
           .sa-sub {
+            position: absolute;
+            left: 0;
+            top: 370px;
+            width: 640px;
             color: var(--muted, #4f626b);
             font-size: 38px;
             font-weight: 500;
             line-height: 1.3;
           }
 
-          /* ── right: checklist card ── */
+          /* right: checklist card */
           .sa-card {
+            position: relative;
             flex: 0 0 auto;
             width: 900px;
             padding: 34px 36px 30px;
             border-radius: 40px;
             background: #ffffff;
+            overflow: hidden;
             box-shadow:
-              0 40px 80px rgba(6, 26, 54, 0.14),
-              0 10px 24px rgba(6, 26, 54, 0.08);
+              0 50px 90px rgba(6, 26, 54, 0.2),
+              0 14px 28px rgba(6, 26, 54, 0.1);
+          }
+          .sa-sheen {
+            position: absolute;
+            top: -20%;
+            left: -40%;
+            width: 26%;
+            height: 140%;
+            background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.85) 50%, transparent 100%);
+            pointer-events: none;
           }
           .sa-card-head {
             display: flex;
@@ -77,11 +106,31 @@
             letter-spacing: 0.02em;
             color: var(--muted, #4f626b);
           }
+          .sa-scaly {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--navy-2, #0e3a5e), var(--brand, #007a82));
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0;
+          }
+          .sa-scaly svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+          }
           .sa-pend {
             position: relative;
             display: inline-block;
             min-width: 190px;
             text-align: right;
+          }
+          .sa-pend-a {
+            color: #b8412f;
           }
           .sa-pend-b {
             position: absolute;
@@ -97,6 +146,7 @@
             gap: 12px;
           }
           .sa-row {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 18px;
@@ -105,6 +155,21 @@
             border-radius: 22px;
             background: #f4f5ef;
             white-space: nowrap;
+          }
+          .sa-alert {
+            position: absolute;
+            right: -2px;
+            top: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #d9473a;
+            color: #ffffff;
+            font-size: 21px;
+            font-weight: 800;
           }
           .sa-box {
             display: flex;
@@ -145,8 +210,8 @@
             font-weight: 700;
           }
           .sa-chip-manual {
-            background: #e3e6df;
-            color: var(--muted, #4f626b);
+            background: #fde6e2;
+            color: #a83a2a;
           }
           .sa-chip-auto {
             background: var(--brand, #007a82);
@@ -167,9 +232,16 @@
             background: linear-gradient(
               180deg,
               rgba(66, 207, 210, 0) 0%,
-              rgba(66, 207, 210, 0.42) 50%,
+              rgba(66, 207, 210, 0.5) 50%,
               rgba(66, 207, 210, 0) 100%
             );
+            pointer-events: none;
+          }
+          .sa-spark {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
             pointer-events: none;
           }
           .sa-foot {
@@ -219,65 +291,77 @@
             margin-top: 12px;
             font-size: 20px;
             font-weight: 500;
-            color: #5a6860;
+            color: #47564e;
             text-align: right;
           }
         </style>
 
-        <div id="scene-auto-tasks-clip" class="clip" data-start="0" data-duration="5.3" data-track-index="0">
+        <div id="scene-auto-tasks-clip" class="clip" data-start="0" data-duration="6.2" data-track-index="0">
+          <div class="sa-bg"></div>
           <div class="sa-content">
             <div class="sa-copy">
-              <h2 class="sa-title">
-                <span class="sa-title-line">Cada día,</span>
-                <span class="sa-title-line">las mismas</span>
-                <span class="sa-title-line sa-accent">tareas.</span>
+              <h2 class="sa-title sa-t1">
+                <span class="sa-title-line">De día,</span>
+                <span class="sa-title-line">todo a</span>
+                <span class="sa-title-line sa-coral">mano.</span>
               </h2>
-              <p class="sa-sub">Copiar, pegar, responder, repetir.</p>
+              <h2 class="sa-title sa-t2">
+                <span class="sa-title-line">Ahora,</span>
+                <span class="sa-title-line">se hacen</span>
+                <span class="sa-title-line sa-accent">solas.</span>
+              </h2>
+              <p class="sa-sub sa-s1">Cada pedido pasa por tres manos.</p>
+              <p class="sa-sub sa-s2">ScalyAI lo conecta todo. Sin copiar y pegar.</p>
             </div>
 
             <div class="sa-card">
+              <div class="sa-sheen" data-layout-allow-overflow="true"></div>
               <div class="sa-card-head">
                 <span>Tareas de la semana</span>
+                <span class="sa-scaly"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>ScalyAI activado</span>
                 <span class="sa-pend"><span class="sa-pend-a">5 pendientes</span><span class="sa-pend-b">Todo al día</span></span>
               </div>
               <div class="sa-rows">
                 <div class="sa-row">
+                  <div class="sa-alert">!</div>
                   <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
-                  <div class="sa-text">Pasar pedidos de WhatsApp a Excel</div>
+                  <div class="sa-text">Copiar el pedido #1042 a Excel</div>
                   <div class="sa-chips">
-                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
                     <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
                   </div>
                 </div>
                 <div class="sa-row">
                   <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
-                  <div class="sa-text">Responder preguntas frecuentes</div>
+                  <div class="sa-text">Responder: ¿hay talla M?</div>
                   <div class="sa-chips">
-                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-alert">!</div>
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Pasar el #1042 al CRM</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
                     <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
                   </div>
                 </div>
                 <div class="sa-row">
                   <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
-                  <div class="sa-text">Actualizar el CRM</div>
+                  <div class="sa-text">Enviar recordatorio de pago</div>
                   <div class="sa-chips">
-                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
                     <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
                   </div>
                 </div>
                 <div class="sa-row">
-                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
-                  <div class="sa-text">Enviar recordatorios de pago</div>
-                  <div class="sa-chips">
-                    <div class="sa-chip sa-chip-manual">Manual</div>
-                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
-                  </div>
-                </div>
-                <div class="sa-row">
+                  <div class="sa-alert">!</div>
                   <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
                   <div class="sa-text">Armar el reporte semanal</div>
                   <div class="sa-chips">
-                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
                     <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
                   </div>
                 </div>
@@ -307,7 +391,7 @@
             var BRAND = "#007a82";
             var tl = gsap.timeline({ paused: true });
 
-            // ── letter helpers (deterministic: seeded PRNG, no Math.random) ──
+            // letter helpers (deterministic: seeded PRNG, no Math.random)
             var rng = function (seed) {
               return function () {
                 seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
@@ -348,30 +432,64 @@
               return out;
             };
 
-            // title: every letter drops in with its own tilt and timing, then flies up on exit
-            var tl1 = splitLetters(el(".sa-title"));
+            // after the sunrise reveal, the opaque backdrop fades so the layered stage returns
+            tl.to(el(".sa-bg"), { autoAlpha: 0, duration: 0.5 }, 0.8);
+            // slow camera push-in for the whole scene (depth, never a static frame)
+            tl.fromTo(el(".sa-content"), { scale: 1 }, { scale: 1.04, duration: 6.2, ease: "none" }, 0);
+
+            // beat 1 (0 to 1.9): "de día, todo a mano"
+            var t1 = splitLetters(el(".sa-t1"));
             var r1 = rng(11);
-            tl1.forEach(function (c, i) {
-              var d = 0.05 + r1() * 0.45;
-              tl.fromTo(c, { autoAlpha: 0, y: -130, rotation: (r1() - 0.5) * 60 }, { autoAlpha: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.7)" }, d);
-              tl.to(c, { autoAlpha: 0, y: -110, rotation: (r1() - 0.5) * 70, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, 4.7 + r1() * 0.3);
+            t1.forEach(function (c) {
+              tl.fromTo(c, { autoAlpha: 0, y: -130, rotation: (r1() - 0.5) * 60 }, { autoAlpha: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.7)" }, 0.05 + r1() * 0.45);
+              // swap: the old words fly up and away
+              tl.to(c, { autoAlpha: 0, y: -120, rotation: (r1() - 0.5) * 80, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, 1.75 + r1() * 0.3);
             });
-            tl.fromTo(el(".sa-sub"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.5);
-            // card: slides in from the right
-            tl.fromTo(el(".sa-card"), { autoAlpha: 0, x: 140 }, { autoAlpha: 1, x: 0, duration: 0.65, ease: "power4.out" }, 0.15);
-            // rows: staggered from the right
+            tl.fromTo(el(".sa-s1"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.55);
+            tl.to(el(".sa-s1"), { autoAlpha: 0, y: -16, duration: 0.25, ease: "power2.in" }, 1.85);
+
+            // card: stands up in 3D from the right and keeps floating
+            tl.fromTo(
+              el(".sa-card"),
+              { autoAlpha: 0, x: 160, rotationY: 38, rotationX: 8, transformPerspective: 1500, transformOrigin: "0% 50%" },
+              { autoAlpha: 1, x: 0, rotationY: -7, rotationX: 2, duration: 0.85, ease: "power4.out" },
+              0.15,
+            );
+            tl.to(el(".sa-card"), { rotationY: -2, rotationX: -1, y: -10, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, 1.0);
             tl.fromTo(q(".sa-row"), { autoAlpha: 0, x: 70 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.08, ease: "power3.out" }, 0.3);
 
-            // chips: manual is visible first, automatic is hidden
+            // chaos: alerts bounce in, the counter pulses, rows wobble nervously
+            tl.fromTo(q(".sa-alert"), { scale: 0 }, { scale: 1, duration: 0.4, stagger: 0.12, ease: "back.out(3)" }, 0.9);
+            tl.to(q(".sa-alert"), { scale: 1.25, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut", stagger: 0.09 }, 1.3);
+            tl.to(el(".sa-pend-a"), { scale: 1.18, transformOrigin: "100% 50%", duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.0);
+            tl.to(q(".sa-row"), { x: 6, duration: 0.09, yoyo: true, repeat: 5, ease: "none", stagger: 0.04 }, 1.1);
+
+            // beat 2 (1.75 to 2.7): the headline flips to "ahora, se hacen solas"
+            var t2 = splitLetters(el(".sa-t2"));
+            t2.forEach(function (c, i) {
+              tl.fromTo(c, { autoAlpha: 0, rotationX: -90, y: 30, transformPerspective: 700 }, { autoAlpha: 1, rotationX: 0, y: 0, duration: 0.55, ease: "back.out(1.8)" }, 2.0 + i * 0.035);
+              tl.to(c, { autoAlpha: 0, y: -100, rotation: (r1() - 0.5) * 60, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, 5.5 + r1() * 0.3);
+            });
+            tl.fromTo(el(".sa-s2"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 2.4);
+            tl.to(el(".sa-s2"), { autoAlpha: 0, duration: 0.3 }, 5.55);
+
+            // ScalyAI arrives: badge pops, a light sheen crosses the card, the scanner starts
+            tl.fromTo(el(".sa-scaly"), { autoAlpha: 0, scale: 0.4, transformOrigin: "50% 50%" }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(2.6)" }, 2.1);
+            tl.fromTo(el(".sa-sheen"), { x: 0 }, { x: 1700, duration: 0.9, ease: "power2.inOut" }, 2.1);
+
+            // chips: "Pendiente" is visible first, "Automático" is hidden
             tl.set(q(".sa-chip-auto"), { autoAlpha: 0, scale: 0.7 }, 0);
             tl.set(q(".sa-tick"), { strokeDasharray: 30, strokeDashoffset: 30 }, 0);
 
-            // scanner: a light band moves down the list, and every row it crosses flips to automatic
-            tl.fromTo(el(".sa-scan"), { y: -35, autoAlpha: 0 }, { y: 480, autoAlpha: 1, duration: 2.06, ease: "none" }, 1.7);
-            tl.to(el(".sa-scan"), { autoAlpha: 0, duration: 0.2 }, 3.6);
+            // scanner: a light band moves down the list; every row it crosses flips to automatic
+            tl.fromTo(el(".sa-scan"), { y: -35, autoAlpha: 0 }, { y: 480, autoAlpha: 1, duration: 2.06, ease: "none" }, 2.3);
+            tl.to(el(".sa-scan"), { autoAlpha: 0, duration: 0.2 }, 4.25);
 
+            // spark bursts at each checkbox (seeded)
+            var rowsEl = el(".sa-rows");
+            var rs = rng(91);
             var rows = q(".sa-row");
-            var times = [1.87, 2.25, 2.64, 3.02, 3.41];
+            var times = [2.47, 2.85, 3.24, 3.62, 4.01];
             for (var i = 0; i < rows.length; i++) {
               var row = rows[i];
               var t = times[i];
@@ -379,15 +497,29 @@
               tl.to(row.querySelector(".sa-tick"), { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, t + 0.05);
               tl.to(row.querySelector(".sa-chip-manual"), { autoAlpha: 0, scale: 0.8, duration: 0.2, ease: "power2.in" }, t);
               tl.to(row.querySelector(".sa-chip-auto"), { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, t + 0.05);
+              tl.to(row, { scale: 1.025, duration: 0.15, yoyo: true, repeat: 1, ease: "sine.inOut", transformOrigin: "50% 50%" }, t);
+              var alertEl = row.querySelector(".sa-alert");
+              if (alertEl) tl.to(alertEl, { scale: 0, duration: 0.2, ease: "back.in(2)" }, t);
+              for (var k = 0; k < 9; k++) {
+                var sp = document.createElement("div");
+                sp.className = "sa-spark";
+                sp.style.left = "36px";
+                sp.style.top = 36 + i * 96 + "px";
+                sp.style.background = k % 2 ? "#42cfd2" : "#007a82";
+                sp.style.opacity = "0";
+                rowsEl.appendChild(sp);
+                var ang = (k / 9) * Math.PI * 2 + rs() * 0.5;
+                var dist = 54 + rs() * 56;
+                tl.fromTo(sp, { x: 0, y: 0, autoAlpha: 1, scale: 1 }, { x: Math.cos(ang) * dist, y: Math.sin(ang) * dist, autoAlpha: 0, scale: 0.2, duration: 0.55, ease: "power2.out" }, t + 0.05);
+              }
             }
 
-            // recovered time: slot-machine roll 0 → 12
-            tl.fromTo(el(".sa-foot"), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 3.3);
-            tl.fromTo(el(".sa-strip-a"), { yPercent: 0 }, { yPercent: -50, duration: 0.6, ease: "power3.out" }, 3.55);
-            tl.fromTo(el(".sa-strip-b"), { yPercent: 0 }, { yPercent: -66.667, duration: 0.8, ease: "power3.out" }, 3.55);
-            tl.set(el(".sa-pend-b"), { autoAlpha: 0, y: 12 }, 0);
-            tl.to(el(".sa-pend-a"), { autoAlpha: 0, y: -12, duration: 0.2 }, 3.5);
-            tl.to(el(".sa-pend-b"), { autoAlpha: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, 3.6);
+            // time recovered: the header flips to "todo al día", the number rolls to 12
+            tl.to(el(".sa-pend-a"), { autoAlpha: 0, y: -12, duration: 0.2 }, 4.0);
+            tl.fromTo(el(".sa-pend-b"), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, 4.1);
+            tl.fromTo(el(".sa-foot"), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 3.9);
+            tl.fromTo(el(".sa-strip-a"), { yPercent: 0 }, { yPercent: -50, duration: 0.6, ease: "power3.out" }, 4.15);
+            tl.fromTo(el(".sa-strip-b"), { yPercent: 0 }, { yPercent: -66.667, duration: 0.8, ease: "power3.out" }, 4.15);
 
             tl.seek(0);
             window.__timelines["scene-auto-tasks"] = tl;

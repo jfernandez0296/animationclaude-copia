@@ -7,7 +7,7 @@
     "h": 1080,
     "aspect": "16:9"
   },
-  "style": "ScalyAI brand (sampled from a scalyai.dev screenshot): cream page, faint navy grid, soft teal glow; navy headings, teal accent, slate secondary copy, navy→cyan CTA gradient.",
+  "style": "Story arc night to day: dark navy night (problem) turns into the cream brand world (solution) via a sunrise circular reveal. Layered depth: drifting light orbs, perspective floor grid, spinning dashed rings, rising dust, 3D-tilted cards and phone, slow camera push-ins.",
   "palette": [
     "#F0F0E8",
     "#061A36",
@@ -50,62 +50,70 @@
     "source": "scalyai.dev (site blocked by network egress; copy from public search listing, palette and font from a user-supplied screenshot)",
     "scenes": [
       {
-        "id": "s1-hook",
+        "id": "a1-night",
         "start": 0,
-        "end": 2.7,
-        "text": "¿Todo a mano?",
-        "motion": "headline-slam; letters lift off with seeded tilt on exit"
+        "end": 5.0,
+        "chapter": "El problema",
+        "text": "11:40 p. m. / Un cliente escribe. / Nadie responde. / Ya le compro a otro.",
+        "motion": "flip clock, notification with 3D tilt + ping, hours counter 0-8, stamp VENTA PERDIDA"
       },
       {
-        "id": "s2-tasks",
-        "start": 2.1,
-        "end": 7.4,
-        "text": "Cada día, las mismas tareas.",
-        "motion": "checklist card; scanner band ticks each task to Automático; letters drop in and fly up; hours-recovered slot roll (illustrative data)"
+        "id": "a2-tasks",
+        "start": 4.3,
+        "end": 10.5,
+        "chapter": "El cambio",
+        "text": "De dia, todo a mano. -> Ahora, se hacen solas.",
+        "motion": "sunrise reveal; chaos (alerts), headline letter swap, ScalyAI scanner ticks tasks with spark bursts, 12 h recovered (illustrative)"
       },
       {
-        "id": "s3-tools",
-        "start": 6.9,
-        "end": 12.4,
-        "text": "Conectamos tus herramientas",
-        "motion": "letter wave in, scatter out; pills 3D flip; phone with chatbot conversation"
+        "id": "a2-chat",
+        "start": 9.9,
+        "end": 14.9,
+        "chapter": "El cambio",
+        "text": "Conectamos tus herramientas. Ese mensaje de las 11:40 p. m. ahora recibe respuesta al instante.",
+        "motion": "3D phone swing-in, halo, floating tool badges, same chat message answered in 2 s"
       },
       {
-        "id": "s4-workflow",
-        "start": 11.9,
-        "end": 18.9,
-        "text": "Un solo flujo. Cero copiar y pegar.",
-        "motion": "letters pop from centre, flip out; 5 connected nodes light up as a packet travels; branch to a person; result banner"
+        "id": "a3-flow",
+        "start": 14.4,
+        "end": 20.1,
+        "chapter": "La automatizacion",
+        "text": "Un solo flujo. Cero copiar y pegar. Mientras dormias, la venta se cerro.",
+        "motion": "flow plane stands up in 3D, packet #1042 travels, nodes light with ripples, branch to a person"
       },
       {
-        "id": "s5-dashboard",
-        "start": 18.2,
-        "end": 23.4,
-        "text": "Y todo se mide.",
-        "motion": "typewriter with colour flash; KPI tiles rise from blur; slot-roll numbers; manual vs automated bar chart (illustrative data)"
+        "id": "a4-dash",
+        "start": 19.5,
+        "end": 24.3,
+        "chapter": "El resultado",
+        "text": "A la manana, todo se mide. 8:00 a. m.",
+        "motion": "circular reveal, typewriter flash, 3D tile flip, slot-roll KPIs, elastic bars (illustrative data)"
       },
       {
-        "id": "s6-roi",
-        "start": 22.9,
-        "end": 26.4,
+        "id": "a4-roi",
+        "start": 23.7,
+        "end": 26.65,
+        "chapter": "El resultado",
         "text": "Listo en 2 semanas. ROI medible en 6.",
-        "motion": "slot-machine digits, left-to-right mask, glow, shimmer"
+        "motion": "billboard 3D entry, slot digits, shock rings + spark burst"
       },
       {
-        "id": "s7-logo",
-        "start": 26.3,
+        "id": "a5-logo",
+        "start": 26.6,
         "end": 30.0,
-        "text": "ScalyAI. Software e IA a la medida de tu negocio. scalyai.dev",
-        "motion": "logo-brand-close letter cascade, tagline word-by-word blur-in"
+        "chapter": "Tu turno",
+        "text": "ScalyAI. Software e IA a la medida de tu negocio. Conversemos de tu proximo piloto. 30 minutos, sin tarjeta, sin compromiso.",
+        "motion": "letter cascade, rings and sparks, sheen, CTA spring-up"
       }
     ],
     "transitions": [
-      "push up + blur",
+      "sunrise circular reveal from the moon",
       "zoom-through",
       "push left + blur",
-      "circular reveal",
+      "circular reveal from centre",
       "push down + blur",
       "brand-gradient wipe"
-    ]
+    ],
+    "story": "Un cliente escribe a las 11:40 p. m. y nadie responde (venta perdida). De dia todo es manual. ScalyAI activa la automatizacion: el mismo mensaje recibe respuesta, el pedido #1042 recorre un flujo conectado, a la manana todo se mide, 2 semanas / ROI en 6, y la invitacion a conversar."
   }
 }

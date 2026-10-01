@@ -80,7 +80,7 @@
       data-width="1920"
       data-height="1080"
     >
-      <!-- track 0: stage (grid + drifting glow) -->
+      <!-- track 0: layered stage (orbs, perspective floor, rings, dust) -->
       <div
         id="stage-bg"
         data-composition-id="stage-bg"
@@ -92,100 +92,122 @@
         data-height="1080"
       ></div>
 
-      <!-- 0.0–2.7 hook: ¿Todo a mano? (registry: headline-slam) -->
+      <!-- ACT 1 · 0.0–5.0  El problema: 11:40 p. m., un mensaje sin respuesta -->
       <div
-        id="headline-slam"
-        data-composition-id="headline-slam"
-        data-composition-src="compositions/components/headline-slam.html"
-        data-variable-values='{"text":"¿Todo a mano?","accent_word_index":2,"accent":"green","shadow":false}'
+        id="scene-night"
+        data-composition-id="scene-night"
+        data-composition-src="compositions/scene-night.html"
         data-start="0"
-        data-duration="2.7"
+        data-duration="5"
         data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 2.1–7.4 automation 1: tasks tick themselves off -->
+      <!-- ACT 2 · 4.3–10.5  El cambio: del caos manual a las tareas que se hacen solas -->
       <div
         id="scene-auto-tasks"
         data-composition-id="scene-auto-tasks"
         data-composition-src="compositions/scene-auto-tasks.html"
-        data-start="2.1"
-        data-duration="5.3"
+        data-start="4.3"
+        data-duration="6.2"
         data-track-index="2"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 6.9–12.4 tools + chatbot phone -->
+      <!-- ACT 2 · 9.9–14.9  Mismo mensaje, ahora con respuesta (chatbot en el celular) -->
       <div
         id="scene-tools"
         data-composition-id="scene-tools"
         data-composition-src="compositions/scene-tools.html"
-        data-start="6.9"
-        data-duration="5.5"
+        data-start="9.9"
+        data-duration="5"
         data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 11.9–18.9 automation 2: one flow, nodes connected -->
+      <!-- ACT 3 · 14.4–20.1  La automatización: un solo flujo para el pedido #1042 -->
       <div
         id="scene-workflow"
         data-composition-id="scene-workflow"
         data-composition-src="compositions/scene-workflow.html"
-        data-start="11.9"
-        data-duration="7"
+        data-start="14.4"
+        data-duration="5.7"
         data-track-index="2"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 18.2–23.4 automation 3: results dashboard -->
+      <!-- ACT 4 · 19.5–24.3  A la mañana, todo se mide -->
       <div
         id="scene-dashboard"
         data-composition-id="scene-dashboard"
         data-composition-src="compositions/scene-dashboard.html"
-        data-start="18.2"
-        data-duration="5.2"
+        data-start="19.5"
+        data-duration="4.8"
         data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 22.9–26.4 punch: 2 semanas / ROI en 6 -->
+      <!-- ACT 4 · 23.7–26.65  La promesa: 2 semanas / ROI en 6 -->
       <div
         id="scene-roi"
         data-composition-id="scene-roi"
         data-composition-src="compositions/scene-roi.html"
-        data-start="22.9"
-        data-duration="3.5"
+        data-start="23.7"
+        data-duration="2.95"
         data-track-index="2"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 25.95–26.75 brand wipe: the site's CTA gradient sweeps across and hands off to the logo -->
+      <!-- 26.25–27.05  brand wipe: the site CTA gradient hands off to the logo -->
       <div
         id="brand-wipe"
         data-composition-id="brand-wipe"
         data-composition-src="compositions/brand-wipe.html"
-        data-start="25.95"
+        data-start="26.25"
         data-duration="0.8"
         data-track-index="3"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 26.3–30.0 resolve (registry: logo-brand-close), revealed as the wipe leaves -->
+      <!-- ACT 5 · 26.6–30.0  Tu turno: logo, lema y llamada a la acción -->
       <div
         id="logo-brand-close"
         data-composition-id="logo-brand-close"
         data-composition-src="compositions/components/logo-brand-close.html"
         data-variable-values='{"wordmark":"ScalyAI","tagline":"Software e IA a la medida de tu negocio","url":"scalyai.dev","accent":"green","exit":"none"}'
-        data-start="26.3"
-        data-duration="3.7"
+        data-start="26.6"
+        data-duration="3.4"
         data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="logo-fx"
+        data-composition-id="logo-fx"
+        data-composition-src="compositions/logo-fx.html"
+        data-start="26.6"
+        data-duration="3.4"
+        data-track-index="4"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- the story thread: chapter chip + progress bar, on top of everything -->
+      <div
+        id="story-chrome"
+        data-composition-id="story-chrome"
+        data-composition-src="compositions/story-chrome.html"
+        data-start="0"
+        data-duration="30"
+        data-track-index="5"
         data-width="1920"
         data-height="1080"
       ></div>
@@ -197,59 +219,58 @@
       // Six different transitions, so no two neighbouring cuts feel the same.
       const tl = gsap.timeline({ paused: true });
 
-      // 1 · hook → tasks (2.1–2.6): push up with motion blur on both frames.
-      tl.to("#headline-slam", { y: -1080, filter: "blur(10px)", duration: 0.5, ease: "power3.inOut" }, 2.1);
+      // 1 · night -> day (4.3–5.0): the sun rises from the moon's corner as a circular reveal.
       tl.fromTo(
         "#scene-auto-tasks",
-        { y: 1080, filter: "blur(10px)" },
-        { y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.inOut" },
-        2.1,
+        { clipPath: "circle(0% at 87% 15%)" },
+        { clipPath: "circle(150% at 87% 15%)", duration: 0.7, ease: "power2.inOut" },
+        4.3,
       );
 
-      // 2 · tasks → tools (6.9–7.4): zoom-through. The old scene swells and blurs away,
+      // 2 · tasks -> chatbot (9.9–10.4): zoom-through. The old scene swells and blurs away,
       //     the new one settles in from slightly smaller.
-      tl.to("#scene-auto-tasks", { scale: 1.12, opacity: 0, filter: "blur(14px)", duration: 0.5, ease: "power3.in" }, 6.9);
+      tl.to("#scene-auto-tasks", { scale: 1.12, opacity: 0, filter: "blur(14px)", duration: 0.5, ease: "power3.in" }, 9.9);
       tl.fromTo(
         "#scene-tools",
         { scale: 0.9, opacity: 0, filter: "blur(14px)" },
         { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out" },
-        6.9,
+        9.9,
       );
 
-      // 3 · tools → workflow (11.9–12.35): push left with motion blur on both frames.
-      tl.to("#scene-tools", { x: -1920, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 11.9);
+      // 3 · chatbot -> flow (14.4–14.85): push left with motion blur on both frames.
+      tl.to("#scene-tools", { x: -1920, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 14.4);
       tl.fromTo(
         "#scene-workflow",
         { x: 1920, filter: "blur(10px)" },
         { x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
-        11.9,
+        14.4,
       );
 
-      // 4 · workflow → dashboard (18.2–18.8): circular reveal growing from the centre.
+      // 4 · flow -> morning dashboard (19.5–20.1): circular reveal growing from the centre.
       tl.fromTo(
         "#scene-dashboard",
         { clipPath: "circle(0% at 50% 55%)" },
         { clipPath: "circle(150% at 50% 55%)", duration: 0.6, ease: "power2.inOut" },
-        18.2,
+        19.5,
       );
 
-      // 5 · dashboard → ROI (22.9–23.35): push down, the ROI scene drops in from the top.
-      tl.to("#scene-dashboard", { y: 1080, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 22.9);
+      // 5 · dashboard -> promise (23.7–24.15): push down, the ROI scene drops in from the top.
+      tl.to("#scene-dashboard", { y: 1080, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 23.7);
       tl.fromTo(
         "#scene-roi",
         { y: -1080, filter: "blur(10px)" },
         { y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
-        22.9,
+        23.7,
       );
 
-      // 6 · ROI → logo (25.95–26.75): brand-wipe covers the frame at 26.3; the ROI
+      // 6 · promise -> logo (26.25–27.05): brand-wipe covers the frame at 26.6; the ROI
       //     frame drifts right under it and the logo lockup settles in as it clears.
-      tl.to("#scene-roi", { x: 160, scale: 0.96, duration: 0.35, ease: "power3.in" }, 25.95);
+      tl.to("#scene-roi", { x: 160, scale: 0.96, duration: 0.35, ease: "power3.in" }, 26.25);
       tl.fromTo(
         "#logo-brand-close",
         { x: -120, scale: 1.04 },
         { x: 0, scale: 1, duration: 0.6, ease: "power3.out" },
-        26.3,
+        26.6,
       );
       window.__timelines["main"] = tl;
       tl.seek(0);

@@ -6,7 +6,7 @@
   </head>
   <body>
     <template>
-      <div id="root" data-composition-id="scene-workflow" data-width="1920" data-height="1080" data-duration="7" data-fps="30">
+      <div id="root" data-composition-id="scene-workflow" data-width="1920" data-height="1080" data-duration="5.7" data-fps="30">
         <style>
           #root {
             position: absolute;
@@ -48,6 +48,17 @@
             flex: 0 0 auto;
             width: 1600px;
             height: 470px;
+            transform-style: preserve-3d;
+          }
+          .sw-ripple {
+            position: absolute;
+            top: 30px;
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            border: 4px solid var(--accent, #42cfd2);
+            opacity: 0;
+            pointer-events: none;
           }
           .sw-node {
             position: absolute;
@@ -184,7 +195,7 @@
           }
         </style>
 
-        <div id="scene-workflow-clip" class="clip" data-start="0" data-duration="7" data-track-index="0">
+        <div id="scene-workflow-clip" class="clip" data-start="0" data-duration="5.7" data-track-index="0">
           <div class="sw-content">
             <h2 class="sw-title"><span>Un solo flujo.</span> <span class="sw-accent">Cero copiar y pegar.</span></h2>
 
@@ -203,7 +214,7 @@
               <div class="sw-node sw-n0" style="left: 0px;">
                 <div class="sw-icon"><svg viewBox="0 0 24 24"><path d="M4 20l1.6-4.8A9 9 0 1 1 9 18.6L4 20z" /><path d="M9 11h6M9 14h4" /></svg></div>
                 <div class="sw-label">Llega un mensaje</div>
-                <div class="sw-sub">Un cliente escribe</div>
+                <div class="sw-sub">Pedido #1042</div>
                 <div class="sw-badge"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="#007a82" /><path d="M13 24l7 7 13-15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
               </div>
               <div class="sw-node sw-n1" style="left: 337px;">
@@ -235,10 +246,16 @@
               <div class="sw-branch-wire"></div>
               <div class="sw-branch">Si hay una duda, pasa a una persona</div>
 
+              <div class="sw-ripple" style="left: 79px;"></div>
+              <div class="sw-ripple" style="left: 416px;"></div>
+              <div class="sw-ripple" style="left: 753px;"></div>
+              <div class="sw-ripple" style="left: 1090px;"></div>
+              <div class="sw-ripple" style="left: 1427px;"></div>
+
               <!-- result banner -->
               <div class="sw-banner">
                 <svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>
-                A cualquier hora, sin que nadie lo copie
+                Mientras dormías, la venta se cerró.
               </div>
             </div>
           </div>
@@ -303,7 +320,7 @@
             tl3.forEach(function (c, i) {
               var dist = Math.abs(i - mid);
               tl.fromTo(c, { autoAlpha: 0, scale: 0, rotationZ: i < mid ? -40 : 40 }, { autoAlpha: 1, scale: 1, rotationZ: 0, duration: 0.5, ease: "back.out(2.4)" }, 0.35 + dist * 0.03);
-              tl.to(c, { autoAlpha: 0, rotationX: 90, y: 40, transformPerspective: 600, duration: 0.35, ease: "power2.in" }, 6.15 + (mid - dist) * 0.012);
+              tl.to(c, { autoAlpha: 0, rotationX: 90, y: 40, transformPerspective: 600, duration: 0.35, ease: "power2.in" }, 4.95 + (mid - dist) * 0.012);
             });
 
             // initial hidden states for things that play later
@@ -326,7 +343,9 @@
             var badges = q(".sw-badge");
             var fills = q(".sw-wire-fill");
             var packets = q(".sw-packet");
+            var ripples = q(".sw-ripple");
             var light = function (i, at) {
+              tl.fromTo(ripples[i], { scale: 1, autoAlpha: 0.9 }, { scale: 3.4, autoAlpha: 0, duration: 0.85, ease: "power2.out" }, at);
               tl.to(nodes[i], { borderColor: BRAND, duration: 0.25, ease: "power2.out" }, at);
               tl.to(icons[i], { backgroundColor: BRAND, color: "#ffffff", duration: 0.25, ease: "power2.out" }, at);
               tl.to(badges[i], { scale: 1, duration: 0.35, ease: "back.out(2.4)" }, at + 0.05);
@@ -345,14 +364,20 @@
             tl.fromTo(el(".sw-branch-wire"), { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.3, ease: "power2.out" }, 2.65);
             tl.fromTo(el(".sw-branch"), { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.85);
 
+            // the whole flow stands up in 3D, then the camera drifts so the nodes show parallax
+            tl.set(nodes, { z: 36 }, 0);
+            tl.fromTo(el(".sw-flow"), { rotationX: 58, y: 70, transformPerspective: 1500, transformOrigin: "50% 100%" }, { rotationX: 9, y: 0, duration: 1.1, ease: "power3.out" }, 0.4);
+            tl.to(el(".sw-flow"), { rotationX: 3, rotationY: -4, duration: 3.6, ease: "sine.inOut" }, 1.6);
+            tl.fromTo(el(".sw-content"), { scale: 1 }, { scale: 1.035, duration: 5.7, ease: "none" }, 0);
+
             // result banner
             tl.fromTo(
               el(".sw-banner"),
               { autoAlpha: 0, scale: 0.8, transformOrigin: "100% 50%" },
               { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" },
-              4.7,
+              3.9,
             );
-            tl.fromTo(el(".sw-banner"), { boxShadow: "0 0 0 0 rgba(66,207,210,0)" }, { boxShadow: "0 0 0 18px rgba(66,207,210,0)", duration: 0.01 }, 4.7);
+            tl.fromTo(el(".sw-banner"), { boxShadow: "0 0 0 0 rgba(66,207,210,0)" }, { boxShadow: "0 0 0 18px rgba(66,207,210,0)", duration: 0.01 }, 3.9);
 
             tl.seek(0);
             window.__timelines["scene-workflow"] = tl;
