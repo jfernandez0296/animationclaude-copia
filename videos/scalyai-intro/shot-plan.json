@@ -1,6 +1,6 @@
 {
   "category": "kinetic-type",
-  "duration_s": 12,
+  "duration_s": 30,
   "fps": 30,
   "canvas": {
     "w": 1920,
@@ -52,61 +52,60 @@
       {
         "id": "s1-hook",
         "start": 0,
-        "end": 2.3,
+        "end": 2.7,
         "text": "¿Todo a mano?",
-        "emphasis_words": [
-          "mano?"
-        ],
-        "emotion": "provocation",
-        "motion": "headline-slam: scale-down slam, 3-frame shake, whip up",
-        "beats": [
-          0.58
-        ]
+        "motion": "headline-slam; letters lift off with seeded tilt on exit"
       },
       {
-        "id": "s2-build",
-        "start": 1.8,
-        "end": 6.2,
-        "text": "Conectamos tus herramientas — chatbot de WhatsApp en un celular + CRM · WhatsApp · Excel · ERP",
-        "emphasis_words": [
-          "herramientas"
-        ],
-        "emotion": "relief",
-        "motion": "split: pills 3D flip; phone rises with settling tilt; chat bubbles pop from tail corners, typing indicator, CRM receipt",
-        "beats": [
-          3.2
-        ]
+        "id": "s2-tasks",
+        "start": 2.1,
+        "end": 7.4,
+        "text": "Cada día, las mismas tareas.",
+        "motion": "checklist card; scanner band ticks each task to Automático; letters drop in and fly up; hours-recovered slot roll (illustrative data)"
       },
       {
-        "id": "s3-punch",
-        "start": 5.75,
-        "end": 8.65,
+        "id": "s3-tools",
+        "start": 6.9,
+        "end": 12.4,
+        "text": "Conectamos tus herramientas",
+        "motion": "letter wave in, scatter out; pills 3D flip; phone with chatbot conversation"
+      },
+      {
+        "id": "s4-workflow",
+        "start": 11.9,
+        "end": 18.9,
+        "text": "Un solo flujo. Cero copiar y pegar.",
+        "motion": "letters pop from centre, flip out; 5 connected nodes light up as a packet travels; branch to a person; result banner"
+      },
+      {
+        "id": "s5-dashboard",
+        "start": 18.2,
+        "end": 23.4,
+        "text": "Y todo se mide.",
+        "motion": "typewriter with colour flash; KPI tiles rise from blur; slot-roll numbers; manual vs automated bar chart (illustrative data)"
+      },
+      {
+        "id": "s6-roi",
+        "start": 22.9,
+        "end": 26.4,
         "text": "Listo en 2 semanas. ROI medible en 6.",
-        "emphasis_words": [
-          "2",
-          "6"
-        ],
-        "emotion": "confidence",
-        "motion": "slot-machine digit roll 0→2 / 0→6, left-to-right mask reveal, glow + shimmer",
-        "beats": [
-          5.3,
-          6.0
-        ]
+        "motion": "slot-machine digits, left-to-right mask, glow, shimmer"
       },
       {
-        "id": "s4-resolve",
-        "start": 8.6,
-        "end": 12.0,
-        "text": "ScalyAI. — Software e IA a la medida de tu negocio — scalyai.dev",
-        "emphasis_words": [
-          "."
-        ],
-        "emotion": "trust",
-        "motion": "logo-brand-close letter cascade, accent period pop, tagline word-by-word blur-in",
-        "beats": [
-          7.95
-        ]
+        "id": "s7-logo",
+        "start": 26.3,
+        "end": 30.0,
+        "text": "ScalyAI. Software e IA a la medida de tu negocio. scalyai.dev",
+        "motion": "logo-brand-close letter cascade, tagline word-by-word blur-in"
       }
+    ],
+    "transitions": [
+      "push up + blur",
+      "zoom-through",
+      "push left + blur",
+      "circular reveal",
+      "push down + blur",
+      "brand-gradient wipe"
     ]
   }
 }

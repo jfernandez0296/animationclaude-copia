@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scene — panel de resultados</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-dashboard" data-width="1920" data-height="1080" data-duration="5.2" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background:
+              linear-gradient(rgba(6, 26, 54, 0.05) 1px, transparent 1px) 0 0 / 80px 80px,
+              linear-gradient(90deg, rgba(6, 26, 54, 0.05) 1px, transparent 1px) 0 0 / 80px 80px,
+              var(--stage, #f0f0e8);
+            color: var(--fg, #061a36);
+            font-family: var(--font-body, system-ui, sans-serif);
+          }
+          #scene-dashboard-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .sd-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 34px;
+            width: 100%;
+            height: 100%;
+            padding: 70px 160px;
+          }
+          .sd-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+          }
+          .sd-title {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 92px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            white-space: nowrap;
+          }
+          .sd-accent {
+            color: var(--brand, #007a82);
+          }
+          .sd-note {
+            font-size: 22px;
+            font-weight: 500;
+            color: #5a6860;
+          }
+
+          /* ── KPI tiles ── */
+          .sd-tiles {
+            display: flex;
+            gap: 28px;
+          }
+          .sd-tile {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1 1 0;
+            height: 236px;
+            padding: 26px 30px 24px;
+            border-radius: 32px;
+            background: #ffffff;
+            box-shadow: 0 24px 50px rgba(6, 26, 54, 0.1);
+          }
+          .sd-label {
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--muted, #4f626b);
+          }
+          .sd-num {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 100px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--fg, #061a36);
+            white-space: nowrap;
+          }
+          .sd-unit {
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: var(--brand, #007a82);
+          }
+          .sd-roll {
+            display: inline-block;
+            height: 1.05em;
+            overflow: hidden;
+            vertical-align: bottom;
+          }
+          .sd-strip {
+            display: flex;
+            flex-direction: column;
+          }
+          .sd-strip > span {
+            display: block;
+            height: 1.05em;
+            line-height: 1.05;
+          }
+          .sd-dot {
+            display: inline-block;
+          }
+          .sd-delta {
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: #e6f2f1;
+            color: var(--brand, #007a82);
+            font-size: 22px;
+            font-weight: 700;
+          }
+
+          /* ── bar chart ── */
+          .sd-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: 330px;
+            padding: 26px 34px 20px;
+            border-radius: 32px;
+            background: #ffffff;
+            box-shadow: 0 24px 50px rgba(6, 26, 54, 0.1);
+          }
+          .sd-chart-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 25px;
+            font-weight: 700;
+            color: var(--muted, #4f626b);
+          }
+          .sd-legend {
+            display: flex;
+            gap: 28px;
+            font-size: 22px;
+            font-weight: 600;
+          }
+          .sd-key {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            border-radius: 5px;
+            vertical-align: -1px;
+          }
+          .sd-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex: 1 1 auto;
+            padding: 0 10px;
+          }
+          .sd-week {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+          }
+          .sd-pair {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 182px;
+          }
+          .sd-bar {
+            width: 44px;
+            border-radius: 10px 10px 4px 4px;
+          }
+          .sd-bar-m {
+            background: #cdd3cb;
+          }
+          .sd-bar-a {
+            background: linear-gradient(180deg, var(--accent, #42cfd2), var(--brand, #007a82));
+          }
+          .sd-wk {
+            font-size: 19px;
+            font-weight: 600;
+            color: #5a6860;
+          }
+        </style>
+
+        <div id="scene-dashboard-clip" class="clip" data-start="0" data-duration="5.2" data-track-index="0">
+          <div class="sd-content">
+            <div class="sd-head">
+              <h2 class="sd-title">Y todo se <span class="sd-accent">mide.</span></h2>
+              <span class="sd-note">Datos ilustrativos</span>
+            </div>
+
+            <div class="sd-tiles">
+              <div class="sd-tile">
+                <div class="sd-label">Horas ahorradas por semana</div>
+                <div class="sd-num"><span class="sd-roll"><span class="sd-strip sd-s1" data-layout-allow-overflow="true"><span>0</span><span>1</span></span></span><span class="sd-roll"><span class="sd-strip sd-s2" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></span></span><span class="sd-unit"> h</span></div>
+              </div>
+              <div class="sd-tile">
+                <div class="sd-label">Pedidos sin tocar a mano</div>
+                <div class="sd-num"><span class="sd-roll"><span class="sd-strip sd-s3" data-layout-allow-overflow="true"><span>0</span><span>1</span></span></span><span class="sd-dot">.</span><span class="sd-roll"><span class="sd-strip sd-s4" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span></span></span><span class="sd-roll"><span class="sd-strip sd-s5" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></span></span><span class="sd-roll"><span class="sd-strip sd-s6" data-layout-allow-overflow="true"><span>0</span></span></span></div>
+              </div>
+              <div class="sd-tile">
+                <div class="sd-label">Errores al copiar datos</div>
+                <div class="sd-num sd-zero">0</div>
+              </div>
+              <div class="sd-tile">
+                <div class="sd-label">Atención a clientes</div>
+                <div class="sd-num sd-247">24/7</div>
+              </div>
+            </div>
+
+            <div class="sd-chart">
+              <div class="sd-chart-head">
+                <span>Horas por semana: manual vs. automatizado</span>
+                <span class="sd-legend">
+                  <span><span class="sd-key" style="background:#cdd3cb"></span>Manual</span>
+                  <span><span class="sd-key" style="background:#007a82"></span>Automatizado</span>
+                </span>
+              </div>
+              <div class="sd-bars">
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:170px"></div><div class="sd-bar sd-bar-a" style="height:8px"></div></div><div class="sd-wk">S1</div></div>
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:150px"></div><div class="sd-bar sd-bar-a" style="height:26px"></div></div><div class="sd-wk">S2</div></div>
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:124px"></div><div class="sd-bar sd-bar-a" style="height:52px"></div></div><div class="sd-wk">S3</div></div>
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:96px"></div><div class="sd-bar sd-bar-a" style="height:84px"></div></div><div class="sd-wk">S4</div></div>
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:70px"></div><div class="sd-bar sd-bar-a" style="height:112px"></div></div><div class="sd-wk">S5</div></div>
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:48px"></div><div class="sd-bar sd-bar-a" style="height:136px"></div></div><div class="sd-wk">S6</div></div>
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:30px"></div><div class="sd-bar sd-bar-a" style="height:156px"></div></div><div class="sd-wk">S7</div></div>
+                <div class="sd-week"><div class="sd-pair"><div class="sd-bar sd-bar-m" style="height:20px"></div><div class="sd-bar sd-bar-a" style="height:170px"></div></div><div class="sd-wk">S8</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) {
+              return root.querySelectorAll(s);
+            };
+            var el = function (s) {
+              return root.querySelector(s);
+            };
+            var tl = gsap.timeline({ paused: true });
+
+            // ── letter helpers (deterministic: seeded PRNG, no Math.random) ──
+            var splitLetters = function (host) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = "ch";
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) {
+                    walk(n);
+                  }
+                });
+              };
+              walk(host);
+              return out;
+            };
+
+            // title: typewriter with a colour flash per letter, then the letters sink away on exit
+            var letters = splitLetters(el(".sd-title"));
+            letters.forEach(function (c, i) {
+              tl.fromTo(c, { autoAlpha: 0, y: 18, color: "#42cfd2" }, { autoAlpha: 1, y: 0, color: "inherit", duration: 0.3, ease: "power2.out" }, 0.15 + i * 0.07);
+              tl.to(c, { autoAlpha: 0, y: 90, duration: 0.3, ease: "power2.in" }, 4.7 + (letters.length - i) * 0.015);
+            });
+            tl.fromTo(el(".sd-note"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 0.7);
+
+            // KPI tiles: rise out of a blur
+            tl.fromTo(
+              q(".sd-tile"),
+              { autoAlpha: 0, y: 110, filter: "blur(10px)" },
+              { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.6, stagger: 0.1, ease: "power3.out" },
+              0.4,
+            );
+
+            // numbers: slot-machine rolls (18 h, 1.240), then pops for 0 and 24/7
+            tl.fromTo(el(".sd-s1"), { yPercent: 0 }, { yPercent: -50, duration: 0.7, ease: "power3.out" }, 1.2);
+            tl.fromTo(el(".sd-s2"), { yPercent: 0 }, { yPercent: -88.889, duration: 0.95, ease: "power3.out" }, 1.2);
+            tl.fromTo(el(".sd-s3"), { yPercent: 0 }, { yPercent: -50, duration: 0.7, ease: "power3.out" }, 1.35);
+            tl.fromTo(el(".sd-s4"), { yPercent: 0 }, { yPercent: -66.667, duration: 0.8, ease: "power3.out" }, 1.35);
+            tl.fromTo(el(".sd-s5"), { yPercent: 0 }, { yPercent: -80, duration: 0.9, ease: "power3.out" }, 1.35);
+            tl.fromTo(el(".sd-zero"), { scale: 0.4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(2.4)", transformOrigin: "0% 100%" }, 1.55);
+            tl.fromTo(el(".sd-247"), { scale: 0.4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(2.4)", transformOrigin: "0% 100%" }, 1.7);
+
+            // chart: panel slides up, then bars grow week by week (manual shrinks, automated grows)
+            tl.fromTo(el(".sd-chart"), { autoAlpha: 0, y: 70 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.9);
+            tl.fromTo(q(".sd-bar-m"), { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.55, stagger: 0.07, ease: "power3.out" }, 1.7);
+            tl.fromTo(q(".sd-bar-a"), { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.55, stagger: 0.07, ease: "power3.out" }, 1.95);
+
+            tl.seek(0);
+            window.__timelines["scene-dashboard"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

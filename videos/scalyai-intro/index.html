@@ -75,7 +75,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="12"
+      data-duration="30"
       data-fps="30"
       data-width="1920"
       data-height="1080"
@@ -86,70 +86,106 @@
         data-composition-id="stage-bg"
         data-composition-src="compositions/stage-bg.html"
         data-start="0"
-        data-duration="12"
+        data-duration="30"
         data-track-index="0"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 0.0–2.2 hook (registry: headline-slam) -->
+      <!-- 0.0–2.7 hook: ¿Todo a mano? (registry: headline-slam) -->
       <div
         id="headline-slam"
         data-composition-id="headline-slam"
         data-composition-src="compositions/components/headline-slam.html"
         data-variable-values='{"text":"¿Todo a mano?","accent_word_index":2,"accent":"green","shadow":false}'
         data-start="0"
-        data-duration="2.3"
+        data-duration="2.7"
         data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 1.8–6.2 build: tools + chatbot phone (push-up in, overlapping the hook's exit) -->
+      <!-- 2.1–7.4 automation 1: tasks tick themselves off -->
       <div
-        id="scene-tools"
-        data-composition-id="scene-tools"
-        data-composition-src="compositions/scene-tools.html"
-        data-start="1.8"
-        data-duration="4.4"
+        id="scene-auto-tasks"
+        data-composition-id="scene-auto-tasks"
+        data-composition-src="compositions/scene-auto-tasks.html"
+        data-start="2.1"
+        data-duration="5.3"
         data-track-index="2"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 5.75–8.65 punch: 2 semanas / ROI en 6 (push-left in) -->
+      <!-- 6.9–12.4 tools + chatbot phone -->
       <div
-        id="scene-roi"
-        data-composition-id="scene-roi"
-        data-composition-src="compositions/scene-roi.html"
-        data-start="5.75"
-        data-duration="2.9"
+        id="scene-tools"
+        data-composition-id="scene-tools"
+        data-composition-src="compositions/scene-tools.html"
+        data-start="6.9"
+        data-duration="5.5"
         data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 8.25–9.05 brand wipe: the site's CTA gradient sweeps across and hands off to the logo -->
+      <!-- 11.9–18.9 automation 2: one flow, nodes connected -->
+      <div
+        id="scene-workflow"
+        data-composition-id="scene-workflow"
+        data-composition-src="compositions/scene-workflow.html"
+        data-start="11.9"
+        data-duration="7"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 18.2–23.4 automation 3: results dashboard -->
+      <div
+        id="scene-dashboard"
+        data-composition-id="scene-dashboard"
+        data-composition-src="compositions/scene-dashboard.html"
+        data-start="18.2"
+        data-duration="5.2"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 22.9–26.4 punch: 2 semanas / ROI en 6 -->
+      <div
+        id="scene-roi"
+        data-composition-id="scene-roi"
+        data-composition-src="compositions/scene-roi.html"
+        data-start="22.9"
+        data-duration="3.5"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 25.95–26.75 brand wipe: the site's CTA gradient sweeps across and hands off to the logo -->
       <div
         id="brand-wipe"
         data-composition-id="brand-wipe"
         data-composition-src="compositions/brand-wipe.html"
-        data-start="8.25"
+        data-start="25.95"
         data-duration="0.8"
         data-track-index="3"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- 8.6–12.0 resolve (registry: logo-brand-close), revealed as the wipe leaves -->
+      <!-- 26.3–30.0 resolve (registry: logo-brand-close), revealed as the wipe leaves -->
       <div
         id="logo-brand-close"
         data-composition-id="logo-brand-close"
         data-composition-src="compositions/components/logo-brand-close.html"
         data-variable-values='{"wordmark":"ScalyAI","tagline":"Software e IA a la medida de tu negocio","url":"scalyai.dev","accent":"green","exit":"none"}'
-        data-start="8.6"
-        data-duration="3.4"
-        data-track-index="2"
+        data-start="26.3"
+        data-duration="3.7"
+        data-track-index="1"
         data-width="1920"
         data-height="1080"
       ></div>
@@ -158,34 +194,62 @@
     <script>
       // Scene motion lives in the sub-compositions; the main timeline owns only the
       // scene-to-scene transitions, tweening the host slots while they overlap.
+      // Six different transitions, so no two neighbouring cuts feel the same.
       const tl = gsap.timeline({ paused: true });
 
-      // 1 · hook → tools (1.8–2.3): push up with motion blur on both frames.
-      tl.to("#headline-slam", { y: -1080, filter: "blur(10px)", duration: 0.5, ease: "power3.inOut" }, 1.8);
+      // 1 · hook → tasks (2.1–2.6): push up with motion blur on both frames.
+      tl.to("#headline-slam", { y: -1080, filter: "blur(10px)", duration: 0.5, ease: "power3.inOut" }, 2.1);
       tl.fromTo(
-        "#scene-tools",
+        "#scene-auto-tasks",
         { y: 1080, filter: "blur(10px)" },
         { y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.inOut" },
-        1.8,
+        2.1,
       );
 
-      // 2 · tools → ROI (5.75–6.2): push left with motion blur on both frames.
-      tl.to("#scene-tools", { x: -1920, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 5.75);
+      // 2 · tasks → tools (6.9–7.4): zoom-through. The old scene swells and blurs away,
+      //     the new one settles in from slightly smaller.
+      tl.to("#scene-auto-tasks", { scale: 1.12, opacity: 0, filter: "blur(14px)", duration: 0.5, ease: "power3.in" }, 6.9);
       tl.fromTo(
-        "#scene-roi",
+        "#scene-tools",
+        { scale: 0.9, opacity: 0, filter: "blur(14px)" },
+        { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out" },
+        6.9,
+      );
+
+      // 3 · tools → workflow (11.9–12.35): push left with motion blur on both frames.
+      tl.to("#scene-tools", { x: -1920, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 11.9);
+      tl.fromTo(
+        "#scene-workflow",
         { x: 1920, filter: "blur(10px)" },
         { x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
-        5.75,
+        11.9,
       );
 
-      // 3 · ROI → logo (8.25–9.05): brand-wipe covers the frame at 8.6; the ROI
+      // 4 · workflow → dashboard (18.2–18.8): circular reveal growing from the centre.
+      tl.fromTo(
+        "#scene-dashboard",
+        { clipPath: "circle(0% at 50% 55%)" },
+        { clipPath: "circle(150% at 50% 55%)", duration: 0.6, ease: "power2.inOut" },
+        18.2,
+      );
+
+      // 5 · dashboard → ROI (22.9–23.35): push down, the ROI scene drops in from the top.
+      tl.to("#scene-dashboard", { y: 1080, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 22.9);
+      tl.fromTo(
+        "#scene-roi",
+        { y: -1080, filter: "blur(10px)" },
+        { y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
+        22.9,
+      );
+
+      // 6 · ROI → logo (25.95–26.75): brand-wipe covers the frame at 26.3; the ROI
       //     frame drifts right under it and the logo lockup settles in as it clears.
-      tl.to("#scene-roi", { x: 160, scale: 0.96, duration: 0.35, ease: "power3.in" }, 8.25);
+      tl.to("#scene-roi", { x: 160, scale: 0.96, duration: 0.35, ease: "power3.in" }, 25.95);
       tl.fromTo(
         "#logo-brand-close",
         { x: -120, scale: 1.04 },
         { x: 0, scale: 1, duration: 0.6, ease: "power3.out" },
-        8.6,
+        26.3,
       );
       window.__timelines["main"] = tl;
       tl.seek(0);

@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scene — tareas que se automatizan</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-auto-tasks" data-width="1920" data-height="1080" data-duration="5.3" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            color: var(--fg, #061a36);
+            font-family: var(--font-body, system-ui, sans-serif);
+          }
+          #scene-auto-tasks-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .sa-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            padding: 80px 150px 80px 160px;
+            gap: 60px;
+          }
+
+          /* ── left: message ── */
+          .sa-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            flex: 0 0 auto;
+          }
+          .sa-title {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 100px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+          }
+          .sa-title-line {
+            display: block;
+          }
+          .sa-accent {
+            color: var(--brand, #007a82);
+          }
+          .sa-sub {
+            color: var(--muted, #4f626b);
+            font-size: 38px;
+            font-weight: 500;
+            line-height: 1.3;
+          }
+
+          /* ── right: checklist card ── */
+          .sa-card {
+            flex: 0 0 auto;
+            width: 900px;
+            padding: 34px 36px 30px;
+            border-radius: 40px;
+            background: #ffffff;
+            box-shadow:
+              0 40px 80px rgba(6, 26, 54, 0.14),
+              0 10px 24px rgba(6, 26, 54, 0.08);
+          }
+          .sa-card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--muted, #4f626b);
+          }
+          .sa-pend {
+            position: relative;
+            display: inline-block;
+            min-width: 190px;
+            text-align: right;
+          }
+          .sa-pend-b {
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--brand, #007a82);
+            white-space: nowrap;
+          }
+          .sa-rows {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+          .sa-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            height: 84px;
+            padding: 0 22px;
+            border-radius: 22px;
+            background: #f4f5ef;
+            white-space: nowrap;
+          }
+          .sa-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 3px solid #c6ccc4;
+            background: #ffffff;
+          }
+          .sa-box svg {
+            display: block;
+            width: 34px;
+            height: 34px;
+          }
+          .sa-text {
+            flex: 1 1 auto;
+            font-size: 29px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+          }
+          .sa-chips {
+            position: relative;
+            flex: 0 0 188px;
+            height: 44px;
+          }
+          .sa-chip {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            font-size: 22px;
+            font-weight: 700;
+          }
+          .sa-chip-manual {
+            background: #e3e6df;
+            color: var(--muted, #4f626b);
+          }
+          .sa-chip-auto {
+            background: var(--brand, #007a82);
+            color: #ffffff;
+          }
+          .sa-chip-auto svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+          }
+          .sa-scan {
+            position: absolute;
+            left: -12px;
+            right: -12px;
+            top: 0;
+            height: 70px;
+            border-radius: 20px;
+            background: linear-gradient(
+              180deg,
+              rgba(66, 207, 210, 0) 0%,
+              rgba(66, 207, 210, 0.42) 50%,
+              rgba(66, 207, 210, 0) 100%
+            );
+            pointer-events: none;
+          }
+          .sa-foot {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-top: 22px;
+            padding: 22px 8px 0;
+            border-top: 2px solid #e3e6df;
+          }
+          .sa-foot-label {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--muted, #4f626b);
+          }
+          .sa-foot-num {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 76px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            color: var(--brand, #007a82);
+            white-space: nowrap;
+          }
+          .sa-unit {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: var(--muted, #4f626b);
+          }
+          .sa-roll {
+            display: inline-block;
+            height: 1.05em;
+            overflow: hidden;
+            vertical-align: bottom;
+          }
+          .sa-strip {
+            display: flex;
+            flex-direction: column;
+          }
+          .sa-strip > span {
+            display: block;
+            height: 1.05em;
+            line-height: 1.05;
+          }
+          .sa-note {
+            margin-top: 12px;
+            font-size: 20px;
+            font-weight: 500;
+            color: #5a6860;
+            text-align: right;
+          }
+        </style>
+
+        <div id="scene-auto-tasks-clip" class="clip" data-start="0" data-duration="5.3" data-track-index="0">
+          <div class="sa-content">
+            <div class="sa-copy">
+              <h2 class="sa-title">
+                <span class="sa-title-line">Cada día,</span>
+                <span class="sa-title-line">las mismas</span>
+                <span class="sa-title-line sa-accent">tareas.</span>
+              </h2>
+              <p class="sa-sub">Copiar, pegar, responder, repetir.</p>
+            </div>
+
+            <div class="sa-card">
+              <div class="sa-card-head">
+                <span>Tareas de la semana</span>
+                <span class="sa-pend"><span class="sa-pend-a">5 pendientes</span><span class="sa-pend-b">Todo al día</span></span>
+              </div>
+              <div class="sa-rows">
+                <div class="sa-row">
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Pasar pedidos de WhatsApp a Excel</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Responder preguntas frecuentes</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Actualizar el CRM</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Enviar recordatorios de pago</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Armar el reporte semanal</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Manual</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-scan" data-layout-allow-overflow="true"></div>
+              </div>
+              <div class="sa-foot">
+                <span class="sa-foot-label">Tiempo recuperado</span>
+                <span class="sa-foot-num">
+                  <span class="sa-roll"><span class="sa-strip sa-strip-a" data-layout-allow-overflow="true"><span>0</span><span>1</span></span></span><span class="sa-roll"><span class="sa-strip sa-strip-b" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span></span></span>
+                  <span class="sa-unit"> h por semana</span>
+                </span>
+              </div>
+              <div class="sa-note">Datos ilustrativos</div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) {
+              return root.querySelectorAll(s);
+            };
+            var el = function (s) {
+              return root.querySelector(s);
+            };
+            var BRAND = "#007a82";
+            var tl = gsap.timeline({ paused: true });
+
+            // ── letter helpers (deterministic: seeded PRNG, no Math.random) ──
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = "ch";
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) {
+                    walk(n);
+                  }
+                });
+              };
+              walk(host);
+              return out;
+            };
+
+            // title: every letter drops in with its own tilt and timing, then flies up on exit
+            var tl1 = splitLetters(el(".sa-title"));
+            var r1 = rng(11);
+            tl1.forEach(function (c, i) {
+              var d = 0.05 + r1() * 0.45;
+              tl.fromTo(c, { autoAlpha: 0, y: -130, rotation: (r1() - 0.5) * 60 }, { autoAlpha: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.7)" }, d);
+              tl.to(c, { autoAlpha: 0, y: -110, rotation: (r1() - 0.5) * 70, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, 4.7 + r1() * 0.3);
+            });
+            tl.fromTo(el(".sa-sub"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.5);
+            // card: slides in from the right
+            tl.fromTo(el(".sa-card"), { autoAlpha: 0, x: 140 }, { autoAlpha: 1, x: 0, duration: 0.65, ease: "power4.out" }, 0.15);
+            // rows: staggered from the right
+            tl.fromTo(q(".sa-row"), { autoAlpha: 0, x: 70 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.08, ease: "power3.out" }, 0.3);
+
+            // chips: manual is visible first, automatic is hidden
+            tl.set(q(".sa-chip-auto"), { autoAlpha: 0, scale: 0.7 }, 0);
+            tl.set(q(".sa-tick"), { strokeDasharray: 30, strokeDashoffset: 30 }, 0);
+
+            // scanner: a light band moves down the list, and every row it crosses flips to automatic
+            tl.fromTo(el(".sa-scan"), { y: -35, autoAlpha: 0 }, { y: 480, autoAlpha: 1, duration: 2.06, ease: "none" }, 1.7);
+            tl.to(el(".sa-scan"), { autoAlpha: 0, duration: 0.2 }, 3.6);
+
+            var rows = q(".sa-row");
+            var times = [1.87, 2.25, 2.64, 3.02, 3.41];
+            for (var i = 0; i < rows.length; i++) {
+              var row = rows[i];
+              var t = times[i];
+              tl.to(row.querySelector(".sa-box"), { backgroundColor: BRAND, borderColor: BRAND, duration: 0.2, ease: "power2.out" }, t);
+              tl.to(row.querySelector(".sa-tick"), { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, t + 0.05);
+              tl.to(row.querySelector(".sa-chip-manual"), { autoAlpha: 0, scale: 0.8, duration: 0.2, ease: "power2.in" }, t);
+              tl.to(row.querySelector(".sa-chip-auto"), { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, t + 0.05);
+            }
+
+            // recovered time: slot-machine roll 0 → 12
+            tl.fromTo(el(".sa-foot"), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 3.3);
+            tl.fromTo(el(".sa-strip-a"), { yPercent: 0 }, { yPercent: -50, duration: 0.6, ease: "power3.out" }, 3.55);
+            tl.fromTo(el(".sa-strip-b"), { yPercent: 0 }, { yPercent: -66.667, duration: 0.8, ease: "power3.out" }, 3.55);
+            tl.set(el(".sa-pend-b"), { autoAlpha: 0, y: 12 }, 0);
+            tl.to(el(".sa-pend-a"), { autoAlpha: 0, y: -12, duration: 0.2 }, 3.5);
+            tl.to(el(".sa-pend-b"), { autoAlpha: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, 3.6);
+
+            tl.seek(0);
+            window.__timelines["scene-auto-tasks"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>
