@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Hilo de la historia: capítulos y progreso</title>
+    <title>Hilo de la historia: barra de progreso</title>
   </head>
   <body>
     <template>
@@ -13,50 +13,10 @@
             inset: 0;
             overflow: hidden;
             pointer-events: none;
-            font-family: var(--font-body, system-ui, sans-serif);
           }
           #story-chrome-clip {
             position: absolute;
             inset: 0;
-          }
-          .sc-chip {
-            position: absolute;
-            left: 64px;
-            top: 30px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            height: 56px;
-            padding: 0 26px 0 22px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.94);
-            box-shadow: 0 10px 28px rgba(6, 26, 54, 0.18);
-          }
-          .sc-dots {
-            display: flex;
-            gap: 7px;
-          }
-          .sc-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: #c9d1cc;
-          }
-          .sc-labels {
-            position: relative;
-            width: 250px;
-            height: 34px;
-          }
-          .sc-label {
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 25px;
-            font-weight: 800;
-            letter-spacing: -0.01em;
-            line-height: 34px;
-            color: #061a36;
-            white-space: nowrap;
           }
           .sc-bar {
             position: absolute;
@@ -83,18 +43,6 @@
         </style>
 
         <div id="story-chrome-clip" class="clip" data-start="0" data-duration="60" data-track-index="0">
-          <div class="sc-chip">
-            <div class="sc-dots">
-              <span class="sc-dot"></span><span class="sc-dot"></span><span class="sc-dot"></span><span class="sc-dot"></span><span class="sc-dot"></span>
-            </div>
-            <div class="sc-labels">
-              <span class="sc-label">El problema</span>
-              <span class="sc-label">La marca</span>
-              <span class="sc-label">La solución</span>
-              <span class="sc-label">Cómo trabajamos</span>
-              <span class="sc-label">Tu turno</span>
-            </div>
-          </div>
           <div class="sc-bar">
             <div class="sc-fill"></div>
             <div class="sc-tick" style="left: 17%"></div>
@@ -107,51 +55,8 @@
         <script>
           (function () {
             var root = document.getElementById("root");
-            var q = function (s) {
-              return root.querySelectorAll(s);
-            };
-            var el = function (s) {
-              return root.querySelector(s);
-            };
             var tl = gsap.timeline({ paused: true });
-
-            var splitLetters = function (host) {
-              var out = [];
-              var text = host.textContent;
-              host.textContent = "";
-              Array.prototype.slice.call(text).forEach(function (ch) {
-                var s = document.createElement("span");
-                s.style.display = "inline-block";
-                s.style.whiteSpace = "pre";
-                s.textContent = ch;
-                host.appendChild(s);
-                out.push(s);
-              });
-              return out;
-            };
-
-            // chapters: [start, end]
-            var chapters = [[0.3, 10.2], [10.2, 17.8], [17.8, 31.8], [31.8, 49.3], [49.3, 60]];
-            var labels = q(".sc-label");
-            var dots = q(".sc-dot");
-            for (var c = 0; c < labels.length; c++) {
-              var letters = splitLetters(labels[c]);
-              var from = chapters[c][0];
-              var to = chapters[c][1];
-              for (var i = 0; i < letters.length; i++) {
-                tl.fromTo(letters[i], { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, from + i * 0.022);
-                if (c < labels.length - 1) {
-                  tl.to(letters[i], { autoAlpha: 0, y: -22, duration: 0.2, ease: "power2.in" }, to - 0.12 + i * 0.01);
-                }
-              }
-              // the active dot lights up and pops
-              tl.to(dots[c], { backgroundColor: "#007a82", scale: 1.5, duration: 0.3, ease: "back.out(3)" }, from);
-              tl.to(dots[c], { scale: 1, duration: 0.25, ease: "power2.out" }, from + 0.3);
-            }
-
-            tl.fromTo(el(".sc-chip"), { autoAlpha: 0, y: -40, scale: 0.8, transformOrigin: "0% 50%" }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(2)" }, 0.1);
-            tl.fromTo(el(".sc-fill"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 60, ease: "none" }, 0);
-
+            tl.fromTo(root.querySelector(".sc-fill"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 60, ease: "none" }, 0);
             tl.seek(0);
             window.__timelines["story-chrome"] = tl;
           })();
