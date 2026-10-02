@@ -51,8 +51,22 @@
           .sb-ch {
             display: inline-block;
           }
-          .sb-dotc {
-            color: var(--brand, #007a82);
+          .sb-ai {
+            font-weight: 500;
+            color: #007b83;
+          }
+          .sb-sp {
+            display: inline-block;
+            width: 0.3em;
+          }
+          .sb-sym {
+            display: block;
+            flex: 0 0 auto;
+            width: 0.92em;
+            height: 0.92em;
+            margin-right: 0.2em;
+            align-self: center;
+            overflow: visible;
           }
           .sb-tag {
             display: flex;
@@ -125,7 +139,15 @@
         <div id="scene-brand-clip" class="clip" data-start="0" data-duration="8" data-track-index="0">
           <div class="sb-content">
             <div class="sb-eyebrow" data-layout-allow-overlap="true">Esto es</div>
-            <div class="sb-word"><span class="sb-name">ScalyAI</span><span class="sb-dotc">.</span></div>
+            <div class="sb-word" role="img" aria-label="Scaly AI">
+              <svg class="sb-sym" viewBox="0 0 64 64" aria-hidden="true">
+                <defs><linearGradient id="sb-gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#007b83" /><stop offset="1" stop-color="#47d4d4" /></linearGradient></defs>
+                <rect class="sb-bar" x="18" y="4" width="44" height="14" rx="7" fill="url(#sb-gl)" />
+                <rect class="sb-bar" x="2" y="25" width="60" height="14" rx="7" fill="#007b83" />
+                <rect class="sb-bar" x="2" y="46" width="44" height="14" rx="7" fill="#041b3d" />
+              </svg>
+              <span class="sb-name">Scaly</span><span class="sb-sp"></span><span class="sb-name sb-ai">AI</span>
+            </div>
             <div class="sb-tag">Software e IA a la medida de tu negocio</div>
             <div class="sb-cards">
               <div class="sb-card sb-c1">
@@ -184,12 +206,14 @@
             tl.fromTo(el(".sb-eyebrow"), { autoAlpha: 0, y: 24, scaleX: 1.25 }, { autoAlpha: 1, y: 0, scaleX: 1, duration: 0.7, ease: "power3.out" }, 0.55);
 
             // wordmark: every letter flips in around its own vertical axis, from the centre outwards
-            var letters = splitChars(el(".sb-name"));
+            var letters = [];
+            q(".sb-name").forEach(function (h) { letters = letters.concat(splitChars(h)); });
             var mid = (letters.length - 1) / 2;
             letters.forEach(function (c, i) {
               tl.fromTo(c, { autoAlpha: 0, rotationY: -100, y: 60, transformPerspective: 900 }, { autoAlpha: 1, rotationY: 0, y: 0, duration: 0.7, ease: "back.out(1.6)" }, 0.75 + Math.abs(i - mid) * 0.08);
             });
-            tl.fromTo(el(".sb-dotc"), { autoAlpha: 0, scale: 0, y: 40 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(3)" }, 1.55);
+            // the three bars of the symbol slide out from the left before the letters
+            tl.fromTo(q(".sb-bar"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, stagger: 0.12, ease: "back.out(1.6)" }, 0.6);
 
             // tagline: word by word out of a blur
             var words = el(".sb-tag");
@@ -229,11 +253,11 @@
             for (var k = 0; k < 16; k++) {
               var sp = document.createElement("div");
               var size = 8 + Math.round(r() * 10);
-              sp.style.cssText = "position:absolute;left:1180px;top:360px;width:" + size + "px;height:" + size + "px;border-radius:50%;opacity:0;pointer-events:none;background:" + (k % 2 ? "#42cfd2" : "#007a82") + ";";
+              sp.style.cssText = "position:absolute;left:960px;top:400px;width:" + size + "px;height:" + size + "px;border-radius:50%;opacity:0;pointer-events:none;background:" + (k % 2 ? "#42cfd2" : "#007a82") + ";";
               layer.appendChild(sp);
               var a = (k / 16) * Math.PI * 2 + r() * 0.4;
               var d = 140 + r() * 260;
-              tl.fromTo(sp, { x: 0, y: 0, autoAlpha: 1, scale: 1 }, { x: Math.cos(a) * d, y: Math.sin(a) * d * 0.7, autoAlpha: 0, scale: 0.2, duration: 0.9, ease: "power3.out" }, 1.65);
+              tl.fromTo(sp, { x: 0, y: 0, autoAlpha: 1, scale: 1 }, { x: Math.cos(a) * d, y: Math.sin(a) * d * 0.7, autoAlpha: 0, scale: 0.2, duration: 0.9, ease: "power3.out" }, 1.4);
             }
 
             tl.seek(0);
