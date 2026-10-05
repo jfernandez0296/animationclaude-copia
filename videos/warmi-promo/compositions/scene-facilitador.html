@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Escena 6: facilitador</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-facilitador" data-width="1920" data-height="1080" data-duration="6.5" data-fps="30">
+        <style>
+          #root { position: absolute; inset: 0; overflow: hidden; color: var(--ink, #170b2e); font-family: var(--font-body, system-ui, sans-serif); }
+          .scene { position: absolute; inset: 0; }
+          .content { position: absolute; inset: 0; }
+          h1, h2, h3, p { margin: 0; }
+          .disp { font-family: var(--font-display, system-ui, sans-serif); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; }
+          .grad { background: linear-gradient(90deg, #5421a6 0%, #7c3aed 45%, #b5249f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+          .card { background: #ffffff; border-radius: 40px; box-shadow: 0 40px 80px rgba(60, 20, 120, 0.16), 0 10px 22px rgba(60, 20, 120, 0.08); }
+          .eyebrow { display: inline-flex; align-items: center; gap: 14px; padding: 12px 28px; border-radius: 999px; background: #efe3ff; color: #5421a6; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+
+          .f-photo { position: absolute; left: 190px; top: 250px; width: 540px; height: 540px; border-radius: 64px; padding: 14px; background: linear-gradient(135deg, #7ff0d3, #7c3aed 55%, #d74ac5); box-shadow: 0 50px 90px rgba(60, 20, 120, 0.3); }
+          .f-photo img { display: block; width: 512px; height: 512px; border-radius: 52px; object-fit: cover; }
+          .f-text { position: absolute; left: 830px; top: 230px; width: 900px; display: flex; flex-direction: column; gap: 28px; }
+          .f-title { font-size: 70px; }
+          .f-name { font-family: var(--font-display, system-ui, sans-serif); font-size: 88px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+          .f-role { font-size: 40px; font-weight: 500; line-height: 1.3; color: #4b4560; }
+          .f-line { display: flex; align-items: center; gap: 20px; padding: 24px 34px; border-radius: 30px; background: #ffffff; box-shadow: 0 26px 54px rgba(60, 20, 120, 0.16); font-size: 44px; font-weight: 700; line-height: 1.2; }
+          .f-line i { display: block; width: 18px; align-self: stretch; border-radius: 9px; background: linear-gradient(180deg, #5421a6, #d74ac5); flex: 0 0 18px; }
+          .f-orb { position: absolute; left: 80px; top: 120px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(196,166,255,0.5), transparent 66%); }
+
+        </style>
+
+        <div id="scene-facilitador-clip" class="clip scene" data-start="0" data-duration="6.5" data-track-index="0">
+
+          <div class="f-orb" data-layout-allow-overflow="true"></div>
+          <div class="f-photo"><img src="assets/img/jaime.png" alt="Jaime Fernández Chávez" /></div>
+          <div class="f-text">
+            <h2 class="disp f-title">Aprende de alguien que <span class="grad">lo aplica cada día</span></h2>
+            <div class="f-name">Jaime Fernández Chávez</div>
+            <div class="f-role">Ingeniero por la UNI · Lovable Ambassador · Cofundador de Warmi Ventures</div>
+            <div class="f-line"><i></i>Enseña con proyectos reales, no con teoría.</div>
+          </div>
+
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) { return root.querySelectorAll(s); };
+            var el = function (s) { return root.querySelector(s); };
+            var tl = gsap.timeline({ paused: true });
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host, cls) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = cls;
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) { walk(n); }
+                });
+              };
+              walk(host);
+              Array.prototype.slice.call(host.querySelectorAll(".grad")).forEach(function (g) {
+                var ls = g.querySelectorAll("." + cls);
+                var n = ls.length;
+                Array.prototype.forEach.call(ls, function (s, i) {
+                  var t = n > 1 ? i / (n - 1) : 0;
+                  var c = "rgb(" + Math.round(84 + 97 * t) + "," + Math.round(33 + 3 * t) + "," + Math.round(166 - 7 * t) + ")";
+                  s.style.color = c;
+                  s.style.webkitTextFillColor = c;
+                  s.style.background = "none";
+                });
+                g.style.background = "none";
+              });
+              return out;
+            };
+
+
+            tl.fromTo(el(".f-orb"), { scale: 0.7, autoAlpha: 0 }, { scale: 1.1, autoAlpha: 1, duration: 3, ease: "power2.out" }, 0);
+            tl.fromTo(el(".f-photo"), { autoAlpha: 0, scale: 0.7, rotationY: 50, transformPerspective: 1200 }, { autoAlpha: 1, scale: 1, rotationY: 0, duration: 1.0, ease: "back.out(1.4)" }, 0.2);
+            tl.to(el(".f-photo"), { y: -16, rotation: 1.2, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: 2 }, 1.4);
+            var ls = splitLetters(el(".f-title"), "f-ch");
+            ls.forEach(function (c, i) { tl.fromTo(c, { autoAlpha: 0, x: 40 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.5 + i * 0.022); });
+            tl.fromTo(el(".f-name"), { autoAlpha: 0, y: 40, filter: "blur(14px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, 1.5);
+            tl.fromTo(el(".f-role"), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power2.out" }, 2.2);
+            tl.fromTo(el(".f-line"), { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.8, ease: "back.out(1.5)" }, 3.0);
+
+            tl.seek(0);
+            window.__timelines["scene-facilitador"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>
