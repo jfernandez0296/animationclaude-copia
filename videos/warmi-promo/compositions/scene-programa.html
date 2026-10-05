@@ -29,10 +29,10 @@
           .p-check { display: flex; align-items: center; gap: 18px; font-size: 40px; font-weight: 700; }
           .p-check i { display: block; width: 44px; height: 44px; border-radius: 50%; background: #7c3aed; flex: 0 0 44px; position: relative; }
           .p-check i::after { content: ""; position: absolute; left: 14px; top: 8px; width: 11px; height: 20px; border: solid #fff; border-width: 0 5px 5px 0; transform: rotate(45deg); }
-          .p-shot { position: absolute; left: 1060px; top: 150px; width: 760px; border-radius: 34px; background: #ffffff; padding: 0; overflow: hidden; }
+          .p-shot { position: absolute; left: 1130px; top: 130px; width: 640px; border-radius: 34px; background: #ffffff; padding: 0; overflow: hidden; }
           .p-bar { display: flex; gap: 12px; padding: 18px 24px; background: #f1ebfb; }
           .p-bar span { display: block; width: 18px; height: 18px; border-radius: 50%; background: #c9b6ee; }
-          .p-shot img { display: block; width: 760px; height: 690px; object-fit: cover; object-position: 0 0; }
+          .p-shot img { display: block; width: 640px; height: 750px; object-fit: cover; object-position: 0 0; }
 
         </style>
 
@@ -45,7 +45,7 @@
               <h1 class="disp p-title">Aprende a usar la IA y <span class="grad">automatiza tu trabajo en 8 semanas</span></h1>
               <div class="p-checks"><div class="p-check"><i></i>100% sin código</div><div class="p-check"><i></i>Clases en vivo y grabaciones</div></div>
             </div>
-            <div class="card p-shot"><div class="p-bar"><span></span><span></span><span></span></div><img src="assets/img/hero.png" alt="" /></div>
+            <div class="card p-shot"><div class="p-bar"><span></span><span></span><span></span></div><img src="assets/img/form.png" alt="" /></div>
           </div>
 
         </div>
@@ -117,7 +117,6 @@
             tl.fromTo(q(".p-check"), { autoAlpha: 0, x: -50 }, { autoAlpha: 1, x: 0, duration: 0.6, stagger: 0.25, ease: "back.out(1.6)" }, 2.6);
             tl.fromTo(el(".p-shot"), { autoAlpha: 0, x: 220, rotationY: -35, transformPerspective: 1400, transformOrigin: "0% 50%" }, { autoAlpha: 1, x: 0, rotationY: 0, duration: 1.0, ease: "power3.out" }, 0.9);
             tl.to(el(".p-shot"), { y: -14, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 2 }, 2.4);
-            tl.fromTo(el(".p-shot img"), { objectPosition: "0px 0px" }, { objectPosition: "0px -40px", duration: 5, ease: "none" }, 1.5);
 
             tl.seek(0);
             window.__timelines["scene-programa"] = tl;
