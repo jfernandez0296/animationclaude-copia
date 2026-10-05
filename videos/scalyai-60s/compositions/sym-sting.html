@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Símbolo de ScalyAI en cada empuje</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="sym-sting" data-width="1920" data-height="1080" data-duration="60" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+          }
+          #sym-sting-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .ss-bar {
+            position: absolute;
+            height: 56px;
+            border-radius: 28px;
+            opacity: 0;
+          }
+          .ss-b0 { top: 410px; width: 700px; background: linear-gradient(90deg, #007b83, #47d4d4); }
+          .ss-b1 { top: 512px; width: 940px; background: #007b83; }
+          .ss-b2 { top: 614px; width: 700px; background: #041b3d; }
+        </style>
+
+        <div id="sym-sting-clip" class="clip" data-start="0" data-duration="60" data-track-index="0">
+          <div class="ss-bar ss-b0" data-layout-allow-overflow="true"></div>
+          <div class="ss-bar ss-b1" data-layout-allow-overflow="true"></div>
+          <div class="ss-bar ss-b2" data-layout-allow-overflow="true"></div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var bars = root.querySelectorAll(".ss-bar");
+            var tl = gsap.timeline({ paused: true });
+            // the three bars of the logo sweep across with each push: dir -1 = left, +1 = up/down (horizontal sweep from the right)
+            var hits = [10.0, 17.5, 22.0, 31.4, 39.5, 41.9];
+            hits.forEach(function (t) {
+              for (var i = 0; i < bars.length; i++) {
+                tl.fromTo(bars[i], { x: 2000, autoAlpha: 1 }, { x: -1100, autoAlpha: 1, duration: 0.5, ease: "power2.inOut" }, t + i * 0.05);
+                tl.set(bars[i], { autoAlpha: 0 }, t + 0.7);
+              }
+            });
+            tl.set(bars, { autoAlpha: 0 }, 0);
+            tl.seek(0);
+            window.__timelines["sym-sting"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

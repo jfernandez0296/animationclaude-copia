@@ -12,16 +12,16 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
-            color: var(--fg, #061a36);
+            color: var(--fg, #041b3d);
             font-family: var(--font-body, system-ui, sans-serif);
           }
           .sd-bg {
             position: absolute;
             inset: 0;
             background:
-              radial-gradient(circle at 18% 8%, rgba(66, 207, 210, 0.3), transparent 46%),
-              radial-gradient(circle at 88% 92%, rgba(0, 122, 130, 0.2), transparent 46%),
-              radial-gradient(ellipse at 50% 38%, #fcfcf8 0%, #f0f0e8 52%, #e2e5da 100%);
+              radial-gradient(circle at 18% 8%, rgba(71, 212, 212, 0.3), transparent 46%),
+              radial-gradient(circle at 88% 92%, rgba(0, 123, 131, 0.2), transparent 46%),
+              radial-gradient(ellipse at 50% 38%, #fcfcf8 0%, #f0f1e8 52%, #e2e5da 100%);
           }
           .sd-meta {
             display: flex;
@@ -37,7 +37,7 @@
             border-radius: 999px;
             background: #fff3d6;
             color: #8a5a00;
-            font-size: 26px;
+            font-size: 32px;
             font-weight: 800;
           }
           .sd-sun svg {
@@ -72,10 +72,10 @@
             white-space: nowrap;
           }
           .sd-accent {
-            color: var(--brand, #007a82);
+            color: var(--brand, #007b83);
           }
           .sd-note {
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 500;
             color: #47564e;
           }
@@ -94,13 +94,13 @@
             padding: 26px 30px 24px;
             border-radius: 32px;
             background: #ffffff;
-            box-shadow: 0 24px 50px rgba(6, 26, 54, 0.1);
+            box-shadow: 0 24px 50px rgba(4, 27, 61, 0.1);
           }
           .sd-label {
-            font-size: 25px;
+            font-size: 31px;
             font-weight: 600;
             line-height: 1.2;
-            color: var(--muted, #4f626b);
+            color: var(--muted, #2f4560);
           }
           .sd-num {
             font-family: var(--font-display, system-ui, sans-serif);
@@ -108,14 +108,14 @@
             font-weight: 800;
             letter-spacing: -0.04em;
             line-height: 1;
-            color: var(--fg, #061a36);
+            color: var(--fg, #041b3d);
             white-space: nowrap;
           }
           .sd-unit {
             font-size: 38px;
             font-weight: 700;
             letter-spacing: 0;
-            color: var(--brand, #007a82);
+            color: var(--brand, #007b83);
           }
           .sd-roll {
             display: inline-block;
@@ -141,8 +141,8 @@
             padding: 6px 16px;
             border-radius: 999px;
             background: #e6f2f1;
-            color: var(--brand, #007a82);
-            font-size: 22px;
+            color: var(--brand, #007b83);
+            font-size: 28px;
             font-weight: 700;
           }
 
@@ -155,20 +155,20 @@
             padding: 26px 34px 20px;
             border-radius: 32px;
             background: #ffffff;
-            box-shadow: 0 24px 50px rgba(6, 26, 54, 0.1);
+            box-shadow: 0 24px 50px rgba(4, 27, 61, 0.1);
           }
           .sd-chart-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 25px;
+            font-size: 31px;
             font-weight: 700;
-            color: var(--muted, #4f626b);
+            color: var(--muted, #2f4560);
           }
           .sd-legend {
             display: flex;
             gap: 28px;
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 600;
           }
           .sd-key {
@@ -206,10 +206,10 @@
             background: #cdd3cb;
           }
           .sd-bar-a {
-            background: linear-gradient(180deg, var(--accent, #42cfd2), var(--brand, #007a82));
+            background: linear-gradient(180deg, var(--accent, #47d4d4), var(--brand, #007b83));
           }
           .sd-wk {
-            font-size: 19px;
+            font-size: 28px;
             font-weight: 600;
             color: #47564e;
           }
@@ -247,7 +247,7 @@
                 <span>Horas por semana: manual vs. automatizado</span>
                 <span class="sd-legend">
                   <span><span class="sd-key" style="background:#cdd3cb"></span>Manual</span>
-                  <span><span class="sd-key" style="background:#007a82"></span>Automatizado</span>
+                  <span><span class="sd-key" style="background:#007b83"></span>Automatizado</span>
                 </span>
               </div>
               <div class="sd-bars">
@@ -311,7 +311,7 @@
             // title: typewriter with a colour flash per letter, then the letters sink away on exit
             var letters = splitLetters(el(".sd-title"));
             letters.forEach(function (c, i) {
-              tl.fromTo(c, { autoAlpha: 0, y: 18, color: "#42cfd2" }, { autoAlpha: 1, y: 0, color: "inherit", duration: 0.3, ease: "power2.out" }, 0.15 + i * 0.07);
+              tl.fromTo(c, { autoAlpha: 0, y: 18, color: "#47d4d4" }, { autoAlpha: 1, y: 0, color: "inherit", duration: 0.3, ease: "power2.out" }, 0.15 + i * 0.07);
               tl.to(c, { autoAlpha: 0, y: 90, duration: 0.3, ease: "power2.in" }, 4.15 + (letters.length - i) * 0.015);
             });
             tl.fromTo(el(".sd-note"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 0.7);

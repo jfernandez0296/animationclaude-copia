@@ -12,7 +12,7 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
-            color: var(--fg, #061a36);
+            color: var(--fg, #041b3d);
             font-family: var(--font-body, system-ui, sans-serif);
           }
           #scene-brand-clip {
@@ -30,11 +30,11 @@
             padding: 80px 120px;
           }
           .sb-eyebrow {
-            font-size: 28px;
+            font-size: 35px;
             font-weight: 800;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--brand, #007a82);
+            color: var(--brand, #007b83);
           }
           .sb-word {
             display: flex;
@@ -74,7 +74,7 @@
             font-size: 56px;
             font-weight: 600;
             letter-spacing: -0.02em;
-            color: var(--fg, #061a36);
+            color: var(--fg, #041b3d);
             white-space: nowrap;
           }
           .sb-tw {
@@ -95,7 +95,7 @@
             border-radius: 34px;
             background: #ffffff;
             border: 3px solid transparent;
-            box-shadow: 0 30px 60px rgba(6, 26, 54, 0.14), 0 8px 18px rgba(6, 26, 54, 0.08);
+            box-shadow: 0 30px 60px rgba(4, 27, 61, 0.14), 0 8px 18px rgba(4, 27, 61, 0.08);
           }
           .sb-ico {
             display: flex;
@@ -106,7 +106,7 @@
             height: 84px;
             border-radius: 26px;
             background: #e6f2f1;
-            color: var(--brand, #007a82);
+            color: var(--brand, #007b83);
           }
           .sb-ico svg {
             display: block;
@@ -243,8 +243,8 @@
             for (var i = 0; i < cards.length; i++) {
               tl.to(cards[i], { y: -10, duration: 1.2 + i * 0.2, ease: "sine.inOut", yoyo: true, repeat: 3 }, 4.0 + i * 0.1);
               // spotlight each promise in turn
-              tl.to(cards[i], { scale: 1.05, borderColor: "#007a82", duration: 0.35, ease: "back.out(2)", transformOrigin: "50% 50%" }, 4.4 + i * 1.0);
-              tl.to(cards[i], { scale: 1, borderColor: "rgba(0,122,130,0)", duration: 0.35, ease: "power2.out" }, 5.15 + i * 1.0);
+              tl.to(cards[i], { scale: 1.05, borderColor: "#007b83", duration: 0.35, ease: "back.out(2)", transformOrigin: "50% 50%" }, 4.4 + i * 1.0);
+              tl.to(cards[i], { scale: 1, borderColor: "rgba(0, 123, 131,0)", duration: 0.35, ease: "power2.out" }, 5.15 + i * 1.0);
             }
 
             // dust of sparks around the wordmark when the period lands
@@ -253,7 +253,7 @@
             for (var k = 0; k < 16; k++) {
               var sp = document.createElement("div");
               var size = 8 + Math.round(r() * 10);
-              sp.style.cssText = "position:absolute;left:960px;top:400px;width:" + size + "px;height:" + size + "px;border-radius:50%;opacity:0;pointer-events:none;background:" + (k % 2 ? "#42cfd2" : "#007a82") + ";";
+              sp.style.cssText = "position:absolute;left:960px;top:400px;width:" + size + "px;height:" + size + "px;border-radius:50%;opacity:0;pointer-events:none;background:" + (k % 2 ? "#47d4d4" : "#007b83") + ";";
               layer.appendChild(sp);
               var a = (k / 16) * Math.PI * 2 + r() * 0.4;
               var d = 140 + r() * 260;

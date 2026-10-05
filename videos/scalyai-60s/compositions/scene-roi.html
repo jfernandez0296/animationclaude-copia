@@ -12,7 +12,7 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
-            color: var(--fg, #061a36);
+            color: var(--fg, #041b3d);
             font-family: var(--font-display, system-ui, sans-serif);
           }
           #scene-roi-clip {
@@ -57,21 +57,21 @@
             line-height: 1.05;
           }
           .sr-num-color {
-            color: var(--brand, #007a82);
+            color: var(--brand, #007b83);
           }
           .sr-sub {
-            color: var(--muted, #4f626b);
+            color: var(--muted, #2f4560);
           }
 
           /* shimmer-sweep, adapted: the light band runs through the glyphs only */
           .sr-shine {
             background-image: linear-gradient(
               110deg,
-              var(--muted, #4f626b) 0%,
-              var(--muted, #4f626b) 40%,
-              var(--accent, #42cfd2) 50%,
-              var(--muted, #4f626b) 60%,
-              var(--muted, #4f626b) 100%
+              var(--muted, #2f4560) 0%,
+              var(--muted, #2f4560) 40%,
+              var(--accent, #47d4d4) 50%,
+              var(--muted, #2f4560) 60%,
+              var(--muted, #2f4560) 100%
             );
             background-size: 300% 100%;
             background-position: 100% 0;
@@ -114,8 +114,8 @@
             // glow on the beat
             tl.fromTo(
               root.querySelectorAll(".sr-num"),
-              { textShadow: "0 0 0px rgba(66,207,210,0)" },
-              { textShadow: "0 0 40px rgba(66,207,210,0.55)", duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" },
+              { textShadow: "0 0 0px rgba(71, 212, 212,0)" },
+              { textShadow: "0 0 40px rgba(71, 212, 212,0.55)", duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" },
               1.45,
             );
             // shimmer-sweep across line 2
@@ -137,14 +137,14 @@
             }(33);
             for (var ri = 0; ri < 3; ri++) {
               var ring = document.createElement("div");
-              ring.style.cssText = "position:absolute;left:810px;top:390px;width:300px;height:300px;border-radius:50%;border:5px solid #42cfd2;opacity:0;pointer-events:none;";
+              ring.style.cssText = "position:absolute;left:810px;top:390px;width:300px;height:300px;border-radius:50%;border:5px solid #47d4d4;opacity:0;pointer-events:none;";
               clip.appendChild(ring);
               tl.fromTo(ring, { scale: 0.3, autoAlpha: 0.85 }, { scale: 4.6, autoAlpha: 0, duration: 1.1, ease: "power2.out" }, 1.3 + ri * 0.2);
             }
             for (var si = 0; si < 18; si++) {
               var sp = document.createElement("div");
               var big = 8 + Math.round(rr() * 10);
-              sp.style.cssText = "position:absolute;left:954px;top:534px;width:" + big + "px;height:" + big + "px;border-radius:50%;opacity:0;pointer-events:none;background:" + (si % 2 ? "#42cfd2" : "#007a82") + ";";
+              sp.style.cssText = "position:absolute;left:954px;top:534px;width:" + big + "px;height:" + big + "px;border-radius:50%;opacity:0;pointer-events:none;background:" + (si % 2 ? "#47d4d4" : "#007b83") + ";";
               clip.appendChild(sp);
               var a = (si / 18) * Math.PI * 2 + rr() * 0.4;
               var d = 260 + rr() * 380;

@@ -12,7 +12,7 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
-            color: var(--fg, #061a36);
+            color: var(--fg, #041b3d);
             font-family: var(--font-body, system-ui, sans-serif);
           }
           #scene-pymes-clip {
@@ -23,9 +23,9 @@
             position: absolute;
             inset: 0;
             background:
-              radial-gradient(circle at 80% 10%, rgba(66, 207, 210, 0.3), transparent 46%),
-              radial-gradient(circle at 10% 92%, rgba(0, 122, 130, 0.2), transparent 46%),
-              radial-gradient(ellipse at 50% 38%, #fcfcf8 0%, #f0f0e8 52%, #e2e5da 100%);
+              radial-gradient(circle at 80% 10%, rgba(71, 212, 212, 0.3), transparent 46%),
+              radial-gradient(circle at 10% 92%, rgba(0, 123, 131, 0.2), transparent 46%),
+              radial-gradient(ellipse at 50% 38%, #fcfcf8 0%, #f0f1e8 52%, #e2e5da 100%);
           }
           .sp-content {
             position: absolute;
@@ -46,7 +46,7 @@
             white-space: nowrap;
           }
           .sp-accent {
-            color: var(--brand, #007a82);
+            color: var(--brand, #007b83);
           }
           .sp-ch {
             display: inline-block;
@@ -61,15 +61,15 @@
             padding: 36px 44px 38px;
             border-radius: 40px;
             background: #ffffff;
-            box-shadow: 0 40px 80px rgba(6, 26, 54, 0.16), 0 10px 22px rgba(6, 26, 54, 0.08);
+            box-shadow: 0 40px 80px rgba(4, 27, 61, 0.16), 0 10px 22px rgba(4, 27, 61, 0.08);
           }
           .sp-range {
             width: 900px;
           }
           .sp-label {
-            font-size: 30px;
+            font-size: 38px;
             font-weight: 700;
-            color: var(--muted, #4f626b);
+            color: var(--muted, #2f4560);
           }
           .sp-slider {
             position: relative;
@@ -89,7 +89,7 @@
             position: absolute;
             inset: 0;
             border-radius: 9px;
-            background: linear-gradient(90deg, #0e3a5e, #007a82, #42cfd2);
+            background: linear-gradient(90deg, #041b3d, #007b83, #47d4d4);
           }
           .sp-thumb {
             position: absolute;
@@ -100,17 +100,17 @@
             margin-left: -25px;
             border-radius: 50%;
             background: #ffffff;
-            border: 8px solid #007a82;
-            box-shadow: 0 10px 24px rgba(0, 122, 130, 0.4);
+            border: 8px solid #007b83;
+            box-shadow: 0 10px 24px rgba(0, 123, 131, 0.4);
           }
           .sp-pin {
             position: absolute;
             top: 0;
             padding: 8px 20px;
             border-radius: 999px;
-            background: #061a36;
+            background: #041b3d;
             color: #ffffff;
-            font-size: 26px;
+            font-size: 32px;
             font-weight: 700;
             white-space: nowrap;
           }
@@ -126,17 +126,17 @@
           .sp-ends small {
             display: block;
             font-family: var(--font-body, system-ui, sans-serif);
-            font-size: 24px;
+            font-size: 30px;
             font-weight: 600;
             letter-spacing: 0;
-            color: var(--muted, #4f626b);
+            color: var(--muted, #2f4560);
           }
           .sp-price {
             display: flex;
             flex-direction: column;
             justify-content: center;
             width: 620px;
-            background: linear-gradient(135deg, #0e3a5e 0%, #20748c 60%, #42cfd2 130%);
+            background: linear-gradient(135deg, #041b3d 0%, #007b83 100%);
             color: #ffffff;
           }
           .sp-price .sp-label {
@@ -180,7 +180,7 @@
             padding: 10px 24px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.18);
-            font-size: 28px;
+            font-size: 35px;
             font-weight: 700;
           }
           .sp-chip svg {
@@ -189,9 +189,9 @@
             height: 28px;
           }
           .sp-note {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: 600;
-            color: var(--muted, #4f626b);
+            color: var(--muted, #2f4560);
           }
         </style>
 
@@ -214,7 +214,7 @@
               </div>
               <div class="sp-card sp-price">
                 <div class="sp-label">Paquetes desde</div>
-                <div class="sp-amount"><span class="sp-cur">S/</span><span class="sp-roll" style="margin-right:-0.16em"><span class="sp-strip sp-s1" data-layout-allow-overflow="true"><span>0</span><span>1</span></span></span><span>.</span><span class="sp-roll"><span class="sp-strip sp-s2" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></span><span>00</span></div>
+                <div class="sp-amount"><span class="sp-cur">S/</span><span class="sp-roll" style="margin-right:-0.16em" data-layout-allow-overlap="true"><span class="sp-strip sp-s1" data-layout-allow-overflow="true" data-layout-allow-overlap="true"><span>0</span><span>1</span></span></span><span data-layout-allow-overlap="true">.</span><span class="sp-roll" style="margin-right:-0.1em" data-layout-allow-overlap="true"><span class="sp-strip sp-s2" data-layout-allow-overflow="true" data-layout-allow-overlap="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></span><span>00</span></div>
                 <div class="sp-chip"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7" /></svg>Se empieza con un piloto</div>
               </div>
             </div>
@@ -293,7 +293,7 @@
             tl.to(el(".sp-thumb"), { scale: 1.2, duration: 0.3, yoyo: true, repeat: 1, ease: "sine.inOut" }, 3.5);
 
             // price card: pops from the right, the amount rolls up to 1.500
-            tl.fromTo(el(".sp-price"), { autoAlpha: 0, x: 140, rotationY: 40, transformPerspective: 1200, transformOrigin: "0% 50%" }, { autoAlpha: 1, x: 0, rotationY: 0, duration: 0.85, ease: "back.out(1.4)" }, 1.0);
+            tl.fromTo(el(".sp-price"), { autoAlpha: 0, x: 140, rotationY: 40, transformPerspective: 1200, transformOrigin: "0% 50%" }, { autoAlpha: 1, x: 0, rotationY: 0, duration: 0.5, ease: "back.out(1.4)", }, 0.8);
             tl.fromTo(el(".sp-s1"), { yPercent: 0 }, { yPercent: -50, duration: 0.7, ease: "power3.out" }, 2.0);
             tl.fromTo(el(".sp-s2"), { yPercent: 0 }, { yPercent: -83.333, duration: 1.0, ease: "power3.out" }, 2.0);
             tl.fromTo(el(".sp-chip"), { autoAlpha: 0, x: -30 }, { autoAlpha: 1, x: 0, duration: 0.5, ease: "power3.out" }, 3.3);

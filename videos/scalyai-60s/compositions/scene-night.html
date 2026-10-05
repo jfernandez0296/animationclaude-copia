@@ -14,7 +14,7 @@
             overflow: hidden;
             color: #ffffff;
             font-family: var(--font-body, system-ui, sans-serif);
-            background: linear-gradient(160deg, #04122a 0%, #061a36 45%, #0b2a4f 100%);
+            background: linear-gradient(160deg, #04122a 0%, #041b3d 45%, #0b2a4f 100%);
           }
           #scene-night-clip {
             position: absolute;
@@ -33,7 +33,7 @@
             height: 160px;
             border-radius: 50%;
             background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d8eef0 52%, #9cc7cf 100%);
-            box-shadow: 0 0 100px rgba(66, 207, 210, 0.45), 0 0 220px rgba(66, 207, 210, 0.2);
+            box-shadow: 0 0 100px rgba(71, 212, 212, 0.45), 0 0 220px rgba(71, 212, 212, 0.2);
           }
           .sn-content {
             position: absolute;
@@ -54,11 +54,11 @@
             width: 780px;
           }
           .sn-label {
-            font-size: 28px;
+            font-size: 35px;
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: #42cfd2;
+            color: #47d4d4;
           }
           .sn-clock {
             display: flex;
@@ -73,7 +73,7 @@
             height: 252px;
             border-radius: 30px;
             background: linear-gradient(180deg, #123660 0%, #0c2547 50%, #0a2040 50%, #0f2c52 100%);
-            border: 2px solid rgba(66, 207, 210, 0.28);
+            border: 2px solid rgba(71, 212, 212, 0.28);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.08);
             font-family: var(--font-display, system-ui, sans-serif);
             font-size: 170px;
@@ -85,7 +85,7 @@
             font-family: var(--font-display, system-ui, sans-serif);
             font-size: 150px;
             font-weight: 800;
-            color: #42cfd2;
+            color: #47d4d4;
             line-height: 1;
             padding-bottom: 18px;
           }
@@ -113,7 +113,7 @@
             white-space: nowrap;
           }
           .sn-cyan {
-            color: #42cfd2;
+            color: #47d4d4;
           }
           .sn-coral {
             color: #ff8a7a;
@@ -140,7 +140,7 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            font-size: 26px;
+            font-size: 32px;
             font-weight: 600;
             color: #a9c2d4;
           }
@@ -151,7 +151,7 @@
             width: 52px;
             height: 52px;
             border-radius: 15px;
-            background: linear-gradient(135deg, #42cfd2, #007a82);
+            background: linear-gradient(135deg, #47d4d4, #007b83);
           }
           .sn-app svg {
             display: block;
@@ -197,7 +197,7 @@
             position: absolute;
             inset: 0;
             border-radius: 36px;
-            border: 3px solid #42cfd2;
+            border: 3px solid #47d4d4;
           }
           .sn-wait {
             display: flex;
@@ -252,7 +252,7 @@
             padding: 12px 30px;
             border: 8px solid #ff6f61;
             border-radius: 16px;
-            background: rgba(6, 26, 54, 0.88);
+            background: rgba(4, 27, 61, 0.88);
             color: #ff6f61;
             font-family: var(--font-display, system-ui, sans-serif);
             font-size: 68px;
@@ -412,7 +412,7 @@
             // story line 2: typewriter with a cyan flash, while the hours pile up
             var l2 = splitLetters(el(".sn-l2"));
             l2.forEach(function (c, i) {
-              tl.fromTo(c, { autoAlpha: 0, color: "#42cfd2" }, { autoAlpha: 1, color: "inherit", duration: 0.25, ease: "power1.out" }, 2.0 + i * 0.045);
+              tl.fromTo(c, { autoAlpha: 0, color: "#47d4d4" }, { autoAlpha: 1, color: "inherit", duration: 0.25, ease: "power1.out" }, 2.0 + i * 0.045);
               tl.to(c, { autoAlpha: 0, duration: 0.15 }, 2.85 + (l2.length - i) * 0.012);
             });
             tl.fromTo(el(".sn-wait"), { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 1.95);
