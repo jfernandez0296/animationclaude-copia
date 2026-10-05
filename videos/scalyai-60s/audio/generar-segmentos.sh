@@ -3,10 +3,11 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 VOICE="${1:-JBFqnCBsd6RMkjVDRZzb}"
+SOLO="${2:-}"   # opcional: ids separados por coma (ej. v9,v10); vacío = todos
 mkdir -p seg
 n=$(jq length segmentos.json)
 for i in $(seq 0 $((n-1))); do
-  id=$(jq -r ".[$i].id" segmentos.json); text=$(jq -r ".[$i].text" segmentos.json); max=$(jq -r ".[$i].max" segmentos.json)
+  id=$(jq -r ".[$i].id" segmentos.json); if [ -n "$SOLO" ] && [[ ",$SOLO," != *",$id,"* ]]; then continue; fi; text=$(jq -r ".[$i].text" segmentos.json); max=$(jq -r ".[$i].max" segmentos.json)
   prev=$([ $i -gt 0 ] && jq -r ".[$((i-1))].text" segmentos.json || echo "")
   next=$([ $i -lt $((n-1)) ] && jq -r ".[$((i+1))].text" segmentos.json || echo "")
   body=$(jq -n --arg t "$text" --arg p "$prev" --arg n "$next" '{text:$t,model_id:"eleven_multilingual_v2",language_code:"es",voice_settings:{stability:0.5,similarity_boost:0.75,style:0.2,use_speaker_boost:true}} + (if $p!="" then {previous_text:$p} else {} end) + (if $n!="" then {next_text:$n} else {} end)')
