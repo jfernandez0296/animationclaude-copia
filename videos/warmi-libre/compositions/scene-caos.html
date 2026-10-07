@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Escena 1: caos</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-caos" data-width="1920" data-height="1080" data-duration="5.7" data-fps="30">
+        <style>
+          #root { position: absolute; inset: 0; overflow: hidden; color: var(--ink, #170b2e); font-family: var(--font-body, system-ui, sans-serif); }
+          .scene { position: absolute; inset: 0; }
+          .content { position: absolute; inset: 0; }
+          h1, h2, h3, p { margin: 0; }
+          .disp { font-family: var(--font-display, system-ui, sans-serif); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; }
+          .grad { background: linear-gradient(90deg, #5421a6 0%, #7c3aed 45%, #b5249f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+          .card { background: #ffffff; border-radius: 40px; box-shadow: 0 40px 80px rgba(60, 20, 120, 0.16), 0 10px 22px rgba(60, 20, 120, 0.08); }
+          .eyebrow { display: inline-flex; align-items: center; gap: 14px; padding: 12px 28px; border-radius: 999px; background: #efe3ff; color: #5421a6; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+
+          .tchip { display: flex; align-items: center; gap: 14px; padding: 14px 32px 14px 20px; border-radius: 999px; background: #ffffff; box-shadow: 0 22px 46px rgba(60, 20, 120, 0.18), 0 6px 14px rgba(60, 20, 120, 0.1); font-size: 40px; font-weight: 700; white-space: nowrap; color: #170b2e; }
+          .tchip i { display: block; width: 28px; height: 28px; border-radius: 50%; flex: 0 0 28px; }
+
+          .c-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
+          .c-title { font-size: 150px; text-align: center; white-space: nowrap; }
+          .c-q { font-family: var(--font-display, system-ui, sans-serif); font-size: 110px; font-weight: 700; letter-spacing: -0.03em; white-space: nowrap; }
+          .c-chips { position: absolute; inset: 0; }
+
+        </style>
+
+        <div id="scene-caos-clip" class="clip scene" data-start="0" data-duration="5.7" data-track-index="0">
+
+          <div class="c-chips"><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:90px;top:120px"><i style="background:#7c3aed"></i>ChatGPT</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:1330px;top:90px"><i style="background:#4a76d6"></i>Gemini</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:660px;top:40px"><i style="background:#2e9b63"></i>Perplexity</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:60px;top:470px"><i style="background:#d9a21b"></i>NotebookLM</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:1460px;top:420px"><i style="background:#d74ac5"></i>Lovable</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:180px;top:840px"><i style="background:#170b2e"></i>v0</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:1280px;top:830px"><i style="background:#7c3aed"></i>Make</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:700px;top:900px"><i style="background:#d64545"></i>n8n</div><div class="tchip" data-layout-allow-overlap="true" style="position:absolute;left:1480px;top:640px"><i style="background:#d97a4a"></i>Claude</div></div>
+          <div class="content c-center">
+            <h1 class="disp c-title">Hay mil herramientas<br />de <span class="grad">IA.</span></h1>
+            <div class="c-q grad">¿Por dónde empiezas?</div>
+          </div>
+
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) { return root.querySelectorAll(s); };
+            var el = function (s) { return root.querySelector(s); };
+            var tl = gsap.timeline({ paused: true });
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host, cls) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = cls;
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) { walk(n); }
+                });
+              };
+              walk(host);
+              Array.prototype.slice.call(host.querySelectorAll(".grad")).forEach(function (g) {
+                var ls = g.querySelectorAll("." + cls);
+                var n = ls.length;
+                Array.prototype.forEach.call(ls, function (s, i) {
+                  var t = n > 1 ? i / (n - 1) : 0;
+                  var c = "rgb(" + Math.round(84 + 97 * t) + "," + Math.round(33 + 3 * t) + "," + Math.round(166 - 7 * t) + ")";
+                  s.style.color = c;
+                  s.style.webkitTextFillColor = c;
+                  s.style.background = "none";
+                });
+                g.style.background = "none";
+              });
+              return out;
+            };
+
+
+            var cs = q(".tchip");
+            var r = rng(77);
+            for (var i = 0; i < cs.length; i++) {
+              var a = r() * Math.PI * 2;
+              tl.fromTo(cs[i], { x: Math.cos(a) * 1500, y: Math.sin(a) * 900, rotation: (r() - 0.5) * 180, scale: 0.4 }, { x: 0, y: 0, rotation: (r() - 0.5) * 16, scale: 1, duration: 0.9, ease: "back.out(1.3)" }, 0.1 + i * 0.1);
+              tl.to(cs[i], { x: (r() - 0.5) * 90, y: (r() - 0.5) * 90, rotation: (r() - 0.5) * 22, duration: 1.2 + r(), ease: "sine.inOut", yoyo: true, repeat: 3 }, 1.2 + i * 0.05);
+            }
+            var ls = splitLetters(el(".c-title"), "c-ch");
+            ls.forEach(function (c, i) { tl.fromTo(c, { autoAlpha: 0, y: 120, rotation: (r() - 0.5) * 30 }, { autoAlpha: 1, y: 0, rotation: 0, duration: 0.6, ease: "power4.out" }, 0.3 + i * 0.03); });
+            tl.fromTo(el(".c-q"), { autoAlpha: 0, scale: 2.6, rotation: -6 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.8, ease: "elastic.out(1, 0.55)" }, 2.4);
+            // everything shakes when the question lands
+            tl.to(cs, { x: "+=14", duration: 0.06, yoyo: true, repeat: 5, ease: "none" }, 2.5);
+            tl.fromTo(el(".c-center"), { scale: 1 }, { scale: 1.05, duration: 5.7, ease: "none" }, 0);
+
+            tl.seek(0);
+            window.__timelines["scene-caos"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

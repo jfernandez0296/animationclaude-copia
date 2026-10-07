@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Escena 5: facilitador</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-jaime" data-width="1920" data-height="1080" data-duration="6.5" data-fps="30">
+        <style>
+          #root { position: absolute; inset: 0; overflow: hidden; color: var(--ink, #170b2e); font-family: var(--font-body, system-ui, sans-serif); }
+          .scene { position: absolute; inset: 0; }
+          .content { position: absolute; inset: 0; }
+          h1, h2, h3, p { margin: 0; }
+          .disp { font-family: var(--font-display, system-ui, sans-serif); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; }
+          .grad { background: linear-gradient(90deg, #5421a6 0%, #7c3aed 45%, #b5249f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+          .card { background: #ffffff; border-radius: 40px; box-shadow: 0 40px 80px rgba(60, 20, 120, 0.16), 0 10px 22px rgba(60, 20, 120, 0.08); }
+          .eyebrow { display: inline-flex; align-items: center; gap: 14px; padding: 12px 28px; border-radius: 999px; background: #efe3ff; color: #5421a6; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+
+          .j-ring { position: absolute; left: 150px; top: 250px; width: 560px; height: 560px; border-radius: 50%; border: 4px dashed rgba(124, 58, 237, 0.4); }
+          .j-ring2 { left: 90px; top: 190px; width: 680px; height: 680px; border-color: rgba(215, 74, 197, 0.35); }
+          .j-photo { position: absolute; left: 190px; top: 290px; width: 480px; height: 480px; border-radius: 50%; padding: 14px; background: linear-gradient(135deg, #7ff0d3, #7c3aed 55%, #d74ac5); box-shadow: 0 50px 90px rgba(60, 20, 120, 0.3); }
+          .j-photo img { display: block; width: 452px; height: 452px; border-radius: 50%; object-fit: cover; }
+          .j-text { position: absolute; left: 840px; top: 250px; width: 980px; display: flex; flex-direction: column; gap: 14px; }
+          .j-name { font-size: 96px; }
+          .j-role { font-size: 60px; font-weight: 700; color: #5421a6; }
+          .j-live { display: flex; align-items: center; gap: 30px; margin-top: 26px; }
+          .j-num { font-family: var(--font-display, system-ui, sans-serif); font-size: 280px; font-weight: 700; letter-spacing: -0.05em; line-height: 0.95; color: #170b2e; }
+          .j-lbl { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+          .j-lbl b { font-family: var(--font-display, system-ui, sans-serif); font-size: 70px; line-height: 1.05; }
+          .j-dot { display: inline-flex; align-items: center; gap: 14px; padding: 8px 26px; border-radius: 999px; background: #fdecec; color: #c0262d; font-size: 38px; font-weight: 700; }
+          .j-dot i { display: block; width: 20px; height: 20px; border-radius: 50%; background: #e0343d; }
+
+        </style>
+
+        <div id="scene-jaime-clip" class="clip scene" data-start="0" data-duration="6.5" data-track-index="0">
+
+          <div class="j-ring j-ring2" data-layout-allow-overflow="true"></div>
+          <div class="j-ring" data-layout-allow-overflow="true"></div>
+          <div class="j-photo"><img src="assets/img/jaime.png" alt="Jaime Fernández Chávez" /></div>
+          <div class="j-text">
+            <h2 class="disp j-name">Jaime Fernández <span class="grad">Chávez</span></h2>
+            <div class="j-role">Director de Scaly AI</div>
+            <div class="j-live"><div class="j-num">16</div><div class="j-lbl"><b>sesiones<br />en vivo</b><span class="j-dot"><i></i>EN VIVO</span></div></div>
+          </div>
+
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) { return root.querySelectorAll(s); };
+            var el = function (s) { return root.querySelector(s); };
+            var tl = gsap.timeline({ paused: true });
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host, cls) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = cls;
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) { walk(n); }
+                });
+              };
+              walk(host);
+              Array.prototype.slice.call(host.querySelectorAll(".grad")).forEach(function (g) {
+                var ls = g.querySelectorAll("." + cls);
+                var n = ls.length;
+                Array.prototype.forEach.call(ls, function (s, i) {
+                  var t = n > 1 ? i / (n - 1) : 0;
+                  var c = "rgb(" + Math.round(84 + 97 * t) + "," + Math.round(33 + 3 * t) + "," + Math.round(166 - 7 * t) + ")";
+                  s.style.color = c;
+                  s.style.webkitTextFillColor = c;
+                  s.style.background = "none";
+                });
+                g.style.background = "none";
+              });
+              return out;
+            };
+
+
+            tl.fromTo(q(".j-ring"), { scale: 0.6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.0, stagger: 0.2, ease: "power3.out" }, 0);
+            tl.to(q(".j-ring"), { rotation: 360, duration: 12, ease: "none" }, 0);
+            tl.fromTo(el(".j-photo"), { autoAlpha: 0, scale: 0.4, rotation: -30 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.9, ease: "back.out(1.6)" }, 0.2);
+            tl.to(el(".j-photo"), { y: -16, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 2 }, 1.2);
+            var ls = splitLetters(el(".j-name"), "j-ch");
+            ls.forEach(function (c, i) { tl.fromTo(c, { autoAlpha: 0, x: 80, filter: "blur(10px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.out" }, 0.6 + i * 0.035); });
+            tl.fromTo(el(".j-role"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.6);
+            var num = el(".j-num"); var o = { v: 0 };
+            tl.fromTo(el(".j-live"), { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 2.3);
+            tl.to(o, { v: 16, duration: 1.4, ease: "power2.out", onUpdate: function () { num.textContent = String(Math.round(o.v)); } }, 2.4);
+            tl.fromTo(el(".j-dot i"), { scale: 1 }, { scale: 1.6, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 5 }, 3.0);
+
+            tl.seek(0);
+            window.__timelines["scene-jaime"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

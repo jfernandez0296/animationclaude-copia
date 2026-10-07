@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Escena 3: ocho semanas</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-semanas" data-width="1920" data-height="1080" data-duration="7.0" data-fps="30">
+        <style>
+          #root { position: absolute; inset: 0; overflow: hidden; color: var(--ink, #170b2e); font-family: var(--font-body, system-ui, sans-serif); }
+          .scene { position: absolute; inset: 0; }
+          .content { position: absolute; inset: 0; }
+          h1, h2, h3, p { margin: 0; }
+          .disp { font-family: var(--font-display, system-ui, sans-serif); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; }
+          .grad { background: linear-gradient(90deg, #5421a6 0%, #7c3aed 45%, #b5249f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+          .card { background: #ffffff; border-radius: 40px; box-shadow: 0 40px 80px rgba(60, 20, 120, 0.16), 0 10px 22px rgba(60, 20, 120, 0.08); }
+          .eyebrow { display: inline-flex; align-items: center; gap: 14px; padding: 12px 28px; border-radius: 999px; background: #efe3ff; color: #5421a6; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+
+          .w-big { position: absolute; left: 110px; top: 70px; font-size: 230px; line-height: 1; }
+          .w-big small { font-size: 100px; letter-spacing: -0.03em; margin-left: 24px; }
+          .w-pill { position: absolute; right: 110px; top: 130px; padding: 14px 40px; border-radius: 999px; background: linear-gradient(90deg, #5421a6, #b5249f); color: #ffffff; font-family: var(--font-display, system-ui, sans-serif); font-size: 64px; font-weight: 700; box-shadow: 0 24px 50px rgba(84, 33, 166, 0.4); }
+          .w-track { position: absolute; left: 130px; top: 470px; width: 1660px; height: 10px; border-radius: 5px; background: #e1d4f7; }
+          .w-fill { position: absolute; inset: 0; border-radius: 5px; background: linear-gradient(90deg, #5421a6, #b5249f); }
+          .w-node { position: absolute; top: 442px; width: 66px; margin-left: -33px; display: flex; flex-direction: column; align-items: center; }
+          .w-node i { display: block; width: 66px; height: 66px; border-radius: 50%; background: #ffffff; border: 8px solid #cdb9f1; box-sizing: border-box; }
+          .w-node span { margin-top: 10px; font-size: 38px; font-weight: 700; color: #4b4560; }
+          .w-app { position: absolute; left: 510px; top: 600px; width: 900px; height: 400px; border-radius: 34px; background: #ffffff; box-shadow: 0 50px 100px rgba(60, 20, 120, 0.28); overflow: hidden; }
+          .w-bar { position: absolute; left: 0; top: 0; width: 900px; height: 66px; background: linear-gradient(90deg, #5421a6, #b5249f); }
+          .w-blk { position: absolute; border-radius: 20px; }
+          .w-tile { background: #efe3ff; } .w-chart { background: #f6f1ff; } .w-cta { background: linear-gradient(90deg, #5421a6, #b5249f); }
+          .w-stamp { position: absolute; right: 80px; top: 640px; padding: 14px 36px; border: 8px solid #2e9b63; border-radius: 22px; color: #2e9b63; font-family: var(--font-display, system-ui, sans-serif); font-size: 64px; font-weight: 700; background: rgba(255, 255, 255, 0.92); transform: rotate(-9deg); opacity: 0; }
+          .w-conf { position: absolute; width: 20px; height: 20px; border-radius: 50%; opacity: 0; }
+
+        </style>
+
+        <div id="scene-semanas-clip" class="clip scene" data-start="0" data-duration="7.0" data-track-index="0">
+
+          <h2 class="disp w-big">8<small>semanas</small></h2>
+          <div class="w-pill">sin programar</div>
+          <div class="w-track"><div class="w-fill"></div></div>
+          <div class="w-node" style="left:130px"><i></i><span>S1</span></div><div class="w-node" style="left:367px"><i></i><span>S2</span></div><div class="w-node" style="left:604px"><i></i><span>S3</span></div><div class="w-node" style="left:841px"><i></i><span>S4</span></div><div class="w-node" style="left:1078px"><i></i><span>S5</span></div><div class="w-node" style="left:1315px"><i></i><span>S6</span></div><div class="w-node" style="left:1552px"><i></i><span>S7</span></div><div class="w-node" style="left:1789px"><i></i><span>S8</span></div>
+          <div class="w-app">
+            <div class="w-bar"></div>
+            <div class="w-blk w-tile" style="left:36px;top:96px;width:260px;height:110px"></div>
+            <div class="w-blk w-tile" style="left:320px;top:96px;width:260px;height:110px"></div>
+            <div class="w-blk w-tile" style="left:604px;top:96px;width:260px;height:110px"></div>
+            <div class="w-blk w-chart" style="left:36px;top:230px;width:540px;height:140px"></div>
+            <div class="w-blk w-cta" style="left:604px;top:230px;width:260px;height:140px"></div>
+          </div>
+          <div class="w-stamp">PUBLICADO ✓</div>
+
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) { return root.querySelectorAll(s); };
+            var el = function (s) { return root.querySelector(s); };
+            var tl = gsap.timeline({ paused: true });
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host, cls) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = cls;
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) { walk(n); }
+                });
+              };
+              walk(host);
+              Array.prototype.slice.call(host.querySelectorAll(".grad")).forEach(function (g) {
+                var ls = g.querySelectorAll("." + cls);
+                var n = ls.length;
+                Array.prototype.forEach.call(ls, function (s, i) {
+                  var t = n > 1 ? i / (n - 1) : 0;
+                  var c = "rgb(" + Math.round(84 + 97 * t) + "," + Math.round(33 + 3 * t) + "," + Math.round(166 - 7 * t) + ")";
+                  s.style.color = c;
+                  s.style.webkitTextFillColor = c;
+                  s.style.background = "none";
+                });
+                g.style.background = "none";
+              });
+              return out;
+            };
+
+
+            var r = rng(3);
+            var ls = splitLetters(el(".w-big"), "w-ch");
+            ls.forEach(function (c, i) { tl.fromTo(c, { autoAlpha: 0, scale: 0.2, y: 60 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(2)" }, 0.1 + i * 0.07); });
+            tl.fromTo(el(".w-pill"), { autoAlpha: 0, x: 200, rotation: 8 }, { autoAlpha: 1, x: 0, rotation: 0, duration: 0.8, ease: "back.out(1.6)" }, 0.9);
+            tl.set(el(".w-fill"), { scaleX: 0, transformOrigin: "0% 50%" }, 0);
+            tl.fromTo(el(".w-track"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 1.2);
+            var nodes = q(".w-node");
+            tl.to(el(".w-fill"), { scaleX: 1, duration: 2.8, ease: "none" }, 1.5);
+            for (var k = 0; k < nodes.length; k++) {
+              var t = 1.5 + (k / 7) * 2.8;
+              tl.fromTo(nodes[k], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.3 + k * 0.08);
+              tl.to(nodes[k].querySelector("i"), { backgroundColor: "#7c3aed", borderColor: "#5421a6", scale: 1.25, duration: 0.3, ease: "back.out(2.4)" }, t);
+              tl.to(nodes[k].querySelector("i"), { scale: 1, duration: 0.25 }, t + 0.3);
+            }
+            // the MVP assembles block by block
+            tl.fromTo(el(".w-app"), { autoAlpha: 0, y: 220, scale: 0.8 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 3.2);
+            var blks = q(".w-blk, .w-bar");
+            for (var b = 0; b < blks.length; b++) {
+              var side = b % 2 ? 1 : -1;
+              tl.fromTo(blks[b], { x: side * 700, autoAlpha: 0, rotation: side * 12 }, { x: 0, autoAlpha: 1, rotation: 0, duration: 0.55, ease: "back.out(1.5)" }, 3.6 + b * 0.22);
+            }
+            tl.fromTo(el(".w-stamp"), { autoAlpha: 0, scale: 3, rotation: -25 }, { autoAlpha: 1, scale: 1, rotation: -9, duration: 0.5, ease: "back.out(1.7)" }, 5.4);
+            tl.to(el(".w-app"), { y: -12, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 5.4);
+            var root2 = el(".w-app").parentNode;
+            for (var c = 0; c < 22; c++) {
+              var d = document.createElement("div"); d.className = "w-conf";
+              d.style.left = "1250px"; d.style.top = "700px";
+              d.style.background = ["#7c3aed", "#d74ac5", "#7ff0d3", "#ffffff"][c % 4];
+              root2.appendChild(d);
+              var a = (c / 22) * Math.PI * 2, dist = 160 + r() * 260;
+              tl.set(d, { autoAlpha: 0 }, 0);
+              tl.fromTo(d, { x: 0, y: 0, autoAlpha: 1, scale: 1 }, { x: Math.cos(a) * dist, y: Math.sin(a) * dist * 0.7, autoAlpha: 0, scale: 0.3, duration: 0.9, ease: "power3.out", immediateRender: false }, 5.5);
+            }
+
+            tl.seek(0);
+            window.__timelines["scene-semanas"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>
