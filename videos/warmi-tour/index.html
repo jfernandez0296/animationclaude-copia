@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 400 600; font-style: normal; }
+      @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; font-style: normal; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); font-weight: 500 600; font-style: normal; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; font-style: normal; }
+
+      /* Warmi Academy palette (sampled from the site recording) */
+      :root {
+        --stage: #faf7ff;
+        --ink: #170b2e;
+        --muted: #4b4560;
+        --violet: #5421a6;
+        --violet-2: #7c3aed;
+        --pink: #d74ac5;
+        --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+        --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--stage); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; color: var(--ink); font-family: var(--font-body); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="40" data-fps="30" data-width="1920" data-height="1080">
+      <div id="stage-bg" data-composition-id="stage-bg" data-composition-src="compositions/stage-bg.html" data-start="0" data-duration="40" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="tour" data-composition-id="tour" data-composition-src="compositions/tour.html" data-start="0" data-duration="40" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <audio id="voz-v1" src="audio/seg/v1.wav" data-start="0.4" data-duration="4.50" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v2" src="audio/seg/v2.wav" data-start="5.7" data-duration="4.61" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v3" src="audio/seg/v3.wav" data-start="11.4" data-duration="4.49" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v4" src="audio/seg/v4.wav" data-start="16.8" data-duration="3.60" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v5" src="audio/seg/v5.wav" data-start="22.0" data-duration="4.29" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v6" src="audio/seg/v6.wav" data-start="27.8" data-duration="5.31" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v7" src="audio/seg/v7.wav" data-start="34.0" data-duration="5.83" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica.wav" data-start="0" data-duration="40" data-track-index="13" data-volume="0.9"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="40" data-track-index="14" data-volume="0.5"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
