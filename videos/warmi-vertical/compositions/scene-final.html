@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>V6 cierre</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-final" data-width="1080" data-height="1920" data-duration="10.2" data-fps="30">
+        <style>
+          #root { position: absolute; inset: 0; overflow: hidden; color: var(--ink, #170b2e); font-family: var(--font-body, system-ui, sans-serif); }
+          .scene { position: absolute; inset: 0; }
+          .content { position: absolute; inset: 0; }
+          h1, h2, h3, p { margin: 0; }
+          .disp { font-family: var(--font-display, system-ui, sans-serif); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; }
+          .grad { background: linear-gradient(90deg, #5421a6 0%, #7c3aed 45%, #b5249f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+          .card { background: #ffffff; border-radius: 40px; box-shadow: 0 40px 80px rgba(60, 20, 120, 0.16), 0 10px 22px rgba(60, 20, 120, 0.08); }
+          .eyebrow { display: inline-flex; align-items: center; gap: 14px; padding: 12px 28px; border-radius: 999px; background: #efe3ff; color: #5421a6; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+
+          .z-bg { position: absolute; inset: 0; background: radial-gradient(circle at 20% 15%, #7c3aed 0%, transparent 52%), radial-gradient(circle at 85% 90%, #d74ac5 0%, transparent 50%), linear-gradient(160deg, #1d0a45 0%, #3b1285 100%); }
+          .z-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 56px; color: #ffffff; }
+          .z-title { font-size: 150px; text-align: center; color: #ffffff; white-space: nowrap; }
+          .z-title .z-acc { color: #ffa8ec; }
+          .z-pill { padding: 30px 64px; display: flex; align-items: center; border-radius: 999px; background: linear-gradient(90deg, #5421a6, #c42fa8); border: 3px solid rgba(255, 255, 255, 0.4); font-size: 60px; font-weight: 700; box-shadow: 0 26px 60px rgba(215, 74, 197, 0.45); white-space: nowrap; }
+          .z-info { font-size: 42px; font-weight: 500; color: #ece2ff; text-align: center; line-height: 1.45; }
+          .z-logo { position: absolute; left: 0; right: 0; top: 150px; display: flex; align-items: center; justify-content: center; gap: 18px; }
+          .wl-badge { display: block; width: 84px; height: 84px; }
+          .wl-name { font-family: var(--font-display, system-ui, sans-serif); font-size: 60px; font-weight: 700; letter-spacing: -0.02em; }
+          .z-ring { position: absolute; left: 390px; top: 800px; width: 300px; height: 300px; border-radius: 50%; border: 5px solid #ffa8ec; opacity: 0; }
+
+        </style>
+
+        <div id="scene-final-clip" class="clip scene" data-start="0" data-duration="10.2" data-track-index="0">
+
+          <div class="z-bg"></div>
+          <div class="z-ring zr0" data-layout-allow-overflow="true"></div>
+          <div class="z-ring zr1" data-layout-allow-overflow="true"></div>
+          <div class="z-logo" style="color:#ffffff"><svg class="wl-badge" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="WG7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5421a6"/><stop offset="1" stop-color="#d74ac5"/></linearGradient></defs><circle cx="24" cy="24" r="24" fill="url(#WG7)"/><path d="M24 11l2.6 8.4L35 22l-8.4 2.6L24 33l-2.6-8.4L13 22l8.4-2.6z" fill="#fff"/><path d="M35 29l1.1 3.4 3.4 1.1-3.4 1.1L35 38l-1.1-3.4-3.4-1.1 3.4-1.1z" fill="#fff"/></svg><span class="wl-name">Warmi Academy</span></div>
+          <div class="content z-content">
+            <h1 class="disp z-title">De usar IA a<br /><span class="z-acc">construir<br />con ella.</span></h1>
+            <div class="z-pill">Empieza el 7 de octubre</div>
+            <div class="z-info">6:30 p. m. Perú, Colombia, Ecuador<br />2.ª edición<br />warmi.ventures@gmail.com</div>
+          </div>
+
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) { return root.querySelectorAll(s); };
+            var el = function (s) { return root.querySelector(s); };
+            var tl = gsap.timeline({ paused: true });
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host, cls) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = cls;
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) { walk(n); }
+                });
+              };
+              walk(host);
+              Array.prototype.slice.call(host.querySelectorAll(".grad")).forEach(function (g) {
+                var ls = g.querySelectorAll("." + cls);
+                var n = ls.length;
+                Array.prototype.forEach.call(ls, function (s, i) {
+                  var t = n > 1 ? i / (n - 1) : 0;
+                  var c = "rgb(" + Math.round(84 + 97 * t) + "," + Math.round(33 + 3 * t) + "," + Math.round(166 - 7 * t) + ")";
+                  s.style.color = c;
+                  s.style.webkitTextFillColor = c;
+                  s.style.background = "none";
+                });
+                g.style.background = "none";
+              });
+              return out;
+            };
+
+
+            tl.fromTo(el(".z-bg"), { scale: 1.15 }, { scale: 1, duration: 3, ease: "power2.out" }, 0);
+            tl.fromTo(el(".z-logo"), { y: -50 }, { y: 0, duration: 0.7, ease: "power3.out" }, 0.4);
+            var ls = splitLetters(el(".z-title"), "z-ch");
+            ls.forEach(function (c, i) { tl.fromTo(c, { y: 110, scale: 0.7 }, { y: 0, scale: 1, duration: 0.6, ease: "back.out(1.7)" }, 0.5 + i * 0.03); });
+            tl.fromTo(el(".z-pill"), { y: 70, scale: 0.6 }, { y: 0, scale: 1, duration: 0.8, ease: "elastic.out(1, 0.55)" }, 1.9);
+            tl.fromTo(el(".z-info"), { y: 30 }, { y: 0, duration: 0.6, ease: "power2.out" }, 2.4);
+            var rings = q(".z-ring");
+            for (var i = 0; i < rings.length; i++) tl.fromTo(rings[i], { scale: 0.3, autoAlpha: 0.8 }, { scale: 4.2, autoAlpha: 0, duration: 1.3, ease: "power2.out" }, 1.9 + i * 0.25);
+            tl.to(el(".z-pill"), { scale: 1.05, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 9 }, 2.8);
+            tl.fromTo(el(".z-content"), { scale: 1 }, { scale: 1.03, duration: 10.2, ease: "none" }, 0);
+
+            tl.seek(0);
+            window.__timelines["scene-final"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

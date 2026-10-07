@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Fondo en capas vertical</title></head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="stage-bg" data-width="1080" data-height="1920" data-duration="40" data-fps="30">
+        <style>
+          #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse at 50% 38%, #ffffff 0%, #faf7ff 52%, #efe7fb 100%); }
+          #stage-clip { position: absolute; inset: 0; }
+          .orb { position: absolute; border-radius: 50%; }
+          .o1 { left: 500px; top: -120px; width: 900px; height: 900px; background: radial-gradient(circle, rgba(196, 166, 255, 0.5) 0%, rgba(196, 166, 255, 0.15) 42%, transparent 68%); }
+          .o2 { left: -420px; top: 900px; width: 900px; height: 900px; background: radial-gradient(circle, rgba(124, 58, 237, 0.28) 0%, rgba(124, 58, 237, 0.08) 42%, transparent 68%); }
+          .o3 { left: 380px; top: 1250px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(230, 72, 189, 0.16) 0%, rgba(230, 72, 189, 0.05) 45%, transparent 68%); }
+          .floor { position: absolute; left: -30%; bottom: 0; width: 160%; height: 700px; transform: perspective(700px) rotateX(64deg); transform-origin: 50% 100%; background-image: linear-gradient(rgba(124, 58, 237, 0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(124, 58, 237, 0.2) 2px, transparent 2px); background-size: 90px 90px; -webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,0.9), transparent); mask-image: linear-gradient(0deg, rgba(0,0,0,0.9), transparent); }
+          .ring { position: absolute; border-radius: 50%; border: 2px dashed rgba(124, 58, 237, 0.22); }
+          .r1 { left: 140px; top: 140px; width: 800px; height: 800px; }
+          .r2 { left: -200px; top: 1100px; width: 900px; height: 900px; border-color: rgba(215, 74, 197, 0.2); }
+          .dust { position: absolute; border-radius: 50%; background: rgba(124, 58, 237, 0.4); }
+        </style>
+        <div id="stage-clip" class="clip" data-start="0" data-duration="40" data-track-index="0">
+          <div class="orb o1" data-layout-allow-overflow="true"></div><div class="orb o2" data-layout-allow-overflow="true"></div><div class="orb o3" data-layout-allow-overflow="true"></div>
+          <div class="floor" data-layout-allow-overflow="true"></div>
+          <div class="ring r1" data-layout-allow-overflow="true"></div><div class="ring r2" data-layout-allow-overflow="true"></div>
+          <div class="dust-layer"></div>
+        </div>
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) { return root.querySelectorAll(s); };
+            var el = function (s) { return root.querySelector(s); };
+            var tl = gsap.timeline({ paused: true });
+            var seed = 9; var rnd = function () { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+            tl.to(el(".o1"), { x: -160, y: 120, duration: 10, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);
+            tl.to(el(".o2"), { x: 160, y: -140, duration: 12, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);
+            tl.to(el(".o3"), { x: -140, y: -100, duration: 9, ease: "sine.inOut", yoyo: true, repeat: 4 }, 0);
+            tl.fromTo(el(".floor"), { backgroundPosition: "0px 0px" }, { backgroundPosition: "0px 3600px", duration: 40, ease: "none" }, 0);
+            tl.to(q(".ring"), { rotation: 360, duration: 40, ease: "none" }, 0);
+            var layer = el(".dust-layer");
+            for (var i = 0; i < 30; i++) {
+              var d = document.createElement("div"); d.className = "dust";
+              var s = 5 + Math.round(rnd() * 8);
+              d.style.cssText = "left:" + Math.round(rnd() * 1060) + "px;top:" + Math.round(1000 + rnd() * 900) + "px;width:" + s + "px;height:" + s + "px;opacity:0;";
+              layer.appendChild(d);
+              tl.fromTo(d, { y: 0, autoAlpha: 0 }, { y: -(500 + rnd() * 900), autoAlpha: 0.7, duration: 8 + rnd() * 8, ease: "none", repeat: 2, yoyo: false }, rnd() * 10);
+            }
+            tl.seek(0);
+            window.__timelines["stage-bg"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>
