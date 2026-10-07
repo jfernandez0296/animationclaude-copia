@@ -96,11 +96,14 @@ w('scene-semanas.html', build('scene-semanas', 'Escena 3: ocho semanas', 7.0, ''
           .w-node { position: absolute; top: 442px; width: 66px; margin-left: -33px; display: flex; flex-direction: column; align-items: center; }
           .w-node i { display: block; width: 66px; height: 66px; border-radius: 50%; background: #ffffff; border: 8px solid #cdb9f1; box-sizing: border-box; }
           .w-node span { margin-top: 10px; font-size: 38px; font-weight: 700; color: #4b4560; }
-          .w-app { position: absolute; left: 510px; top: 600px; width: 900px; height: 400px; border-radius: 34px; background: #ffffff; box-shadow: 0 50px 100px rgba(60, 20, 120, 0.28); overflow: hidden; }
-          .w-bar { position: absolute; left: 0; top: 0; width: 900px; height: 66px; background: linear-gradient(90deg, #5421a6, #b5249f); }
-          .w-blk { position: absolute; border-radius: 20px; }
-          .w-tile { background: #efe3ff; } .w-chart { background: #f6f1ff; } .w-cta { background: linear-gradient(90deg, #5421a6, #b5249f); }
-          .w-stamp { position: absolute; right: 80px; top: 640px; padding: 14px 36px; border: 8px solid #2e9b63; border-radius: 22px; color: #2e9b63; font-family: var(--font-display, system-ui, sans-serif); font-size: 64px; font-weight: 700; background: rgba(255, 255, 255, 0.92); transform: rotate(-9deg); opacity: 0; }
+          .w-app { position: absolute; left: 410px; top: 590px; width: 1100px; height: 420px; border-radius: 34px; background: #ffffff; box-shadow: 0 50px 100px rgba(60, 20, 120, 0.28); overflow: hidden; }
+          .w-bar { position: absolute; left: 0; top: 0; width: 1100px; height: 70px; background: linear-gradient(90deg, #5421a6, #b5249f); color: #ffffff; font-size: 36px; font-weight: 700; line-height: 70px; padding-left: 36px; }
+          .w-blk { position: absolute; border-radius: 22px; display: flex; flex-direction: column; justify-content: center; padding: 0 32px; font-weight: 700; }
+          .w-hero { left: 36px; top: 96px; width: 640px; height: 170px; background: #f1e8ff; font-size: 54px; line-height: 1.05; color: #170b2e; font-family: var(--font-display, system-ui, sans-serif); }
+          .w-hero small { font-family: var(--font-body, system-ui, sans-serif); font-size: 32px; font-weight: 500; color: #4b4560; margin-top: 8px; }
+          .w-tile { top: 292px; width: 330px; height: 100px; background: #efe3ff; color: #5421a6; font-size: 40px; align-items: center; }
+          .w-cta { left: 704px; top: 96px; width: 360px; height: 170px; background: linear-gradient(90deg, #5421a6, #b5249f); color: #ffffff; font-size: 52px; align-items: center; text-align: center; }
+          .w-stamp { position: absolute; right: 20px; top: 8px; height: 54px; padding: 0 28px; border-radius: 27px; background: #2e9b63; color: #ffffff; font-family: var(--font-display, system-ui, sans-serif); font-size: 34px; font-weight: 700; line-height: 54px; opacity: 0; }
           .w-conf { position: absolute; width: 20px; height: 20px; border-radius: 50%; opacity: 0; }
 ''', '''
           <h2 class="disp w-big">8<small>semanas</small></h2>
@@ -108,14 +111,14 @@ w('scene-semanas.html', build('scene-semanas', 'Escena 3: ocho semanas', 7.0, ''
           <div class="w-track"><div class="w-fill"></div></div>
           ''' + nodes + '''
           <div class="w-app">
-            <div class="w-bar"></div>
-            <div class="w-blk w-tile" style="left:36px;top:96px;width:260px;height:110px"></div>
-            <div class="w-blk w-tile" style="left:320px;top:96px;width:260px;height:110px"></div>
-            <div class="w-blk w-tile" style="left:604px;top:96px;width:260px;height:110px"></div>
-            <div class="w-blk w-chart" style="left:36px;top:230px;width:540px;height:140px"></div>
-            <div class="w-blk w-cta" style="left:604px;top:230px;width:260px;height:140px"></div>
+            <div class="w-bar">Mi negocio</div>
+            <div class="w-stamp">PUBLICADO ✓</div>
+            <div class="w-blk w-hero">Reserva en 1 minuto<small>Tu cliente elige y listo</small></div>
+            <div class="w-blk w-cta">Reservar →</div>
+            <div class="w-blk w-tile" style="left:36px">Servicios</div>
+            <div class="w-blk w-tile" style="left:388px">Horarios</div>
+            <div class="w-blk w-tile" style="left:740px">Pagos</div>
           </div>
-          <div class="w-stamp">PUBLICADO ✓</div>
 ''', '''
             var r = rng(3);
             ls = splitLetters(el(".w-big"), "w-ch");
@@ -138,12 +141,12 @@ w('scene-semanas.html', build('scene-semanas', 'Escena 3: ocho semanas', 7.0, ''
               var side = b % 2 ? 1 : -1;
               tl.fromTo(blks[b], { x: side * 700, autoAlpha: 0, rotation: side * 12 }, { x: 0, autoAlpha: 1, rotation: 0, duration: 0.55, ease: "back.out(1.5)" }, 3.6 + b * 0.22);
             }
-            tl.fromTo(el(".w-stamp"), { autoAlpha: 0, scale: 3, rotation: -25 }, { autoAlpha: 1, scale: 1, rotation: -9, duration: 0.5, ease: "back.out(1.7)" }, 5.4);
+            tl.fromTo(el(".w-stamp"), { autoAlpha: 0, scale: 0.2 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(2.4)" }, 5.4);
             tl.to(el(".w-app"), { y: -12, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 5.4);
             var root2 = el(".w-app").parentNode;
             for (var c = 0; c < 22; c++) {
               var d = document.createElement("div"); d.className = "w-conf";
-              d.style.left = "1250px"; d.style.top = "700px";
+              d.style.left = "1330px"; d.style.top = "650px";
               d.style.background = ["#7c3aed", "#d74ac5", "#7ff0d3", "#ffffff"][c % 4];
               root2.appendChild(d);
               var a = (c / 22) * Math.PI * 2, dist = 160 + r() * 260;
@@ -266,7 +269,7 @@ w('scene-precio.html', build('scene-precio', 'Escena 6: precio', 6.0, '''
 '''))
 
 # ---------- 7 · cierre ----------
-w('scene-final.html', build('scene-final', 'Escena 7: cierre', 4.7, '''
+w('scene-final.html', build('scene-final', 'Escena 7: cierre', 10.2, '''
           .z-bg { position: absolute; inset: 0; background: radial-gradient(circle at 20% 15%, #7c3aed 0%, transparent 52%), radial-gradient(circle at 85% 90%, #d74ac5 0%, transparent 50%), linear-gradient(160deg, #1d0a45 0%, #3b1285 100%); }
           .z-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; color: #ffffff; }
           .z-title { font-size: 150px; text-align: center; color: #ffffff; white-space: nowrap; }
@@ -296,7 +299,7 @@ w('scene-final.html', build('scene-final', 'Escena 7: cierre', 4.7, '''
             tl.fromTo(el(".z-info"), { y: 30 }, { y: 0, duration: 0.6, ease: "power2.out" }, 2.4);
             var rings = q(".z-ring");
             for (var i = 0; i < rings.length; i++) tl.fromTo(rings[i], { scale: 0.3, autoAlpha: 0.8 }, { scale: 4.2, autoAlpha: 0, duration: 1.3, ease: "power2.out" }, 1.9 + i * 0.25);
-            tl.to(el(".z-pill"), { scale: 1.05, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 2 }, 2.8);
-            tl.fromTo(el(".z-content"), { scale: 1 }, { scale: 1.03, duration: 4.7, ease: "none" }, 0);
+            tl.to(el(".z-pill"), { scale: 1.05, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 9 }, 2.8);
+            tl.fromTo(el(".z-content"), { scale: 1 }, { scale: 1.03, duration: 10.2, ease: "none" }, 0);
 '''))
 print('ok')

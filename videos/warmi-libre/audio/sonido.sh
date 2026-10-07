@@ -30,10 +30,10 @@ ffmpeg -y -loglevel error -f lavfi -i "anoisesrc=d=1.1:c=pink:r=$SR:a=0.9" -af "
 ins=(); fc=""; i=0
 add() { ins+=(-i "$1"); fc="$fc[$i:a]adelay=$(python3 -c "print(int($2*1000))")|$(python3 -c "print(int($2*1000))")[x$i];"; i=$((i+1)); }
 add riser.wav 5.1
-for t in 11.2 17.7 23.7 29.7; do add wh.wav $t; done
-add riser.wav 35.2
-add wh_long.wav 35.1
-add chime.wav 37.4
+for t in 11.2 17.7 23.7; do add wh.wav $t; done
+add riser.wav 29.7
+add wh_long.wav 29.6
+add chime.wav 31.6
 labels=""; for k in $(seq 0 $((i-1))); do labels="$labels[x$k]"; done
 ffmpeg -y -loglevel error "${ins[@]}" -filter_complex "${fc}${labels}amix=inputs=$i:duration=longest:normalize=0,apad=whole_dur=40,atrim=0:40" -ar $SR efectos.wav
 rm -f c?.wav pad.wav pulse.wav wh.wav riser.wav chime.wav wh_long.wav
