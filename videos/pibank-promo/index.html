@@ -3,100 +3,144 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>Pibank Promo</title>
+    <title>Pibank Promo Motion</title>
     <script src="assets/vendor/gsap.min.js"></script>
     <style>
       @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 400 600; }
       @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; }
       @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); font-weight: 400 600; }
       @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; }
-      :root { --navy: #12296b; --navy-d: #0b1b4d; --yellow: #ffd600; --white: #ffffff; }
+      :root { --navy: #12296b; --navy-d: #0b1b4d; --yellow: #ffd600; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--navy); }
       #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--navy); font-family: "DM Sans", system-ui, sans-serif; color: #fff; }
       .abs { position: absolute; }
-      .shape { position: absolute; background: var(--yellow); }
-      #photoWrap { left: 760px; top: 0; width: 1160px; height: 1080px; overflow: hidden; }
-      #photo { position: absolute; left: -440px; top: 0; width: 1933px; height: 1080px; transform-origin: 75% 45%; }
-      #photoFade { left: 760px; top: 0; width: 260px; height: 1080px; background: linear-gradient(90deg, #12296b, rgba(18,41,107,0)); }
       .disp { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
-      .scene { left: 90px; width: 900px; }
-      .kicker { display: inline-block; padding: 12px 28px; border-radius: 999px; background: var(--yellow); color: var(--navy-d); font-weight: 700; font-size: 30px; letter-spacing: 0.04em; text-transform: uppercase; }
-      .big { font-size: 128px; color: #fff; }
       .hl { color: var(--yellow); }
-      .chip { display: inline-block; margin: 0 14px 14px 0; padding: 14px 28px; border-radius: 18px; background: rgba(255,255,255,0.12); border: 2px solid rgba(255,214,0,0.7); font-size: 38px; font-weight: 700; }
-      .logo { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -0.04em; }
+      .logo { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
       .logo .pi { color: var(--yellow); }
-      #finalBg { left: 0; top: 0; width: 1920px; height: 1080px; background: var(--navy); }
+      .kicker { display: inline-block; padding: 12px 28px; border-radius: 999px; background: var(--yellow); color: var(--navy-d); font-weight: 700; font-size: 30px; letter-spacing: 0.04em; text-transform: uppercase; }
+      .blk { background: var(--yellow); }
+      .chip { display: inline-block; padding: 16px 32px; border-radius: 20px; background: rgba(255,255,255,0.12); border: 2px solid rgba(255,214,0,0.75); font-size: 40px; font-weight: 700; }
+      .scn { left: 0; top: 0; width: 1920px; height: 1080px; }
+      #photoWrap { left: 1000px; top: 90px; width: 820px; height: 900px; border-radius: 48px; overflow: hidden; }
+      #photo { position: absolute; left: -560px; top: -40px; width: 1620px; height: 905px; transform-origin: 75% 45%; }
+      .phone { left: 1180px; top: 120px; width: 480px; height: 880px; border-radius: 64px; background: #fff; border: 14px solid #0b1b4d; box-shadow: 0 40px 90px rgba(0,0,0,0.45); overflow: hidden; color: var(--navy-d); }
+      .row { margin: 12px 28px; height: 74px; border-radius: 18px; background: #eef1fb; }
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-fps="30" data-width="1920" data-height="1080">
-      <div class="abs" id="photoWrap"><img id="photo" src="assets/img/foto.png" alt="Persona sonriendo con la app de pibank" /></div>
-      <div class="abs" id="photoFade"></div>
-      <div class="abs logo" id="miniLogo" style="left:90px;top:70px;font-size:64px;color:#fff"><span class="pi">pi</span>bank</div>
+      <!-- decorative geometry, always behind -->
+      <div class="abs blk" id="g2" style="left:1560px;top:0;width:360px;height:220px"></div>
 
-      <div class="abs scene" id="sc1" style="top:360px">
-        <div class="kicker" id="k1">Banco Pichincha</div>
-        <h1 class="disp big" id="h1" style="margin-top:26px">Pibank<br /><span class="hl">ya está<br />en Perú</span></h1>
+      <!-- SCENE 1: hook with the photo -->
+      <div class="abs scn" id="sc1">
+        <div class="abs logo" id="miniLogo" style="left:90px;top:70px;font-size:64px"><span class="pi">pi</span>bank</div>
+        <div class="abs" style="left:90px;top:330px;width:900px">
+          <div class="kicker" id="k1">Banco Pichincha</div>
+          <h1 class="disp" id="h1" style="margin-top:26px;font-size:132px">Pibank<br /><span class="hl">ya está<br />en Perú</span></h1>
+        </div>
+        <div class="abs blk" id="photoBlk" style="left:960px;top:60px;width:900px;height:960px;border-radius:60px"></div>
+        <div class="abs" id="photoWrap"><img id="photo" src="assets/img/foto.png" alt="Persona con la app de pibank" /></div>
       </div>
 
-      <div class="abs scene" id="sc2" style="top:260px">
-        <div class="disp" id="rate" style="font-size:300px;color:var(--yellow);line-height:0.9">5<span style="font-size:170px">%</span></div>
-        <div class="disp" id="rateTxt" style="font-size:64px;margin-top:6px">de tasa en tu cuenta de ahorros en soles</div>
-        <div id="chips" style="margin-top:44px"><span class="chip">Sin comisiones</span><span class="chip">Sin monto mínimo</span><span class="chip">Libre disponibilidad</span></div>
+      <!-- SCENE 2: 5% count-up + growth line -->
+      <div class="abs scn" id="sc2">
+        <div class="abs disp hl" id="rate" style="left:110px;top:150px;font-size:420px;line-height:0.9"><span id="rateN">0</span><span style="font-size:240px">%</span></div>
+        <div class="abs disp" id="rateTxt" style="left:120px;top:590px;font-size:70px;width:900px">de tasa en tu cuenta de ahorros en soles</div>
+        <div class="abs" id="chips" style="left:120px;top:800px;width:1000px;display:flex;gap:18px;flex-wrap:wrap">
+          <span class="chip">Sin comisiones</span><span class="chip">Sin monto mínimo</span><span class="chip">Libre disponibilidad</span>
+        </div>
+        <svg class="abs" id="growth" style="left:1100px;top:160px" width="720" height="700" viewBox="0 0 720 700">
+          <line x1="40" y1="640" x2="700" y2="640" stroke="rgba(255,255,255,0.35)" stroke-width="4" />
+          <line x1="40" y1="40" x2="40" y2="640" stroke="rgba(255,255,255,0.35)" stroke-width="4" />
+          <path id="gline" d="M60 600 C 200 590, 260 520, 360 430 S 560 220, 680 90" fill="none" stroke="#ffd600" stroke-width="16" stroke-linecap="round" />
+          <circle id="gdot" cx="680" cy="90" r="30" fill="#ffd600" />
+          <circle id="gring" cx="680" cy="90" r="30" fill="none" stroke="#ffd600" stroke-width="6" />
+        </svg>
       </div>
 
-      <div class="abs scene" id="sc3" style="top:330px">
-        <div class="kicker" id="k3">Hazlo hoy</div>
-        <h2 class="disp big" id="h3" style="margin-top:26px;font-size:120px">Ábrela <span class="hl">100% online</span></h2>
+      <!-- SCENE 3: open it online (illustrative phone UI) -->
+      <div class="abs scn" id="sc3">
+        <div class="abs" style="left:110px;top:300px;width:1000px">
+          <div class="kicker" id="k3">Desde tu celular</div>
+          <h2 class="disp" id="h3" style="margin-top:28px;font-size:150px">Ábrela<br /><span class="hl">100% online</span></h2>
+        </div>
+        <div class="abs phone" id="phone">
+          <div class="abs logo" style="left:36px;top:40px;font-size:48px;color:#12296b"><span style="color:#f5b800">pi</span>bank</div>
+          <div class="abs disp" style="left:36px;top:130px;font-size:44px;color:#12296b">Cuenta Soles</div>
+          <div class="abs" style="left:0;top:210px;width:100%"><div class="row"></div><div class="row"></div><div class="row"></div></div>
+          <div class="abs disp" id="btn" style="left:36px;top:540px;width:372px;height:100px;border-radius:24px;background:#12296b;color:#fff;font-size:34px;display:flex;align-items:center;justify-content:center">Abrir cuenta</div>
+          <div class="abs" id="done" style="left:0;top:0;width:100%;height:100%;background:#12296b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px">
+            <svg width="190" height="190" viewBox="0 0 190 190"><circle cx="95" cy="95" r="88" fill="#ffd600"/><path id="tick" d="M55 98 L84 127 L136 66" fill="none" stroke="#12296b" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="disp" style="font-size:46px;color:#fff">¡Cuenta lista!</div>
+          </div>
+        </div>
       </div>
 
-      <div class="abs" id="finalBg"></div>
-      <div class="abs" id="finalGroup" style="left:0;top:0;width:1920px;height:1080px;text-align:center">
-        <div class="logo" id="bigLogo" style="position:absolute;left:0;right:0;top:300px;font-size:300px;color:#fff;line-height:1"><span class="pi">pi</span>bank</div>
-        <div class="disp" id="url" style="position:absolute;left:0;right:0;top:640px;font-size:96px;color:var(--yellow)">pibank.pe</div>
-        <div id="legal" style="position:absolute;left:0;right:0;bottom:56px;font-size:26px;color:rgba(255,255,255,0.8)">Tasa y condiciones según Banco Pichincha. Imagen referencial.</div>
+      <!-- SCENE 4: close -->
+      <div class="abs scn" id="sc4" style="background:var(--navy)">
+        <div class="abs blk" id="f1" style="left:0;top:0;width:520px;height:300px"></div>
+        <div class="abs blk" id="f2" style="left:1400px;top:780px;width:520px;height:300px"></div>
+        <div class="abs logo" id="bigLogo" style="left:0;right:0;top:240px;text-align:center;font-size:300px"><span class="pi">pi</span>bank</div>
+        <div class="abs disp" id="tag" style="left:0;right:0;top:690px;text-align:center;font-size:92px">Ya en <span class="hl">Perú</span></div>
+        <div class="abs" id="legal" style="left:0;right:0;bottom:50px;text-align:center;font-size:26px;color:rgba(255,255,255,0.8)">Tasa y condiciones según Banco Pichincha. Imágenes referenciales.</div>
       </div>
 
       <audio id="voz-p1" src="audio/seg/p1.wav" data-start="0.3" data-duration="1.43" data-track-index="12" data-volume="1"></audio>
       <audio id="voz-p2" src="audio/seg/p2.wav" data-start="2.8" data-duration="3.68" data-track-index="12" data-volume="1"></audio>
-      <audio id="voz-p3" src="audio/seg/p3.wav" data-start="6.6" data-duration="3.2" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-p3" src="audio/seg/p3.wav" data-start="6.6" data-duration="2.49" data-track-index="12" data-volume="1"></audio>
       <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="10" data-track-index="13" data-volume="0.9"></audio>
       <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="10" data-track-index="14" data-volume="0.5"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      const out = (sel, t) => tl.to(sel, { autoAlpha: 0, x: -60, duration: 0.35, ease: "power2.in" }, t);
-      const inn = (sel, t) => tl.fromTo(sel, { autoAlpha: 0, x: 60 }, { autoAlpha: 1, x: 0, duration: 0.5, ease: "power3.out" }, t);
-      // photo: slow push-in over the whole piece
-      tl.fromTo("#photo", { scale: 1.0 }, { scale: 1.14, duration: 8.4, ease: "none" }, 0);
-      tl.fromTo("#photoWrap", { autoAlpha: 0, x: 120 }, { autoAlpha: 1, x: 0, duration: 0.7, ease: "power3.out" }, 0);
+      tl.set(["#sc2", "#sc3", "#sc4"], { autoAlpha: 0 }, 0);
+
+      // ---- scene 1 (0 - 2.6)
+      tl.fromTo("#g2", { y: -220 }, { y: 0, duration: 0.6, ease: "power3.out" }, 0.1);
       tl.fromTo("#miniLogo", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.2);
-      // scene 1
-      tl.set(["#sc2", "#sc3", "#finalBg", "#finalGroup"], { autoAlpha: 0 }, 0);
-      tl.fromTo("#k1", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 0.2);
-      tl.fromTo("#h1", { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.35);
-      out("#sc1", 2.45);
-      // scene 2
-      inn("#sc2", 2.6);
-      tl.fromTo("#rate", { scale: 0.6 }, { scale: 1, duration: 0.6, ease: "back.out(1.8)", transformOrigin: "0% 50%" }, 2.7);
-      tl.fromTo("#rateTxt", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 3.1);
-      tl.fromTo(".chip", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.3, ease: "power2.out" }, 3.9);
-      out("#sc2", 6.1);
-      // scene 3
-      inn("#sc3", 6.3);
-      tl.fromTo("#h3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 6.45);
-      tl.to("#sc3", { autoAlpha: 0, duration: 0.3 }, 8.2);
-      // final: opaque navy circle reveal over photo
-      tl.set("#finalBg", { autoAlpha: 1 }, 8.2);
-      tl.fromTo("#finalBg", { clipPath: "circle(0% at 50% 50%)" }, { clipPath: "circle(150% at 50% 50%)", duration: 0.7, ease: "power2.inOut" }, 8.2);
-      tl.set("#finalGroup", { autoAlpha: 1 }, 8.6);
+      tl.fromTo("#k1", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 0.25);
+      tl.fromTo("#h1", { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.4);
+      tl.fromTo("#photoBlk", { scaleX: 0, transformOrigin: "100% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0.1);
+      tl.fromTo("#photoWrap", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.7, ease: "power3.out" }, 0.35);
+      tl.fromTo("#photo", { scale: 1.12 }, { scale: 1.0, duration: 2.4, ease: "none" }, 0.3);
+      tl.to("#sc1", { x: -1920, duration: 0.5, ease: "power3.inOut" }, 2.4);
+
+      // ---- scene 2 (2.5 - 6.2)
+      tl.fromTo("#sc2", { x: 1920, autoAlpha: 1 }, { x: 0, duration: 0.5, ease: "power3.inOut" }, 2.4);
+      const cnt = { v: 0 };
+      tl.to(cnt, { v: 5, duration: 1.1, ease: "power2.out", onUpdate: () => { document.getElementById("rateN").textContent = Math.round(cnt.v); } }, 2.9);
+      tl.fromTo("#rate", { scale: 0.85, transformOrigin: "0% 50%" }, { scale: 1, duration: 0.7, ease: "back.out(1.6)" }, 2.9);
+      tl.fromTo("#rateTxt", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.45 }, 3.3);
+      tl.fromTo(".chip", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.3, ease: "power2.out" }, 4.0);
+      const L = document.getElementById("gline").getTotalLength();
+      tl.fromTo("#gline", { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" }, 3.0);
+      tl.fromTo("#gdot", { scale: 0, svgOrigin: "680 90" }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, 4.5);
+      tl.fromTo("#gring", { scale: 1, autoAlpha: 0.9, svgOrigin: "680 90" }, { scale: 2.6, autoAlpha: 0, duration: 0.8, ease: "power2.out" }, 4.6);
+      tl.to("#sc2", { y: -1080, duration: 0.5, ease: "power3.inOut" }, 6.0);
+
+      // ---- scene 3 (6.0 - 8.4)
+      tl.fromTo("#sc3", { y: 1080, autoAlpha: 1 }, { y: 0, duration: 0.5, ease: "power3.inOut" }, 6.0);
+      tl.fromTo("#k3", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 6.4);
+      tl.fromTo("#h3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 6.5);
+      tl.fromTo("#phone", { x: 300, rotate: 8, autoAlpha: 0 }, { x: 0, rotate: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" }, 6.3);
+      tl.fromTo(".row", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, stagger: 0.12 }, 6.8);
+      tl.to("#btn", { scale: 0.93, duration: 0.12, yoyo: true, repeat: 1 }, 7.4);
+      tl.set("#done", { autoAlpha: 0 }, 0);
+      tl.fromTo("#done", { clipPath: "circle(0% at 50% 62%)", autoAlpha: 1 }, { clipPath: "circle(120% at 50% 62%)", duration: 0.5, ease: "power2.inOut" }, 7.6);
+      tl.fromTo("#tick", { strokeDasharray: 140, strokeDashoffset: 140 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, 8.0);
+
+      // ---- scene 4 (8.4 - 10)
+      tl.set("#sc4", { autoAlpha: 1 }, 8.4);
+      tl.fromTo("#sc4", { clipPath: "circle(0% at 50% 50%)" }, { clipPath: "circle(150% at 50% 50%)", duration: 0.6, ease: "power2.inOut" }, 8.4);
+      tl.fromTo(["#f1", "#f2"], { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.5, ease: "back.out(1.6)", stagger: 0.1 }, 8.7);
       tl.fromTo("#bigLogo", { scale: 0.7, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.6, ease: "back.out(1.7)" }, 8.7);
-      tl.fromTo("#url", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 9.1);
+      tl.fromTo("#tag", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 9.1);
       tl.fromTo("#legal", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 9.3);
-      tl.to("#miniLogo", { autoAlpha: 0, duration: 0.2 }, 8.2);
+
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>
