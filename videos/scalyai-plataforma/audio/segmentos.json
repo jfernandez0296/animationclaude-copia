@@ -1,0 +1,38 @@
+[
+ {
+  "id": "n1",
+  "start": 0.3,
+  "max": 3.6,
+  "text": "Tu empresa no es genérica. Tu software tampoco debería serlo."
+ },
+ {
+  "id": "n2",
+  "start": 4.3,
+  "max": 3.8,
+  "text": "Un ERP que controla tu inventario y tus ventas."
+ },
+ {
+  "id": "n3",
+  "start": 7.9,
+  "max": 3.4,
+  "text": "Un CRM que recuerda a cada cliente."
+ },
+ {
+  "id": "n4",
+  "start": 11.2,
+  "max": 4.4,
+  "text": "Y un chatbot con IA que responde por ti en WhatsApp."
+ },
+ {
+  "id": "n5",
+  "start": 14.6,
+  "max": 3.8,
+  "text": "Tres piezas, una sola plataforma, hecha a tu medida."
+ },
+ {
+  "id": "n6",
+  "start": 18.9,
+  "max": 4.2,
+  "text": "Scaly AI. Cuéntanos qué necesitas y lo construimos."
+ }
+]
