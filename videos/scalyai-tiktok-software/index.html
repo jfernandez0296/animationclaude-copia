@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ScalyAI Software TikTok</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); font-weight: 400 600; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); font-weight: 800 900; }
+      :root { --navy: #041b3d; --teal: #007b83; --aqua: #47d4d4; --stage: #f0f1e8; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); font-family: "Manrope", system-ui, sans-serif; color: #fff; }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .dark { background: var(--navy); color: #fff; }
+      .light { background: var(--stage); color: var(--navy); }
+      .h { font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+      .aq { color: var(--aqua); }
+      .tl { color: var(--teal); }
+      .bar { position: absolute; height: 44px; border-radius: 22px; }
+      .chip { position: absolute; padding: 22px 40px; border-radius: 24px; font-size: 46px; font-weight: 800; background: #0b2c5c; border: 3px solid var(--aqua); color: #fff; white-space: nowrap; }
+      .card { position: absolute; border-radius: 36px; background: #fff; box-shadow: 0 30px 60px rgba(4,27,61,0.14); }
+      .tile { position: absolute; width: 400px; height: 190px; border-radius: 28px; background: #e6f4f4; border: 3px solid #bfe3e3; }
+      .tt { position: absolute; width: 360px; font-size: 44px; font-weight: 800; color: #041b3d; }
+      .col { position: absolute; top: 640px; width: 290px; height: 760px; border-radius: 28px; background: #0b2c5c; border: 3px solid #1d4a86; }
+      .cl { position: absolute; top: 665px; width: 290px; font-size: 34px; font-weight: 800; text-align: center; color: #9fb4d1; }
+      .bub { position: absolute; border-radius: 36px; padding: 30px 38px; font-size: 40px; font-weight: 600; line-height: 1.3; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="28" data-fps="30" data-width="1080" data-height="1920">
+
+      <!-- S1: everything scattered -->
+      <div class="sc dark" id="s1">
+        <div class="abs h" id="t1" style="left:90px;top:230px;width:900px;font-size:112px">¿Todo en <span class="aq">Excel</span> y WhatsApp?</div>
+        <div class="chip ch" style="left:80px;top:760px">Excel</div>
+        <div class="chip ch" style="left:540px;top:900px">WhatsApp</div>
+        <div class="chip ch" style="left:150px;top:1060px">Cuadernos</div>
+        <div class="chip ch" style="left:600px;top:1220px">Correos</div>
+        <div class="chip ch" style="left:100px;top:1380px">Notas sueltas</div>
+      </div>
+
+      <!-- S2: ERP -->
+      <div class="sc light" id="s2">
+        <div class="abs h" id="t2" style="left:90px;top:210px;width:900px;font-size:104px;color:#041b3d">Plataformas <span class="tl">ERP</span> a tu medida</div>
+        <div class="card" id="dash" style="left:70px;top:600px;width:940px;height:900px"></div>
+        <div class="abs h" id="dh" style="left:120px;top:640px;width:800px;font-size:40px;color:#2f4560">Panel de gestión · ilustrativo</div>
+        <div class="tile md" style="left:110px;top:730px"></div><div class="tt md" style="left:140px;top:790px">Ventas</div>
+        <div class="tile md" style="left:530px;top:730px"></div><div class="tt md" style="left:560px;top:790px">Inventario</div>
+        <div class="tile md" style="left:110px;top:950px"></div><div class="tt md" style="left:140px;top:1010px">Clientes</div>
+        <div class="tile md" style="left:530px;top:950px"></div><div class="tt md" style="left:560px;top:1010px">Facturación</div>
+        <div class="abs" style="left:110px;top:1190px;width:820px;height:270px">
+          <div class="abs gb" style="left:0;bottom:0;width:110px;height:90px;border-radius:16px;background:#007b83"></div>
+          <div class="abs gb" style="left:160px;bottom:0;width:110px;height:140px;border-radius:16px;background:#007b83"></div>
+          <div class="abs gb" style="left:320px;bottom:0;width:110px;height:120px;border-radius:16px;background:#007b83"></div>
+          <div class="abs gb" style="left:480px;bottom:0;width:110px;height:200px;border-radius:16px;background:#47d4d4"></div>
+          <div class="abs gb" style="left:640px;bottom:0;width:110px;height:260px;border-radius:16px;background:#47d4d4"></div>
+        </div>
+      </div>
+
+      <!-- S3: CRM -->
+      <div class="sc dark" id="s3">
+        <div class="abs h" id="t3" style="left:90px;top:210px;width:900px;font-size:104px">Un <span class="aq">CRM</span> con tus clientes en un solo lugar</div>
+        <div class="col kc" style="left:60px"></div><div class="cl kl" style="left:60px">Nuevo</div>
+        <div class="col kc" style="left:395px"></div><div class="cl kl" style="left:395px">En contacto</div>
+        <div class="col kc" style="left:730px"></div><div class="cl kl" style="left:730px">Cerrado</div>
+        <div class="abs kcard" style="left:90px;top:760px;width:230px;height:120px;border-radius:20px;background:#47d4d4"></div>
+        <div class="abs kcard" style="left:90px;top:910px;width:230px;height:120px;border-radius:20px;background:#9fb4d1"></div>
+        <div class="abs kcard" style="left:425px;top:760px;width:230px;height:120px;border-radius:20px;background:#9fb4d1"></div>
+        <div class="abs" id="mv" style="left:90px;top:1060px;width:230px;height:120px;border-radius:20px;background:#fff"></div>
+        <div class="abs h" id="won" style="left:760px;top:1220px;width:230px;font-size:80px;text-align:center;color:#47d4d4">✓</div>
+      </div>
+
+      <!-- S4: chatbot -->
+      <div class="sc light" id="s4">
+        <div class="abs h" id="t4" style="left:90px;top:210px;width:900px;font-size:104px;color:#041b3d">Chatbot con <span class="tl">IA</span> en WhatsApp</div>
+        <div class="card" id="ph" style="left:110px;top:560px;width:860px;height:1000px"></div>
+        <div class="abs h" id="phh" style="left:160px;top:600px;width:760px;font-size:36px;color:#2f4560">Conversación ilustrativa</div>
+        <div class="bub" id="cu" style="left:160px;top:700px;width:560px;background:#e8eaf0;color:#041b3d;border-bottom-left-radius:8px">¿Tienen stock del modelo azul?</div>
+        <div class="abs" id="ty" style="left:230px;top:960px;width:300px;font-size:56px;font-weight:800;color:#007b83;letter-spacing:6px">···</div>
+        <div class="bub" id="bo" style="left:300px;top:1030px;width:620px;background:#007b83;color:#fff;border-bottom-right-radius:8px">Sí, quedan unidades. ¿Te lo separo?</div>
+        <div class="abs h" id="bt" style="left:300px;top:1300px;width:620px;font-size:36px;color:#007b83;text-align:right">Chatbot con IA</div>
+      </div>
+
+      <!-- S5: connected -->
+      <div class="sc dark" id="s5">
+        <div class="abs h" id="t5" style="left:90px;top:210px;width:900px;font-size:104px">Todo <span class="aq">conectado</span></div>
+        <div class="bub" id="cmsg" style="left:90px;top:620px;width:620px;background:#47d4d4;color:#041b3d;border-bottom-left-radius:8px">Quiero el modelo azul.</div>
+        <svg class="abs" id="arr" style="left:300px;top:850px" width="480" height="220" viewBox="0 0 480 220"><path d="M240 10 L240 170" stroke="#47d4d4" stroke-width="10" stroke-linecap="round" fill="none" /><path d="M190 125 L240 180 L290 125" stroke="#47d4d4" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg>
+        <div class="card" id="sys" style="left:90px;top:1090px;width:900px;height:430px;background:#0b2c5c;box-shadow:none;border:3px solid #47d4d4"></div>
+        <div class="abs h" id="sysh" style="left:140px;top:1130px;width:800px;font-size:44px;color:#9fb4d1">Tu sistema · Pedidos</div>
+        <div class="abs sl" style="left:140px;top:1230px;width:700px;height:36px;border-radius:18px;background:#1d4a86"></div>
+        <div class="abs sl" style="left:140px;top:1300px;width:520px;height:36px;border-radius:18px;background:#1d4a86"></div>
+        <div class="abs h" id="ok" style="left:140px;top:1380px;width:800px;font-size:60px;color:#47d4d4">✓ Pedido registrado</div>
+      </div>
+
+      <!-- S6: close -->
+      <div class="sc dark" id="s6">
+        <div class="bar" id="cb0" style="left:90px;top:300px;width:400px;background:linear-gradient(90deg,#007b83,#47d4d4)"></div>
+        <div class="bar" id="cb1" style="left:90px;top:370px;width:560px;background:#007b83"></div>
+        <div class="bar" id="cb2" style="left:90px;top:440px;width:400px;background:#47d4d4"></div>
+        <div class="abs h" id="cw" style="left:84px;top:560px;width:920px;font-size:190px">ScalyAI</div>
+        <div class="abs h" id="t6" style="left:90px;top:850px;width:900px;font-size:84px">Software e IA <span class="aq">a tu medida</span></div>
+        <div class="abs" id="t6b" style="left:90px;top:1130px;width:900px;font-size:50px;font-weight:600;line-height:1.3;color:#d7e3f3">ERP, CRM y chatbots con IA.</div>
+        <div class="abs h" id="cta" style="left:90px;top:1380px;width:900px;padding:38px 40px;border-radius:999px;background:#47d4d4;color:#041b3d;font-size:52px;text-align:center">Conversemos de tu proyecto</div>
+      </div>
+
+      <audio id="v1" src="audio/seg/s1.wav" data-start="0.3" data-duration="3.37" data-track-index="12" data-volume="1"></audio>
+      <audio id="v2" src="audio/seg/s2.wav" data-start="4.1" data-duration="4.83" data-track-index="12" data-volume="1"></audio>
+      <audio id="v3" src="audio/seg/s3.wav" data-start="9.3" data-duration="3.98" data-track-index="12" data-volume="1"></audio>
+      <audio id="v4" src="audio/seg/s4.wav" data-start="13.7" data-duration="4.57" data-track-index="12" data-volume="1"></audio>
+      <audio id="v5" src="audio/seg/s5.wav" data-start="18.7" data-duration="3.59" data-track-index="12" data-volume="1"></audio>
+      <audio id="v6" src="audio/seg/s6.wav" data-start="22.7" data-duration="4.37" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="28" data-track-index="13" data-volume="0.9"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="28" data-track-index="14" data-volume="0.5"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.set(["#s2", "#s3", "#s4", "#s5", "#s6"], { y: 1920 }, 0);
+      const push = (from, to, t) => {
+        tl.to(from, { y: -1920, duration: 0.5, ease: "power3.inOut" }, t);
+        tl.to(to, { y: 0, duration: 0.5, ease: "power3.inOut" }, t);
+      };
+
+      // S1 (0 - 4)
+      tl.fromTo("#t1", { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.1);
+      tl.fromTo(".ch", { autoAlpha: 0, scale: 0.5, rotate: -8 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.4, stagger: 0.28, ease: "back.out(1.8)" }, 0.8);
+      tl.to(".ch", { x: "+=16", rotate: 3, duration: 0.45, yoyo: true, repeat: 3, ease: "sine.inOut", stagger: 0.07 }, 2.1);
+      push("#s1", "#s2", 3.8);
+
+      // S2 (3.8 - 9.2)
+      tl.fromTo("#t2", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 4.2);
+      tl.fromTo("#dash", { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 4.8);
+      tl.fromTo("#dh", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 5.2);
+      tl.fromTo(".md", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.35, stagger: 0.08, ease: "back.out(1.5)" }, 5.4);
+      tl.fromTo(".gb", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.5, stagger: 0.12, ease: "power3.out" }, 6.6);
+      push("#s2", "#s3", 9.0);
+
+      // S3 (9.0 - 13.6)
+      tl.fromTo("#t3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 9.4);
+      tl.fromTo([".kc", ".kl"], { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.06 }, 9.8);
+      tl.fromTo(".kcard", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, stagger: 0.1, ease: "back.out(1.5)" }, 10.4);
+      tl.fromTo("#mv", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35 }, 10.9);
+      tl.to("#mv", { x: 335, duration: 0.5, ease: "power2.inOut" }, 11.4);
+      tl.to("#mv", { x: 670, y: 0, duration: 0.5, ease: "power2.inOut" }, 12.0);
+      tl.fromTo("#won", { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 12.5);
+      push("#s3", "#s4", 13.4);
+
+      // S4 (13.4 - 18.6)
+      tl.fromTo("#t4", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 13.8);
+      tl.fromTo(["#ph", "#phh"], { autoAlpha: 0, y: 70 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 14.2);
+      tl.fromTo("#cu", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 14.9);
+      tl.fromTo("#ty", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 }, 15.8);
+      tl.to("#ty", { autoAlpha: 0, duration: 0.2 }, 16.6);
+      tl.fromTo("#bo", { autoAlpha: 0, y: 40, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.5)" }, 16.7);
+      tl.fromTo("#bt", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 17.3);
+      push("#s4", "#s5", 18.3);
+
+      // S5 (18.3 - 22.6)
+      tl.fromTo("#t5", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 18.7);
+      tl.fromTo("#cmsg", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 19.2);
+      tl.fromTo("#arr", { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, duration: 0.45 }, 19.9);
+      tl.fromTo(["#sys", "#sysh", ".sl"], { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.06 }, 20.4);
+      tl.fromTo("#ok", { autoAlpha: 0, scale: 0.7, transformOrigin: "0% 50%" }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 21.2);
+      push("#s5", "#s6", 22.3);
+
+      // S6 (22.3 - 28)
+      tl.fromTo(["#cb0", "#cb1", "#cb2"], { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out", stagger: 0.1 }, 22.7);
+      tl.fromTo("#cw", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 23.1);
+      tl.fromTo("#t6", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 23.7);
+      tl.fromTo("#t6b", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 24.5);
+      tl.fromTo("#cta", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 25.5);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
