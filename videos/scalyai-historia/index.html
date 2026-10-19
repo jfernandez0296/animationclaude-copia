@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ScalyAI Historia</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); font-weight: 400 600; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); font-weight: 800 900; }
+      :root { --navy: #041b3d; --teal: #007b83; --aqua: #47d4d4; --cream: #fbf1e0; --amber: #f5b94d; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream); font-family: "Manrope", system-ui, sans-serif; color: var(--navy); }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .warm { background: var(--cream); color: var(--navy); }
+      .dark { background: var(--navy); color: #fff; }
+      .h { font-weight: 800; letter-spacing: -0.03em; line-height: 1.06; }
+      .tl { color: var(--teal); }
+      .aq { color: var(--aqua); }
+      .am { color: #a86400; }
+      .pill { position: absolute; padding: 12px 28px; border-radius: 999px; font-size: 34px; font-weight: 800; white-space: nowrap; }
+      .chip { position: absolute; padding: 22px 40px; border-radius: 24px; font-size: 46px; font-weight: 800; background: #0b2c5c; border: 3px solid var(--aqua); color: #fff; white-space: nowrap; }
+      .dot { position: absolute; width: 36px; height: 36px; border-radius: 18px; background: #ff6b5a; border: 4px solid #041b3d; }
+      .win { position: absolute; border-radius: 40px; background: #fff; box-shadow: 0 30px 60px rgba(60,40,10,0.16); overflow: hidden; }
+      .row { position: absolute; left: 40px; width: 860px; height: 120px; border-radius: 24px; background: #f6efe2; }
+      .rt { position: absolute; font-size: 44px; font-weight: 800; color: #041b3d; }
+      .bub { position: absolute; border-radius: 36px; padding: 30px 38px; font-size: 40px; font-weight: 600; line-height: 1.3; }
+      .bar { position: absolute; height: 44px; border-radius: 22px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="35" data-fps="30" data-width="1080" data-height="1920">
+
+      <!-- S1: Rosa and her notebook -->
+      <div class="sc warm" id="s1">
+        <div class="abs" id="sun1" style="left:760px;top:130px;width:220px;height:220px;border-radius:110px;background:#f5b94d;opacity:0.9"></div>
+        <div class="abs h" id="a1" style="left:90px;top:230px;width:760px;font-size:118px">Rosa tiene <span class="tl">una tienda</span></div>
+        <div class="abs" id="awn" style="left:90px;top:720px;width:900px;height:120px;border-radius:30px 30px 0 0;background:repeating-linear-gradient(90deg,#007b83 0px,#007b83 90px,#fbf1e0 90px,#fbf1e0 180px);border:6px solid #041b3d"></div>
+        <div class="abs" id="shop" style="left:90px;top:840px;width:900px;height:380px;background:#fff;border:6px solid #041b3d;border-top:none;border-radius:0 0 30px 30px"></div>
+        <svg class="abs" id="rosa1" style="left:130px;top:830px" width="360" height="420" viewBox="0 0 360 420">
+  <circle cx="180" cy="86" r="76" fill="#3b2a24" />
+  <circle cx="180" cy="26" r="34" fill="#3b2a24" />
+  <path d="M60 420 C60 300 110 250 180 250 C250 250 300 300 300 420 Z" fill="#007b83" />
+  <path d="M130 250 L180 420 L230 250 Z" fill="#f7f1e6" opacity="0.35" />
+  <rect x="160" y="210" width="40" height="50" rx="16" fill="#e8a574" />
+  <circle cx="180" cy="150" r="66" fill="#f0b58a" />
+  <path d="M116 132 C120 80 240 80 244 132 C220 104 140 104 116 132 Z" fill="#3b2a24" />
+  <circle cx="156" cy="150" r="7" fill="#2a1a14" />
+  <circle cx="204" cy="150" r="7" fill="#2a1a14" />
+  <path d="M152 184 C168 204 192 204 208 184" fill="none" stroke="#2a1a14" stroke-width="7" stroke-linecap="round" />
+  <circle cx="140" cy="176" r="12" fill="#ef9a86" opacity="0.6" />
+  <circle cx="220" cy="176" r="12" fill="#ef9a86" opacity="0.6" />
+</svg>
+        <div class="abs" id="nb" style="left:560px;top:880px;width:340px;height:300px;border-radius:24px;background:#fff7d6;border:6px solid #041b3d;transform:rotate(-6deg)">
+          <div class="abs" style="left:30px;top:60px;width:270px;height:8px;background:#c9b77a;border-radius:4px"></div>
+          <div class="abs" style="left:30px;top:120px;width:200px;height:8px;background:#c9b77a;border-radius:4px"></div>
+          <div class="abs" style="left:30px;top:180px;width:250px;height:8px;background:#c9b77a;border-radius:4px"></div>
+          <div class="abs" style="left:30px;top:240px;width:150px;height:8px;background:#c9b77a;border-radius:4px"></div>
+        </div>
+        <div class="abs h" id="a2" style="left:90px;top:1330px;width:900px;font-size:76px;color:#041b3d">y un cuaderno que <span class="am">ya no le alcanza.</span></div>
+        <div class="abs" id="ill" style="left:90px;top:1620px;width:900px;font-size:30px;color:#6b5d48">Historia ilustrativa: Rosa es un personaje ficticio.</div>
+      </div>
+
+      <!-- S2: messages get lost -->
+      <div class="sc dark" id="s2">
+        <div class="abs h" id="b1" style="left:90px;top:210px;width:900px;font-size:100px">Ventas en <span class="aq">Excel</span>, pedidos en <span class="aq">WhatsApp</span></div>
+        <div class="chip bc" style="left:90px;top:700px">Excel</div><div class="dot bc" style="left:300px;top:680px"></div>
+        <div class="chip bc" style="left:480px;top:830px">WhatsApp</div><div class="dot bc" style="left:760px;top:810px"></div>
+        <div class="chip bc" style="left:130px;top:960px">Cuaderno</div>
+        <div class="bub msg" id="g1" style="left:90px;top:1150px;width:620px;background:#fff;color:#041b3d;border-bottom-left-radius:8px">¿Ya tienen el pedido?</div>
+        <div class="bub msg" id="g2" style="left:90px;top:1300px;width:620px;background:#fff;color:#041b3d;border-bottom-left-radius:8px">Hola, sigo esperando…</div>
+        <div class="bub msg" id="g3" style="left:90px;top:1450px;width:620px;background:#fff;color:#041b3d;border-bottom-left-radius:8px">¿Hay alguien?</div>
+        <div class="abs h" id="b2" style="left:90px;top:1640px;width:900px;font-size:56px;color:#f5b94d">Y algunos clientes se le pierden.</div>
+      </div>
+
+      <!-- S3: ERP -->
+      <div class="sc warm" id="s3">
+        <div class="pill kk" style="left:90px;top:110px;background:#041b3d;color:#47d4d4;font-size:32px;padding:10px 26px">Iniciativa 1 · ERP y CRM</div>
+        <div class="abs h" id="c1" style="left:90px;top:210px;width:900px;font-size:104px">Primero, un <span class="tl">ERP</span> a su medida</div>
+        <div class="win" id="w3" style="left:60px;top:660px;width:960px;height:830px">
+          <div class="abs" style="left:40px;top:30px;width:800px;font-size:34px;font-weight:700;color:#6b5d48">Tienda de Rosa · inventario ilustrativo</div>
+          <div class="row r3" style="top:100px"></div><div class="rt r3" style="left:70px;top:140px">Café</div>
+          <div class="pill r3" style="left:610px;top:128px;background:#cdeee9;color:#041b3d">Disponible</div>
+          <div class="row r3" style="top:250px"></div><div class="rt r3" style="left:70px;top:290px">Galletas</div>
+          <div class="pill r3" id="pb3" style="left:640px;top:278px;background:#ff9d84;color:#041b3d">Agotado</div>
+          <div class="pill" id="pc3" style="left:610px;top:278px;background:#cdeee9;color:#041b3d">Disponible</div>
+          <div class="row r3" style="top:400px"></div><div class="rt r3" style="left:70px;top:440px">Chocolate</div>
+          <div class="pill r3" style="left:610px;top:428px;background:#cdeee9;color:#041b3d">Disponible</div>
+          <div class="abs" id="btn3" style="left:40px;top:600px;width:860px;height:120px;border-radius:24px;background:#007b83;color:#fff;font-size:46px;font-weight:800;display:flex;align-items:center;justify-content:center">Reponer stock</div>
+          <svg class="abs" id="cur3" style="left:600px;top:760px" width="70" height="90" viewBox="0 0 70 90"><path d="M6 4 L6 70 L24 54 L38 86 L52 80 L38 50 L62 48 Z" fill="#ffffff" stroke="#041b3d" stroke-width="5" stroke-linejoin="round" /></svg>
+        </div>
+        <div class="abs h" id="c2" style="left:90px;top:1560px;width:900px;font-size:52px;color:#041b3d">Su inventario, por fin <span class="am">claro</span>.</div>
+      </div>
+
+      <!-- S4: CRM -->
+      <div class="sc warm" id="s4" style="background:#f3e7d0">
+        <div class="pill kk" style="left:90px;top:110px;background:#041b3d;color:#47d4d4;font-size:32px;padding:10px 26px">Iniciativa 1 · ERP y CRM</div>
+        <div class="abs h" id="d1" style="left:90px;top:210px;width:900px;font-size:104px">Y un <span class="tl">CRM</span> que recuerda a cada cliente</div>
+        <div class="win" id="pf" style="left:70px;top:700px;width:940px;height:800px"></div>
+        <div class="abs h" id="av" style="left:130px;top:750px;width:150px;height:150px;border-radius:75px;background:#f5b94d;color:#041b3d;font-size:68px;display:flex;align-items:center;justify-content:center">L</div>
+        <div class="abs h" id="nm" style="left:320px;top:764px;width:640px;font-size:58px">Don Luis</div>
+        <div class="pill" id="st" style="left:320px;top:850px;background:#fde8bd;color:#7a4b00;font-size:32px;padding:8px 24px">Cliente de toda la vida</div>
+        <div class="abs nt" style="left:140px;top:990px;width:44px;height:44px;border-radius:22px;background:#007b83"></div><div class="abs h nt" style="left:220px;top:984px;width:740px;font-size:44px">Compra su café cada semana</div>
+        <div class="abs nt" style="left:140px;top:1150px;width:44px;height:44px;border-radius:22px;background:#007b83"></div><div class="abs h nt" style="left:220px;top:1144px;width:740px;font-size:44px">Le encantan las galletas de avena</div>
+        <div class="abs nt" style="left:140px;top:1310px;width:44px;height:44px;border-radius:22px;background:#f5b94d"></div><div class="abs h nt" style="left:220px;top:1304px;width:740px;font-size:44px">Su cumpleaños es el viernes</div>
+      </div>
+
+      <!-- S5: chatbot -->
+      <div class="sc dark" id="s5">
+        <div class="pill kk" style="left:90px;top:110px;background:#47d4d4;color:#041b3d;font-size:32px;padding:10px 26px">Iniciativa 2 · Chatbot con IA, por separado</div>
+        <div class="abs h aq" id="clk" style="left:90px;top:210px;width:700px;font-size:150px;line-height:1">23:40</div>
+        <div class="abs h" id="e1" style="left:90px;top:410px;width:900px;font-size:70px">Rosa descansa. <span class="aq">El chatbot atiende.</span></div>
+        <div class="bub" id="m1" style="left:90px;top:780px;width:640px;background:#fff;color:#041b3d;border-bottom-left-radius:8px">¿Tienen galletas para mañana?</div>
+        <div class="abs h" id="ty5" style="left:310px;top:1010px;width:300px;font-size:70px;color:#47d4d4;letter-spacing:8px">···</div>
+        <div class="bub" id="m2" style="left:240px;top:1000px;width:750px;background:#47d4d4;color:#041b3d;border-bottom-right-radius:8px">¡Claro! Te las separo. ¿A nombre de quién?</div>
+        <div class="bub" id="m3" style="left:90px;top:1260px;width:500px;background:#fff;color:#041b3d;border-bottom-left-radius:8px">A nombre de Luis.</div>
+        <div class="abs" id="moon" style="left:780px;top:1560px;width:110px;height:110px;border-radius:55px;box-shadow:-30px 0 0 0 #f5e6b8;"></div>
+        <div class="abs" id="n5" style="left:90px;top:1620px;width:640px;font-size:30px;color:#9fb4d1">Conversación ilustrativa.</div>
+      </div>
+
+      <!-- S6: Sundays -->
+      <div class="sc warm" id="s6">
+        <div class="abs" id="sun6" style="left:340px;top:230px;width:400px;height:400px;border-radius:200px;background:#f5b94d"></div>
+        <svg class="abs" id="rosa6" style="left:360px;top:560px" width="360" height="420" viewBox="0 0 360 420">
+  <circle cx="180" cy="86" r="76" fill="#3b2a24" />
+  <circle cx="180" cy="26" r="34" fill="#3b2a24" />
+  <path d="M60 420 C60 300 110 250 180 250 C250 250 300 300 300 420 Z" fill="#007b83" />
+  <path d="M130 250 L180 420 L230 250 Z" fill="#f7f1e6" opacity="0.35" />
+  <rect x="160" y="210" width="40" height="50" rx="16" fill="#e8a574" />
+  <circle cx="180" cy="150" r="66" fill="#f0b58a" />
+  <path d="M116 132 C120 80 240 80 244 132 C220 104 140 104 116 132 Z" fill="#3b2a24" />
+  <circle cx="156" cy="150" r="7" fill="#2a1a14" />
+  <circle cx="204" cy="150" r="7" fill="#2a1a14" />
+  <path d="M152 184 C168 204 192 204 208 184" fill="none" stroke="#2a1a14" stroke-width="7" stroke-linecap="round" />
+  <circle cx="140" cy="176" r="12" fill="#ef9a86" opacity="0.6" />
+  <circle cx="220" cy="176" r="12" fill="#ef9a86" opacity="0.6" />
+</svg>
+        <div class="abs h" id="f1" style="left:90px;top:1060px;width:900px;font-size:104px;text-align:center">Hoy Rosa vuelve a tener <span class="am">sus domingos.</span></div>
+        <div class="abs" id="f2" style="left:90px;top:1500px;width:900px;font-size:44px;font-weight:600;text-align:center;color:#6b5d48">Historia ilustrativa.</div>
+      </div>
+
+      <!-- S7: close -->
+      <div class="sc dark" id="s7">
+        <div class="bar" id="x0" style="left:90px;top:300px;width:400px;background:linear-gradient(90deg,#007b83,#47d4d4)"></div>
+        <div class="bar" id="x1" style="left:90px;top:370px;width:560px;background:#007b83"></div>
+        <div class="bar" id="x2" style="left:90px;top:440px;width:400px;background:#47d4d4"></div>
+        <div class="abs h" id="xw" style="left:84px;top:560px;width:920px;font-size:190px;color:#fff">ScalyAI</div>
+        <div class="abs h" id="xt" style="left:90px;top:850px;width:900px;font-size:84px;color:#fff">¿Cuál es <span class="aq">tu historia</span>?</div>
+        <div class="abs" id="xb" style="left:90px;top:1110px;width:900px;font-size:48px;font-weight:600;line-height:1.35;color:#d7e3f3">ERP y CRM, o un chatbot con IA. Cada uno por separado, como lo necesites.</div>
+        <div class="abs h" id="xc" style="left:90px;top:1420px;width:900px;padding:38px 40px;border-radius:999px;background:#47d4d4;color:#041b3d;font-size:52px;text-align:center">Cuéntanosla</div>
+      </div>
+
+      <audio id="v1" src="audio/seg/r1.wav" data-start="0.3" data-duration="4.21" data-track-index="12" data-volume="1"></audio>
+      <audio id="v2" src="audio/seg/r2.wav" data-start="5.0" data-duration="6.0" data-track-index="12" data-volume="1"></audio>
+      <audio id="v3" src="audio/seg/r3.wav" data-start="11.5" data-duration="6.51" data-track-index="12" data-volume="1"></audio>
+      <audio id="v4" src="audio/seg/r4.wav" data-start="18.5" data-duration="4.21" data-track-index="12" data-volume="1"></audio>
+      <audio id="v5" src="audio/seg/r5.wav" data-start="23.2" data-duration="5.2" data-track-index="12" data-volume="1"></audio>
+      <audio id="v6" src="audio/seg/r6.wav" data-start="28.9" data-duration="5.01" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="35" data-track-index="13" data-volume="0.9"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="35" data-track-index="14" data-volume="0.5"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.set(["#s2", "#s3", "#s4", "#s5", "#s6", "#s7"], { autoAlpha: 0 }, 0);
+      const reveal = (id, t, origin) => {
+        tl.set(id, { autoAlpha: 1 }, t);
+        tl.fromTo(id, { clipPath: "circle(0% at " + origin + ")" }, { clipPath: "circle(150% at " + origin + ")", duration: 0.6, ease: "power2.inOut" }, t);
+      };
+      const pop = (sel, t, d) => tl.fromTo(sel, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: d || 0.5, ease: "power3.out" }, t);
+
+      // S1 (0 - 4.9)
+      tl.fromTo("#sun1", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.7, ease: "back.out(1.6)" }, 0.1);
+      pop("#a1", 0.3, 0.6);
+      tl.fromTo("#awn", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.5, ease: "power3.out" }, 0.9);
+      tl.fromTo("#shop", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 1.1);
+      tl.fromTo("#rosa1", { autoAlpha: 0, y: 60, scale: 0.9, transformOrigin: "50% 100%" }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 1.4);
+      tl.fromTo("#nb", { autoAlpha: 0, rotate: -20, y: 40 }, { autoAlpha: 1, rotate: -6, y: 0, duration: 0.5, ease: "back.out(1.4)" }, 2.0);
+      pop("#a2", 2.8, 0.6);
+      tl.fromTo("#ill", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 3.4);
+
+      // S2 (4.6 - 11.3)
+      reveal("#s2", 4.6, "50% 60%");
+      pop("#b1", 5.2);
+      tl.fromTo(".bc", { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.35, stagger: 0.2, ease: "back.out(1.8)" }, 6.0);
+      tl.fromTo("#g1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 7.4);
+      tl.fromTo("#g2", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 8.0);
+      tl.fromTo("#g3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 8.6);
+      tl.to("#g1", { x: -700, autoAlpha: 0, duration: 0.6, ease: "power2.in" }, 9.4);
+      tl.to("#g2", { x: -700, autoAlpha: 0, duration: 0.6, ease: "power2.in" }, 9.7);
+      pop("#b2", 10.0);
+
+      // S3 ERP (11.1 - 18.4)
+      reveal("#s3", 11.1, "50% 50%");
+      tl.fromTo("#s3 .kk", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 11.7);
+      pop("#c1", 12.0);
+      tl.fromTo("#w3", { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 12.9);
+      tl.fromTo(".r3", { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: 0.3, stagger: 0.04 }, 13.4);
+      tl.set("#pc3", { autoAlpha: 0 }, 0);
+      tl.fromTo("#btn3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 13.9);
+      tl.fromTo("#cur3", { autoAlpha: 0, x: 200, y: 80 }, { autoAlpha: 1, x: 0, y: -90, duration: 0.8, ease: "power2.out" }, 14.2);
+      tl.to("#btn3", { scale: 0.96, duration: 0.1, yoyo: true, repeat: 1 }, 15.2);
+      tl.to("#pb3", { autoAlpha: 0, duration: 0.15 }, 15.4);
+      tl.fromTo("#pc3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 15.45);
+      pop("#c2", 16.4);
+
+      // S4 CRM (18.1 - 23.1)
+      reveal("#s4", 18.1, "20% 40%");
+      tl.fromTo("#s4 .kk", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 18.7);
+      pop("#d1", 18.9);
+      tl.fromTo("#pf", { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 19.7);
+      tl.fromTo(["#av", "#nm", "#st"], { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.1 }, 20.1);
+      tl.fromTo(".nt", { autoAlpha: 0, x: -30 }, { autoAlpha: 1, x: 0, duration: 0.35, stagger: 0.14 }, 20.7);
+
+      // S5 chatbot (22.8 - 28.7)
+      reveal("#s5", 22.8, "80% 60%");
+      tl.fromTo("#s5 .kk", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 23.3);
+      pop("#clk", 23.5);
+      pop("#e1", 24.2);
+      tl.fromTo("#m1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, 25.3);
+      tl.fromTo("#ty5", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15 }, 26.0);
+      tl.to("#ty5", { autoAlpha: 0, duration: 0.1 }, 26.3);
+      tl.fromTo("#m2", { autoAlpha: 0, y: 40, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 26.4);
+      tl.fromTo("#m3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, 27.3);
+      tl.fromTo("#moon", { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 27.6);
+      tl.fromTo("#n5", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 27.9);
+
+      // S6 Sundays (28.5 - 31.8)
+      reveal("#s6", 28.5, "50% 40%");
+      tl.fromTo("#sun6", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.7, ease: "back.out(1.6)" }, 28.9);
+      tl.fromTo("#rosa6", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "back.out(1.5)" }, 29.2);
+      pop("#f1", 29.8, 0.6);
+      tl.fromTo("#f2", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 30.6);
+
+      // S7 close (31.2 - 35)
+      reveal("#s7", 31.2, "50% 45%");
+      tl.fromTo(["#x0", "#x1", "#x2"], { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out", stagger: 0.1 }, 31.6);
+      pop("#xw", 32.0);
+      pop("#xt", 32.6);
+      pop("#xb", 33.3);
+      tl.fromTo("#xc", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 33.9);
+
+      tl.set("#s1", { autoAlpha: 0 }, 5.25);
+      tl.set("#s2", { autoAlpha: 0 }, 11.75);
+      tl.set("#s3", { autoAlpha: 0 }, 18.75);
+      tl.set("#s4", { autoAlpha: 0 }, 23.45);
+      tl.set("#s5", { autoAlpha: 0 }, 29.15);
+      tl.set("#s6", { autoAlpha: 0 }, 31.85);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
