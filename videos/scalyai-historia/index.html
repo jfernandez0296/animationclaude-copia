@@ -78,7 +78,6 @@
 
       <!-- S3: ERP -->
       <div class="sc warm" id="s3">
-        <div class="pill kk" style="left:90px;top:110px;background:#041b3d;color:#47d4d4;font-size:32px;padding:10px 26px">Iniciativa 1 · ERP y CRM</div>
         <div class="abs h" id="c1" style="left:90px;top:210px;width:900px;font-size:104px">Primero, un <span class="tl">ERP</span> a su medida</div>
         <div class="win" id="w3" style="left:60px;top:660px;width:960px;height:830px">
           <div class="abs" style="left:40px;top:30px;width:800px;font-size:34px;font-weight:700;color:#6b5d48">Tienda de Rosa · inventario ilustrativo</div>
@@ -97,7 +96,6 @@
 
       <!-- S4: CRM -->
       <div class="sc warm" id="s4" style="background:#f3e7d0">
-        <div class="pill kk" style="left:90px;top:110px;background:#041b3d;color:#47d4d4;font-size:32px;padding:10px 26px">Iniciativa 1 · ERP y CRM</div>
         <div class="abs h" id="d1" style="left:90px;top:210px;width:900px;font-size:104px">Y un <span class="tl">CRM</span> que recuerda a cada cliente</div>
         <div class="win" id="pf" style="left:70px;top:700px;width:940px;height:800px"></div>
         <div class="abs h" id="av" style="left:130px;top:750px;width:150px;height:150px;border-radius:75px;background:#f5b94d;color:#041b3d;font-size:68px;display:flex;align-items:center;justify-content:center">L</div>
@@ -110,7 +108,6 @@
 
       <!-- S5: chatbot -->
       <div class="sc dark" id="s5">
-        <div class="pill kk" style="left:90px;top:110px;background:#47d4d4;color:#041b3d;font-size:32px;padding:10px 26px">Iniciativa 2 · Chatbot con IA, por separado</div>
         <div class="abs h aq" id="clk" style="left:90px;top:210px;width:700px;font-size:150px;line-height:1">23:40</div>
         <div class="abs h" id="e1" style="left:90px;top:410px;width:900px;font-size:70px">Rosa descansa. <span class="aq">El chatbot atiende.</span></div>
         <div class="bub" id="m1" style="left:90px;top:780px;width:640px;background:#fff;color:#041b3d;border-bottom-left-radius:8px">¿Tienen galletas para mañana?</div>
@@ -195,7 +192,6 @@
 
       // S3 ERP (11.1 - 18.4)
       reveal("#s3", 11.1, "50% 50%");
-      tl.fromTo("#s3 .kk", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 11.7);
       pop("#c1", 12.0);
       tl.fromTo("#w3", { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 12.9);
       tl.fromTo(".r3", { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: 0.3, stagger: 0.04 }, 13.4);
@@ -209,7 +205,6 @@
 
       // S4 CRM (18.1 - 23.1)
       reveal("#s4", 18.1, "20% 40%");
-      tl.fromTo("#s4 .kk", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 18.7);
       pop("#d1", 18.9);
       tl.fromTo("#pf", { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 19.7);
       tl.fromTo(["#av", "#nm", "#st"], { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.1 }, 20.1);
@@ -217,7 +212,6 @@
 
       // S5 chatbot (22.8 - 28.7)
       reveal("#s5", 22.8, "80% 60%");
-      tl.fromTo("#s5 .kk", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 23.3);
       pop("#clk", 23.5);
       pop("#e1", 24.2);
       tl.fromTo("#m1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, 25.3);
