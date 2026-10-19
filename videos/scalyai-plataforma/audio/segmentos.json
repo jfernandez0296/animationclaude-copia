@@ -8,30 +8,30 @@
  {
   "id": "n2",
   "start": 4.3,
-  "max": 3.8,
-  "text": "Un ERP que controla tu inventario y tus ventas."
+  "max": 4.0,
+  "text": "Iniciativa uno: un ERP que controla tu inventario y tus ventas."
  },
  {
   "id": "n3",
-  "start": 7.9,
+  "start": 8.7,
   "max": 3.4,
   "text": "Un CRM que recuerda a cada cliente."
  },
  {
   "id": "n4",
-  "start": 11.2,
-  "max": 4.4,
-  "text": "Y un chatbot con IA que responde por ti en WhatsApp."
+  "start": 12.0,
+  "max": 4.8,
+  "text": "Iniciativa dos, aparte: un chatbot con IA que responde por ti en WhatsApp."
  },
  {
   "id": "n5",
-  "start": 14.6,
-  "max": 3.8,
-  "text": "Tres piezas, una sola plataforma, hecha a tu medida."
+  "start": 17.2,
+  "max": 4.2,
+  "text": "Dos soluciones independientes. Elige la que tu negocio necesita."
  },
  {
   "id": "n6",
-  "start": 18.9,
+  "start": 21.4,
   "max": 4.2,
   "text": "Scaly AI. Cuéntanos qué necesitas y lo construimos."
  }
