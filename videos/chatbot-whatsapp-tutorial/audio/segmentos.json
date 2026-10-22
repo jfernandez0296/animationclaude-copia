@@ -1,0 +1,452 @@
+[
+ {
+  "id": "c01",
+  "start": 0.6,
+  "max": 60,
+  "text": "¿Quieres que tu negocio responda en WhatsApp a cualquier hora, con inteligencia artificial? En los próximos tres minutos te muestro cómo armarlo, paso a paso.",
+  "dur": 9.475,
+  "speech": [
+   [
+    0.0,
+    3.123
+   ],
+   [
+    3.345,
+    4.769
+   ],
+   [
+    5.392,
+    8.465
+   ],
+   [
+    8.691,
+    9.475
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "c02",
+  "start": 10.575,
+  "max": 60,
+  "text": "Vamos a usar tres piezas: la API de WhatsApp de Meta, n8n para automatizar, y un modelo de IA, como Claude.",
+  "dur": 8.896,
+  "speech": [
+   [
+    0.0,
+    1.869
+   ],
+   [
+    2.209,
+    3.971
+   ],
+   [
+    4.473,
+    6.352
+   ],
+   [
+    6.78,
+    7.911
+   ],
+   [
+    8.212,
+    8.896
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "c03",
+  "start": 20.771,
+  "max": 60,
+  "text": "Paso uno. Entra a developers punto facebook punto com, crea una app y agrégale el producto WhatsApp.",
+  "dur": 8.468,
+  "speech": [
+   [
+    0.0,
+    0.746
+   ],
+   [
+    1.205,
+    4.514
+   ],
+   [
+    4.956,
+    5.859
+   ],
+   [
+    6.116,
+    8.468
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "c04",
+  "start": 29.739,
+  "max": 60,
+  "text": "En la configuración de la API, Meta te da un número de prueba. Genera el token de acceso y agrega tu propio número como destinatario.",
+  "dur": 8.353,
+  "speech": [
+   [
+    0.0,
+    1.682
+   ],
+   [
+    1.912,
+    3.506
+   ],
+   [
+    3.967,
+    5.511
+   ],
+   [
+    5.75,
+    8.353
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "c05",
+  "start": 38.592,
+  "max": 60,
+  "text": "Anota cuatro datos: el ID de la app, la clave secreta de la app, el ID del número de teléfono, y el ID de la cuenta de WhatsApp Business.",
+  "dur": 10.449,
+  "speech": [
+   [
+    0.0,
+    1.517
+   ],
+   [
+    1.846,
+    2.895
+   ],
+   [
+    3.374,
+    4.932
+   ],
+   [
+    5.482,
+    7.261
+   ],
+   [
+    7.75,
+    10.449
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "c06",
+  "start": 49.541,
+  "max": 60,
+  "text": "Ojo: el token temporal dura menos de un día. Para producción, crea un token permanente con un usuario del sistema.",
+  "dur": 7.372,
+  "speech": [
+   [
+    0.0,
+    0.399
+   ],
+   [
+    0.721,
+    3.113
+   ],
+   [
+    3.508,
+    4.219
+   ],
+   [
+    4.584,
+    7.372
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "c07",
+  "start": 58.213,
+  "max": 60,
+  "text": "Paso dos. En n8n, crea un flujo nuevo y agrega el disparador de WhatsApp. En su credencial, el ID de la app va como Client ID, y la clave secreta, como Client Secret.",
+  "dur": 12.877,
+  "speech": [
+   [
+    0.0,
+    0.803
+   ],
+   [
+    1.04,
+    2.207
+   ],
+   [
+    2.489,
+    5.781
+   ],
+   [
+    6.163,
+    7.104
+   ],
+   [
+    7.397,
+    10.082
+   ],
+   [
+    10.387,
+    12.877
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "c08",
+  "start": 71.589,
+  "max": 60,
+  "text": "En actualizaciones, elige mensajes. Al activar el flujo, n8n registra el webhook en Meta por ti; solo necesita una dirección pública, como la de n8n Cloud.",
+  "dur": 13.132,
+  "speech": [
+   [
+    0.0,
+    1.229
+   ],
+   [
+    1.593,
+    2.772
+   ],
+   [
+    3.347,
+    4.52
+   ],
+   [
+    4.925,
+    8.033
+   ],
+   [
+    8.595,
+    10.807
+   ],
+   [
+    11.174,
+    13.132
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "c09",
+  "start": 86.021,
+  "max": 60,
+  "text": "Paso tres. Conecta un nodo de Agente de IA, y como mensaje, usa el texto que llegó por WhatsApp.",
+  "dur": 7.184,
+  "speech": [
+   [
+    0.0,
+    0.867
+   ],
+   [
+    1.349,
+    3.418
+   ],
+   [
+    3.874,
+    4.829
+   ],
+   [
+    5.192,
+    7.184
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "c10",
+  "start": 93.704,
+  "max": 60,
+  "text": "Debajo, conecta el modelo de chat, por ejemplo Claude de Anthropic, con tu clave de API.",
+  "dur": 5.995,
+  "speech": [
+   [
+    0.0,
+    2.304
+   ],
+   [
+    2.579,
+    4.519
+   ],
+   [
+    4.84,
+    5.995
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "c11",
+  "start": 100.2,
+  "max": 60,
+  "text": "Agrega una memoria simple, y usa el número del cliente como identificador de sesión. Así recuerda la conversación de cada persona.",
+  "dur": 8.153,
+  "speech": [
+   [
+    0.0,
+    5.188
+   ],
+   [
+    5.564,
+    8.153
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "c12",
+  "start": 108.852,
+  "max": 60,
+  "text": "En el mensaje del sistema, cuéntale quién es tu negocio: horarios, precios, y qué hacer si no sabe una respuesta.",
+  "dur": 7.9,
+  "speech": [
+   [
+    0.0,
+    1.546
+   ],
+   [
+    1.917,
+    3.52
+   ],
+   [
+    3.945,
+    5.582
+   ],
+   [
+    5.904,
+    7.9
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "c13",
+  "start": 118.052,
+  "max": 60,
+  "text": "Paso cuatro. Agrega el nodo WhatsApp Business Cloud, con la operación enviar mensaje. Usa tu ID de número de teléfono, el número del cliente como destinatario, y la respuesta del agente como texto.",
+  "dur": 13.994,
+  "speech": [
+   [
+    0.0,
+    0.752
+   ],
+   [
+    1.288,
+    3.728
+   ],
+   [
+    4.155,
+    6.201
+   ],
+   [
+    7.072,
+    9.0
+   ],
+   [
+    9.374,
+    13.994
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "c14",
+  "start": 133.346,
+  "max": 60,
+  "text": "Paso cinco. Activa el flujo y escríbele al número de prueba. En segundos, tu chatbot responde.",
+  "dur": 7.202,
+  "speech": [
+   [
+    0.0,
+    0.85
+   ],
+   [
+    1.339,
+    4.196
+   ],
+   [
+    4.756,
+    5.595
+   ],
+   [
+    5.863,
+    7.202
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "c15",
+  "start": 141.048,
+  "max": 60,
+  "text": "Un consejo: el disparador también avisa cuando un mensaje se entrega o se lee. Agrega un filtro para que el agente responda solo a mensajes de texto.",
+  "dur": 9.558,
+  "speech": [
+   [
+    0.0,
+    0.752
+   ],
+   [
+    1.17,
+    4.999
+   ],
+   [
+    5.569,
+    9.558
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "c16",
+  "start": 151.905,
+  "max": 60,
+  "text": "Y listo: tu chatbot con IA en WhatsApp. Para llevarlo a producción, conecta tu número real y verifica tu negocio en Meta.",
+  "dur": 8.268,
+  "speech": [
+   [
+    0.0,
+    0.51
+   ],
+   [
+    0.943,
+    2.918
+   ],
+   [
+    3.567,
+    4.736
+   ],
+   [
+    5.091,
+    8.268
+   ]
+  ],
+  "scene": 6
+ },
+ {
+  "id": "c17",
+  "start": 160.674,
+  "max": 60,
+  "text": "Si quieres que lo armemos contigo, escríbenos. Scaly AI.",
+  "dur": 4.463,
+  "speech": [
+   [
+    0.0,
+    1.866
+   ],
+   [
+    2.114,
+    2.901
+   ],
+   [
+    3.231,
+    4.463
+   ]
+  ],
+  "scene": 6
+ }
+]
