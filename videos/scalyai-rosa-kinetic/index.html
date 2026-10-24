@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ScalyAI Rosa Kinetic</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); font-weight: 400 600; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); font-weight: 800 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #041b3d; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Manrope", system-ui, sans-serif; }
+      #bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: #041b3d; }
+      .abs { position: absolute; }
+      .scr { position: absolute; left: 70px; top: 520px; width: 940px; height: 760px; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; column-gap: 0.22em;
+              font-weight: 800; letter-spacing: -0.045em; line-height: 0.98; text-align: center; visibility: hidden; opacity: 0; }
+      .w { position: relative; display: inline-block; padding: 0 0.02em 0.12em; }
+      .w.m { overflow: hidden; }
+      .i { display: inline-block; }
+      .w em { position: absolute; left: 0.04em; right: 0.04em; bottom: 0.02em; height: 0.09em; border-radius: 0.05em; transform-origin: 0 50%; transform: scaleX(0); }
+      .ghost { left: -40px; top: 1330px; width: 1160px; text-align: center; font-size: 420px; font-weight: 800; letter-spacing: -0.06em; color: rgba(251,241,224,0.07); line-height: 1; }
+      .tag { left: 70px; top: 130px; font-size: 30px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+      .bars { left: 340px; top: 330px; width: 400px; height: 160px; }
+      .bars div { position: absolute; height: 34px; border-radius: 17px; transform-origin: 50% 50%; }
+      #cta { left: 0; top: 0; width: 1080px; height: 1920px; visibility: hidden; opacity: 0; }
+      .wm { left: 0; top: 820px; width: 1080px; text-align: center; font-size: 150px; font-weight: 800; letter-spacing: -0.05em; color: #fbf1e0; }
+      .wa { left: 190px; top: 1100px; width: 700px; padding: 30px 0; border-radius: 999px; background: #47d4d4; color: #041b3d; text-align: center; font-size: 56px; font-weight: 800; }
+      .sub { left: 0; top: 1250px; width: 1080px; text-align: center; font-size: 40px; font-weight: 700; color: #fbf1e0; }
+      #ghost1, #tag1, #bars1 { visibility: hidden; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="38.62" data-fps="30" data-width="1080" data-height="1920">
+      <div id="bg"></div>
+      <div class="abs ghost" id="ghost1" data-layout-allow-overflow="true" data-layout-allow-overlap="true">23:00</div>
+      <div class="abs tag" id="tag1" style="color:#47d4d4">Historia ilustrativa</div>
+      <div class="abs bars" id="bars1"><div style="left:0;top:0;width:280px;background:#47d4d4"></div><div style="left:0;top:62px;width:400px;background:#fbf1e0"></div><div style="left:0;top:124px;width:280px;background:#47d4d4"></div></div>
+
+      <div class="scr" id="scr0" style="font-size:230px"><span class="w" id="w0_0"><span class="i" style="color:#fbf1e0">Son</span></span> <span class="w" id="w0_1"><span class="i" style="color:#fbf1e0">las</span></span> <span class="w" id="w0_2"><span class="i" style="color:#f5b94d">once</span><em style="background:#f5b94d"></em></span></div>
+      <div class="scr" id="scr1" style="font-size:230px"><span class="w" id="w1_0"><span class="i" style="color:#fbf1e0">de</span></span> <span class="w" id="w1_1"><span class="i" style="color:#fbf1e0">la</span></span> <span class="w" id="w1_2"><span class="i" style="color:#fbf1e0">noche,</span></span></div>
+      <div class="scr" id="scr2" style="font-size:230px"><span class="w m" id="w2_0"><span class="i" style="color:#fbf1e0">y</span></span> <span class="w m" id="w2_1"><span class="i" style="color:#fbf1e0">Rosa</span></span> <span class="w m" id="w2_2"><span class="i" style="color:#fbf1e0">sigue</span></span></div>
+      <div class="scr" id="scr3" style="font-size:120px"><span class="w" id="w3_0"><span class="i" style="color:#fbf1e0">respondiendo</span></span> <span class="w" id="w3_1"><span class="i" style="color:#fbf1e0">mensajes</span></span></div>
+      <div class="scr" id="scr4" style="font-size:200px"><span class="w" id="w4_0"><span class="i" style="color:#fbf1e0">de</span></span> <span class="w" id="w4_1"><span class="i" style="color:#fbf1e0">su</span></span> <span class="w" id="w4_2"><span class="i" style="color:#fbf1e0">tienda.</span></span></div>
+      <div class="scr" id="scr5" style="font-size:230px"><span class="w" id="w5_0"><span class="i" style="color:#041b3d">Las</span></span> <span class="w" id="w5_1"><span class="i" style="color:#041b3d">ventas</span></span></div>
+      <div class="scr" id="scr6" style="font-size:154px"><span class="w m" id="w6_0"><span class="i" style="color:#041b3d">en</span></span> <span class="w m" id="w6_1"><span class="i" style="color:#041b3d">un</span></span> <span class="w m" id="w6_2"><span class="i" style="color:#041b3d">cuaderno,</span></span></div>
+      <div class="scr" id="scr7" style="font-size:230px"><span class="w" id="w7_0"><span class="i" style="color:#041b3d">el</span></span> <span class="w" id="w7_1"><span class="i" style="color:#041b3d">stock</span></span></div>
+      <div class="scr" id="scr8" style="font-size:176px"><span class="w" id="w8_0"><span class="i" style="color:#041b3d">en</span></span> <span class="w" id="w8_1"><span class="i" style="color:#041b3d">Excel...</span></span></div>
+      <div class="scr" id="scr9" style="font-size:154px"><span class="w" id="w9_0"><span class="i" style="color:#041b3d">y</span></span> <span class="w" id="w9_1"><span class="i" style="color:#041b3d">los</span></span> <span class="w" id="w9_2"><span class="i" style="color:#041b3d">clientes,</span></span></div>
+      <div class="scr" id="scr10" style="font-size:154px"><span class="w m" id="w10_0"><span class="i" style="color:#041b3d">esperando.</span></span></div>
+      <div class="scr" id="scr11" style="font-size:176px"><span class="w" id="w11_0"><span class="i" style="color:#ffffff">Entonces</span></span> <span class="w" id="w11_1"><span class="i" style="color:#ffffff">conoció</span></span></div>
+      <div class="scr" id="scr12" style="font-size:230px"><span class="w" id="w12_0"><span class="i" style="color:#ffffff">a</span></span> <span class="w" id="w12_1"><span class="i" style="color:#f5b94d">Scaly</span><em style="background:#f5b94d"></em></span> <span class="w" id="w12_2"><span class="i" style="color:#f5b94d">AI.</span><em style="background:#f5b94d"></em></span></div>
+      <div class="scr" id="scr13" style="font-size:200px"><span class="w" id="w13_0"><span class="i" style="color:#ffffff">Le</span></span> <span class="w" id="w13_1"><span class="i" style="color:#ffffff">crearon</span></span></div>
+      <div class="scr" id="scr14" style="font-size:200px"><span class="w m" id="w14_0"><span class="i" style="color:#ffffff">un</span></span> <span class="w m" id="w14_1"><span class="i" style="color:#f5b94d">ERP</span><em style="background:#f5b94d"></em></span> <span class="w m" id="w14_2"><span class="i" style="color:#ffffff">a</span></span> <span class="w m" id="w14_3"><span class="i" style="color:#ffffff">su</span></span> <span class="w m" id="w14_4"><span class="i" style="color:#f5b94d">medida:</span><em style="background:#f5b94d"></em></span></div>
+      <div class="scr" id="scr15" style="font-size:230px"><span class="w" id="w15_0"><span class="i" style="color:#ffffff">ahora</span></span> <span class="w" id="w15_1"><span class="i" style="color:#ffffff">sabe</span></span></div>
+      <div class="scr" id="scr16" style="font-size:230px"><span class="w" id="w16_0"><span class="i" style="color:#ffffff">qué</span></span> <span class="w" id="w16_1"><span class="i" style="color:#ffffff">tiene,</span></span></div>
+      <div class="scr" id="scr17" style="font-size:230px"><span class="w" id="w17_0"><span class="i" style="color:#ffffff">y</span></span> <span class="w" id="w17_1"><span class="i" style="color:#ffffff">qué</span></span> <span class="w" id="w17_2"><span class="i" style="color:#ffffff">le</span></span> <span class="w" id="w17_3"><span class="i" style="color:#f5b94d">falta.</span><em style="background:#f5b94d"></em></span></div>
+      <div class="scr" id="scr18" style="font-size:176px"><span class="w m" id="w18_0"><span class="i" style="color:#041b3d">Después,</span></span></div>
+      <div class="scr" id="scr19" style="font-size:176px"><span class="w" id="w19_0"><span class="i" style="color:#041b3d">un</span></span> <span class="w" id="w19_1"><span class="i" style="color:#00646b">CRM</span><em style="background:#00646b"></em></span> <span class="w" id="w19_2"><span class="i" style="color:#041b3d">que</span></span> <span class="w" id="w19_3"><span class="i" style="color:#041b3d">recuerda</span></span></div>
+      <div class="scr" id="scr20" style="font-size:176px"><span class="w" id="w20_0"><span class="i" style="color:#041b3d">a</span></span> <span class="w" id="w20_1"><span class="i" style="color:#041b3d">cada</span></span> <span class="w" id="w20_2"><span class="i" style="color:#00646b">cliente,</span><em style="background:#00646b"></em></span></div>
+      <div class="scr" id="scr21" style="font-size:230px"><span class="w" id="w21_0"><span class="i" style="color:#041b3d">como</span></span> <span class="w" id="w21_1"><span class="i" style="color:#041b3d">lo</span></span> <span class="w" id="w21_2"><span class="i" style="color:#041b3d">hace</span></span></div>
+      <div class="scr" id="scr22" style="font-size:230px"><span class="w m" id="w22_0"><span class="i" style="color:#041b3d">ella.</span></span></div>
+      <div class="scr" id="scr23" style="font-size:200px"><span class="w" id="w23_0"><span class="i" style="color:#fbf1e0">Y</span></span> <span class="w" id="w23_1"><span class="i" style="color:#fbf1e0">aparte,</span></span></div>
+      <div class="scr" id="scr24" style="font-size:200px"><span class="w" id="w24_0"><span class="i" style="color:#fbf1e0">un</span></span> <span class="w" id="w24_1"><span class="i" style="color:#47d4d4">chatbot</span><em style="background:#47d4d4"></em></span></div>
+      <div class="scr" id="scr25" style="font-size:176px"><span class="w" id="w25_0"><span class="i" style="color:#fbf1e0">con</span></span> <span class="w" id="w25_1"><span class="i" style="color:#47d4d4">IA</span><em style="background:#47d4d4"></em></span> <span class="w" id="w25_2"><span class="i" style="color:#fbf1e0">que</span></span> <span class="w" id="w25_3"><span class="i" style="color:#fbf1e0">responde</span></span></div>
+      <div class="scr" id="scr26" style="font-size:176px"><span class="w m" id="w26_0"><span class="i" style="color:#fbf1e0">su</span></span> <span class="w m" id="w26_1"><span class="i" style="color:#47d4d4">WhatsApp</span><em style="background:#47d4d4"></em></span> <span class="w m" id="w26_2"><span class="i" style="color:#fbf1e0">mientras</span></span></div>
+      <div class="scr" id="scr27" style="font-size:154px"><span class="w" id="w27_0"><span class="i" style="color:#fbf1e0">ella</span></span> <span class="w" id="w27_1"><span class="i" style="color:#47d4d4">descansa.</span><em style="background:#47d4d4"></em></span></div>
+      <div class="scr" id="scr28" style="font-size:230px"><span class="w" id="w28_0"><span class="i" style="color:#041b3d">Hoy,</span></span></div>
+      <div class="scr" id="scr29" style="font-size:230px"><span class="w" id="w29_0"><span class="i" style="color:#041b3d">Rosa</span></span> <span class="w" id="w29_1"><span class="i" style="color:#041b3d">cierra</span></span></div>
+      <div class="scr" id="scr30" style="font-size:230px"><span class="w m" id="w30_0"><span class="i" style="color:#041b3d">a</span></span> <span class="w m" id="w30_1"><span class="i" style="color:#041b3d">su</span></span> <span class="w m" id="w30_2"><span class="i" style="color:#7a2e12">hora.</span><em style="background:#7a2e12"></em></span></div>
+      <div class="scr" id="scr31" style="font-size:176px"><span class="w" id="w31_0"><span class="i" style="color:#fbf1e0">¿Y</span></span> <span class="w" id="w31_1"><span class="i" style="color:#fbf1e0">tu</span></span> <span class="w" id="w31_2"><span class="i" style="color:#f5b94d">negocio?</span><em style="background:#f5b94d"></em></span></div>
+      <div class="scr" id="scr32" style="font-size:154px"><span class="w" id="w32_0"><span class="i" style="color:#fbf1e0">Cuéntanos</span></span></div>
+      <div class="scr" id="scr33" style="font-size:154px"><span class="w" id="w33_0"><span class="i" style="color:#fbf1e0">tu</span></span> <span class="w" id="w33_1"><span class="i" style="color:#f5b94d">historia.</span><em style="background:#f5b94d"></em></span></div>
+
+      <div class="abs" id="cta">
+        <div class="abs bars" id="bars2" style="top:560px"><div style="left:60px;top:0;width:280px;background:#47d4d4"></div><div style="left:0;top:62px;width:400px;background:#007b83"></div><div style="left:60px;top:124px;width:280px;background:#47d4d4"></div></div>
+        <div class="abs wm" id="wm">ScalyAI</div>
+        <div class="abs wa" id="wa">WhatsApp 902 342 731</div>
+        <div class="abs sub" id="sub">Cuéntanos tu historia</div>
+      </div>
+
+      <audio id="v1" src="audio/seg/r1.wav" data-start="0.35" data-duration="5.437" data-track-index="12" data-volume="1"></audio>
+      <audio id="v2" src="audio/seg/r2.wav" data-start="6.187" data-duration="6.176" data-track-index="12" data-volume="1"></audio>
+      <audio id="v3" src="audio/seg/r3.wav" data-start="13.113" data-duration="7.607" data-track-index="12" data-volume="1"></audio>
+      <audio id="v4" src="audio/seg/r4.wav" data-start="21.171" data-duration="4.558" data-track-index="12" data-volume="1"></audio>
+      <audio id="v5" src="audio/seg/r5.wav" data-start="26.229" data-duration="4.4" data-track-index="12" data-volume="1"></audio>
+      <audio id="v6" src="audio/seg/r6.wav" data-start="31.279" data-duration="2.042" data-track-index="12" data-volume="1"></audio>
+      <audio id="v7" src="audio/seg/r7.wav" data-start="33.771" data-duration="2.25" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="38.62" data-track-index="13" data-volume="0.85"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="38.62" data-track-index="14" data-volume="0.5"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const FROM = {
+        rise:  [{ y: 150, autoAlpha: 0, rotation: 4 }, { y: 0, autoAlpha: 1, rotation: 0, duration: 0.32, ease: "power4.out" }],
+        pop:   [{ scale: 0.2, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.34, ease: "back.out(2.4)" }],
+        mask:  [{ yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power4.out" }],
+        slide: [{ x: -180, autoAlpha: 0, skewX: -12 }, { x: 0, autoAlpha: 1, skewX: 0, duration: 0.3, ease: "expo.out" }],
+      };
+      const word = (sel, fx, t, hl) => {
+        const [a, b] = FROM[fx];
+        tl.fromTo(sel + " .i", a, b, t - 0.06);
+        if (hl) {
+          tl.to(sel + " em", { scaleX: 1, duration: 0.28, ease: "power3.out" }, t + 0.22);
+          tl.to(sel + " .i", { scale: 1.08, duration: 0.14, yoyo: true, repeat: 1, ease: "sine.inOut" }, t + 0.14);
+        }
+      };
+
+      // beat 1 decor
+      tl.fromTo("#ghost1", { autoAlpha: 0, scale: 1.15 }, { autoAlpha: 1, scale: 1, duration: 1.2, ease: "power2.out" }, 0.1);
+      tl.to("#ghost1", { autoAlpha: 0, duration: 0.3 }, 5.837);
+      tl.fromTo("#tag1", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 0.2);
+      tl.to("#tag1", { autoAlpha: 0, duration: 0.3 }, 5.837);
+
+      // background colour per story beat
+      tl.to("#bg", { backgroundColor: "#fbf1e0", duration: 0.35, ease: "power1.inOut" }, 5.887);
+      tl.to("#bg", { backgroundColor: "#00646b", duration: 0.35, ease: "power1.inOut" }, 12.813);
+      tl.to("#bg", { backgroundColor: "#fbf1e0", duration: 0.35, ease: "power1.inOut" }, 20.871);
+      tl.to("#bg", { backgroundColor: "#041b3d", duration: 0.35, ease: "power1.inOut" }, 25.929);
+      tl.to("#bg", { backgroundColor: "#f5b94d", duration: 0.35, ease: "power1.inOut" }, 30.979);
+      tl.to("#bg", { backgroundColor: "#041b3d", duration: 0.35, ease: "power1.inOut" }, 33.471);
+
+      // Scaly bars draw on "Scaly AI"
+      tl.set("#bars1", { autoAlpha: 1 }, 14.441);
+      tl.fromTo("#bars1 div", { scaleX: 0 }, { scaleX: 1, duration: 0.45, stagger: 0.08, ease: "expo.out" }, 14.441);
+      tl.to("#bars1", { autoAlpha: 0, duration: 0.25 }, 20.821);
+
+      // word-synced type
+      word("#w0_0", "rise", 0.595, false);
+      word("#w0_1", "rise", 0.841, false);
+      word("#w0_2", "rise", 1.086, true);
+      tl.set("#scr0", { autoAlpha: 1 }, 0.545);
+      tl.to("#scr0", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 1.263);
+      word("#w1_0", "pop", 1.393, false);
+      word("#w1_1", "pop", 1.577, false);
+      word("#w1_2", "pop", 1.761, false);
+      tl.set("#scr1", { autoAlpha: 1 }, 1.343);
+      tl.to("#scr1", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 2.444);
+      word("#w2_0", "mask", 2.574, false);
+      word("#w2_1", "mask", 2.705, false);
+      word("#w2_2", "mask", 3.033, false);
+      tl.set("#scr2", { autoAlpha: 1 }, 2.524);
+      tl.to("#scr2", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 3.296);
+      word("#w3_0", "slide", 3.426, false);
+      word("#w3_1", "slide", 4.279, false);
+      tl.set("#scr3", { autoAlpha: 1 }, 3.376);
+      tl.to("#scr3", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 4.739);
+      word("#w4_0", "rise", 4.869, false);
+      word("#w4_1", "rise", 5.066, false);
+      word("#w4_2", "rise", 5.262, false);
+      tl.set("#scr4", { autoAlpha: 1 }, 4.819);
+      tl.to("#scr4", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 6.057);
+      word("#w5_0", "pop", 6.187, false);
+      word("#w5_1", "pop", 6.443, false);
+      tl.set("#scr5", { autoAlpha: 1 }, 6.137);
+      tl.to("#scr5", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 6.762);
+      word("#w6_0", "mask", 6.892, false);
+      word("#w6_1", "mask", 7.085, false);
+      word("#w6_2", "mask", 7.277, false);
+      tl.set("#scr6", { autoAlpha: 1 }, 6.842);
+      tl.to("#scr6", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 8.460);
+      word("#w7_0", "slide", 8.590, false);
+      word("#w7_1", "slide", 8.747, false);
+      tl.set("#scr7", { autoAlpha: 1 }, 8.540);
+      tl.to("#scr7", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 8.931);
+      word("#w8_0", "rise", 9.061, false);
+      word("#w8_1", "rise", 9.217, false);
+      tl.set("#scr8", { autoAlpha: 1 }, 9.011);
+      tl.to("#scr8", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 10.344);
+      word("#w9_0", "pop", 10.474, false);
+      word("#w9_1", "pop", 10.614, false);
+      word("#w9_2", "pop", 10.894, false);
+      tl.set("#scr9", { autoAlpha: 1 }, 10.424);
+      tl.to("#scr9", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 11.463);
+      word("#w10_0", "mask", 11.593, false);
+      tl.set("#scr10", { autoAlpha: 1 }, 11.543);
+      tl.to("#scr10", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 12.983);
+      word("#w11_0", "slide", 13.113, false);
+      word("#w11_1", "slide", 13.790, false);
+      tl.set("#scr11", { autoAlpha: 1 }, 13.063);
+      tl.to("#scr11", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 14.261);
+      word("#w12_0", "rise", 14.391, false);
+      word("#w12_1", "rise", 14.541, true);
+      word("#w12_2", "rise", 14.992, true);
+      tl.set("#scr12", { autoAlpha: 1 }, 14.341);
+      tl.to("#scr12", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 15.672);
+      word("#w13_0", "pop", 15.802, false);
+      word("#w13_1", "pop", 15.997, false);
+      tl.set("#scr13", { autoAlpha: 1 }, 15.752);
+      tl.to("#scr13", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 16.388);
+      word("#w14_0", "mask", 16.518, false);
+      word("#w14_1", "mask", 16.713, true);
+      word("#w14_2", "mask", 16.974, false);
+      word("#w14_3", "mask", 17.104, false);
+      word("#w14_4", "mask", 17.299, true);
+      tl.set("#scr14", { autoAlpha: 1 }, 16.468);
+      tl.to("#scr14", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 18.220);
+      word("#w15_0", "slide", 18.350, false);
+      word("#w15_1", "slide", 18.677, false);
+      tl.set("#scr15", { autoAlpha: 1 }, 18.300);
+      tl.to("#scr15", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 18.820);
+      word("#w16_0", "rise", 18.950, false);
+      word("#w16_1", "rise", 19.168, false);
+      tl.set("#scr16", { autoAlpha: 1 }, 18.899);
+      tl.to("#scr16", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 19.769);
+      word("#w17_0", "pop", 19.899, false);
+      word("#w17_1", "pop", 20.002, false);
+      word("#w17_2", "pop", 20.207, false);
+      word("#w17_3", "pop", 20.361, true);
+      tl.set("#scr17", { autoAlpha: 1 }, 19.849);
+      tl.to("#scr17", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 21.041);
+      word("#w18_0", "mask", 21.171, false);
+      tl.set("#scr18", { autoAlpha: 1 }, 21.121);
+      tl.to("#scr18", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 21.722);
+      word("#w19_0", "slide", 21.852, false);
+      word("#w19_1", "slide", 22.080, true);
+      word("#w19_2", "slide", 22.382, false);
+      word("#w19_3", "slide", 22.685, false);
+      tl.set("#scr19", { autoAlpha: 1 }, 21.802);
+      tl.to("#scr19", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 23.237);
+      word("#w20_0", "rise", 23.367, false);
+      word("#w20_1", "rise", 23.518, false);
+      word("#w20_2", "rise", 23.897, true);
+      tl.set("#scr20", { autoAlpha: 1 }, 23.317);
+      tl.to("#scr20", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 24.656);
+      word("#w21_0", "pop", 24.786, false);
+      word("#w21_1", "pop", 25.034, false);
+      word("#w21_2", "pop", 25.183, false);
+      tl.set("#scr21", { autoAlpha: 1 }, 24.736);
+      tl.to("#scr21", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 25.301);
+      word("#w22_0", "mask", 25.431, false);
+      tl.set("#scr22", { autoAlpha: 1 }, 25.381);
+      tl.to("#scr22", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 26.099);
+      word("#w23_0", "slide", 26.229, false);
+      word("#w23_1", "slide", 26.343, false);
+      tl.set("#scr23", { autoAlpha: 1 }, 26.179);
+      tl.to("#scr23", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 26.670);
+      word("#w24_0", "rise", 26.800, false);
+      word("#w24_1", "rise", 26.972, true);
+      tl.set("#scr24", { autoAlpha: 1 }, 26.750);
+      tl.to("#scr24", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 27.299);
+      word("#w25_0", "pop", 27.429, false);
+      word("#w25_1", "pop", 27.658, true);
+      word("#w25_2", "pop", 27.829, false);
+      word("#w25_3", "pop", 28.058, false);
+      tl.set("#scr25", { autoAlpha: 1 }, 27.379);
+      tl.to("#scr25", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 28.442);
+      word("#w26_0", "mask", 28.572, false);
+      word("#w26_1", "mask", 28.743, true);
+      word("#w26_2", "mask", 29.258, false);
+      tl.set("#scr26", { autoAlpha: 1 }, 28.522);
+      tl.to("#scr26", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 29.642);
+      word("#w27_0", "slide", 29.772, false);
+      word("#w27_1", "slide", 30.058, true);
+      tl.set("#scr27", { autoAlpha: 1 }, 29.722);
+      tl.to("#scr27", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 31.149);
+      word("#w28_0", "rise", 31.279, false);
+      tl.set("#scr28", { autoAlpha: 1 }, 31.229);
+      tl.to("#scr28", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 31.773);
+      word("#w29_0", "pop", 31.903, false);
+      word("#w29_1", "pop", 32.211, false);
+      tl.set("#scr29", { autoAlpha: 1 }, 31.853);
+      tl.to("#scr29", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 32.513);
+      word("#w30_0", "mask", 32.643, false);
+      word("#w30_1", "mask", 32.766, false);
+      word("#w30_2", "mask", 32.951, true);
+      tl.set("#scr30", { autoAlpha: 1 }, 32.593);
+      tl.to("#scr30", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 33.641);
+      word("#w31_0", "slide", 33.771, false);
+      word("#w31_1", "slide", 33.921, false);
+      word("#w31_2", "slide", 34.071, true);
+      tl.set("#scr31", { autoAlpha: 1 }, 33.721);
+      tl.to("#scr31", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 34.861);
+      word("#w32_0", "rise", 34.991, false);
+      tl.set("#scr32", { autoAlpha: 1 }, 34.941);
+      tl.to("#scr32", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 35.309);
+      word("#w33_0", "pop", 35.439, false);
+      word("#w33_1", "pop", 35.573, true);
+      tl.set("#scr33", { autoAlpha: 1 }, 35.389);
+      tl.to("#scr33", { autoAlpha: 0, y: -70, duration: 0.12, ease: "power2.in" }, 35.940);
+
+      // end lockup
+      tl.set("#cta", { autoAlpha: 1 }, 36.070);
+      tl.fromTo("#bars2 div", { scaleX: 0 }, { scaleX: 1, duration: 0.5, stagger: 0.08, ease: "expo.out" }, 36.070);
+      tl.fromTo("#wm", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power4.out" }, 36.320);
+      tl.fromTo("#wa", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 36.670);
+      tl.fromTo("#sub", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 36.970);
+      tl.to("#wa", { scale: 1.04, duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" }, 37.370);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
