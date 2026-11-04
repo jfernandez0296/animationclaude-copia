@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>EnCatalogo.pe — promo</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "DM Serif Display"; font-weight: 400; font-style: normal; src: url("assets/fonts/dm-serif-display-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Serif Display"; font-weight: 400; font-style: italic; src: url("assets/fonts/dm-serif-display-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #F2EDE4; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #F2EDE4; font-family: "Inter", system-ui, sans-serif; color: #0F0F10; }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      #sB, #sC, #sD, #sE, #sF, #sG, #sH, #sI, .cap { visibility: hidden; opacity: 0; }
+      .eyebrow { font-size: 26px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #A65353; }
+      .badge { padding: 14px 28px; border-radius: 999px; background: #F2E6CE; color: #A65353; font-size: 26px; font-weight: 700; letter-spacing: .12em; white-space: nowrap; }
+      .badge.dk { background: rgba(217,152,115,.18); color: #D99873; }
+      .ttl { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; line-height: 1.04; letter-spacing: -0.01em; }
+      .brand { display: flex; align-items: center; gap: 18px; font-size: 40px; font-weight: 700; }
+      .bchip { display: inline-flex; }
+      .bchip.dk { background: #F2EDE4; padding: 8px; border-radius: 18px; }
+      .card { background: #FFFFFF; border: 2px solid #E7DDD1; border-radius: 40px; box-shadow: 0 2px 4px rgba(15,15,16,.04), 0 24px 60px rgba(15,15,16,.07); }
+      .pic { width: 210px; height: 250px; border-radius: 28px; background: #F2E6CE; display: flex; align-items: center; justify-content: center; }
+      .ptitle { font-family: "DM Serif Display", serif; font-size: 64px; }
+      .pmeta { font-size: 36px; font-weight: 500; color: #57534E; }
+      .qmark { width: 150px; height: 190px; border-radius: 30px; background: #0F0F10; color: #D99873; font-family: "DM Serif Display", serif; font-size: 150px; line-height: 190px; text-align: center; }
+      .chip { display: flex; align-items: center; gap: 14px; height: 104px; padding: 0 26px; border-radius: 999px; border: 2px solid #E7DDD1; font-size: 32px; font-weight: 600; white-space: nowrap; box-shadow: 0 10px 26px rgba(15,15,16,.06); }
+      .chip .qq { width: 44px; height: 44px; border-radius: 22px; background: #A65353; color: #fff; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+      .today { padding: 8px 22px; border-radius: 999px; background: #F2E6CE; color: #A65353; font-size: 26px; font-weight: 700; }
+      .stat b { display: block; font-family: "DM Serif Display", serif; font-weight: 400; font-size: 96px; line-height: 1; }
+      .stat span { display: block; font-size: 30px; font-weight: 500; color: #57534E; margin-top: 10px; }
+      #Bst1 b { color: #A65353; }
+      .thead, .trow { display: grid; grid-template-columns: 1.4fr 1fr .5fr; align-items: center; }
+      .thead { font-size: 24px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8A8178; padding: 0 0 16px; border-bottom: 2px solid #E7DDD1; }
+      .thead span:last-child, .trow b { text-align: right; }
+      .trow { height: 100px; border-bottom: 2px solid #E7DDD1; font-size: 36px; font-weight: 600; }
+      .trow .tag { justify-self: start; padding: 8px 20px; border-radius: 999px; background: #FAF9F5; border: 2px solid #E7DDD1; font-size: 28px; font-weight: 500; color: #57534E; }
+      .trow b { font-size: 44px; font-weight: 700; }
+      .vchip { padding: 14px 26px; border-radius: 999px; background: #0F0F10; color: #fff; font-size: 30px; font-weight: 600; white-space: nowrap; }
+      .route { display: flex; align-items: center; gap: 18px; font-family: "DM Serif Display", serif; font-size: 58px; }
+      .track { height: 12px; border-radius: 6px; background: #E7DDD1; overflow: hidden; }
+      .track div { width: 100%; height: 100%; background: #D99873; transform-origin: 0% 50%; }
+      .truck { width: 90px; height: 70px; display: flex; justify-content: center; }
+      .step { width: 300px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; font-size: 30px; font-weight: 600; }
+      #Cs1 { align-items: center; left: 315px !important; }
+      #Cs2 { align-items: flex-end; left: 596px !important; }
+      .dot { width: 56px; height: 56px; border-radius: 28px; background: #3F7A4F; display: flex; align-items: center; justify-content: center; border: 6px solid #fff; box-shadow: 0 0 0 2px #E7DDD1; }
+      .items { font-size: 28px; font-weight: 500; color: #57534E; }
+      .callout { display: flex; align-items: center; gap: 30px; padding: 34px 40px; border-radius: 34px; background: #F2E6CE; border-left: 10px solid #A65353; }
+      .callout b { display: block; font-size: 40px; font-weight: 700; }
+      .callout span { display: block; font-size: 32px; font-weight: 500; color: #57534E; margin-top: 6px; }
+      .ich { flex: none; width: 92px; height: 92px; border-radius: 24px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+      .phone { width: 600px; height: 900px; border-radius: 70px; background: #FFFFFF; border: 14px solid #0F0F10; box-shadow: 0 40px 80px rgba(15,15,16,.18); overflow: hidden; }
+      .hi { font-family: "DM Serif Display", serif; font-size: 50px; }
+      .big { font-family: "DM Serif Display", serif; font-size: 100px; line-height: 1; }
+      .up { display: flex; align-items: center; gap: 10px; font-size: 28px; font-weight: 700; color: #3F7A4F; }
+      .bar { width: 46px; border-radius: 12px 12px 4px 4px; background: #D99873; }
+      .dl { width: 46px; text-align: center; font-size: 22px; font-weight: 600; color: #8A8178; }
+      .low { width: 516px; padding: 26px 26px 10px; border-radius: 28px; background: #FAF9F5; border: 2px solid #E7DDD1; }
+      .low .eyebrow { font-size: 20px; }
+      .lr { display: flex; justify-content: space-between; padding: 12px 0; font-size: 30px; font-weight: 600; border-top: 2px solid #E7DDD1; }
+      .lr b { font-weight: 700; }
+      .inv { font-family: "DM Serif Display", serif; font-size: 60px; }
+      .il { display: flex; justify-content: space-between; font-size: 30px; font-weight: 500; }
+      .il b { font-weight: 700; }
+      .il.sm { font-size: 26px; color: #57534E; }
+      .il.tot { padding-top: 22px; border-top: 2px solid #E7DDD1; font-size: 40px; font-weight: 700; }
+      .stamp { display: flex; align-items: center; gap: 12px; padding: 14px 26px; border-radius: 999px; background: #E6EFE8; color: #2F5E3B; font-size: 28px; font-weight: 700; white-space: nowrap; }
+      .upd { width: 310px; height: 170px; border-radius: 32px; background: #FFFFFF; border: 2px solid #E7DDD1; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 0 26px; font-size: 34px; font-weight: 700; box-shadow: 0 12px 30px rgba(15,15,16,.06); }
+      .upd .ich { width: 70px; height: 70px; background: #F2E6CE; border-radius: 20px; }
+      .tick { position: absolute; right: 22px; top: 22px; width: 50px; height: 50px; border-radius: 25px; background: #3F7A4F; display: flex; align-items: center; justify-content: center; }
+      .chat { border-radius: 44px; background: #EFE7DC; overflow: hidden; }
+      .chd { left: 0; top: 0; width: 940px; height: 120px; padding: 0 36px; display: flex; align-items: center; gap: 22px; background: #1C1B1A; color: #fff; }
+      .chd b { display: block; font-size: 34px; font-weight: 700; }
+      .chd i { display: block; font-style: normal; font-size: 24px; color: #B9B2A8; }
+      .wa { width: 70px; height: 70px; border-radius: 35px; background: #25D366; display: flex; align-items: center; justify-content: center; }
+      .bub { max-width: 640px; padding: 22px 28px; border-radius: 28px; font-size: 32px; font-weight: 500; line-height: 1.3; box-shadow: 0 4px 10px rgba(15,15,16,.06); }
+      .bub.in { left: 36px; background: #FFFFFF; border-top-left-radius: 8px; }
+      .bub.out { right: 36px; background: #F2E6CE; border-top-right-radius: 8px; }
+      .bub .mono { display: block; margin-top: 6px; font-weight: 700; color: #0F0F10; }
+      .bub.ph { display: flex; align-items: center; gap: 22px; }
+      .bub.ph b { display: block; font-size: 32px; } .bub.ph span { display: block; font-size: 26px; color: #57534E; }
+      .thumb { width: 104px; height: 104px; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+      .paid { left: 36px; display: flex; align-items: center; gap: 12px; padding: 16px 28px; border-radius: 999px; background: #FFFFFF; color: #2F5E3B; font-size: 30px; font-weight: 700; white-space: nowrap; }
+      .frame { border-radius: 40px; overflow: hidden; }
+      .before { left: 0; top: 0; width: 940px; height: 560px; background: radial-gradient(circle at 60% 30%, #8a6d4e, #4b3a2b 70%); filter: saturate(.7) brightness(.85); }
+      .after { left: 0; top: 0; width: 940px; height: 560px; background: #F2EDE4; }
+      .lab { padding: 10px 22px; border-radius: 999px; background: rgba(15,15,16,.7); color: #fff; font-size: 26px; font-weight: 600; }
+      .lab.lt { background: #FFFFFF; color: #0F0F10; border: 2px solid #E7DDD1; }
+      .handle { top: 0; width: 6px; height: 560px; background: #fff; }
+      .knob { position: absolute; left: -33px; top: 247px; width: 72px; height: 72px; border-radius: 36px; background: #D99873; display: flex; align-items: center; justify-content: center; }
+      .ask { padding: 20px 30px; border-radius: 28px 28px 28px 8px; background: #26241F; color: #fff; font-size: 34px; font-weight: 600; }
+      .ans { display: flex; align-items: center; gap: 20px; padding: 22px 30px; border-radius: 28px; background: #F2EDE4; font-size: 32px; font-weight: 600; }
+      .cl { flex: none; width: 64px; height: 64px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+      .illu { font-size: 22px; font-weight: 500; color: #8A8178; }
+      .price { display: flex; align-items: baseline; gap: 14px; }
+      .price small { font-size: 50px; font-weight: 600; }
+      .price span { font-family: "DM Serif Display", serif; font-size: 170px; line-height: 1; }
+      .price i { font-style: normal; font-size: 32px; font-weight: 500; color: #57534E; }
+      .hl { display: flex; align-items: center; gap: 18px; font-size: 36px; font-weight: 600; }
+      .proof .brands { margin-top: 18px; font-family: "DM Serif Display", serif; font-size: 50px; line-height: 1.2; }
+      .proof .brands i { font-style: normal; color: #D99873; }
+      .fine { font-size: 24px; color: #8A8178; }
+      .wm { text-align: center; font-size: 64px; font-weight: 700; }
+      .tag1, .tag2 { text-align: center; font-family: "DM Serif Display", serif; font-size: 92px; line-height: 1.1; }
+      .tag2 { font-style: italic; color: #A65353; }
+      .cta { height: 110px; border-radius: 999px; background: #0F0F10; color: #fff; font-size: 40px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+      .ctas { text-align: center; font-size: 34px; font-weight: 500; color: #57534E; }
+      .cap { position: absolute; left: 40px; width: 1000px; top: 1500px; text-align: center; }
+      .cap span { display: inline-block; background: #0F0F10; color: #fff; font-size: 52px; font-weight: 700; padding: 14px 32px; border-radius: 24px; line-height: 1.18; box-shadow: 0 12px 34px rgba(15,15,16,.25); border: 3px solid rgba(217,152,115,.35); }
+      .cap b { color: #D99873; font-weight: 700; }
+
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="63.93" data-fps="30" data-width="1080" data-height="1920">
+      <div class="sc" id="sA" style="background:#F2EDE4">
+        <div class="abs brand" id="Abr" style="left:70px;top:130px;color:#0F0F10"><span class="bchip"><img src="assets/img/encatalogo-logo.svg" alt="EnCatalogo.pe" style="height:54px;width:auto;display:block"></span>EnCatalogo.pe</div>
+        <div class="abs badge" id="Ak" style="left:70px;top:290px">INVENTARIO CONECTADO A TUS VENTAS</div><div class="abs ttl" id="At" style="left:70px;top:370px;width:940px;font-size:100px;color:#0F0F10">¿Cuántas te quedan de tu más vendido?</div>
+        <div class="abs card" id="Acard" style="left:70px;top:690px;width:940px;height:330px">
+          <div class="abs pic" style="left:40px;top:40px"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-label="shirt">
+  <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
+</svg></div>
+          <div class="abs ptitle" style="left:290px;top:58px">Blazer Siena</div>
+          <div class="abs pmeta" style="left:290px;top:146px">Negro · Talla S</div>
+          <div class="abs eyebrow" style="left:290px;top:220px;color:#8A8178">STOCK</div>
+          <div class="abs qmark" id="Aq" style="left:780px;top:70px">?</div>
+        </div>
+        <div class="abs chip" id="As0" style="left:70px;top:1080px;background:#FFFFFF;color:#0F0F10"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="store">
+  <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+  <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+  <path d="M2 7h20" />
+  <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
+</svg><span>Miraflores</span><b class="qq">?</b></div><div class="abs chip" id="As1" style="left:395px;top:1080px;background:#FFFFFF;color:#0F0F10"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="store">
+  <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+  <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+  <path d="M2 7h20" />
+  <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
+</svg><span>San Isidro</span><b class="qq">?</b></div><div class="abs chip" id="As2" style="left:720px;top:1080px;background:#FFFFFF;color:#0F0F10"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="warehouse">
+  <path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z" />
+  <path d="M6 18h12" />
+  <path d="M6 14h12" />
+  <rect width="12" height="12" x="6" y="10" />
+</svg><span>Almacén</span><b class="qq">?</b></div>
+      </div>
+      <div class="sc" id="sB" style="background:#FAF9F5">
+        <div class="abs badge" id="Bk" style="left:70px;top:250px">INVENTARIO</div><div class="abs ttl" id="Bt" style="left:70px;top:330px;width:940px;font-size:92px;color:#0F0F10">Todo tu stock, en una sola vista</div>
+        <div class="abs card" id="Bcard" style="left:70px;top:560px;width:940px;height:780px">
+          <div class="abs eyebrow" style="left:44px;top:44px">RESUMEN DE EXISTENCIAS</div>
+          <div class="abs today" style="left:780px;top:38px">Hoy</div>
+          <div class="abs stat" id="Bst0" style="left:44px;top:110px"><b id="Bn0">1,248</b><span>unidades</span></div><div class="abs stat" id="Bst1" style="left:334px;top:110px"><b id="Bn1">12</b><span>por reponer</span></div><div class="abs stat" id="Bst2" style="left:624px;top:110px"><b id="Bn2">3</b><span>traslados</span></div>
+          <div class="abs thead" style="left:44px;top:330px;width:852px"><span>Producto</span><span>Tienda</span><span>Stock</span></div>
+          <div class="abs trow" id="Br0" style="left:44px;top:400px;width:852px"><span>Vestido Emilia</span><span class="tag">Miraflores</span><b>24</b></div><div class="abs trow" id="Br1" style="left:44px;top:512px;width:852px"><span>Blazer Siena</span><span class="tag">San Isidro</span><b>7</b></div><div class="abs trow" id="Br2" style="left:44px;top:624px;width:852px"><span>Pantalón Nara</span><span class="tag">Almacén</span><b>86</b></div>
+        </div>
+        <div class="abs vchip" id="Bv0" style="left:70px;top:1370px">Por tienda</div><div class="abs vchip" id="Bv1" style="left:320px;top:1370px">Por almacén</div><div class="abs vchip" id="Bv2" style="left:570px;top:1370px">Por talla</div><div class="abs vchip" id="Bv3" style="left:820px;top:1370px">Por color</div>
+      </div>
+      <div class="sc" id="sC" style="background:#F2EDE4">
+        <div class="abs badge" id="Ck" style="left:70px;top:250px">TRASLADOS ENTRE SEDES</div><div class="abs ttl" id="Ct" style="left:70px;top:330px;width:940px;font-size:86px;color:#0F0F10">Mueve mercadería y síguela hasta que llega</div>
+        <div class="abs card" id="Ccard" style="left:70px;top:610px;width:940px;height:520px">
+          <div class="abs eyebrow" style="left:44px;top:44px">TRASLADO #0142</div>
+          <div class="abs route" style="left:44px;top:100px">Almacén central <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg> Miraflores</div>
+          <div class="abs track" style="left:84px;top:290px;width:772px"><div id="Cfill"></div></div>
+          <div class="abs truck" id="Ctruck" style="left:40px;top:208px"><svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#0F0F10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="truck">
+  <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+  <path d="M15 18H9" />
+  <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+  <circle cx="17" cy="18" r="2" />
+  <circle cx="7" cy="18" r="2" />
+</svg></div>
+          <div class="abs step" id="Cs0" style="left:44px;top:270px"><div class="dot" id="Cd0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><span>Preparado</span></div><div class="abs step" id="Cs1" style="left:430px;top:270px"><div class="dot" id="Cd1"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><span>En camino</span></div><div class="abs step" id="Cs2" style="left:816px;top:270px"><div class="dot" id="Cd2"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><span>Recibido</span></div>
+          <div class="abs items" style="left:44px;top:430px">27 unidades · Vestido Emilia · Blazer Siena · Pantalón Nara</div>
+        </div>
+        <div class="abs callout" id="Calert" style="left:70px;top:1170px;width:940px">
+          <div class="ich"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="bell-ring">
+  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+  <path d="M4 2C2.8 3.7 2 5.7 2 8" />
+  <path d="M22 8c0-2.3-.8-4.3-2-6" />
+</svg></div>
+          <div><b>Reponer pronto</b><span>Blazer Siena · Talla S · quedan 3</span></div>
+        </div>
+      </div>
+      <div class="sc" id="sD" style="background:#FAF9F5">
+        <div class="abs badge" id="Dk" style="left:70px;top:250px">APP MÓVIL</div><div class="abs ttl" id="Dt" style="left:70px;top:330px;width:940px;font-size:92px;color:#0F0F10">Tu tienda en el bolsillo</div>
+        <div class="abs phone" id="Dph" style="left:240px;top:520px">
+          <div class="abs hi" style="left:44px;top:60px">Buenos días, Ana</div>
+          <div class="abs eyebrow" style="left:44px;top:130px">VENTAS DE HOY</div>
+          <div class="abs big" style="left:44px;top:170px">S/ <span id="Dsales">4,820</span></div>
+          <div class="abs up" id="Dup" style="left:44px;top:292px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3F7A4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="trending-up">
+  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+  <polyline points="16 7 22 7 22 13" />
+</svg> 18% vs. ayer</div>
+          <div class="abs bar" id="Db0" style="left:52px;top:468px;height:92px"></div><div class="abs dl" style="left:52px;top:575px">L</div><div class="abs bar" id="Db1" style="left:122px;top:432px;height:128px"></div><div class="abs dl" style="left:122px;top:575px">M</div><div class="abs bar" id="Db2" style="left:192px;top:450px;height:110px"></div><div class="abs dl" style="left:192px;top:575px">M</div><div class="abs bar" id="Db3" style="left:262px;top:415px;height:145px"></div><div class="abs dl" style="left:262px;top:575px">J</div><div class="abs bar" id="Db4" style="left:332px;top:397px;height:163px"></div><div class="abs dl" style="left:332px;top:575px">V</div><div class="abs bar" id="Db5" style="left:402px;top:340px;height:220px;background:#A65353"></div><div class="abs dl" style="left:402px;top:575px">S</div><div class="abs bar" id="Db6" style="left:472px;top:424px;height:136px"></div><div class="abs dl" style="left:472px;top:575px">D</div>
+          <div class="abs low" id="Dlow" style="left:28px;top:650px">
+            <div class="eyebrow" style="margin-bottom:14px">PRODUCTOS CON MENOS STOCK</div>
+            <div class="lr" id="Dl0"><span>Blazer Siena</span><b>Quedan 3</b></div>
+            <div class="lr" id="Dl1"><span>Vestido Mía</span><b>Quedan 3</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="sc" id="sE" style="background:#F2EDE4">
+        <div class="abs badge" id="Ek" style="left:70px;top:250px">FACTURACIÓN Y CAJA</div><div class="abs ttl" id="Et" style="left:70px;top:330px;width:940px;font-size:86px;color:#0F0F10">Vendes, cobras y facturas en un solo flujo</div>
+        <div class="abs card" id="Ecard" style="left:70px;top:610px;width:600px;height:690px">
+          <div class="abs eyebrow" style="left:40px;top:40px">FACTURA ELECTRÓNICA</div>
+          <div class="abs inv" style="left:40px;top:80px">F001-00004218</div>
+          <div class="abs il" style="left:40px;top:180px;width:520px"><span>1 × Vestido Emilia · M</span><b>S/ 189.00</b></div>
+          <div class="abs il" style="left:40px;top:250px;width:520px"><span>1 × Blazer Siena · S</span><b>S/ 200.00</b></div>
+          <div class="abs il sm" style="left:40px;top:350px;width:520px"><span>Subtotal</span><b>S/ 329.66</b></div>
+          <div class="abs il sm" style="left:40px;top:400px;width:520px"><span>IGV 18%</span><b>S/ 59.34</b></div>
+          <div class="abs il tot" style="left:40px;top:470px;width:520px"><span>Total</span><b>S/ 389.00</b></div>
+          <div class="abs stamp" id="Estamp" style="left:40px;top:590px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3F7A4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg> Aceptado por SUNAT</div>
+        </div>
+        <div class="abs upd" id="Eu0" style="left:700px;top:690px"><div class="ich"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="wallet">
+  <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+  <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+</svg></div><span>Caja</span><div class="tick" id="Et0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div></div><div class="abs upd" id="Eu1" style="left:700px;top:890px"><div class="ich"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="package">
+  <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+  <path d="M12 22V12" />
+  <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
+  <path d="m7.5 4.27 9 5.15" />
+</svg></div><span>Stock</span><div class="tick" id="Et1"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div></div><div class="abs upd" id="Eu2" style="left:700px;top:1090px"><div class="ich"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
+  <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+  <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+  <path d="M12 17.5v-11" />
+</svg></div><span>Comprobante</span><div class="tick" id="Et2"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div></div>
+      </div>
+      <div class="sc" id="sF" style="background:#0F0F10">
+        <div class="abs badge dk" id="Fk" style="left:70px;top:250px">VENDEDOR IA · WHATSAPP</div><div class="abs ttl" id="Ft" style="left:70px;top:330px;width:940px;font-size:90px;color:#FFFFFF">No es un chatbot. Es tu vendedor.</div>
+        <div class="abs chat" id="Fchat" style="left:70px;top:590px;width:940px;height:780px">
+          <div class="abs chd"><span class="wa"><svg width="40" height="40" viewBox="0 0 24 24" aria-label="whatsapp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></span><div><b>Tienda Demo</b><i>en línea</i></div></div>
+          <div class="abs bub in" id="Fm0" style="top:150px">¿Tienes el Jean Araña en talla 30?</div>
+          <div class="abs bub out" id="Fm1" style="top:270px">Sí, quedan 4 en talla 30 <span class="mono">Tallas 28 · 30 · 32</span></div>
+          <div class="abs bub out ph" id="Fm2" style="top:430px"><div class="thumb"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-label="shirt">
+  <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
+</svg></div><div><b>Jean Araña</b><span>S/ 129.00 · 3 fotos</span></div></div>
+          <div class="abs bub in" id="Fm3" style="top:590px">Listo, ya te yapeé</div>
+          <div class="abs paid" id="Fpay" style="top:676px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3F7A4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg> Pago validado · Yape</div>
+        </div>
+      </div>
+      <div class="sc" id="sG" style="background:#0F0F10">
+        <div class="abs badge dk" id="Gk" style="left:70px;top:250px">AI STUDIO + CLAUDE</div><div class="abs ttl" id="Gt" style="left:70px;top:330px;width:940px;font-size:84px;color:#FFFFFF">De la foto del celular a la foto de catálogo</div>
+        <div class="abs frame" id="Gfr" style="left:70px;top:590px;width:940px;height:560px">
+          <div class="abs before"><div class="abs" style="left:300px;top:70px;transform:rotate(-8deg)"><svg viewBox="0 0 200 240" width="300" height="360" aria-label="blazer">
+  <path d="M62 20 L100 40 L138 20 L176 44 L190 200 L160 206 L156 120 L150 232 L50 232 L44 120 L40 206 L10 200 L24 44 Z" fill="#2a2622"/>
+  <path d="M62 20 L100 120 L138 20" fill="none" stroke="#4a433c" stroke-width="5"/>
+  <path d="M100 120 L100 232" stroke="#4a433c" stroke-width="3"/>
+  <circle cx="108" cy="150" r="5" fill="#4a433c"/><circle cx="108" cy="180" r="5" fill="#4a433c"/>
+  <path d="M70 170 L90 170" stroke="#4a433c" stroke-width="4"/><path d="M114 100 L132 100" stroke="#4a433c" stroke-width="4"/>
+</svg></div>
+            <div class="abs lab" style="left:24px;top:490px">Foto del celular</div></div>
+          <div class="abs after" id="Gaf"><div class="abs" style="left:320px;top:80px"><svg viewBox="0 0 200 240" width="300" height="360" aria-label="blazer">
+  <path d="M62 20 L100 40 L138 20 L176 44 L190 200 L160 206 L156 120 L150 232 L50 232 L44 120 L40 206 L10 200 L24 44 Z" fill="#141414"/>
+  <path d="M62 20 L100 120 L138 20" fill="none" stroke="#3d3d3d" stroke-width="5"/>
+  <path d="M100 120 L100 232" stroke="#3d3d3d" stroke-width="3"/>
+  <circle cx="108" cy="150" r="5" fill="#3d3d3d"/><circle cx="108" cy="180" r="5" fill="#3d3d3d"/>
+  <path d="M70 170 L90 170" stroke="#3d3d3d" stroke-width="4"/><path d="M114 100 L132 100" stroke="#3d3d3d" stroke-width="4"/>
+</svg></div>
+            <div class="abs lab lt" style="right:24px;top:490px">Lista para vender</div></div>
+          <div class="abs handle" id="Ghd"><div class="knob"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0F0F10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="wand-sparkles">
+  <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72" />
+  <path d="m14 7 3 3" />
+  <path d="M5 6v4" />
+  <path d="M19 14v4" />
+  <path d="M10 2v2" />
+  <path d="M7 8H3" />
+  <path d="M21 16h-4" />
+  <path d="M11 3H9" />
+</svg></div></div>
+        </div>
+        <div class="abs ask" id="Gq" style="left:70px;top:1190px">¿Qué debo reponer?</div>
+        <div class="abs ans" id="Ga" style="left:70px;top:1290px;width:940px"><span class="cl"><svg width="40" height="40" viewBox="0 0 24 24" aria-label="claude"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z" fill="#D99873"/></svg></span>Blazer Siena y Vestido Mía: quedan 3 de cada uno.</div>
+        <div class="abs illu" style="left:70px;top:1440px">Recreación ilustrativa · Claude es una marca de Anthropic</div>
+      </div>
+      <div class="sc" id="sH" style="background:#FAF9F5">
+        <div class="abs badge" id="Hk" style="left:70px;top:250px">PRECIOS</div><div class="abs ttl" id="Ht" style="left:70px;top:330px;width:940px;font-size:92px;color:#0F0F10">Un solo plan. Pagas por tienda.</div>
+        <div class="abs card" id="Hcard" style="left:70px;top:560px;width:940px;height:560px">
+          <div class="abs eyebrow" style="left:50px;top:50px">ENCATALOGO</div>
+          <div class="abs price" style="left:50px;top:110px"><small>S/</small><span id="Hp">150</span><i>/mes con 1 tienda</i></div>
+          <div class="abs hl" id="Hl0" style="left:50px;top:325px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg><span>S/ 90 cada tienda extra</span></div><div class="abs hl" id="Hl1" style="left:50px;top:397px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg><span>Almacenes gratis</span></div><div class="abs hl" id="Hl2" style="left:50px;top:469px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg><span>Vendedor IA en WhatsApp incluido</span></div>
+        </div>
+        <div class="abs proof" id="Hpr" style="left:70px;top:1160px;width:940px">
+          <div class="eyebrow" style="color:#8A8178">MARCAS QUE VENDEN CON ENCATALOGO</div>
+          <div class="brands">Muñeca de Trapo <i>·</i> Grupo Paris Import <i>·</i> Bullking</div>
+        </div>
+        <div class="abs fine" style="left:70px;top:1340px">Precios en soles · IGV incluido</div>
+      </div>
+      <div class="sc" id="sI" style="background:#F2EDE4">
+        <div class="abs" id="Ilg" style="left:390px;top:300px"><img src="assets/img/encatalogo-logo.svg" alt="EnCatalogo.pe" style="height:300px;width:auto;display:block"></div>
+        <div class="abs wm" id="Iwm" style="left:0;top:650px;width:1080px">EnCatalogo.pe</div>
+        <div class="abs tag1" id="It1" style="left:0;top:770px;width:1080px">Tu mercadería en orden.</div>
+        <div class="abs tag2" id="It2" style="left:0;top:880px;width:1080px">Tu negocio bajo control.</div>
+        <div class="abs cta" id="Icta" style="left:240px;top:1060px;width:600px">Probar 7 días gratis</div>
+        <div class="abs ctas" id="Isub" style="left:0;top:1190px;width:1080px">Sin tarjeta · encatalogo.pe</div>
+      </div>
+      <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>¿Sabes cuántas unidades</span></div>
+      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span>te quedan de tu</span></div>
+      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>producto más <b>vendido?</b></span></div>
+      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span>¿Y en qué</span></div>
+      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span><b>tienda</b> están?</span></div>
+      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>Con <b>EnCatalogo,</b></span></div>
+      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>ves el <b>stock</b></span></div>
+      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>de cada <b>tienda,</b></span></div>
+      <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>almacén, talla y color,</span></div>
+      <div class="cap" id="cap9" data-layout-allow-overlap="true"><span>en una <b>sola</b> vista.</span></div>
+      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>Mueves mercadería</span></div>
+      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>entre sedes y</span></div>
+      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>sigues cada <b>traslado</b></span></div>
+      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span>hasta que llega.</span></div>
+      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>Y te avisa</span></div>
+      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>qué <b>reponer,</b></span></div>
+      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>antes de</span></div>
+      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>perder ventas.</span></div>
+      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>Desde el <b>celular,</b></span></div>
+      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>ves tus ventas del</span></div>
+      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span>día y los productos</span></div>
+      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span>que se están <b>agotando.</b></span></div>
+      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span>Vendes, cobras</span></div>
+      <div class="cap" id="cap23" data-layout-allow-overlap="true"><span>y <b>facturas</b> en</span></div>
+      <div class="cap" id="cap24" data-layout-allow-overlap="true"><span>el mismo flujo:</span></div>
+      <div class="cap" id="cap25" data-layout-allow-overlap="true"><span>cada venta actualiza</span></div>
+      <div class="cap" id="cap26" data-layout-allow-overlap="true"><span>tu caja, tu <b>stock</b></span></div>
+      <div class="cap" id="cap27" data-layout-allow-overlap="true"><span>y tu <b>comprobante.</b></span></div>
+      <div class="cap" id="cap28" data-layout-allow-overlap="true"><span>Y en <b>WhatsApp,</b></span></div>
+      <div class="cap" id="cap29" data-layout-allow-overlap="true"><span>tu vendedor con IA</span></div>
+      <div class="cap" id="cap30" data-layout-allow-overlap="true"><span>responde con <b>stock</b> real,</span></div>
+      <div class="cap" id="cap31" data-layout-allow-overlap="true"><span>envía fotos,</span></div>
+      <div class="cap" id="cap32" data-layout-allow-overlap="true"><span>tallas y precios,</span></div>
+      <div class="cap" id="cap33" data-layout-allow-overlap="true"><span>y valida el pago</span></div>
+      <div class="cap" id="cap34" data-layout-allow-overlap="true"><span>por <b>Yape</b> o <b>Plin.</b></span></div>
+      <div class="cap" id="cap35" data-layout-allow-overlap="true"><span>Con AI Studio,</span></div>
+      <div class="cap" id="cap36" data-layout-allow-overlap="true"><span>la foto del</span></div>
+      <div class="cap" id="cap37" data-layout-allow-overlap="true"><span><b>celular</b> se vuelve</span></div>
+      <div class="cap" id="cap38" data-layout-allow-overlap="true"><span>foto de <b>catálogo.</b></span></div>
+      <div class="cap" id="cap39" data-layout-allow-overlap="true"><span>Y a <b>Claude</b> le</span></div>
+      <div class="cap" id="cap40" data-layout-allow-overlap="true"><span>preguntas qué <b>reponer.</b></span></div>
+      <div class="cap" id="cap41" data-layout-allow-overlap="true"><span>Un solo plan,</span></div>
+      <div class="cap" id="cap42" data-layout-allow-overlap="true"><span>desde <b>ciento</b></span></div>
+      <div class="cap" id="cap43" data-layout-allow-overlap="true"><span><b>cincuenta</b> soles</span></div>
+      <div class="cap" id="cap44" data-layout-allow-overlap="true"><span>al mes por <b>tienda.</b></span></div>
+      <div class="cap" id="cap45" data-layout-allow-overlap="true"><span>Los almacenes</span></div>
+      <div class="cap" id="cap46" data-layout-allow-overlap="true"><span>son <b>gratis.</b></span></div>
+      <div class="cap" id="cap47" data-layout-allow-overlap="true"><span><b>EnCatalogo.</b> Tu</span></div>
+      <div class="cap" id="cap48" data-layout-allow-overlap="true"><span>mercadería en <b>orden.</b></span></div>
+      <div class="cap" id="cap49" data-layout-allow-overlap="true"><span>Tu negocio</span></div>
+      <div class="cap" id="cap50" data-layout-allow-overlap="true"><span>bajo <b>control.</b></span></div>
+      <div class="cap" id="cap51" data-layout-allow-overlap="true"><span>Prueba siete</span></div>
+      <div class="cap" id="cap52" data-layout-allow-overlap="true"><span>días <b>gratis,</b></span></div>
+      <div class="cap" id="cap53" data-layout-allow-overlap="true"><span>sin tarjeta.</span></div>
+      <audio id="v_e1" src="audio/seg/e1.wav" data-start="0.5" data-duration="4.868" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e2" src="audio/seg/e2.wav" data-start="5.618" data-duration="6.006" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e3" src="audio/seg/e3.wav" data-start="11.874" data-duration="7.715" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e4" src="audio/seg/e4.wav" data-start="19.839" data-duration="4.423" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e5" src="audio/seg/e5.wav" data-start="24.512" data-duration="7.216" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e6" src="audio/seg/e6.wav" data-start="31.977" data-duration="8.649" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e7" src="audio/seg/e7.wav" data-start="40.876" data-duration="6.838" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e8" src="audio/seg/e8.wav" data-start="47.964" data-duration="5.928" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e9" src="audio/seg/e9.wav" data-start="54.143" data-duration="7.792" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="63.93" data-track-index="13" data-volume="0.8"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="63.93" data-track-index="14" data-volume="0.45"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const capShow = (sel, a, b) => {
+        tl.fromTo(sel, { autoAlpha: 0, y: 12, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.15, ease: "back.out(2)" }, a - 0.04);
+        tl.set(sel, { autoAlpha: 0 }, b);
+      };
+      gsap.set(["#Aq", ".qq"], { autoAlpha: 0 });
+      tl.fromTo("#Abr", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.100);
+      tl.fromTo("#Ak", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.250);
+      tl.fromTo("#At", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.400);
+      tl.fromTo("#Acard", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.416);
+      tl.fromTo("#Aq", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 3.404);
+      tl.to("#Aq", { rotation: 12, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.904);
+      tl.fromTo("#As0", { autoAlpha: 0, x: 0 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 4.331);
+      tl.fromTo("#As1", { autoAlpha: 0, x: 0 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 4.451);
+      tl.fromTo("#As2", { autoAlpha: 0, x: 0 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 4.571);
+      tl.fromTo(".qq", { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.3, stagger: 0.1, ease: "back.out(2)" }, 4.717);
+      tl.set("#sB", { autoAlpha: 1 }, 5.018);
+      tl.fromTo("#sB", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 5.018);
+      tl.set("#sA", { autoAlpha: 0 }, 5.668);
+      tl.fromTo("#Bk", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 5.218);
+      tl.fromTo("#Bt", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 5.368);
+      tl.fromTo("#Bcard", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.387);
+      (() => { const o = { v: 0 }; tl.to(o, { v: 1248, duration: 1.2, ease: "power2.out", onUpdate: () => { document.querySelector("#Bn0").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 8.787); })();
+      (() => { const o = { v: 0 }; tl.to(o, { v: 12, duration: 1.2, ease: "power2.out", onUpdate: () => { document.querySelector("#Bn1").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 8.787); })();
+      (() => { const o = { v: 0 }; tl.to(o, { v: 3, duration: 1.2, ease: "power2.out", onUpdate: () => { document.querySelector("#Bn2").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 8.787); })();
+      tl.fromTo("#Br0", { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 8.635);
+      tl.fromTo("#Br1", { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 8.930);
+      tl.fromTo("#Br2", { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 9.364);
+      tl.fromTo("#Bv0", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 9.080);
+      tl.fromTo("#Bv1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 9.514);
+      tl.fromTo("#Bv2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 9.966);
+      tl.fromTo("#Bv3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 10.368);
+      tl.to("#Bcard", { scale: 1.02, duration: 0.3, yoyo: true, repeat: 1, ease: "sine.inOut" }, 11.021);
+      tl.set("#sC", { autoAlpha: 1 }, 11.274);
+      tl.fromTo("#sC", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 11.274);
+      tl.set("#sB", { autoAlpha: 0 }, 11.924);
+      tl.fromTo("#Ck", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 11.474);
+      tl.fromTo("#Ct", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 11.624);
+      gsap.set(["#Calert", "#Cd1", "#Cd2"], { autoAlpha: 0 });
+      tl.fromTo("#Ccard", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 11.974);
+      tl.fromTo("#Cfill", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0% 50%", duration: 2.33, ease: "power1.inOut" }, 13.669);
+      tl.fromTo("#Ctruck", { x: 0 }, { x: 772, duration: 2.33, ease: "power1.inOut" }, 13.669);
+      tl.fromTo("#Cd1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 14.835);
+      tl.fromTo("#Cd2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 16.002);
+      tl.fromTo("#Calert", { autoAlpha: 0, x: 0 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 16.936);
+      tl.to("#Calert .ich", { rotation: 14, duration: 0.1, yoyo: true, repeat: 5, ease: "sine.inOut" }, 17.336);
+      tl.set("#sD", { autoAlpha: 1 }, 19.239);
+      tl.fromTo("#sD", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 19.239);
+      tl.set("#sC", { autoAlpha: 0 }, 19.889);
+      tl.fromTo("#Dk", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 19.439);
+      tl.fromTo("#Dt", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 19.589);
+      tl.fromTo("#Dph", { autoAlpha: 0, y: 120 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, 19.922);
+      (() => { const o = { v: 0 }; tl.to(o, { v: 4820, duration: 1.1, ease: "power2.out", onUpdate: () => { document.querySelector("#Dsales").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 21.254); })();
+      tl.fromTo("#sD .bar", { scaleY: 0 }, { scaleY: 1, transformOrigin: "50% 100%", duration: 0.5, stagger: 0.06, ease: "power2.out" }, 21.454);
+      tl.fromTo("#Dup", { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power3.out" }, 22.026);
+      tl.fromTo("#Dlow", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 22.346);
+      tl.fromTo(["#Dl0 b", "#Dl1 b"], { color: "#0F0F10" }, { color: "#A65353", duration: 0.3 }, 23.742);
+      tl.set("#sE", { autoAlpha: 1 }, 23.912);
+      tl.fromTo("#sE", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 23.912);
+      tl.set("#sD", { autoAlpha: 0 }, 24.562);
+      tl.fromTo("#Ek", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 24.112);
+      tl.fromTo("#Et", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 24.262);
+      gsap.set(["#Estamp", ".tick"], { autoAlpha: 0 });
+      tl.fromTo("#Ecard", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 24.612);
+      tl.fromTo("#Estamp", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 25.900);
+      tl.fromTo("#Eu0", { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 29.336);
+      tl.fromTo("#Et0", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 29.736);
+      tl.fromTo("#Eu1", { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 29.893);
+      tl.fromTo("#Et1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 30.293);
+      tl.fromTo("#Eu2", { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 30.574);
+      tl.fromTo("#Et2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 30.974);
+      tl.set("#sF", { autoAlpha: 1 }, 31.377);
+      tl.fromTo("#sF", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 31.377);
+      tl.set("#sE", { autoAlpha: 0 }, 32.027);
+      tl.fromTo("#Fk", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 31.577);
+      tl.fromTo("#Ft", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 31.727);
+      tl.fromTo("#Fchat", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 32.138);
+      tl.fromTo("#Fm0", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 33.113);
+      tl.fromTo("#Fm1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 34.048);
+      tl.fromTo("#Fm2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 36.203);
+      tl.fromTo("#Fm3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 38.480);
+      tl.to("#Fm1 .mono", { color: "#D99873", duration: 0.25 }, 37.054);
+      tl.fromTo("#Fpay", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 39.695);
+      tl.set("#sG", { autoAlpha: 1 }, 40.276);
+      tl.fromTo("#sG", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 40.276);
+      tl.set("#sF", { autoAlpha: 0 }, 40.926);
+      tl.fromTo("#Gk", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 40.476);
+      tl.fromTo("#Gt", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 40.626);
+      tl.fromTo("#Gfr", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 42.245);
+      tl.fromTo("#Gaf", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.33, ease: "power2.inOut" }, 43.449);
+      tl.fromTo("#Ghd", { x: 940 }, { x: 0, duration: 1.33, ease: "power2.inOut" }, 43.449);
+      tl.to("#Ghd", { autoAlpha: 0, duration: 0.3 }, 44.978);
+      tl.fromTo("#Gq", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 45.676);
+      tl.fromTo("#Ga", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 47.285);
+      tl.set("#sH", { autoAlpha: 1 }, 47.364);
+      tl.fromTo("#sH", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 47.364);
+      tl.set("#sG", { autoAlpha: 0 }, 48.014);
+      tl.fromTo("#Hk", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 47.564);
+      tl.fromTo("#Ht", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 47.714);
+      tl.fromTo("#Hcard", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 48.863);
+      (() => { const o = { v: 0 }; tl.to(o, { v: 150, duration: 0.9, ease: "power2.out", onUpdate: () => { document.querySelector("#Hp").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 49.396); })();
+      tl.fromTo("#Hl0", { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 51.534);
+      tl.fromTo("#Hl1", { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 52.633);
+      tl.fromTo("#Hl2", { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: "power3.out" }, 53.228);
+      tl.fromTo("#Hpr", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 53.316);
+      tl.set("#sI", { autoAlpha: 1 }, 53.543);
+      tl.fromTo("#sI", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" }, 53.543);
+      tl.set("#sH", { autoAlpha: 0 }, 54.193);
+      tl.fromTo("#Ilg", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.8)" }, 53.893);
+      tl.fromTo("#Iwm", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 54.343);
+      tl.fromTo("#It1", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 54.306);
+      tl.fromTo("#It2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 55.246);
+      tl.fromTo("#Icta", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 57.126);
+      tl.fromTo("#Isub", { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 59.377);
+      tl.to("#Icta", { scale: 1.05, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }, 60.077);
+      capShow("#cap0", 0.500, 1.770);
+      capShow("#cap1", 1.770, 2.616);
+      capShow("#cap2", 2.616, 4.252);
+      capShow("#cap3", 4.252, 4.717);
+      capShow("#cap4", 4.717, 5.618);
+      capShow("#cap5", 5.618, 8.587);
+      capShow("#cap6", 8.587, 8.861);
+      capShow("#cap7", 8.861, 9.464);
+      capShow("#cap8", 9.464, 10.670);
+      capShow("#cap9", 10.670, 11.874);
+      capShow("#cap10", 11.874, 12.996);
+      capShow("#cap11", 12.996, 13.869);
+      capShow("#cap12", 13.869, 15.178);
+      capShow("#cap13", 15.178, 16.768);
+      capShow("#cap14", 16.768, 17.358);
+      capShow("#cap15", 17.358, 18.366);
+      capShow("#cap16", 18.366, 18.825);
+      capShow("#cap17", 18.825, 19.839);
+      capShow("#cap18", 19.839, 21.038);
+      capShow("#cap19", 21.038, 22.026);
+      capShow("#cap20", 22.026, 23.066);
+      capShow("#cap21", 23.066, 24.512);
+      capShow("#cap22", 24.512, 25.560);
+      capShow("#cap23", 25.560, 26.538);
+      capShow("#cap24", 26.538, 28.201);
+      capShow("#cap25", 28.201, 29.500);
+      capShow("#cap26", 29.500, 30.614);
+      capShow("#cap27", 30.614, 31.977);
+      capShow("#cap28", 31.977, 33.038);
+      capShow("#cap29", 33.038, 34.148);
+      capShow("#cap30", 34.148, 35.874);
+      capShow("#cap31", 35.874, 37.054);
+      capShow("#cap32", 37.054, 38.452);
+      capShow("#cap33", 38.452, 39.539);
+      capShow("#cap34", 39.539, 40.876);
+      capShow("#cap35", 40.876, 42.379);
+      capShow("#cap36", 42.379, 43.042);
+      capShow("#cap37", 43.042, 44.036);
+      capShow("#cap38", 44.036, 45.541);
+      capShow("#cap39", 45.541, 46.363);
+      capShow("#cap40", 46.363, 47.964);
+      capShow("#cap41", 47.964, 49.163);
+      capShow("#cap42", 49.163, 49.885);
+      capShow("#cap43", 49.885, 50.773);
+      capShow("#cap44", 50.773, 52.345);
+      capShow("#cap45", 52.345, 53.178);
+      capShow("#cap46", 53.178, 54.143);
+      capShow("#cap47", 54.143, 54.471);
+      capShow("#cap48", 54.471, 55.346);
+      capShow("#cap49", 55.346, 55.993);
+      capShow("#cap50", 55.993, 57.276);
+      capShow("#cap51", 57.276, 58.080);
+      capShow("#cap52", 58.080, 59.477);
+      capShow("#cap53", 59.477, 62.335);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
