@@ -1,0 +1,49 @@
+/* EnCatalogo.pe — tokens de marca para composiciones HyperFrames.
+   Fuente: brand/encatalogo/EnCatalogo-Design-System.pdf (v1.0).
+   Copiar junto con ./fonts al directorio assets/ del video. */
+
+@font-face { font-family: "DM Serif Display"; font-weight: 400; font-style: normal; src: url("fonts/dm-serif-display-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "DM Serif Display"; font-weight: 400; font-style: italic; src: url("fonts/dm-serif-display-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/inter-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/inter-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+:root {
+  --ec-cream: #F2EDE4;
+  --ec-light: #FAF9F5;
+  --ec-white: #FFFFFF;
+  --ec-ink: #0F0F10;
+  --ec-terracotta: #D99873;
+  --ec-terracotta-dark: #A65353;
+  --ec-terracotta-soft: #F2E6CE;
+  --ec-border: #E7DDD1;
+  --ec-success: #3F7A4F;
+  --ec-error: #B23B3B;
+  --ec-whatsapp: #25D366; /* sólo ícono/botón de WhatsApp */
+  --ec-body: #57534E;
+  --ec-muted: #8A8178;
+
+  --ec-font-display: "DM Serif Display", Georgia, serif;
+  --ec-font-sans: "Inter", system-ui, sans-serif;
+
+  --ec-shadow-card: 0 1px 2px rgba(15,15,16,.04), 0 8px 24px rgba(15,15,16,.05);
+}
+
+.ec-eyebrow { font: 700 0.95cqw/1.2 var(--ec-font-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--ec-terracotta-dark); }
+.ec-display { font-family: var(--ec-font-display); font-weight: 400; color: var(--ec-ink); line-height: 1.05; }
+.ec-quote   { font-family: var(--ec-font-display); font-style: italic; color: var(--ec-terracotta-dark); }
+.ec-body    { font-family: var(--ec-font-sans); color: var(--ec-body); line-height: 1.45; }
+
+.ec-card  { background: var(--ec-white); border: 1px solid var(--ec-border); border-radius: 1.4cqw; box-shadow: var(--ec-shadow-card); }
+.ec-badge { display: inline-block; background: var(--ec-terracotta-soft); color: var(--ec-terracotta-dark); border-radius: 999px; padding: .45em 1.1em; font: 700 0.9cqw/1 var(--ec-font-sans); letter-spacing: .12em; text-transform: uppercase; }
+.ec-badge--dark { background: rgba(217,152,115,.18); color: var(--ec-terracotta); }
+
+.ec-cta { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: .9em 1.8em; font: 600 1.2cqw/1 var(--ec-font-sans); }
+.ec-cta--primary   { background: var(--ec-ink); color: var(--ec-white); }
+.ec-cta--secondary { background: var(--ec-white); color: var(--ec-ink); border: 1px solid var(--ec-border); }
+.ec-cta--on-dark   { background: var(--ec-terracotta); color: var(--ec-ink); }
+
+.ec-callout { background: var(--ec-terracotta-soft); border-left: .25cqw solid var(--ec-terracotta-dark); border-radius: 1cqw; padding: 1.2cqw 1.6cqw; }
+.ec-icon-chip { display: inline-grid; place-items: center; background: var(--ec-terracotta-soft); color: var(--ec-terracotta-dark); border-radius: .6cqw; }
+.ec-step-dot { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--ec-ink); color: var(--ec-white); font: 700 1em/1 var(--ec-font-sans); }
