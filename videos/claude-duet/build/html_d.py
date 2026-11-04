@@ -49,6 +49,21 @@ for s in segs:
         tot, t0 = sum(chars(x) for x in best[1]), a
         for x in best[1]:
             d = (b - a) * chars(x) / tot; caps.append([s["start"] + t0, s["start"] + t0 + d, x]); t0 += d
+WT = {}
+for s_ in segs:   # estimated start time of every word, for anchoring animations to what is being said
+    ph, iv = phrases(s_["text"]), [list(x) for x in s_["speech"]]
+    while len(ph) > len(iv):
+        k = min(range(len(ph) - 1), key=lambda i: chars(ph[i]) + chars(ph[i + 1])); ph[k:k + 2] = [ph[k] + ph[k + 1]]
+    while len(iv) > len(ph):
+        k = min(range(len(iv) - 1), key=lambda i: iv[i + 1][0] - iv[i][1]); iv[k:k + 2] = [[iv[k][0], iv[k + 1][1]]]
+    lst = []
+    for words, (a, b) in zip(ph, iv):
+        tot, acc = chars(words), 0
+        for w_ in words: lst.append((w_.lower().strip("¿¡,.:;?!"), s_["start"] + a + (b - a) * acc / tot)); acc += len(w_) + 1
+    WT[s_["id"]] = lst
+def W(i, word, off=0.0, nth=0):
+    hits = [t for w_, t in WT[i] if w_.startswith(word)]
+    return round(hits[nth] + off, 3)
 for i in range(len(caps)):
     nxt = caps[i + 1][0] if i + 1 < len(caps) else caps[i][1] + 0.4
     caps[i][1] = min(nxt, caps[i][1] + 0.35) if nxt - caps[i][1] > 0.7 else nxt
@@ -197,19 +212,18 @@ js(f'tl.fromTo("#aN2", {{ autoAlpha: 0, y: -40 }}, {{ autoAlpha: 1, y: 0, durati
 reveal("#sB", "#sA", S[1]); heading("B", S[1])
 show("#Bch", p("d2", 1), 0.4, 20); popin("#Bhub", p("d2", 2, -0.2), 0.5)
 for i in range(3):
-    js(f'tl.fromTo("#Bl{i}", {{ autoAlpha: 0 }}, {{ autoAlpha: 1, duration: 0.3 }}, {p("d2", 2, 0.25 + i * 0.7):.3f});')
-    popin(f"#Bn{i}", p("d2", 2, 0.3 + i * 0.7))
+    js(f'tl.fromTo("#Bl{i}", {{ autoAlpha: 0 }}, {{ autoAlpha: 1, duration: 0.3 }}, {W("d2", ["correo", "calendario", "apps"][i], -0.15):.3f});')
+    popin(f"#Bn{i}", W("d2", ["correo", "calendario", "apps"][i], -0.1))
 js(f'tl.to("#Bw line", {{ strokeDashoffset: -104, duration: 2.6, ease: "none" }}, {p("d2", 3):.3f});')
 popin("#Bclk", p("d2", 3, 0.2)); js(f'tl.to("#Bclki", {{ rotation: 360, duration: 1.6, ease: "power1.inOut" }}, {p("d2", 3, 0.6):.3f});')
 js(f'tl.to("#Bhub", {{ scale: 1.07, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {p("d2", 3, 0.8):.3f});')
 # C
 reveal("#sC", "#sB", S[2], "50%", "30%"); heading("C", S[2])
 js('tl.set(["#Cr0", "#Cr1", "#Cr2", "#Cap", "#Ced", "#Cok"], { autoAlpha: 0 }, 0);')
-show("#Cc", p("d3", 1, -0.4), 0.5, 60); js(f'tl.fromTo("#Csun", {{ rotation: -30, y: 20 }}, {{ rotation: 0, y: 0, duration: 0.8, ease: "power2.out" }}, {p("d3", 1, -0.3):.3f});')
-tC = SEG["d3"]["start"]; a, b = SEG["d3"]["speech"][1]
-slide("#Cr0", tC + a + 0.1); slide("#Cr1", tC + a + (b - a) * 0.3); slide("#Cr2", tC + a + (b - a) * 0.6)
-show("#Cap", tC + a + (b - a) * 0.75, 0.35, 20); show("#Ced", tC + a + (b - a) * 0.78, 0.35, 20)
-tap("#Cap", tC + b + 0.15); popin("#Cok", tC + b + 0.3)
+show("#Cc", W("d3", "resumen", -0.3), 0.5, 60); js(f'tl.fromTo("#Csun", {{ rotation: -30, y: 20 }}, {{ rotation: 0, y: 0, duration: 0.8, ease: "power2.out" }}, {W("d3", "resumen", -0.2):.3f});')
+slide("#Cr0", W("d3", "correos")); slide("#Cr1", W("d3", "reuniones")); slide("#Cr2", W("d3", "borradores"))
+show("#Cap", W("d3", "listos"), 0.35, 20); show("#Ced", W("d3", "listos", 0.1), 0.35, 20)
+tap("#Cap", W("d3", "apruebes", 0.2)); popin("#Cok", W("d3", "apruebes", 0.4))
 # D
 reveal("#sD", "#sC", S[3]); heading("D", S[3])
 js('tl.set(["#Doff", "#Dt2"], { autoAlpha: 0 }, 0);')
@@ -219,36 +233,36 @@ show("#Dph", p("d4", 1, -0.2), 0.4, 30); js(f'tl.to("#Dscr", {{ backgroundColor:
 show("#Doff", p("d4", 1, 0.6), 0.4, 10); show("#Dt2", p("d4", 1, 0.2))
 # E
 reveal("#sE", "#sD", S[4], "50%", "20%"); heading("E", S[4])
-for i in range(4): slide(f"#Er{i}", p("d5", i + 1, -0.1), 120)
-js(f'tl.to("#Er3", {{ scale: 1.03, duration: 0.3, yoyo: true, repeat: 1 }}, {p("d5", 4, 1.2):.3f});')
+for i, w_ in enumerate(["encuentra", "prepara", "deja", "arma"]): slide(f"#Er{i}", W("d5", w_, -0.1), 120)
+js(f'tl.to("#Er3", {{ scale: 1.03, duration: 0.3, yoyo: true, repeat: 1 }}, {W("d5", "dashboard"):.3f});')
 # F
 reveal("#sF", "#sE", S[5]); heading("F", S[5])
 js('tl.set([".lk", "#Fc", "#Fok"], { autoAlpha: 0 }, 0);')
 for i in range(4):
-    popin(f"#Fa{i}", p("d6", 2 + i // 2, (i % 2) * 0.9))
-    js(f'tl.fromTo("#Fa{i} .lk", {{ autoAlpha: 0, scale: 0.3 }}, {{ autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }}, {p("d6", 2 + i // 2, (i % 2) * 0.9 + 0.3):.3f});')
-show("#Fc", p("d6", 4, -0.1), 0.5, 60)
-js(f'tl.to("#Fap", {{ scale: 1.06, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {p("d6", 5):.3f});')
-tap("#Fap", p("d6", 5, 1.3)); popin("#Fok", p("d6", 5, 1.45))
+    tw = W("d6", ["enviar", "pago", "firmar", "borrar"][i], -0.1)
+    popin(f"#Fa{i}", tw)
+    js(f'tl.fromTo("#Fa{i} .lk", {{ autoAlpha: 0, scale: 0.3 }}, {{ autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }}, {tw + 0.3:.3f});')
+show("#Fc", W("d6", "muestra", -0.3), 0.5, 60)
+js(f'tl.to("#Fap", {{ scale: 1.06, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {W("d6", "espera"):.3f});')
+tap("#Fap", W("d6", "aprobación", 0.4)); popin("#Fok", W("d6", "aprobación", 0.55))
 # G
 reveal("#sG", "#sF", S[6], "50%", "30%"); heading("G", S[6])
 js('tl.set([".ban"], { autoAlpha: 0 }, 0);')
-for i in range(3): slide(f"#Gr{i}", p("d7", i + 1, -0.1))
-for i in range(2): popin(f"#Gb{i}", p("d7", i + 1, 0.6))
-js(f'tl.to("#Gr2 .ric", {{ rotation: 8, duration: 0.1, yoyo: true, repeat: 5 }}, {p("d7", 3, 0.6):.3f});')
-show("#Gsrc", p("d7", 3, 1.6), 0.4, 10)
+GW = [W("d7", "no", -0.1), W("d7", "no", -0.1, 1), W("d7", "anthropic", -0.1)]
+for i in range(3): slide(f"#Gr{i}", GW[i])
+for i in range(2): popin(f"#Gb{i}", GW[i] + 0.7)
+js(f'tl.to("#Gr2 .ric", {{ rotation: 8, duration: 0.1, yoyo: true, repeat: 5 }}, {W("d7", "urgente"):.3f});')
+show("#Gsrc", W("d7", "urgente", 0.8), 0.4, 10)
 # H
 reveal("#sH", "#sG", S[7]); heading("H", S[7])
-a, b = SEG["d8"]["speech"][1]
-for i in range(3): slide(f"#Hp{i}", SEG["d8"]["start"] + a + (b - a) * i / 3)
-a, b = SEG["d8"]["speech"][2]
-for i in range(3): popin(f"#Hq{i}", SEG["d8"]["start"] + a + (b - a) * i / 3)
-show("#Hn", p("d8", 3))
+for i, w_ in enumerate(["suscriptores", "estados", "lista"]): slide(f"#Hp{i}", W("d8", w_, -0.1))
+for i, w_ in enumerate(["ios", "android", "claude"]): popin(f"#Hq{i}", W("d8", w_, -0.1))
+show("#Hn", W("d8", "mismos", -0.4))
 # I
 reveal("#sI", "#sH", S[8]); heading("I", S[8])
-slide("#Ip0", p("d9", 1)); slide("#Ip1", p("d9", 2))
-popin("#Iw", p("d9", 3, -0.05), 0.5); show("#Is", p("d9", 4)); show("#Isrc", p("d9", 4, 1.0), 0.4, 10); ev("chime", p("d9", 3))
-js(f'tl.to("#Iw", {{ scale: 1.05, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {p("d9", 4, 0.6):.3f});')
+slide("#Ip0", W("d9", "empieza", -0.1)); slide("#Ip1", W("d9", "aprueba", -0.1))
+popin("#Iw", W("d9", "guarda", -0.05), 0.5); show("#Is", W("d9", "sígueme", -0.1)); show("#Isrc", W("d9", "sígueme", 1.0), 0.4, 10); ev("chime", W("d9", "guarda"))
+js(f'tl.to("#Iw", {{ scale: 1.05, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {W("d9", "sígueme", 0.6):.3f});')
 json.dump(EV, open(os.path.join(ROOT, "build", "events.json"), "w"))
 
 CSS = open(os.path.join(ROOT, "build", "style_d.css")).read()
