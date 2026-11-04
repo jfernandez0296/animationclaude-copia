@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>EnCatalogo carrusel</title>
+<link rel="stylesheet" href="../../brand/encatalogo/tokens.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#ccc; font-family: var(--ec-font-sans); color: var(--ec-ink); }
+  .slide { position:relative; width:1080px; height:1350px; overflow:hidden; margin-bottom:20px; padding:80px 80px 0; }
+  .s1 { background: var(--ec-cream); }
+  .s2 { background: var(--ec-light); }
+  .brand { display:flex; align-items:center; gap:16px; font-size:36px; font-weight:700; }
+  .brand img { height:56px; }
+  .num { position:absolute; right:80px; top:84px; font-family: var(--ec-font-display); font-size:40px; color: var(--ec-terracotta); }
+  .badge { display:inline-block; margin-top:70px; padding:14px 28px; border-radius:999px; background: var(--ec-terracotta-soft); color: var(--ec-terracotta-dark); font-size:24px; font-weight:700; letter-spacing:.12em; }
+  h1 { font-family: var(--ec-font-display); font-weight:400; font-size:104px; line-height:1.02; letter-spacing:-.01em; margin-top:28px; }
+  h1 em { color: var(--ec-terracotta-dark); }
+  h2 { font-family: var(--ec-font-display); font-weight:400; font-size:76px; line-height:1.05; margin-top:26px; }
+  .lead { font-size:34px; line-height:1.4; color: var(--ec-body); margin-top:26px; max-width:860px; }
+  .card { background:#fff; border:2px solid var(--ec-border); border-radius:36px; box-shadow: 0 2px 4px rgba(15,15,16,.04), 0 24px 60px rgba(15,15,16,.07); }
+  .inv { position:absolute; left:80px; right:80px; top:780px; padding:36px 40px; }
+  .eb { font-size:22px; font-weight:700; letter-spacing:.14em; color: var(--ec-terracotta-dark); }
+  .tr { display:grid; grid-template-columns:1.4fr 1fr .4fr; align-items:center; height:84px; border-top:2px solid var(--ec-border); font-size:30px; font-weight:600; }
+  .tr:first-of-type { margin-top:22px; }
+  .tr span.t { justify-self:start; padding:6px 18px; border-radius:999px; background: var(--ec-light); border:2px solid var(--ec-border); font-size:24px; font-weight:500; color: var(--ec-body); }
+  .tr b { text-align:right; font-size:36px; }
+  .alert { display:flex; align-items:center; gap:14px; margin-top:20px; padding:16px 22px; border-radius:20px; background: var(--ec-terracotta-soft); border-left:8px solid var(--ec-terracotta-dark); font-size:26px; font-weight:600; }
+  .swipe { position:absolute; right:80px; bottom:56px; display:flex; align-items:center; gap:12px; font-size:28px; font-weight:600; color: var(--ec-body); }
+  .list { margin-top:44px; display:flex; flex-direction:column; gap:20px; }
+  .it { display:flex; gap:26px; align-items:center; padding:26px 30px; }
+  .ic { flex:none; width:84px; height:84px; border-radius:22px; background: var(--ec-terracotta-soft); display:flex; align-items:center; justify-content:center; }
+  .it b { display:block; font-size:34px; font-weight:700; }
+  .it span { display:block; font-size:26px; color: var(--ec-body); margin-top:4px; line-height:1.3; }
+  .foot { position:absolute; left:80px; right:80px; bottom:70px; display:flex; align-items:center; justify-content:space-between; }
+  .price { font-size:28px; color: var(--ec-body); }
+  .price b { display:block; font-family: var(--ec-font-display); font-weight:400; font-size:72px; color: var(--ec-ink); line-height:1; }
+  .cta { display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .btn { padding:28px 48px; border-radius:999px; background: var(--ec-ink); color:#fff; font-size:34px; font-weight:600; }
+  .cta small { font-size:24px; color: var(--ec-body); }
+</style></head><body>
+
+<section class="slide s1" id="slide-1">
+  <div class="brand"><img src="../../brand/encatalogo/logo/encatalogo-logo.svg" alt="">EnCatalogo.pe</div>
+  <div class="num">01 / 02</div>
+  <div class="badge">INVENTARIO CONECTADO A TUS VENTAS</div>
+  <h1>Tu mercadería en orden. <em>Tu negocio bajo control.</em></h1>
+  <p class="lead">Sabes qué tienes, dónde está y qué falta, en cada tienda y almacén.</p>
+  <div class="card inv">
+    <div class="eb">STOCK POR TIENDA</div>
+    <div class="tr"><span>Vestido Emilia</span><span class="t">Miraflores</span><b>24</b></div><div class="tr"><span>Blazer Siena</span><span class="t">San Isidro</span><b>7</b></div><div class="tr"><span>Pantalón Nara</span><span class="t">Almacén</span><b>86</b></div>
+    <div class="alert"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+  <path d="M4 2C2.8 3.7 2 5.7 2 8" />
+  <path d="M22 8c0-2.3-.8-4.3-2-6" />
+</svg> Reponer pronto · Blazer Siena, talla S · quedan 3</div>
+  </div>
+  <div class="swipe">Desliza <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#57534E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div>
+</section>
+
+<section class="slide s2" id="slide-2">
+  <div class="brand"><img src="../../brand/encatalogo/logo/encatalogo-logo.svg" alt="">EnCatalogo.pe</div>
+  <div class="num">02 / 02</div>
+  <h2>Todo tu negocio,<br>en un solo lugar</h2>
+  <div class="list">
+    <div class="card it"><div class="ic"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+  <path d="M12 22V12" />
+  <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
+  <path d="m7.5 4.27 9 5.15" />
+</svg></div><div><b>Inventario y traslados</b><span>Stock por tienda, almacén y variante. Traslados trazables entre sedes.</span></div></div><div class="card it"><div class="ic"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+  <path d="M12 18h.01" />
+</svg></div><div><b>App móvil</b><span>Ventas del día y alertas de stock desde el celular.</span></div></div><div class="card it"><div class="ic"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+  <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+  <path d="M12 17.5v-11" />
+</svg></div><div><b>Facturación y caja</b><span>Cada venta actualiza caja, stock y comprobante.</span></div></div><div class="card it"><div class="ic"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" />
+</svg></div><div><b>Vendedor IA en WhatsApp</b><span>Responde con stock real y valida pagos por Yape o Plin.</span></div></div>
+  </div>
+  <div class="foot">
+    <div class="price">Un solo plan<b>S/ 150</b>al mes con 1 tienda · IGV incluido</div>
+    <div class="cta"><div class="btn">Probar 7 días gratis</div><small>Sin tarjeta · encatalogo.pe</small></div>
+  </div>
+</section>
+</body></html>
