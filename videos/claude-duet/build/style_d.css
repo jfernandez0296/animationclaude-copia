@@ -1,0 +1,72 @@
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); font-weight: 400 600; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); font-weight: 800 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1f1e1d; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #1f1e1d; font-family: "Manrope", system-ui, sans-serif; color: #1f1e1d; }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .light { background: #f4efe6; }
+      #sB, #sC, #sD, #sE, #sF, #sG, #sH, #sI, .cap { visibility: hidden; opacity: 0; }
+      .kick { font-size: 30px; font-weight: 800; letter-spacing: 5px; }
+      .ttl { font-size: 76px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.04; }
+      .sub { font-size: 40px; font-weight: 700; }
+      .illu { left: 70px; top: 1390px; font-size: 22px; font-weight: 600; }
+      .dmark { background: #f4efe6; display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
+      .phone { width: 500px; height: 800px; border-radius: 64px; background: #0e0d0c; border: 12px solid #3a3836; overflow: hidden; }
+      .phone.sm { width: 230px; height: 330px; border-radius: 40px; border-width: 9px; }
+      .pscr { left: 0; top: 0; width: 100%; height: 100%; background: #2d2b29; }
+      .pscr.lit { background: #e9dfcf; }
+      .poff { left: 0; top: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+      .ptime { left: 0; top: 90px; width: 476px; text-align: center; font-size: 110px; font-weight: 700; color: #f4efe6; letter-spacing: -0.03em; }
+      .notif { left: 22px; top: 300px; width: 432px; padding: 22px 24px; border-radius: 30px; background: #f4efe6; box-shadow: 0 20px 40px rgba(0,0,0,0.35); }
+      .notif.sm { top: 520px; }
+      .nhd { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+      .nhd .dmark { box-shadow: none; background: #e8dfd0; }
+      .nhd i { margin-left: auto; font-style: normal; font-weight: 600; color: #6b655c; font-size: 22px; }
+      .nbd { font-size: 30px; font-weight: 600; line-height: 1.3; }
+      .zz { font-size: 50px; font-weight: 800; letter-spacing: 8px; }
+      .chip { padding: 12px 28px; border-radius: 999px; background: #e8dfd0; color: #a4482a; font-size: 30px; font-weight: 800; white-space: nowrap; }
+      .node { width: 280px; height: 220px; border-radius: 36px; background: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; font-size: 36px; font-weight: 800; box-shadow: 0 20px 50px rgba(31,30,29,0.12); }
+      .pill { display: flex; align-items: center; gap: 16px; padding: 18px 34px; border-radius: 999px; font-size: 36px; font-weight: 800; white-space: nowrap; }
+      .pill.big { background: #f4efe6; color: #1f1e1d; font-size: 52px; padding: 22px 44px; }
+      .card { background: #ffffff; border-radius: 40px; box-shadow: 0 30px 70px rgba(31,30,29,0.14); }
+      .card.dk { background: #2d2b29; box-shadow: none; border: 3px solid #4a4744; }
+      .chd { left: 40px; top: 40px; display: flex; align-items: center; gap: 24px; }
+      .chd b { display: block; font-size: 44px; font-weight: 800; }
+      .chd i { display: block; font-style: normal; font-size: 28px; font-weight: 600; color: #8d877c; margin-top: 4px; }
+      .row { height: 190px; border-radius: 32px; display: flex; align-items: center; gap: 30px; padding: 0 34px; box-shadow: 0 14px 34px rgba(31,30,29,0.08); }
+      .ric { flex: none; width: 110px; height: 110px; border-radius: 28px; display: flex; align-items: center; justify-content: center; }
+      .rtx { font-size: 42px; font-weight: 800; line-height: 1.15; }
+      .rtx b { display: block; font-weight: 800; }
+      .rtx i { display: block; font-style: normal; font-size: 32px; font-weight: 600; color: #6b655c; margin-top: 6px; }
+      #sC .row { height: 130px; box-shadow: none; }
+      #sC .ric { width: 84px; height: 84px; border-radius: 22px; }
+      #sC .rtx { font-size: 36px; }
+      .cnt { margin-left: auto; width: 64px; height: 64px; border-radius: 32px; background: #a4482a; color: #fff; font-size: 34px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+      .cnt.sage { background: #4f7a63; }
+      .btn { padding: 22px 48px; border-radius: 22px; background: #a4482a; color: #fff; font-size: 34px; font-weight: 800; white-space: nowrap; }
+      .btn.ghost { background: #e8dfd0; color: #1f1e1d; }
+      .btn.ghost.dk { background: #4a4744; color: #f4efe6; }
+      .okp { display: flex; align-items: center; gap: 10px; padding: 12px 26px; border-radius: 999px; background: #dfe9e2; color: #2f5a43; font-size: 30px; font-weight: 800; white-space: nowrap; }
+      .vm { width: 400px; padding: 34px; border-radius: 30px; background: #2d2b29; border: 3px solid #4a4744; }
+      .vmt { font-size: 30px; font-weight: 700; color: #c9c2b6; margin-bottom: 20px; }
+      .vbar { height: 26px; border-radius: 13px; background: #4a4744; overflow: hidden; }
+      .vbar div { width: 100%; height: 100%; background: #f0b36a; border-radius: 13px; transform-origin: 0% 50%; }
+      .vmp { font-size: 28px; font-weight: 700; color: #f0b36a; margin-top: 18px; }
+      .dtx { font-size: 50px; font-weight: 800; line-height: 1.2; width: 600px; }
+      .act { width: 220px; height: 230px; border-radius: 34px; background: #2d2b29; border: 3px solid #4a4744; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #f4efe6; font-size: 34px; font-weight: 800; }
+      .lk { position: absolute; right: -14px; top: -14px; width: 62px; height: 62px; border-radius: 31px; background: #f0b36a; display: flex; align-items: center; justify-content: center; }
+      .fmsg { left: 40px; top: 190px; width: 860px; padding: 30px 34px; border-radius: 26px; background: #1f1e1d; color: #f4efe6; font-size: 40px; font-weight: 700; line-height: 1.25; }
+      .ban { margin-left: auto; }
+      .src { font-size: 32px; font-weight: 700; }
+      .plat { width: 290px; height: 190px; border-radius: 32px; background: #2d2b29; border: 3px solid #4a4744; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #f4efe6; font-size: 40px; font-weight: 800; }
+      .note { display: flex; align-items: center; gap: 18px; font-size: 40px; font-weight: 700; color: #f4efe6; }
+      .tip { width: 940px; display: flex; align-items: center; gap: 34px; padding: 34px 40px; border-radius: 36px; background: #f4efe6; font-size: 46px; font-weight: 700; line-height: 1.2; }
+      .tip b { color: #a4482a; }
+      .num { flex: none; width: 96px; height: 96px; border-radius: 48px; background: #1f1e1d; color: #f4efe6; font-size: 52px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+      .endw { text-align: center; font-size: 110px; font-weight: 800; letter-spacing: -0.03em; color: #ffffff; }
+      .ends { text-align: center; font-size: 46px; font-weight: 700; color: #ffffff; }
+      .cap { position: absolute; left: 40px; width: 1000px; top: 1480px; text-align: center; }
+      .cap span { display: inline-block; background: #1f1e1d; color: #fff; font-size: 54px; font-weight: 800; padding: 14px 32px; border-radius: 24px; line-height: 1.18; box-shadow: 0 12px 34px rgba(0,0,0,0.25); border: 3px solid rgba(244,239,230,0.18); }
+      .cap b { color: #f0b36a; font-weight: 800; }
