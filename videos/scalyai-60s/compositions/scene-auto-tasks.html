@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Acto 2: del caos manual a las tareas que se hacen solas</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-auto-tasks" data-width="1920" data-height="1080" data-duration="6.2" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            color: var(--fg, #041b3d);
+            font-family: var(--font-body, system-ui, sans-serif);
+          }
+          #scene-auto-tasks-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .sa-bg {
+            position: absolute;
+            inset: 0;
+            background:
+              radial-gradient(circle at 18% 8%, rgba(71, 212, 212, 0.3), transparent 46%),
+              radial-gradient(circle at 88% 92%, rgba(0, 123, 131, 0.2), transparent 46%),
+              radial-gradient(ellipse at 50% 38%, #fcfcf8 0%, #f0f1e8 52%, #e2e5da 100%);
+          }
+          .sa-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            padding: 80px 150px 80px 160px;
+            gap: 60px;
+          }
+
+          /* left: the story headline swaps from "a mano" to "solas" */
+          .sa-copy {
+            position: relative;
+            flex: 0 0 auto;
+            width: 700px;
+            height: 520px;
+          }
+          .sa-title {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 104px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+          }
+          .sa-title-line {
+            display: block;
+          }
+          .sa-accent {
+            color: var(--brand, #007b83);
+          }
+          .sa-coral {
+            color: #e0584a;
+          }
+          .sa-sub {
+            position: absolute;
+            left: 0;
+            top: 370px;
+            width: 640px;
+            color: var(--muted, #2f4560);
+            font-size: 38px;
+            font-weight: 500;
+            line-height: 1.3;
+          }
+
+          /* right: checklist card */
+          .sa-card {
+            position: relative;
+            flex: 0 0 auto;
+            width: 900px;
+            padding: 34px 36px 30px;
+            border-radius: 40px;
+            background: #ffffff;
+            overflow: hidden;
+            box-shadow:
+              0 50px 90px rgba(4, 27, 61, 0.2),
+              0 14px 28px rgba(4, 27, 61, 0.1);
+          }
+          .sa-sheen {
+            position: absolute;
+            top: -20%;
+            left: -40%;
+            width: 26%;
+            height: 140%;
+            background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.85) 50%, transparent 100%);
+            pointer-events: none;
+          }
+          .sa-card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--muted, #2f4560);
+          }
+          .sa-scaly {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--navy-2, #041b3d), var(--brand, #007b83));
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0;
+          }
+          .sa-scaly svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+          }
+          .sa-pend {
+            position: relative;
+            display: inline-block;
+            min-width: 190px;
+            text-align: right;
+          }
+          .sa-pend-a {
+            color: #b8412f;
+          }
+          .sa-pend-b {
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--brand, #007b83);
+            white-space: nowrap;
+          }
+          .sa-rows {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+          .sa-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            height: 84px;
+            padding: 0 22px;
+            border-radius: 22px;
+            background: #f4f5ef;
+            white-space: nowrap;
+          }
+          .sa-alert {
+            position: absolute;
+            right: -2px;
+            top: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #d9473a;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+          }
+          .sa-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 3px solid #c6ccc4;
+            background: #ffffff;
+          }
+          .sa-box svg {
+            display: block;
+            width: 34px;
+            height: 34px;
+          }
+          .sa-text {
+            flex: 1 1 auto;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+          }
+          .sa-chips {
+            position: relative;
+            flex: 0 0 188px;
+            height: 44px;
+          }
+          .sa-chip {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            font-size: 28px;
+            font-weight: 700;
+          }
+          .sa-chip-manual {
+            background: #fde6e2;
+            color: #a83a2a;
+          }
+          .sa-chip-auto {
+            background: var(--brand, #007b83);
+            color: #ffffff;
+          }
+          .sa-chip-auto svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+          }
+          .sa-scan {
+            position: absolute;
+            left: -12px;
+            right: -12px;
+            top: 0;
+            height: 70px;
+            border-radius: 20px;
+            background: linear-gradient(
+              180deg,
+              rgba(71, 212, 212, 0) 0%,
+              rgba(71, 212, 212, 0.5) 50%,
+              rgba(71, 212, 212, 0) 100%
+            );
+            pointer-events: none;
+          }
+          .sa-spark {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            pointer-events: none;
+          }
+          .sa-foot {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-top: 22px;
+            padding: 22px 8px 0;
+            border-top: 2px solid #e3e6df;
+          }
+          .sa-foot-label {
+            font-size: 35px;
+            font-weight: 600;
+            color: var(--muted, #2f4560);
+          }
+          .sa-foot-num {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 76px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            color: var(--brand, #007b83);
+            white-space: nowrap;
+          }
+          .sa-unit {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: var(--muted, #2f4560);
+          }
+          .sa-roll {
+            display: inline-block;
+            height: 1.05em;
+            overflow: hidden;
+            vertical-align: bottom;
+          }
+          .sa-strip {
+            display: flex;
+            flex-direction: column;
+          }
+          .sa-strip > span {
+            display: block;
+            height: 1.05em;
+            line-height: 1.05;
+          }
+          .sa-note {
+            margin-top: 12px;
+            font-size: 28px;
+            font-weight: 500;
+            color: #47564e;
+            text-align: right;
+          }
+        </style>
+
+        <div id="scene-auto-tasks-clip" class="clip" data-start="0" data-duration="6.2" data-track-index="0">
+          <div class="sa-bg"></div>
+          <div class="sa-content">
+            <div class="sa-copy">
+              <h2 class="sa-title sa-t1">
+                <span class="sa-title-line">De día,</span>
+                <span class="sa-title-line">todo a</span>
+                <span class="sa-title-line sa-coral">mano.</span>
+              </h2>
+              <h2 class="sa-title sa-t2">
+                <span class="sa-title-line">Ahora,</span>
+                <span class="sa-title-line">se hacen</span>
+                <span class="sa-title-line sa-accent">solas.</span>
+              </h2>
+              <p class="sa-sub sa-s1">Cada pedido pasa por tres manos.</p>
+              <p class="sa-sub sa-s2">ScalyAI lo conecta todo. Sin copiar y pegar.</p>
+            </div>
+
+            <div class="sa-card">
+              <div class="sa-sheen" data-layout-allow-overflow="true"></div>
+              <div class="sa-card-head">
+                <span>Tareas de la semana</span>
+                <span class="sa-scaly"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>ScalyAI activado</span>
+                <span class="sa-pend"><span class="sa-pend-a">5 pendientes</span><span class="sa-pend-b">Todo al día</span></span>
+              </div>
+              <div class="sa-rows">
+                <div class="sa-row">
+                  <div class="sa-alert">!</div>
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Copiar el pedido #1042 a Excel</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Responder: ¿hay talla M?</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-alert">!</div>
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Pasar el #1042 al CRM</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Enviar recordatorio de pago</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-row">
+                  <div class="sa-alert">!</div>
+                  <div class="sa-box"><svg viewBox="0 0 40 40"><path class="sa-tick" d="M10 21l7 7 13-14" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                  <div class="sa-text">Armar el reporte semanal</div>
+                  <div class="sa-chips">
+                    <div class="sa-chip sa-chip-manual">Pendiente</div>
+                    <div class="sa-chip sa-chip-auto"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>Automático</div>
+                  </div>
+                </div>
+                <div class="sa-scan" data-layout-allow-overflow="true"></div>
+              </div>
+              <div class="sa-foot">
+                <span class="sa-foot-label">Tiempo recuperado</span>
+                <span class="sa-foot-num">
+                  <span class="sa-roll"><span class="sa-strip sa-strip-a" data-layout-allow-overflow="true"><span>0</span><span>1</span></span></span><span class="sa-roll"><span class="sa-strip sa-strip-b" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span></span></span>
+                  <span class="sa-unit"> h por semana</span>
+                </span>
+              </div>
+              <div class="sa-note">Datos ilustrativos</div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) {
+              return root.querySelectorAll(s);
+            };
+            var el = function (s) {
+              return root.querySelector(s);
+            };
+            var BRAND = "#007b83";
+            var tl = gsap.timeline({ paused: true });
+
+            // letter helpers (deterministic: seeded PRNG, no Math.random)
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = "ch";
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) {
+                    walk(n);
+                  }
+                });
+              };
+              walk(host);
+              return out;
+            };
+
+            // after the sunrise reveal, the opaque backdrop fades so the layered stage returns
+            tl.to(el(".sa-bg"), { autoAlpha: 0, duration: 0.5 }, 0.8);
+            // slow camera push-in for the whole scene (depth, never a static frame)
+            tl.fromTo(el(".sa-content"), { scale: 1 }, { scale: 1.04, duration: 6.2, ease: "none" }, 0);
+
+            // beat 1 (0 to 1.9): "de día, todo a mano"
+            var t1 = splitLetters(el(".sa-t1"));
+            var r1 = rng(11);
+            t1.forEach(function (c) {
+              tl.fromTo(c, { autoAlpha: 0, y: -130, rotation: (r1() - 0.5) * 60 }, { autoAlpha: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.7)" }, 0.05 + r1() * 0.45);
+              // swap: the old words fly up and away
+              tl.to(c, { autoAlpha: 0, y: -120, rotation: (r1() - 0.5) * 80, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, 1.75 + r1() * 0.3);
+            });
+            tl.fromTo(el(".sa-s1"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.55);
+            tl.to(el(".sa-s1"), { autoAlpha: 0, y: -16, duration: 0.25, ease: "power2.in" }, 1.85);
+
+            // card: stands up in 3D from the right and keeps floating
+            tl.fromTo(
+              el(".sa-card"),
+              { autoAlpha: 0, x: 160, rotationY: 38, rotationX: 8, transformPerspective: 1500, transformOrigin: "0% 50%" },
+              { autoAlpha: 1, x: 0, rotationY: -7, rotationX: 2, duration: 0.85, ease: "power4.out" },
+              0.15,
+            );
+            tl.to(el(".sa-card"), { rotationY: -2, rotationX: -1, y: -10, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, 1.0);
+            tl.fromTo(q(".sa-row"), { autoAlpha: 0, x: 70 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.08, ease: "power3.out" }, 0.3);
+
+            // chaos: alerts bounce in, the counter pulses, rows wobble nervously
+            tl.fromTo(q(".sa-alert"), { scale: 0 }, { scale: 1, duration: 0.4, stagger: 0.12, ease: "back.out(3)" }, 0.9);
+            tl.to(q(".sa-alert"), { scale: 1.25, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut", stagger: 0.09 }, 1.3);
+            tl.to(el(".sa-pend-a"), { scale: 1.18, transformOrigin: "100% 50%", duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.0);
+            tl.to(q(".sa-row"), { x: 6, duration: 0.09, yoyo: true, repeat: 5, ease: "none", stagger: 0.04 }, 1.1);
+
+            // beat 2 (1.75 to 2.7): the headline flips to "ahora, se hacen solas"
+            var t2 = splitLetters(el(".sa-t2"));
+            t2.forEach(function (c, i) {
+              tl.fromTo(c, { autoAlpha: 0, rotationX: -90, y: 30, transformPerspective: 700 }, { autoAlpha: 1, rotationX: 0, y: 0, duration: 0.55, ease: "back.out(1.8)" }, 2.0 + i * 0.035);
+              tl.to(c, { autoAlpha: 0, y: -100, rotation: (r1() - 0.5) * 60, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, 5.5 + r1() * 0.3);
+            });
+            tl.fromTo(el(".sa-s2"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 2.4);
+            tl.to(el(".sa-s2"), { autoAlpha: 0, duration: 0.3 }, 5.55);
+
+            // ScalyAI arrives: badge pops, a light sheen crosses the card, the scanner starts
+            tl.fromTo(el(".sa-scaly"), { autoAlpha: 0, scale: 0.4, transformOrigin: "50% 50%" }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(2.6)" }, 2.1);
+            tl.fromTo(el(".sa-sheen"), { x: 0 }, { x: 1700, duration: 0.9, ease: "power2.inOut" }, 2.1);
+
+            // chips: "Pendiente" is visible first, "Automático" is hidden
+            tl.set(q(".sa-chip-auto"), { autoAlpha: 0, scale: 0.7 }, 0);
+            tl.set(q(".sa-tick"), { strokeDasharray: 30, strokeDashoffset: 30 }, 0);
+
+            // scanner: a light band moves down the list; every row it crosses flips to automatic
+            tl.fromTo(el(".sa-scan"), { y: -35, autoAlpha: 0 }, { y: 480, autoAlpha: 1, duration: 2.06, ease: "none" }, 2.3);
+            tl.to(el(".sa-scan"), { autoAlpha: 0, duration: 0.2 }, 4.25);
+
+            // spark bursts at each checkbox (seeded)
+            var rowsEl = el(".sa-rows");
+            var rs = rng(91);
+            var rows = q(".sa-row");
+            var times = [2.47, 2.85, 3.24, 3.62, 4.01];
+            for (var i = 0; i < rows.length; i++) {
+              var row = rows[i];
+              var t = times[i];
+              tl.to(row.querySelector(".sa-box"), { backgroundColor: BRAND, borderColor: BRAND, duration: 0.2, ease: "power2.out" }, t);
+              tl.to(row.querySelector(".sa-tick"), { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, t + 0.05);
+              tl.to(row.querySelector(".sa-chip-manual"), { autoAlpha: 0, scale: 0.8, duration: 0.2, ease: "power2.in" }, t);
+              tl.to(row.querySelector(".sa-chip-auto"), { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, t + 0.05);
+              tl.to(row, { scale: 1.025, duration: 0.15, yoyo: true, repeat: 1, ease: "sine.inOut", transformOrigin: "50% 50%" }, t);
+              var alertEl = row.querySelector(".sa-alert");
+              if (alertEl) tl.to(alertEl, { scale: 0, duration: 0.2, ease: "back.in(2)" }, t);
+              for (var k = 0; k < 9; k++) {
+                var sp = document.createElement("div");
+                sp.className = "sa-spark";
+                sp.style.left = "36px";
+                sp.style.top = 36 + i * 96 + "px";
+                sp.style.background = k % 2 ? "#47d4d4" : "#007b83";
+                sp.style.opacity = "0";
+                rowsEl.appendChild(sp);
+                var ang = (k / 9) * Math.PI * 2 + rs() * 0.5;
+                var dist = 54 + rs() * 56;
+                tl.fromTo(sp, { x: 0, y: 0, autoAlpha: 1, scale: 1 }, { x: Math.cos(ang) * dist, y: Math.sin(ang) * dist, autoAlpha: 0, scale: 0.2, duration: 0.55, ease: "power2.out" }, t + 0.05);
+              }
+            }
+
+            // time recovered: the header flips to "todo al día", the number rolls to 12
+            tl.to(el(".sa-pend-a"), { autoAlpha: 0, y: -12, duration: 0.2 }, 4.0);
+            tl.fromTo(el(".sa-pend-b"), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, 4.1);
+            tl.fromTo(el(".sa-foot"), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 3.9);
+            tl.fromTo(el(".sa-strip-a"), { yPercent: 0 }, { yPercent: -50, duration: 0.6, ease: "power3.out" }, 4.15);
+            tl.fromTo(el(".sa-strip-b"), { yPercent: 0 }, { yPercent: -66.667, duration: 0.8, ease: "power3.out" }, 4.15);
+
+            tl.seek(0);
+            window.__timelines["scene-auto-tasks"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

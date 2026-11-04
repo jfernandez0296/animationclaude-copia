@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hilo de la historia: barra de progreso</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="story-chrome" data-width="1920" data-height="1080" data-duration="60" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+          }
+          #story-chrome-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .sc-bar {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 8px;
+            background: rgba(4, 27, 61, 0.14);
+          }
+          .sc-fill {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #041b3d, #007b83, #47d4d4);
+          }
+          .sc-tick {
+            position: absolute;
+            top: -4px;
+            width: 4px;
+            height: 16px;
+            border-radius: 2px;
+            background: #ffffff;
+            box-shadow: 0 0 0 1px rgba(4, 27, 61, 0.25);
+          }
+        </style>
+
+        <div id="story-chrome-clip" class="clip" data-start="0" data-duration="60" data-track-index="0">
+          <div class="sc-bar">
+            <div class="sc-fill"></div>
+            <div class="sc-tick" style="left: 17%"></div>
+            <div class="sc-tick" style="left: 29.7%"></div>
+            <div class="sc-tick" style="left: 53%"></div>
+            <div class="sc-tick" style="left: 82.2%"></div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var tl = gsap.timeline({ paused: true });
+            tl.fromTo(root.querySelector(".sc-fill"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 60, ease: "none" }, 0);
+            tl.seek(0);
+            window.__timelines["story-chrome"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

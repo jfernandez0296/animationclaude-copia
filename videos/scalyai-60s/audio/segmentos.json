@@ -1,0 +1,62 @@
+[
+ {
+  "id": "v1",
+  "start": 0.4,
+  "max": 4.7,
+  "text": "Once y cuarenta de la noche. Un cliente escribe. Nadie responde."
+ },
+ {
+  "id": "v2",
+  "start": 5.2,
+  "max": 4.6,
+  "text": "De día, todo es manual. Hasta que ScalyAI entra en juego."
+ },
+ {
+  "id": "v3",
+  "start": 10.7,
+  "max": 6.8,
+  "text": "Esto es Scaly AI. Software e IA a la medida de tu negocio."
+ },
+ {
+  "id": "v4",
+  "start": 18.1,
+  "max": 4.2,
+  "text": "Conectamos tus herramientas: ese mensaje ahora se responde en segundos."
+ },
+ {
+  "id": "v5",
+  "start": 22.6,
+  "max": 5.2,
+  "text": "Un solo flujo, sin copiar ni pegar. Mientras dormías, la venta se cerró."
+ },
+ {
+  "id": "v6",
+  "start": 28.0,
+  "max": 3.2,
+  "text": "Por la mañana, todo se mide."
+ },
+ {
+  "id": "v7",
+  "start": 32.4,
+  "max": 6.8,
+  "text": "Sin proyectos eternos: elegimos un proceso, lo conectamos y medimos el retorno."
+ },
+ {
+  "id": "v8",
+  "start": 39.9,
+  "max": 3.6,
+  "text": "Listo en dos semanas. Retorno medible en seis."
+ },
+ {
+  "id": "v9",
+  "start": 43.6,
+  "max": 5.2,
+  "text": "Hecho para Pimes. Empezamos con un piloto, no con una apuesta."
+ },
+ {
+  "id": "v10",
+  "start": 50.2,
+  "max": 5.0,
+  "text": "Scaly AI. Conversemos de tu próximo piloto."
+ }
+]

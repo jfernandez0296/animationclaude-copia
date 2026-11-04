@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <!-- GSAP 3.14.2, vendored so renders work offline -->
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-400-latin.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2");
+        font-weight: 500 600;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2");
+        font-weight: 800 900;
+        font-style: normal;
+      }
+
+      /* ScalyAI brand palette (sampled from scalyai.dev) — the one place colors live */
+      :root {
+        --bg: transparent; /* logo-brand-close paints var(--bg); keep the stage visible */
+        --stage: #f0f1e8; /* cream page background */
+        --fg: #041b3d; /* navy headings */
+        --muted: #2f4560; /* slate body copy */
+        --brand: #007b83; /* teal accent */
+        --accent: #47d4d4; /* cyan end of the CTA gradient */
+        --accent-2: #007b83;
+        --navy-2: #041b3d; /* navy start of the CTA gradient */
+        --pill: #ffffff;
+        --pill-line: #d6dbd2;
+        --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+        --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--stage);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: var(--fg);
+        font-family: var(--font-body);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="60"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- track 0: layered stage (orbs, perspective floor, rings, dust) -->
+      <div
+        id="stage-bg"
+        data-composition-id="stage-bg"
+        data-composition-src="compositions/stage-bg.html"
+        data-start="0"
+        data-duration="60"
+        data-track-index="0"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 1 · 0.0–5.0  GANCHO: 11:40 p. m., un mensaje sin respuesta -->
+      <div
+        id="scene-night"
+        data-composition-id="scene-night"
+        data-composition-src="compositions/scene-night.html"
+        data-start="0"
+        data-duration="5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 2 · 4.3–10.5  PROBLEMA: de día todo a mano, hasta que se hacen solas -->
+      <div
+        id="scene-auto-tasks"
+        data-composition-id="scene-auto-tasks"
+        data-composition-src="compositions/scene-auto-tasks.html"
+        data-start="4.3"
+        data-duration="6.2"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 3 · 10.0–18.0  LA MARCA: esto es ScalyAI -->
+      <div
+        id="scene-brand"
+        data-composition-id="scene-brand"
+        data-composition-src="compositions/scene-brand.html"
+        data-start="10"
+        data-duration="8"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 4 · 17.5–22.5  SOLUCIÓN A: la IA que atiende (el mismo mensaje, ahora respondido) -->
+      <div
+        id="scene-tools"
+        data-composition-id="scene-tools"
+        data-composition-src="compositions/scene-tools.html"
+        data-start="17.5"
+        data-duration="5"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 5 · 22.0–27.7  SOLUCIÓN B: un solo flujo para el pedido #1042 -->
+      <div
+        id="scene-workflow"
+        data-composition-id="scene-workflow"
+        data-composition-src="compositions/scene-workflow.html"
+        data-start="22"
+        data-duration="5.7"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 6 · 27.1–31.9  SOLUCIÓN C: a la mañana, todo se mide -->
+      <div
+        id="scene-dashboard"
+        data-composition-id="scene-dashboard"
+        data-composition-src="compositions/scene-dashboard.html"
+        data-start="27.1"
+        data-duration="4.8"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 7 · 31.4–40.0  CÓMO TRABAJAMOS: sin proyectos eternos -->
+      <div
+        id="scene-how"
+        data-composition-id="scene-how"
+        data-composition-src="compositions/scene-how.html"
+        data-start="31.4"
+        data-duration="8.6"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 8 · 39.5–42.45  LA PROMESA: 2 semanas / ROI en 6 -->
+      <div
+        id="scene-roi"
+        data-composition-id="scene-roi"
+        data-composition-src="compositions/scene-roi.html"
+        data-start="39.5"
+        data-duration="2.95"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 9 · 41.9–49.1  HECHO PARA PyMEs -->
+      <div
+        id="scene-pymes"
+        data-composition-id="scene-pymes"
+        data-composition-src="compositions/scene-pymes.html"
+        data-start="41.9"
+        data-duration="7.2"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 48.85–49.65  brand wipe: the site CTA gradient hands off to the close -->
+      <div
+        id="brand-wipe"
+        data-composition-id="brand-wipe"
+        data-composition-src="compositions/brand-wipe.html"
+        data-start="48.85"
+        data-duration="0.8"
+        data-track-index="3"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 10 · 49.2–60.0  TU TURNO: logo, lema y llamada a la acción (calmo para pantallas finales) -->
+      <div
+        id="logo-brand-close"
+        data-composition-id="logo-brand-close"
+        data-composition-src="compositions/components/logo-brand-close.html"
+        data-variable-values='{"wordmark":"Scaly AI","tagline":"Software e IA a la medida de tu negocio","url":"scalyai.dev","accent":"green","exit":"none"}'
+        data-start="49.2"
+        data-duration="10.8"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="logo-fx"
+        data-composition-id="logo-fx"
+        data-composition-src="compositions/logo-fx.html"
+        data-start="49.2"
+        data-duration="10.8"
+        data-track-index="4"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- the story thread: chapter chip + progress bar, on top of everything -->
+      <div
+        id="sym-sting"
+        data-composition-id="sym-sting"
+        data-composition-src="compositions/sym-sting.html"
+        data-start="0"
+        data-duration="60"
+        data-track-index="7"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="story-chrome"
+        data-composition-id="story-chrome"
+        data-composition-src="compositions/story-chrome.html"
+        data-start="0"
+        data-duration="60"
+        data-track-index="5"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <audio
+        id="voz-v1"
+        src="audio/seg/v1.wav"
+        data-start="0.4"
+        data-duration="4.72"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v2"
+        src="audio/seg/v2.wav"
+        data-start="5.2"
+        data-duration="4.62"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v3"
+        src="audio/seg/v3.wav"
+        data-start="10.7"
+        data-duration="6.46"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v4"
+        src="audio/seg/v4.wav"
+        data-start="18.1"
+        data-duration="4.22"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v5"
+        src="audio/seg/v5.wav"
+        data-start="22.6"
+        data-duration="5.23"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v6"
+        src="audio/seg/v6.wav"
+        data-start="28.0"
+        data-duration="2.78"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v7"
+        src="audio/seg/v7.wav"
+        data-start="32.4"
+        data-duration="5.94"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v8"
+        src="audio/seg/v8.wav"
+        data-start="39.9"
+        data-duration="3.63"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v9"
+        src="audio/seg/v9.wav"
+        data-start="43.6"
+        data-duration="5.05"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="voz-v10"
+        src="audio/seg/v10.wav"
+        data-start="50.2"
+        data-duration="3.21"
+        data-track-index="6"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="musica-fondo"
+        src="audio/musica.wav"
+        data-start="0"
+        data-duration="60"
+        data-track-index="8"
+        data-volume="0.9"
+      ></audio>
+      <audio
+        id="efectos-sonido"
+        src="audio/efectos.wav"
+        data-start="0"
+        data-duration="60"
+        data-track-index="9"
+        data-volume="0.5"
+      ></audio>
+    </div>
+
+    <script>
+      // Scene motion lives in the sub-compositions; the main timeline owns only the
+      // scene-to-scene transitions, tweening the host slots while they overlap.
+      // Three families: circle reveals (time changes), pushes (the sequence moves on), brand wipe (the close).
+      // A symbol sting (sym-sting) rides every push.
+      const tl = gsap.timeline({ paused: true });
+
+      // 1 · night -> day (4.3–5.0): the sun rises from the moon's corner as a circular reveal.
+      tl.fromTo(
+        "#scene-auto-tasks",
+        { clipPath: "circle(0% at 87% 15%)" },
+        { clipPath: "circle(150% at 87% 15%)", duration: 0.7, ease: "power2.inOut" },
+        4.3,
+      );
+
+      // 2 · tasks -> brand (10.0–10.5): push left, same language as the other sequence cuts.
+      tl.to("#scene-auto-tasks", { x: -1920, filter: "blur(10px)", duration: 0.5, ease: "power3.inOut" }, 10.0);
+      tl.fromTo(
+        "#scene-brand",
+        { x: 1920, filter: "blur(10px)" },
+        { x: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.inOut" },
+        10.0,
+      );
+
+      // 3 · brand -> chatbot (17.5–18.0): push up with motion blur on both frames.
+      tl.to("#scene-brand", { y: -1080, filter: "blur(10px)", duration: 0.5, ease: "power3.inOut" }, 17.5);
+      tl.fromTo(
+        "#scene-tools",
+        { y: 1080, filter: "blur(10px)" },
+        { y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.inOut" },
+        17.5,
+      );
+
+      // 4 · chatbot -> flow (22.0–22.45): push left with motion blur on both frames.
+      tl.to("#scene-tools", { x: -1920, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 22.0);
+      tl.fromTo(
+        "#scene-workflow",
+        { x: 1920, filter: "blur(10px)" },
+        { x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
+        22.0,
+      );
+
+      // 5 · flow -> dashboard (27.1–27.7): circular reveal growing from the centre.
+      tl.fromTo(
+        "#scene-dashboard",
+        { clipPath: "circle(0% at 50% 55%)" },
+        { clipPath: "circle(150% at 50% 55%)", duration: 0.6, ease: "power2.inOut" },
+        27.1,
+      );
+
+      // 6 · dashboard -> how (31.4–31.9): push left.
+      tl.to("#scene-dashboard", { x: -1920, filter: "blur(10px)", duration: 0.5, ease: "power3.inOut" }, 31.4);
+      tl.fromTo(
+        "#scene-how",
+        { x: 1920, filter: "blur(10px)" },
+        { x: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.inOut" },
+        31.4,
+      );
+
+      // 7 · how -> promise (39.5–39.95): push up, the promise rises from below.
+      tl.to("#scene-how", { y: -1080, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 39.5);
+      tl.fromTo(
+        "#scene-roi",
+        { y: 1080, filter: "blur(10px)" },
+        { y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
+        39.5,
+      );
+
+      // 8 · promise -> PyMEs (41.9–42.35): push left.
+      tl.to("#scene-roi", { x: -1920, filter: "blur(10px)", duration: 0.45, ease: "power3.inOut" }, 41.9);
+      tl.fromTo(
+        "#scene-pymes",
+        { x: 1920, filter: "blur(10px)" },
+        { x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.inOut" },
+        41.9,
+      );
+
+      // 9 · PyMEs -> close (48.85–49.65): brand-wipe covers the frame at 49.2; the PyMEs
+      //     frame drifts right under it and the logo lockup settles in as it clears.
+      tl.to("#scene-pymes", { x: 160, scale: 0.96, duration: 0.35, ease: "power3.in" }, 48.85);
+      tl.fromTo(
+        "#logo-brand-close",
+        { x: -120, scale: 1.04 },
+        { x: 0, scale: 1, duration: 0.6, ease: "power3.out" },
+        49.2,
+      );
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

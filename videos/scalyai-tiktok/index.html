@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ScalyAI TikTok</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); font-weight: 400 600; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); font-weight: 800 900; }
+      :root { --navy: #041b3d; --teal: #007b83; --aqua: #47d4d4; --stage: #f0f1e8; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); font-family: "Manrope", system-ui, sans-serif; color: #fff; }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .dark { background: var(--navy); color: #fff; }
+      .light { background: var(--stage); color: var(--navy); }
+      .h { font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+      .aq { color: var(--aqua); }
+      .tl { color: var(--teal); }
+      .bar { position: absolute; height: 44px; border-radius: 22px; }
+      .pill { position: absolute; padding: 20px 36px; border-radius: 999px; font-size: 40px; font-weight: 700; background: #0b2c5c; border: 3px solid var(--aqua); color: #fff; white-space: nowrap; }
+      .bub { position: absolute; border-radius: 40px; padding: 36px 44px; font-size: 44px; font-weight: 600; line-height: 1.3; }
+      .card { position: absolute; border-radius: 40px; background: #fff; box-shadow: 0 30px 60px rgba(4,27,61,0.14); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="27.5" data-fps="30" data-width="1080" data-height="1920">
+
+      <!-- S1: the night message -->
+      <div class="sc dark" id="s1">
+        <div class="abs h aq" id="clock" style="left:90px;top:230px;width:900px;font-size:230px;line-height:1">23:40</div>
+        <div class="abs" id="who" style="left:96px;top:520px;width:800px;font-size:36px;font-weight:700;letter-spacing:3px;color:#9fb4d1">CLIENTE NUEVO · WHATSAPP</div>
+        <div class="bub" id="b1" style="left:90px;top:610px;width:760px;background:#fff;color:#041b3d;border-bottom-left-radius:8px">Hola, ¿tienen cupo para mañana?</div>
+        <div class="abs" id="typing" style="left:90px;top:900px;width:700px;font-size:40px;font-weight:600;color:#9fb4d1">Sin respuesta<span id="dots">...</span></div>
+        <div class="abs h" id="t1" style="left:90px;top:1130px;width:900px;font-size:104px">Nadie<br />responde.</div>
+        <div class="abs" id="note1" style="left:90px;top:1520px;width:900px;font-size:30px;color:#9fb4d1">Escena ilustrativa.</div>
+      </div>
+
+      <!-- S2: who we are -->
+      <div class="sc light" id="s2">
+        <div class="bar" id="br0" style="left:90px;top:330px;width:400px;background:linear-gradient(90deg,#007b83,#47d4d4)"></div>
+        <div class="bar" id="br1" style="left:90px;top:400px;width:560px;background:#007b83"></div>
+        <div class="bar" id="br2" style="left:90px;top:470px;width:400px;background:#041b3d"></div>
+        <div class="abs h" id="word" style="left:84px;top:590px;width:920px;font-size:190px;color:#041b3d">ScalyAI</div>
+        <div class="abs h" id="t2" style="left:90px;top:920px;width:900px;font-size:92px;color:#041b3d">Software e IA <span class="tl">a la medida</span> de tu negocio</div>
+      </div>
+
+      <!-- S3: connect the tools -->
+      <div class="sc dark" id="s3">
+        <div class="abs h" id="t3" style="left:90px;top:210px;width:900px;font-size:100px">Conectamos tus <span class="aq">herramientas</span></div>
+        <svg class="abs" id="net" style="left:0;top:560px" width="1080" height="640" viewBox="0 0 1080 640">
+          <line class="ln" x1="540" y1="320" x2="220" y2="90" stroke="#47d4d4" stroke-width="6" />
+          <line class="ln" x1="540" y1="320" x2="860" y2="90" stroke="#47d4d4" stroke-width="6" />
+          <line class="ln" x1="540" y1="320" x2="220" y2="550" stroke="#47d4d4" stroke-width="6" />
+          <line class="ln" x1="540" y1="320" x2="860" y2="550" stroke="#47d4d4" stroke-width="6" />
+        </svg>
+        <div class="abs" id="hub" style="left:390px;top:790px;width:300px;height:300px;border-radius:150px;background:#007b83;display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:800;border:6px solid #47d4d4">ScalyAI</div>
+        <div class="pill tp" style="left:60px;top:600px">WhatsApp</div>
+        <div class="pill tp" style="left:700px;top:600px">Correo</div>
+        <div class="pill tp" style="left:20px;top:1060px">Hojas de cálculo</div>
+        <div class="pill tp" style="left:760px;top:1060px">CRM</div>
+        <div class="bub" id="reply" style="left:150px;top:1320px;width:780px;background:#47d4d4;color:#041b3d;border-bottom-right-radius:8px">¡Hola! Sí, hay cupo mañana. ¿A qué hora?</div>
+        <div class="abs h" id="sec3" style="left:150px;top:1580px;width:780px;font-size:46px;color:#47d4d4">Respuesta en segundos</div>
+      </div>
+
+      <!-- S4: one flow, measured -->
+      <div class="sc light" id="s4">
+        <div class="abs h" id="t4" style="left:90px;top:210px;width:900px;font-size:104px;color:#041b3d">Un solo <span class="tl">flujo</span></div>
+        <div class="abs" id="sub4" style="left:90px;top:470px;width:900px;font-size:44px;font-weight:600;color:#2f4560">Sin copiar ni pegar.</div>
+        <div class="card fl" style="left:90px;top:620px;width:900px;height:170px"></div>
+        <div class="abs fl h" style="left:150px;top:672px;width:700px;font-size:56px;color:#041b3d">1 · Entra el mensaje</div>
+        <div class="card fl" style="left:90px;top:850px;width:900px;height:170px"></div>
+        <div class="abs fl h" style="left:150px;top:902px;width:700px;font-size:56px;color:#041b3d">2 · Se registra solo</div>
+        <div class="card fl" style="left:90px;top:1080px;width:900px;height:170px"></div>
+        <div class="abs fl h" style="left:150px;top:1132px;width:700px;font-size:56px;color:#041b3d">3 · Se responde</div>
+        <div class="abs h" id="meas" style="left:90px;top:1370px;width:900px;padding:34px 48px;border-radius:999px;background:#041b3d;color:#47d4d4;font-size:64px;text-align:center">Y todo se mide</div>
+      </div>
+
+      <!-- S5: timeline numbers -->
+      <div class="sc dark" id="s5">
+        <div class="abs h" id="t5" style="left:90px;top:210px;width:900px;font-size:100px">Sin proyectos <span class="aq">eternos</span></div>
+        <div class="card" id="c1" style="left:90px;top:620px;width:900px;height:420px;background:#0b2c5c;box-shadow:none;border:3px solid #47d4d4"></div>
+        <div class="abs h aq" id="n1" style="left:150px;top:650px;width:300px;font-size:240px;line-height:1"><span id="n1v">0</span></div>
+        <div class="abs h" id="l1" style="left:430px;top:720px;width:520px;font-size:64px">semanas<br />y está listo</div>
+        <div class="card" id="c2" style="left:90px;top:1100px;width:900px;height:420px;background:#0b2c5c;box-shadow:none;border:3px solid #47d4d4"></div>
+        <div class="abs h aq" id="n2" style="left:150px;top:1130px;width:300px;font-size:240px;line-height:1"><span id="n2v">0</span></div>
+        <div class="abs h" id="l2" style="left:430px;top:1200px;width:520px;font-size:64px">semanas<br />de retorno medible</div>
+      </div>
+
+      <!-- S6: close -->
+      <div class="sc dark" id="s6">
+        <div class="bar" id="cb0" style="left:90px;top:300px;width:400px;background:linear-gradient(90deg,#007b83,#47d4d4)"></div>
+        <div class="bar" id="cb1" style="left:90px;top:370px;width:560px;background:#007b83"></div>
+        <div class="bar" id="cb2" style="left:90px;top:440px;width:400px;background:#47d4d4"></div>
+        <div class="abs h" id="cw" style="left:84px;top:560px;width:920px;font-size:190px">ScalyAI</div>
+        <div class="abs h" id="t6" style="left:90px;top:850px;width:900px;font-size:84px">Hecho para <span class="aq">Pimes</span></div>
+        <div class="abs" id="t6b" style="left:90px;top:1100px;width:900px;font-size:54px;font-weight:600;line-height:1.3;color:#d7e3f3">Empieza con un piloto, no con una apuesta.</div>
+        <div class="abs h" id="cta" style="left:90px;top:1380px;width:900px;padding:38px 40px;border-radius:999px;background:#47d4d4;color:#041b3d;font-size:48px;text-align:center">Conversemos de tu próximo piloto</div>
+      </div>
+
+      <audio id="v1" src="audio/seg/t1.wav" data-start="0.3" data-duration="3.82" data-track-index="12" data-volume="1"></audio>
+      <audio id="v2" src="audio/seg/t2.wav" data-start="4.4" data-duration="3.62" data-track-index="12" data-volume="1"></audio>
+      <audio id="v3" src="audio/seg/t3.wav" data-start="8.5" data-duration="4.38" data-track-index="12" data-volume="1"></audio>
+      <audio id="v4" src="audio/seg/t4.wav" data-start="13.3" data-duration="4.38" data-track-index="12" data-volume="1"></audio>
+      <audio id="v5" src="audio/seg/t5.wav" data-start="18.2" data-duration="3.39" data-track-index="12" data-volume="1"></audio>
+      <audio id="v6" src="audio/seg/t6.wav" data-start="22.4" data-duration="4.17" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="27.5" data-track-index="13" data-volume="0.9"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="27.5" data-track-index="14" data-volume="0.5"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const $ = (s) => document.querySelectorAll(s);
+      tl.set(["#s2", "#s3", "#s4", "#s5", "#s6"], { y: 1920 }, 0);
+      const push = (from, to, t) => {
+        tl.to(from, { y: -1920, duration: 0.5, ease: "power3.inOut" }, t);
+        tl.to(to, { y: 0, duration: 0.5, ease: "power3.inOut" }, t);
+      };
+
+      // S1 (0 - 4.2)
+      tl.fromTo("#clock", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+      tl.fromTo("#who", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 0.5);
+      tl.fromTo("#b1", { autoAlpha: 0, y: 60, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 0.9);
+      tl.fromTo("#typing", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 1.9);
+      tl.fromTo("#t1", { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.4);
+      tl.fromTo("#note1", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 2.8);
+      push("#s1", "#s2", 3.9);
+
+      // S2 (4.2 - 8.3)
+      tl.fromTo(["#br0", "#br1", "#br2"], { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out", stagger: 0.1 }, 4.5);
+      tl.fromTo("#word", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.9);
+      tl.fromTo("#t2", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 5.5);
+      push("#s2", "#s3", 8.0);
+
+      // S3 (8.3 - 13.2)
+      tl.fromTo("#t3", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 8.6);
+      tl.fromTo("#hub", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 9.1);
+      tl.fromTo(".tp", { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.35, stagger: 0.2, ease: "back.out(1.6)" }, 9.4);
+      tl.fromTo(".ln", { strokeDasharray: 520, strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.5, stagger: 0.2, ease: "power2.out" }, 9.6);
+      tl.fromTo("#reply", { autoAlpha: 0, y: 50, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, 11.2);
+      tl.fromTo("#sec3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 11.8);
+      push("#s3", "#s4", 12.9);
+
+      // S4 (13.2 - 18.1)
+      tl.fromTo("#t4", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 13.5);
+      tl.fromTo("#sub4", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 14.0);
+      tl.fromTo(".fl", { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.12, ease: "power3.out" }, 14.4);
+      tl.fromTo("#meas", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, 16.2);
+      push("#s4", "#s5", 17.8);
+
+      // S5 (18.1 - 22.2)
+      tl.fromTo("#t5", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 18.4);
+      tl.fromTo(["#c1", "#n1", "#l1"], { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.5, ease: "power3.out" }, 18.8);
+      tl.fromTo(["#c2", "#n2", "#l2"], { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.5, ease: "power3.out" }, 19.9);
+      const a = { v: 0 }, b = { v: 0 };
+      tl.to(a, { v: 2, duration: 0.7, ease: "power2.out", onUpdate: () => { document.getElementById("n1v").textContent = Math.round(a.v); } }, 18.9);
+      tl.to(b, { v: 6, duration: 0.9, ease: "power2.out", onUpdate: () => { document.getElementById("n2v").textContent = Math.round(b.v); } }, 20.0);
+      push("#s5", "#s6", 21.9);
+
+      // S6 (22.2 - 27.5)
+      tl.fromTo(["#cb0", "#cb1", "#cb2"], { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out", stagger: 0.1 }, 22.4);
+      tl.fromTo("#cw", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 22.8);
+      tl.fromTo("#t6", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 23.4);
+      tl.fromTo("#t6b", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 24.2);
+      tl.fromTo("#cta", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 25.2);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

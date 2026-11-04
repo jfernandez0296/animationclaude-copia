@@ -1,0 +1,129 @@
+[
+ {
+  "id": "r1",
+  "start": 0.35,
+  "max": 30,
+  "text": "Son las once de la noche, y Rosa sigue respondiendo mensajes de su tienda.",
+  "dur": 5.437,
+  "speech": [
+   [
+    0.245,
+    1.841
+   ],
+   [
+    2.224,
+    5.437
+   ]
+  ]
+ },
+ {
+  "id": "r2",
+  "start": 6.187,
+  "max": 30,
+  "text": "Las ventas en un cuaderno, el stock en Excel... y los clientes, esperando.",
+  "dur": 6.176,
+  "speech": [
+   [
+    0.0,
+    1.731
+   ],
+   [
+    2.403,
+    3.501
+   ],
+   [
+    4.287,
+    6.176
+   ]
+  ]
+ },
+ {
+  "id": "r3",
+  "start": 13.113,
+  "max": 30,
+  "text": "Entonces conoció a Scaly AI. Le crearon un ERP a su medida: ahora sabe qué tiene, y qué le falta.",
+  "dur": 7.607,
+  "speech": [
+   [
+    0.0,
+    2.18
+   ],
+   [
+    2.689,
+    4.707
+   ],
+   [
+    5.237,
+    6.436
+   ],
+   [
+    6.786,
+    7.607
+   ]
+  ]
+ },
+ {
+  "id": "r4",
+  "start": 21.171,
+  "max": 30,
+  "text": "Después, un CRM que recuerda a cada cliente, como lo hace ella.",
+  "dur": 4.558,
+  "speech": [
+   [
+    0.0,
+    3.407
+   ],
+   [
+    3.615,
+    4.558
+   ]
+  ]
+ },
+ {
+  "id": "r5",
+  "start": 26.229,
+  "max": 30,
+  "text": "Y aparte, un chatbot con IA que responde su WhatsApp mientras ella descansa.",
+  "dur": 4.4,
+  "speech": [
+   [
+    0.0,
+    4.4
+   ]
+  ]
+ },
+ {
+  "id": "r6",
+  "start": 31.279,
+  "max": 30,
+  "text": "Hoy, Rosa cierra a su hora.",
+  "dur": 2.042,
+  "speech": [
+   [
+    0.0,
+    0.299
+   ],
+   [
+    0.624,
+    2.042
+   ]
+  ]
+ },
+ {
+  "id": "r7",
+  "start": 33.771,
+  "max": 30,
+  "text": "¿Y tu negocio? Cuéntanos tu historia.",
+  "dur": 2.25,
+  "speech": [
+   [
+    0.0,
+    0.75
+   ],
+   [
+    1.22,
+    2.25
+   ]
+  ]
+ }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "p1",
+    "start": 0.3,
+    "max": 2.3,
+    "text": "Pibank ya está en Perú."
+  },
+  {
+    "id": "p2",
+    "start": 2.8,
+    "max": 3.6,
+    "text": "Ahorra con cinco por ciento de tasa, sin comisiones y sin monto mínimo."
+  },
+  {
+    "id": "p3",
+    "start": 6.6,
+    "max": 3.0,
+    "text": "Ábrela cien por ciento online, desde tu celular."
+  }
+]

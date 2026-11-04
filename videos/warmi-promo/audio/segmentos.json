@@ -1,0 +1,50 @@
+[
+ {
+  "id": "v1",
+  "start": 0.3,
+  "max": 4.9,
+  "text": "Tu semana está llena de tareas repetitivas. ¿Y si la IA las hiciera?"
+ },
+ {
+  "id": "v2",
+  "start": 5.0,
+  "max": 6.4,
+  "text": "Esto es Warmi Academy: aprende a usar la IA y automatiza tu trabajo en ocho semanas."
+ },
+ {
+  "id": "v3",
+  "start": 11.6,
+  "max": 6.5,
+  "text": "Tendrás IA aplicada a tu negocio, un MVP publicado y automatizaciones funcionando."
+ },
+ {
+  "id": "v4",
+  "start": 18.6,
+  "max": 5.6,
+  "text": "Para emprendedoras, profesionales y consultoras, sin experiencia técnica."
+ },
+ {
+  "id": "v5",
+  "start": 24.6,
+  "max": 5.7,
+  "text": "Dos módulos, dieciséis sesiones en vivo, comunidad y certificado digital."
+ },
+ {
+  "id": "v6",
+  "start": 30.6,
+  "max": 5.8,
+  "text": "Aprendes con Jaime Fernández, ingeniero de la UNI: proyectos reales, no teoría."
+ },
+ {
+  "id": "v7",
+  "start": 36.5,
+  "max": 5.1,
+  "text": "Pack completo: cuatrocientos noventa y nueve soles. Ahorras noventa y nueve."
+ },
+ {
+  "id": "v8",
+  "start": 42.0,
+  "max": 6.0,
+  "text": "¿Listo para pasar de usar IA a construir con ella? Empezamos el siete de octubre."
+ }
+]

@@ -1,0 +1,38 @@
+[
+ {
+  "id": "t1",
+  "start": 0.3,
+  "max": 3.4,
+  "text": "Once y cuarenta de la noche. Un cliente escribe. Nadie responde."
+ },
+ {
+  "id": "t2",
+  "start": 4.4,
+  "max": 3.6,
+  "text": "Scaly AI crea software e IA a la medida de tu negocio."
+ },
+ {
+  "id": "t3",
+  "start": 8.5,
+  "max": 4.4,
+  "text": "Conectamos tus herramientas, y ese mensaje se responde en segundos."
+ },
+ {
+  "id": "t4",
+  "start": 13.3,
+  "max": 4.4,
+  "text": "Un solo flujo, sin copiar ni pegar. Y todo se mide."
+ },
+ {
+  "id": "t5",
+  "start": 18.2,
+  "max": 3.4,
+  "text": "Listo en dos semanas. Retorno medible en seis."
+ },
+ {
+  "id": "t6",
+  "start": 22.4,
+  "max": 4.4,
+  "text": "Hecho para Pimes. Empieza con un piloto, no con una apuesta."
+ }
+]

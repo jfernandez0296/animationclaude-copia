@@ -1,0 +1,38 @@
+[
+ {
+  "id": "n1",
+  "start": 0.3,
+  "max": 3.6,
+  "text": "Tu empresa no es genérica. Tu software tampoco debería serlo."
+ },
+ {
+  "id": "n2",
+  "start": 4.3,
+  "max": 4.0,
+  "text": "Iniciativa uno: un ERP que controla tu inventario y tus ventas."
+ },
+ {
+  "id": "n3",
+  "start": 8.7,
+  "max": 3.4,
+  "text": "Un CRM que recuerda a cada cliente."
+ },
+ {
+  "id": "n4",
+  "start": 12.0,
+  "max": 4.8,
+  "text": "Iniciativa dos, aparte: un chatbot con IA que responde por ti en WhatsApp."
+ },
+ {
+  "id": "n5",
+  "start": 17.2,
+  "max": 4.2,
+  "text": "Dos soluciones independientes. Elige la que tu negocio necesita."
+ },
+ {
+  "id": "n6",
+  "start": 21.4,
+  "max": 4.2,
+  "text": "Scaly AI. Cuéntanos qué necesitas y lo construimos."
+ }
+]

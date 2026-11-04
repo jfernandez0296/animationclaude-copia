@@ -1,0 +1,243 @@
+[
+ {
+  "id": "d1",
+  "text": "¿Y si tu inteligencia artificial te escribiera primero? Anthropic acaba de lanzar Claude Duet: un agente que trabaja mientras tú no estás.",
+  "start": 0.4,
+  "dur": 9.234,
+  "speech": [
+   [
+    0.243,
+    3.353
+   ],
+   [
+    3.798,
+    6.452
+   ],
+   [
+    6.889,
+    9.234
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "d2",
+  "text": "Es una app aparte, en vista previa. Se conecta a tu correo, tu calendario y tus apps, y cada pocas horas revisa qué necesita tu atención.",
+  "start": 10.084,
+  "dur": 8.636,
+  "speech": [
+   [
+    0.0,
+    1.039
+   ],
+   [
+    1.346,
+    2.078
+   ],
+   [
+    2.517,
+    5.377
+   ],
+   [
+    5.773,
+    8.636
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "d3",
+  "text": "Cada mañana te manda un resumen: los correos que importan, las reuniones que vienen, y borradores de respuesta listos para que los apruebes.",
+  "start": 19.17,
+  "dur": 7.83,
+  "speech": [
+   [
+    0.0,
+    1.833
+   ],
+   [
+    2.202,
+    3.405
+   ],
+   [
+    3.633,
+    4.798
+   ],
+   [
+    5.099,
+    7.83
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "d4",
+  "text": "Las tareas corren en su propia computadora en la nube. Puedes apagar el celular, y Duet sigue avanzando.",
+  "start": 27.45,
+  "dur": 6.608,
+  "speech": [
+   [
+    0.0,
+    2.901
+   ],
+   [
+    3.57,
+    4.735
+   ],
+   [
+    5.05,
+    6.608
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "d5",
+  "text": "Por ejemplo: encuentra facturas sin pagar y redacta los recordatorios, prepara la planilla para que la revises, deja contratos listos para enviar, o arma un informe, una presentación o un dashboard.",
+  "start": 34.508,
+  "dur": 11.614,
+  "speech": [
+   [
+    0.0,
+    0.507
+   ],
+   [
+    0.857,
+    3.977
+   ],
+   [
+    4.448,
+    6.097
+   ],
+   [
+    6.592,
+    8.267
+   ],
+   [
+    8.637,
+    11.614
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "d6",
+  "text": "Pero en lo delicado, no actúa solo. Antes de enviar un mensaje, hacer un pago, firmar un documento o borrar algo, te muestra lo que va a hacer, y espera tu aprobación.",
+  "start": 46.571,
+  "dur": 10.431,
+  "speech": [
+   [
+    0.0,
+    0.988
+   ],
+   [
+    1.251,
+    2.082
+   ],
+   [
+    2.781,
+    4.105
+   ],
+   [
+    4.34,
+    5.041
+   ],
+   [
+    5.43,
+    7.277
+   ],
+   [
+    7.661,
+    8.797
+   ],
+   [
+    9.254,
+    10.431
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "d7",
+  "text": "Ojo con los límites: no ve los archivos de tu computadora, no mueve dinero entre cuentas, y Anthropic admite que a veces puede calcular mal qué es urgente.",
+  "start": 57.453,
+  "dur": 9.897,
+  "speech": [
+   [
+    0.0,
+    1.278
+   ],
+   [
+    1.621,
+    3.617
+   ],
+   [
+    3.97,
+    5.572
+   ],
+   [
+    5.984,
+    9.897
+   ]
+  ],
+  "scene": 6
+ },
+ {
+  "id": "d8",
+  "text": "¿Quién puede usarlo? Por ahora, suscriptores Pro y Max en Estados Unidos, con lista de espera. Funciona en iOS, Android y claude punto ai, y usa los mismos límites de tu plan.",
+  "start": 67.799,
+  "dur": 11.677,
+  "speech": [
+   [
+    0.0,
+    0.959
+   ],
+   [
+    1.379,
+    4.531
+   ],
+   [
+    4.755,
+    5.63
+   ],
+   [
+    6.106,
+    8.047
+   ],
+   [
+    8.333,
+    9.442
+   ],
+   [
+    9.838,
+    11.677
+   ]
+  ],
+  "scene": 7
+ },
+ {
+  "id": "d9",
+  "text": "Si te llega el acceso, empieza solo con correo y calendario, y aprueba cada acción la primera semana. Guarda este video, y sígueme para más herramientas de IA.",
+  "start": 79.926,
+  "dur": 8.125,
+  "speech": [
+   [
+    0.0,
+    2.933
+   ],
+   [
+    3.219,
+    5.019
+   ],
+   [
+    5.448,
+    6.162
+   ],
+   [
+    6.399,
+    8.125
+   ]
+  ],
+  "scene": 8
+ }
+]

@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Acto 1: la noche y el mensaje sin respuesta</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-night" data-width="1920" data-height="1080" data-duration="5" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            color: #ffffff;
+            font-family: var(--font-body, system-ui, sans-serif);
+            background: linear-gradient(160deg, #04122a 0%, #041b3d 45%, #0b2a4f 100%);
+          }
+          #scene-night-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .sn-star {
+            position: absolute;
+            border-radius: 50%;
+            background: #cfeff1;
+          }
+          .sn-moon {
+            position: absolute;
+            left: 1590px;
+            top: 80px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d8eef0 52%, #9cc7cf 100%);
+            box-shadow: 0 0 100px rgba(71, 212, 212, 0.45), 0 0 220px rgba(71, 212, 212, 0.2);
+          }
+          .sn-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 110px 170px 110px 170px;
+            gap: 70px;
+          }
+
+          /* ── left: clock + story ── */
+          .sn-left {
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+            flex: 0 0 auto;
+            width: 780px;
+          }
+          .sn-label {
+            font-size: 35px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #47d4d4;
+          }
+          .sn-clock {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+          }
+          .sn-digit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 226px;
+            height: 252px;
+            border-radius: 30px;
+            background: linear-gradient(180deg, #123660 0%, #0c2547 50%, #0a2040 50%, #0f2c52 100%);
+            border: 2px solid rgba(71, 212, 212, 0.28);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.08);
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 170px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+          }
+          .sn-colon {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 150px;
+            font-weight: 800;
+            color: #47d4d4;
+            line-height: 1;
+            padding-bottom: 18px;
+          }
+          .sn-ampm {
+            align-self: flex-end;
+            padding-bottom: 20px;
+            font-size: 44px;
+            font-weight: 700;
+            color: #9db7c9;
+          }
+          .sn-stage {
+            position: relative;
+            height: 96px;
+            margin-top: 6px;
+          }
+          .sn-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 70px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            white-space: nowrap;
+          }
+          .sn-cyan {
+            color: #47d4d4;
+          }
+          .sn-coral {
+            color: #ff8a7a;
+          }
+
+          /* ── right: notification that never gets an answer ── */
+          .sn-right {
+            position: relative;
+            flex: 0 0 auto;
+            width: 760px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+          }
+          .sn-notif {
+            position: relative;
+            padding: 32px 36px 34px;
+            border-radius: 36px;
+            background: linear-gradient(180deg, #14396a 0%, #0f2f58 100%);
+            border: 2px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+          }
+          .sn-notif-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 32px;
+            font-weight: 600;
+            color: #a9c2d4;
+          }
+          .sn-app {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #47d4d4, #007b83);
+          }
+          .sn-app svg {
+            display: block;
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+          }
+          .sn-now {
+            margin-left: auto;
+          }
+          .sn-notif-who {
+            margin-top: 22px;
+            font-size: 34px;
+            font-weight: 800;
+          }
+          .sn-notif-msg {
+            margin-top: 8px;
+            font-size: 38px;
+            font-weight: 500;
+            line-height: 1.25;
+            color: #e8f3f6;
+          }
+          .sn-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: #ff6f61;
+            font-size: 32px;
+            font-weight: 800;
+            box-shadow: 0 10px 24px rgba(255, 111, 97, 0.5);
+          }
+          .sn-ping {
+            position: absolute;
+            inset: 0;
+            border-radius: 36px;
+            border: 3px solid #47d4d4;
+          }
+          .sn-wait {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 20px 30px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px dashed rgba(255, 138, 122, 0.55);
+            font-size: 32px;
+            font-weight: 700;
+            color: #c9d9e4;
+          }
+          .sn-wait svg {
+            display: block;
+            flex: 0 0 38px;
+            width: 38px;
+            height: 38px;
+            fill: none;
+            stroke: #ff8a7a;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+          }
+          .sn-wait-num {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1;
+            color: #ff8a7a;
+            white-space: nowrap;
+          }
+          .sn-roll {
+            display: inline-block;
+            height: 1.05em;
+            overflow: hidden;
+            vertical-align: bottom;
+          }
+          .sn-strip {
+            display: flex;
+            flex-direction: column;
+          }
+          .sn-strip > span {
+            display: block;
+            height: 1.05em;
+            line-height: 1.05;
+          }
+          .sn-stamp {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            padding: 12px 30px;
+            border: 8px solid #ff6f61;
+            border-radius: 16px;
+            background: rgba(4, 27, 61, 0.88);
+            color: #ff6f61;
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 68px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            text-transform: uppercase;
+          }
+        </style>
+
+        <div id="scene-night-clip" class="clip" data-start="0" data-duration="5" data-track-index="0">
+          <div class="sn-stars"></div>
+          <div class="sn-moon" data-layout-allow-overflow="true"></div>
+
+          <div class="sn-content">
+            <div class="sn-left">
+              <div class="sn-label">Martes por la noche</div>
+              <div class="sn-clock">
+                <div class="sn-digit sn-d1">11</div>
+                <div class="sn-colon">:</div>
+                <div class="sn-digit sn-d2">40</div>
+                <div class="sn-ampm">p. m.</div>
+              </div>
+              <div class="sn-stage">
+                <div class="sn-line sn-l1">Un cliente <span class="sn-cyan">escribe.</span></div>
+                <div class="sn-line sn-l2">Nadie responde.</div>
+                <div class="sn-line sn-l3">Ya le compró a <span class="sn-coral">otro.</span></div>
+              </div>
+            </div>
+
+            <div class="sn-right">
+              <div class="sn-notif">
+                <div class="sn-ping"></div>
+                <div class="sn-badge">1</div>
+                <div class="sn-notif-head">
+                  <div class="sn-app"><svg viewBox="0 0 24 24"><path d="M4 20l1.6-4.8A9 9 0 1 1 9 18.6L4 20z" /></svg></div>
+                  <span>WhatsApp</span>
+                  <span class="sn-now">ahora</span>
+                </div>
+                <div class="sn-notif-who">Cliente nuevo</div>
+                <div class="sn-notif-msg">Hola, ¿tienen stock de la talla M?</div>
+                <div class="sn-stamp" data-layout-allow-overlap="true">Venta perdida</div>
+              </div>
+              <div class="sn-wait">
+                <svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9" /></svg>
+                <span>Sin respuesta:</span>
+                <span class="sn-wait-num"><span class="sn-roll"><span class="sn-strip sn-w" data-layout-allow-overflow="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></span></span> h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) {
+              return root.querySelectorAll(s);
+            };
+            var el = function (s) {
+              return root.querySelector(s);
+            };
+            var tl = gsap.timeline({ paused: true });
+
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = "ch";
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) {
+                    walk(n);
+                  }
+                });
+              };
+              walk(host);
+              return out;
+            };
+
+            // stars
+            var sky = el(".sn-stars");
+            var r = rng(41);
+            for (var i = 0; i < 38; i++) {
+              var s = document.createElement("div");
+              s.className = "sn-star";
+              var size = 3 + Math.round(r() * 5);
+              s.style.width = size + "px";
+              s.style.height = size + "px";
+              s.style.left = Math.round(r() * 1900) + "px";
+              s.style.top = Math.round(r() * 700) + "px";
+              s.style.opacity = "0";
+              sky.appendChild(s);
+              tl.fromTo(s, { opacity: 0.1 }, { opacity: 0.4 + r() * 0.6, duration: 0.8 + r() * 1.4, ease: "sine.inOut", yoyo: true, repeat: 3 }, r() * 0.8);
+            }
+
+            // moon + clock panels flip in
+            tl.fromTo(el(".sn-moon"), { autoAlpha: 0, y: -70, scale: 0.7 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1.2, ease: "power3.out" }, 0.05);
+            tl.to(el(".sn-moon"), { x: -60, duration: 4.5, ease: "none" }, 0.1);
+            tl.fromTo(
+              q(".sn-digit"),
+              { autoAlpha: 0, rotationX: -90, transformPerspective: 700, transformOrigin: "50% 100%" },
+              { autoAlpha: 1, rotationX: 0, duration: 0.6, stagger: 0.14, ease: "back.out(1.6)" },
+              0.1,
+            );
+            tl.fromTo(el(".sn-colon"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 }, 0.3);
+            tl.to(el(".sn-colon"), { autoAlpha: 0.15, duration: 0.5, yoyo: true, repeat: 7, ease: "power1.inOut" }, 0.6);
+            tl.fromTo(el(".sn-ampm"), { autoAlpha: 0, x: -20 }, { autoAlpha: 1, x: 0, duration: 0.4 }, 0.5);
+
+            // label letters
+            var lab = splitLetters(el(".sn-label"));
+            lab.forEach(function (c, i) {
+              tl.fromTo(c, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: "power2.out" }, 0.3 + i * 0.025);
+            });
+
+            // the message arrives: slides in with a 3D tilt, ping ring, haptic shake, badge pop
+            tl.fromTo(
+              el(".sn-notif"),
+              { autoAlpha: 0, x: 200, rotationY: 55, transformPerspective: 1200, transformOrigin: "100% 50%" },
+              { autoAlpha: 1, x: 0, rotationY: -4, duration: 0.7, ease: "power4.out" },
+              0.55,
+            );
+            tl.fromTo(el(".sn-ping"), { scale: 1, autoAlpha: 0.9 }, { scale: 1.18, autoAlpha: 0, duration: 0.8, ease: "power2.out" }, 1.1);
+            tl.to(el(".sn-notif"), { keyframes: [{ x: -9 }, { x: 9 }, { x: -6 }, { x: 6 }, { x: 0 }], duration: 0.4, ease: "none" }, 1.15);
+            tl.fromTo(el(".sn-badge"), { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(3)" }, 1.15);
+
+            // story line 1: letters rise in a wave, then lift away
+            var l1 = splitLetters(el(".sn-l1"));
+            l1.forEach(function (c, i) {
+              tl.fromTo(c, { autoAlpha: 0, y: 56 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "back.out(2)" }, 0.9 + i * 0.03);
+              tl.to(c, { autoAlpha: 0, y: -44, duration: 0.25, ease: "power2.in" }, 1.8 + i * 0.012);
+            });
+
+            // story line 2: typewriter with a cyan flash, while the hours pile up
+            var l2 = splitLetters(el(".sn-l2"));
+            l2.forEach(function (c, i) {
+              tl.fromTo(c, { autoAlpha: 0, color: "#47d4d4" }, { autoAlpha: 1, color: "inherit", duration: 0.25, ease: "power1.out" }, 2.0 + i * 0.045);
+              tl.to(c, { autoAlpha: 0, duration: 0.15 }, 2.85 + (l2.length - i) * 0.012);
+            });
+            tl.fromTo(el(".sn-wait"), { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 1.95);
+            tl.fromTo(el(".sn-w"), { yPercent: 0 }, { yPercent: -88.889, duration: 0.85, ease: "power1.inOut" }, 2.15);
+
+            // the notification goes cold
+            tl.to(el(".sn-notif"), { opacity: 0.55, filter: "grayscale(1)", duration: 0.4 }, 3.0);
+
+            // story line 3: letters drop heavy and bounce; stamp slams over the card
+            var l3 = splitLetters(el(".sn-l3"));
+            var r3 = rng(77);
+            l3.forEach(function (c, i) {
+              tl.fromTo(c, { autoAlpha: 0, y: -170, rotation: (r3() - 0.5) * 50 }, { autoAlpha: 1, y: 0, rotation: 0, duration: 0.5, ease: "bounce.out" }, 3.05 + i * 0.03);
+            });
+            tl.fromTo(
+              el(".sn-stamp"),
+              { autoAlpha: 0, scale: 2.6, rotation: -22, xPercent: -50, transformOrigin: "50% 50%" },
+              { autoAlpha: 1, scale: 1, rotation: -9, xPercent: -50, duration: 0.28, ease: "power4.in" },
+              3.2,
+            );
+            tl.to(el(".sn-right"), { keyframes: [{ x: 10, y: -6 }, { x: -9, y: 5 }, { x: 6, y: -3 }, { x: 0, y: 0 }], duration: 0.3, ease: "none" }, 3.47);
+
+            tl.seek(0);
+            window.__timelines["scene-night"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

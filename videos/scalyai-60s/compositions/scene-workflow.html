@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scene — flujo de automatización</title>
+  </head>
+  <body>
+    <template>
+      <div id="root" data-composition-id="scene-workflow" data-width="1920" data-height="1080" data-duration="5.7" data-fps="30">
+        <style>
+          #root {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            color: var(--fg, #041b3d);
+            font-family: var(--font-body, system-ui, sans-serif);
+          }
+          #scene-workflow-clip {
+            position: absolute;
+            inset: 0;
+          }
+          .sw-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 64px;
+            width: 100%;
+            height: 100%;
+            padding: 70px 160px;
+          }
+          .sw-title {
+            font-family: var(--font-display, system-ui, sans-serif);
+            font-size: 84px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+          }
+          .sw-accent {
+            color: var(--brand, #007b83);
+          }
+
+          /* ── flow canvas ── */
+          .sw-flow {
+            position: relative;
+            flex: 0 0 auto;
+            width: 1600px;
+            height: 470px;
+            transform-style: preserve-3d;
+          }
+          .sw-ripple {
+            position: absolute;
+            top: 30px;
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            border: 4px solid var(--accent, #47d4d4);
+            opacity: 0;
+            pointer-events: none;
+          }
+          .sw-node {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            width: 250px;
+            height: 280px;
+            padding: 30px 18px 0;
+            border-radius: 34px;
+            background: #ffffff;
+            border: 3px solid #d6dbd2;
+            box-shadow: 0 24px 50px rgba(4, 27, 61, 0.1);
+            text-align: center;
+          }
+          .sw-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            background: #e6f2f1;
+            color: var(--brand, #007b83);
+          }
+          .sw-icon svg {
+            display: block;
+            width: 48px;
+            height: 48px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+          }
+          .sw-label {
+            font-size: 35px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+          }
+          .sw-sub {
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--muted, #2f4560);
+            line-height: 1.2;
+          }
+          .sw-badge {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 46px;
+            height: 46px;
+          }
+          .sw-badge svg {
+            display: block;
+            width: 46px;
+            height: 46px;
+          }
+          .sw-wire {
+            position: absolute;
+            top: 140px;
+            height: 6px;
+            border-radius: 3px;
+            background: #cfd6cd;
+          }
+          .sw-wire-fill {
+            position: absolute;
+            inset: 0;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--navy-2, #041b3d), var(--accent, #47d4d4));
+          }
+          .sw-packet {
+            position: absolute;
+            top: 131px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent, #47d4d4);
+            box-shadow: 0 0 0 8px rgba(71, 212, 212, 0.28);
+          }
+          .sw-branch-wire {
+            position: absolute;
+            left: 410px;
+            top: 283px;
+            width: 0;
+            height: 70px;
+            border-left: 4px dashed #8fcfd0;
+          }
+          .sw-branch {
+            position: absolute;
+            left: 292px;
+            top: 353px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 336px;
+            height: 92px;
+            padding: 0 20px;
+            border-radius: 26px;
+            background: #ffffff;
+            border: 3px dashed #8fcfd0;
+            font-size: 29px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+            color: var(--muted, #2f4560);
+          }
+          .sw-banner {
+            position: absolute;
+            left: 790px;
+            top: 372px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 810px;
+            height: 84px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--navy-2, #041b3d), var(--accent-2, #007b83), var(--accent, #47d4d4));
+            color: #ffffff;
+            font-size: 39px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+          }
+          .sw-banner svg {
+            display: block;
+            width: 34px;
+            height: 34px;
+          }
+        </style>
+
+        <div id="scene-workflow-clip" class="clip" data-start="0" data-duration="5.7" data-track-index="0">
+          <div class="sw-content">
+            <h2 class="sw-title"><span>Un solo flujo.</span> <span class="sw-accent">Cero copiar y pegar.</span></h2>
+
+            <div class="sw-flow">
+              <!-- wires -->
+              <div class="sw-wire sw-w0" style="left: 250px; width: 87px;"><div class="sw-wire-fill"></div></div>
+              <div class="sw-wire sw-w1" style="left: 587px; width: 87px;"><div class="sw-wire-fill"></div></div>
+              <div class="sw-wire sw-w2" style="left: 924px; width: 87px;"><div class="sw-wire-fill"></div></div>
+              <div class="sw-wire sw-w3" style="left: 1261px; width: 87px;"><div class="sw-wire-fill"></div></div>
+              <div class="sw-packet sw-p0" style="left: 238px;"></div>
+              <div class="sw-packet sw-p1" style="left: 575px;"></div>
+              <div class="sw-packet sw-p2" style="left: 912px;"></div>
+              <div class="sw-packet sw-p3" style="left: 1249px;"></div>
+
+              <!-- nodes -->
+              <div class="sw-node sw-n0" style="left: 0px;">
+                <div class="sw-icon"><svg viewBox="0 0 24 24"><path d="M4 20l1.6-4.8A9 9 0 1 1 9 18.6L4 20z" /><path d="M9 11h6M9 14h4" /></svg></div>
+                <div class="sw-label">Llega un mensaje</div>
+                <div class="sw-sub">Pedido #1042</div>
+                <div class="sw-badge"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="#007b83" /><path d="M13 24l7 7 13-15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+              </div>
+              <div class="sw-node sw-n1" style="left: 337px;">
+                <div class="sw-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.1 5.9L20 11l-5.9 2.1L12 19l-2.1-5.9L4 11l5.9-2.1L12 3z" /></svg></div>
+                <div class="sw-label">La IA responde</div>
+                <div class="sw-sub">Con tu información</div>
+                <div class="sw-badge"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="#007b83" /><path d="M13 24l7 7 13-15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+              </div>
+              <div class="sw-node sw-n2" style="left: 674px;">
+                <div class="sw-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5" /><path d="M5 20c1-4 4-6 7-6s6 2 7 6" /></svg></div>
+                <div class="sw-label">Crea el pedido</div>
+                <div class="sw-sub">En tu CRM, sin teclear</div>
+                <div class="sw-badge"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="#007b83" /><path d="M13 24l7 7 13-15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+              </div>
+              <div class="sw-node sw-n3" style="left: 1011px;">
+                <div class="sw-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" /><path d="M4 10h16M4 15h16M10 4v16" /></svg></div>
+                <div class="sw-label">Actualiza stock</div>
+                <div class="sw-sub">Excel y ERP al día</div>
+                <div class="sw-badge"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="#007b83" /><path d="M13 24l7 7 13-15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+              </div>
+              <div class="sw-node sw-n4" style="left: 1348px;">
+                <div class="sw-icon"><svg viewBox="0 0 24 24"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 0 0-9 0v4L6 17z" /><path d="M10 20h4" /></svg></div>
+                <div class="sw-label">Avisa al equipo</div>
+                <div class="sw-sub">Venta lista</div>
+                <div class="sw-badge"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="#007b83" /><path d="M13 24l7 7 13-15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+              </div>
+
+              <!-- branch: hand-off to a person -->
+              <div class="sw-branch-wire"></div>
+              <div class="sw-branch">Si hay una duda, pasa a una persona</div>
+
+              <div class="sw-ripple" style="left: 79px;"></div>
+              <div class="sw-ripple" style="left: 416px;"></div>
+              <div class="sw-ripple" style="left: 753px;"></div>
+              <div class="sw-ripple" style="left: 1090px;"></div>
+              <div class="sw-ripple" style="left: 1427px;"></div>
+
+              <!-- result banner -->
+              <div class="sw-banner">
+                <svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#ffffff" /></svg>
+                Mientras dormías, la venta se cerró.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            var root = document.getElementById("root");
+            var q = function (s) {
+              return root.querySelectorAll(s);
+            };
+            var el = function (s) {
+              return root.querySelector(s);
+            };
+            var BRAND = "#007b83";
+            var tl = gsap.timeline({ paused: true });
+
+            // ── letter helpers (deterministic: seeded PRNG, no Math.random) ──
+            var rng = function (seed) {
+              return function () {
+                seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+                var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+            };
+            var splitLetters = function (host) {
+              var out = [];
+              var walk = function (node) {
+                Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                  if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                      if (!part) return;
+                      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                      var w = document.createElement("span");
+                      w.style.display = "inline-block";
+                      w.style.whiteSpace = "nowrap";
+                      Array.prototype.slice.call(part).forEach(function (ch) {
+                        var s = document.createElement("span");
+                        s.className = "ch";
+                        s.style.display = "inline-block";
+                        s.textContent = ch;
+                        w.appendChild(s);
+                        out.push(s);
+                      });
+                      frag.appendChild(w);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                  } else if (n.nodeType === 1) {
+                    walk(n);
+                  }
+                });
+              };
+              walk(host);
+              return out;
+            };
+
+            // title: letters pop out from the centre, then flip away on exit
+            var tl3 = splitLetters(el(".sw-title"));
+            var mid = (tl3.length - 1) / 2;
+            tl3.forEach(function (c, i) {
+              var dist = Math.abs(i - mid);
+              tl.fromTo(c, { autoAlpha: 0, scale: 0, rotationZ: i < mid ? -40 : 40 }, { autoAlpha: 1, scale: 1, rotationZ: 0, duration: 0.5, ease: "back.out(2.4)" }, 0.35 + dist * 0.03);
+              tl.to(c, { autoAlpha: 0, rotationX: 90, y: 40, transformPerspective: 600, duration: 0.35, ease: "power2.in" }, 4.95 + (mid - dist) * 0.012);
+            });
+
+            // initial hidden states for things that play later
+            tl.set(q(".sw-badge"), { scale: 0, transformOrigin: "50% 50%" }, 0);
+            tl.set(q(".sw-wire-fill"), { scaleX: 0, transformOrigin: "left center" }, 0);
+            tl.set(q(".sw-packet"), { autoAlpha: 0 }, 0);
+
+            // nodes drop in one after another
+            tl.fromTo(
+              q(".sw-node"),
+              { autoAlpha: 0, y: -70, scale: 0.7, transformOrigin: "50% 0%" },
+              { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.14, ease: "back.out(1.8)" },
+              0.7,
+            );
+            tl.fromTo(q(".sw-wire"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, stagger: 0.14 }, 0.9);
+
+            // run the flow: packet travels, next node lights up
+            var nodes = q(".sw-node");
+            var icons = q(".sw-icon");
+            var badges = q(".sw-badge");
+            var fills = q(".sw-wire-fill");
+            var packets = q(".sw-packet");
+            var ripples = q(".sw-ripple");
+            var light = function (i, at) {
+              tl.fromTo(ripples[i], { scale: 1, autoAlpha: 0.9 }, { scale: 3.4, autoAlpha: 0, duration: 0.85, ease: "power2.out" }, at);
+              tl.to(nodes[i], { borderColor: BRAND, duration: 0.25, ease: "power2.out" }, at);
+              tl.to(icons[i], { backgroundColor: BRAND, color: "#ffffff", duration: 0.25, ease: "power2.out" }, at);
+              tl.to(badges[i], { scale: 1, duration: 0.35, ease: "back.out(2.4)" }, at + 0.05);
+            };
+            light(0, 1.9);
+            var start = 2.0;
+            for (var i = 0; i < 4; i++) {
+              var t = start + i * 0.62;
+              tl.fromTo(fills[i], { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power1.inOut" }, t);
+              tl.fromTo(packets[i], { autoAlpha: 1, x: 0 }, { x: 63, duration: 0.5, ease: "power1.inOut" }, t);
+              tl.to(packets[i], { autoAlpha: 0, duration: 0.12 }, t + 0.5);
+              light(i + 1, t + 0.5);
+            }
+
+            // branch to a person appears while the AI node is active
+            tl.fromTo(el(".sw-branch-wire"), { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.3, ease: "power2.out" }, 2.65);
+            tl.fromTo(el(".sw-branch"), { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.85);
+
+            // the whole flow stands up in 3D, then the camera drifts so the nodes show parallax
+            tl.set(nodes, { z: 36 }, 0);
+            tl.fromTo(el(".sw-flow"), { rotationX: 58, y: 70, transformPerspective: 1500, transformOrigin: "50% 100%" }, { rotationX: 9, y: 0, duration: 1.1, ease: "power3.out" }, 0.4);
+            tl.to(el(".sw-flow"), { rotationX: 3, rotationY: -4, duration: 3.6, ease: "sine.inOut" }, 1.6);
+            tl.fromTo(el(".sw-content"), { scale: 1 }, { scale: 1.035, duration: 5.7, ease: "none" }, 0);
+
+            // result banner
+            tl.fromTo(
+              el(".sw-banner"),
+              { autoAlpha: 0, scale: 0.8, transformOrigin: "100% 50%" },
+              { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" },
+              3.9,
+            );
+            tl.fromTo(el(".sw-banner"), { boxShadow: "0 0 0 0 rgba(71, 212, 212,0)" }, { boxShadow: "0 0 0 18px rgba(71, 212, 212,0)", duration: 0.01 }, 3.9);
+
+            tl.seek(0);
+            window.__timelines["scene-workflow"] = tl;
+          })();
+        </script>
+      </div>
+    </template>
+  </body>
+</html>

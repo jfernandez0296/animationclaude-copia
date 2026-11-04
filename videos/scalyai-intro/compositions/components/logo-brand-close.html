@@ -117,6 +117,21 @@
             color: var(--lbc-accent);
           }
 
+          .lbc-ai {
+            font-weight: 500;
+            color: #007b83;
+          }
+
+          .lbc-sym {
+            display: block;
+            flex: 0 0 auto;
+            width: 0.92em;
+            height: 0.92em;
+            margin-right: 0.2em;
+            align-self: center;
+            overflow: visible;
+          }
+
           .lbc-tagline {
             max-width: 88cqw;
             /* extra room so the wordmark's "y" descender clears the tagline */
@@ -202,7 +217,17 @@
             // wordmark already ends with "." that period takes the accent
             // instead of appending a second one.
             var characters = Array.from(wordmark);
-            if (characters[characters.length - 1] !== ".") characters.push(".");
+            var symbol = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            symbol.setAttribute("class", "lbc-sym");
+            symbol.setAttribute("viewBox", "0 0 64 64");
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.innerHTML =
+              '<defs><linearGradient id="lbc-gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#007b83"/><stop offset="1" stop-color="#47d4d4"/></linearGradient></defs>' +
+              '<rect class="lbc-bar" x="18" y="4" width="44" height="14" rx="7" fill="url(#lbc-gl)"/>' +
+              '<rect class="lbc-bar" x="2" y="25" width="60" height="14" rx="7" fill="#007b83"/>' +
+              '<rect class="lbc-bar" x="2" y="46" width="44" height="14" rx="7" fill="#041b3d"/>';
+            wordmarkElement.appendChild(symbol);
+            var bars = symbol.querySelectorAll(".lbc-bar");
 
             var letters = characters.map(function (character, index) {
               var letter = document.createElement("span");
@@ -214,13 +239,12 @@
               } else {
                 letter.textContent = character;
               }
-              if (index === characters.length - 1) letter.classList.add("lbc-period");
+              if (index >= 6) letter.classList.add("lbc-ai");
               letter.setAttribute("aria-hidden", "true");
               wordmarkElement.appendChild(letter);
               return letter;
             });
-            var periodLetter = letters[letters.length - 1];
-            var cascadeLetters = letters.slice(0, -1);
+            var cascadeLetters = letters;
 
             // Deterministic chars-aware fit: probe the set width at a fixed
             // 100px font (letter-spacing rides in em, so the em ratio is a
@@ -245,7 +269,7 @@
               setWidthEm -= characters.length * 0.035;
             }
             setWidthEm = Math.max(0.3, setWidthEm);
-            var wordmarkSize = 76 / setWidthEm;
+            var wordmarkSize = 60 / setWidthEm;
             root.style.setProperty(
               "--lbc-wordmark-size",
               "min(" + wordmarkSize.toFixed(3) + "cqw, 40cqh)",
@@ -309,18 +333,12 @@
               0,
             );
 
-            // The brand period lands last: a decisive accent pop.
+            // The three bars of the symbol slide out from the left, one after another.
             tl.fromTo(
-              periodLetter,
-              { opacity: 0, scale: 0.2, y: "0.08em", transformOrigin: "50% 65%" },
-              {
-                opacity: 1,
-                scale: 1,
-                y: "0em",
-                duration: PERIOD_DURATION_BASE * scale,
-                ease: "back.out(1.8)",
-              },
-              PERIOD_AT_BASE * scale,
+              bars,
+              { scaleX: 0, transformOrigin: "0% 50%" },
+              { scaleX: 1, duration: 0.8 * scale, stagger: 0.14 * scale, ease: "back.out(1.5)" },
+              0.1 * scale,
             );
 
             if (taglineElement.isConnected) {

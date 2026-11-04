@@ -1,0 +1,258 @@
+[
+ {
+  "id": "k1",
+  "start": 0.6,
+  "max": 60,
+  "text": "¿Respondes WhatsApp, Instagram y TikTok desde tres apps distintas? Con Kommo, todo llega a una sola bandeja. Así se conecta.",
+  "dur": 9.328,
+  "speech": [
+   [
+    0.0,
+    4.884
+   ],
+   [
+    5.337,
+    5.935
+   ],
+   [
+    6.231,
+    8.095
+   ],
+   [
+    8.466,
+    9.328
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "k2",
+  "start": 11.228,
+  "max": 60,
+  "text": "Paso uno: WhatsApp, con coexistencia. Sigues usando la app de WhatsApp Business en tu celular, y los mismos chats aparecen en Kommo.",
+  "dur": 9.295,
+  "speech": [
+   [
+    0.0,
+    0.676
+   ],
+   [
+    1.248,
+    1.865
+   ],
+   [
+    2.115,
+    3.166
+   ],
+   [
+    3.832,
+    6.728
+   ],
+   [
+    7.119,
+    9.295
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "k3",
+  "start": 21.024,
+  "max": 60,
+  "text": "En Kommo, abre WhatsApp Business y pulsa Instalar. Inicia sesión con Meta, elige tu portafolio comercial, e ingresa tu número.",
+  "dur": 9.09,
+  "speech": [
+   [
+    0.0,
+    0.657
+   ],
+   [
+    0.926,
+    3.543
+   ],
+   [
+    4.086,
+    5.531
+   ],
+   [
+    5.881,
+    7.593
+   ],
+   [
+    7.889,
+    9.09
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "k4",
+  "start": 30.613,
+  "max": 60,
+  "text": "Luego, en la app de WhatsApp Business, escanea el código QR y decide si compartes el historial: se importan los chats activos de los últimos treinta días.",
+  "dur": 10.573,
+  "speech": [
+   [
+    0.0,
+    2.487
+   ],
+   [
+    2.862,
+    4.476
+   ],
+   [
+    4.86,
+    6.743
+   ],
+   [
+    7.331,
+    10.573
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "k5",
+  "start": 41.686,
+  "max": 60,
+  "text": "Ojo: necesitas la app en la versión dos punto veinticuatro punto diecisiete o superior, y una cuenta con algo de antigüedad. Las cuentas nuevas no califican de inmediato.",
+  "dur": 10.34,
+  "speech": [
+   [
+    0.0,
+    0.363
+   ],
+   [
+    0.731,
+    5.478
+   ],
+   [
+    5.881,
+    7.525
+   ],
+   [
+    8.027,
+    10.34
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "k6",
+  "start": 53.325,
+  "max": 60,
+  "text": "Paso dos: Instagram. Ve a Ajustes, Integraciones, Instagram, y pulsa Continuar con Instagram. Necesitas una cuenta de empresa vinculada a tu portafolio de Meta.",
+  "dur": 13.486,
+  "speech": [
+   [
+    0.0,
+    0.68
+   ],
+   [
+    1.213,
+    1.863
+   ],
+   [
+    2.442,
+    3.776
+   ],
+   [
+    4.157,
+    5.149
+   ],
+   [
+    5.665,
+    6.323
+   ],
+   [
+    6.798,
+    7.391
+   ],
+   [
+    7.666,
+    9.046
+   ],
+   [
+    9.87,
+    13.486
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "k7",
+  "start": 68.111,
+  "max": 60,
+  "text": "Paso tres: TikTok. En Integraciones, busca TikTok, instálalo, y autoriza tu cuenta de TikTok Business.",
+  "dur": 8.445,
+  "speech": [
+   [
+    0.0,
+    0.718
+   ],
+   [
+    1.199,
+    1.672
+   ],
+   [
+    2.294,
+    3.333
+   ],
+   [
+    3.634,
+    4.603
+   ],
+   [
+    4.999,
+    5.674
+   ],
+   [
+    6.007,
+    8.445
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "k8",
+  "start": 77.856,
+  "max": 60,
+  "text": "Listo: WhatsApp, Instagram y TikTok en una sola bandeja, y cada conversación como un lead en tu embudo. Si quieres que lo configuremos contigo, escríbenos. Scaly AI.",
+  "dur": 13.268,
+  "speech": [
+   [
+    0.0,
+    0.547
+   ],
+   [
+    0.998,
+    1.594
+   ],
+   [
+    1.938,
+    2.537
+   ],
+   [
+    2.767,
+    4.922
+   ],
+   [
+    5.352,
+    8.134
+   ],
+   [
+    8.783,
+    10.585
+   ],
+   [
+    10.901,
+    11.612
+   ],
+   [
+    12.126,
+    13.268
+   ]
+  ],
+  "scene": 4
+ }
+]

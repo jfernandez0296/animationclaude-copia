@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Warmi Build Sting</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 400 600; }
+      @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); font-weight: 400 600; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #faf7ff; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: linear-gradient(180deg, #faf7ff 0%, #f3e9ff 60%, #fde9f6 100%); font-family: "DM Sans", sans-serif; color: #170b2e; }
+      .abs { position: absolute; }
+      .h { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; }
+      .blob { border-radius: 50%; filter: blur(60px); opacity: 0.55; }
+      .card { left: 290px; top: 560px; width: 500px; height: 800px; border-radius: 64px; background: #ffffff; box-shadow: 0 40px 90px rgba(84,33,166,0.22); overflow: hidden; transform-origin: 50% 50%; }
+      .bar { border-radius: 18px; background: #efe6fb; }
+      .chip { padding: 14px 34px; border-radius: 999px; background: #d74ac5; color: #fff; font-size: 44px; font-weight: 800; white-space: nowrap; }
+      .ic { width: 150px; height: 150px; border-radius: 44px; background: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(84,33,166,0.18); }
+      .icl { width: 220px; font-size: 32px; font-weight: 700; color: #4b4560; text-align: center; }
+      .pub { padding: 12px 24px; border-radius: 999px; background: #1f9d68; color: #fff; font-size: 30px; font-weight: 800; white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="9.5" data-fps="30" data-width="1080" data-height="1920">
+      <div class="abs blob" id="b1" style="left:-120px;top:240px;width:520px;height:520px;background:#c9a7ff"></div>
+      <div class="abs blob" id="b2" style="left:640px;top:1180px;width:560px;height:560px;background:#f7a8e3"></div>
+
+      <div class="abs h" id="t1" style="left:80px;top:200px;width:920px;font-size:96px;text-align:center">De tu idea</div>
+      <div class="abs h" id="t2" style="left:80px;top:310px;width:920px;font-size:96px;text-align:center;color:#5421a6">a tu app <span style="color:#b5249f">con IA</span></div>
+      <div class="abs" id="t3w" style="left:0;top:445px;width:1080px;display:flex;justify-content:center"><div class="chip" id="t3">sin programar</div></div>
+      <div class="abs h" id="t4" style="left:80px;top:230px;width:920px;font-size:88px;text-align:center">y automatiza<br /><span style="color:#5421a6">tu trabajo</span></div>
+
+      <svg class="abs" id="links" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920" aria-label="Conexiones">
+        <path class="ln" d="M440 1240 C400 1330 260 1340 240 1440" fill="none" stroke="#b59ae6" stroke-width="6" stroke-linecap="round"/>
+        <path class="ln" d="M540 1260 L540 1440" fill="none" stroke="#b59ae6" stroke-width="6" stroke-linecap="round"/>
+        <path class="ln" d="M640 1240 C680 1330 820 1340 840 1440" fill="none" stroke="#b59ae6" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+
+      <div class="abs" id="spark" style="left:520px;top:940px;width:40px;height:40px;border-radius:20px;background:#d74ac5;box-shadow:0 0 60px 20px rgba(215,74,197,0.45)"></div>
+      <svg class="abs" id="outline" style="left:286px;top:556px" width="508" height="808" viewBox="0 0 508 808" aria-label="Contorno"><rect x="4" y="4" width="500" height="800" rx="64" fill="none" stroke="#5421a6" stroke-width="6" stroke-dasharray="2400" stroke-dashoffset="2400" id="orect"/></svg>
+      <div class="abs card" id="card">
+        <div class="abs" id="hdr" style="left:0;top:0;width:500px;height:150px;background:linear-gradient(90deg,#5421a6,#7c3aed)"></div>
+        <div class="abs h" id="hdt" style="left:44px;top:46px;width:420px;font-size:46px;color:#fff">Mi negocio</div>
+        <div class="abs" id="hero" style="left:40px;top:190px;width:420px;height:250px;border-radius:30px;background:linear-gradient(135deg,#f7a8e3,#c9a7ff)"></div>
+        <div class="abs bar" id="l1" style="left:40px;top:480px;width:360px;height:34px"></div>
+        <div class="abs bar" id="l2" style="left:40px;top:540px;width:280px;height:34px"></div>
+        <div class="abs h" id="btn" style="left:40px;top:640px;width:420px;height:104px;border-radius:30px;background:#d74ac5;color:#fff;font-size:42px;display:flex;align-items:center;justify-content:center">Reservar</div>
+      </div>
+      <div class="abs pub" id="pub" style="left:640px;top:520px">Publicado ✓</div>
+
+      <div class="abs ic icx" id="ic0" style="left:155px;top:1440px"><svg width="76" height="76" viewBox="0 0 24 24" fill="none" stroke="#5421a6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="message-circle">
+  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
+</svg></div><div class="abs icl icx" id="icl0" style="left:120px;top:1606px">WhatsApp</div><div class="abs ic icx" id="ic1" style="left:465px;top:1440px"><svg width="76" height="76" viewBox="0 0 24 24" fill="none" stroke="#5421a6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="calendar">
+  <path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" width="18" height="18" rx="2" />
+  <path d="M3 9h18" />
+</svg></div><div class="abs icl icx" id="icl1" style="left:430px;top:1606px">Agenda</div><div class="abs ic icx" id="ic2" style="left:775px;top:1440px"><svg width="76" height="76" viewBox="0 0 24 24" fill="none" stroke="#5421a6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="mail">
+  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+  <rect x="2" y="4" width="20" height="16" rx="2" />
+</svg></div><div class="abs icl icx" id="icl2" style="left:740px;top:1606px">Correo</div>
+
+      <div class="abs" id="logo" style="left:390px;top:610px;width:300px;height:300px"><svg id="lg" width="300" height="300" viewBox="0 0 48 48" aria-label="Warmi"><defs><linearGradient id="WG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5421a6"/><stop offset="1" stop-color="#d74ac5"/></linearGradient></defs>
+  <circle id="lgc" cx="24" cy="24" r="24" fill="url(#WG)"/><path id="lgs1" d="M24 11l2.6 8.4L35 22l-8.4 2.6L24 33l-2.6-8.4L13 22l8.4-2.6z" fill="#fff"/><path id="lgs2" d="M35 29l1.1 3.4 3.4 1.1-3.4 1.1L35 38l-1.1-3.4-3.4-1.1 3.4-1.1z" fill="#fff"/></svg></div>
+      <div class="abs h" id="wm" style="left:0;top:960px;width:1080px;font-size:132px;text-align:center">Warmi <span style="color:#5421a6">Build</span></div>
+      <div class="abs" id="tag" style="left:90px;top:1120px;width:900px;font-size:44px;font-weight:700;color:#4b4560;text-align:center">Programa de IA y automatización</div>
+      <div class="abs" id="by" style="left:90px;top:1200px;width:900px;font-size:34px;font-weight:600;color:#7a6f92;text-align:center">por Warmi Ventures</div>
+      <audio id="musica" src="audio/musica.wav" data-start="0" data-duration="9.5" data-track-index="13" data-volume="0.9"></audio>
+      <audio id="efectos" src="audio/efectos.wav" data-start="0" data-duration="9.5" data-track-index="14" data-volume="0.6"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const ease = "power3.out";
+      tl.set(["#card", "#hdr", "#hdt", "#hero", "#l1", "#l2", "#btn", "#pub", ".icx", ".ln", "#t1", "#t2", "#t3", "#t4", "#logo", "#wm", "#tag", "#by"], { autoAlpha: 0 }, 0);
+      // ambient blobs drift the whole time
+      tl.fromTo("#b1", { x: 0, y: 0 }, { x: 120, y: 80, duration: 9.5, ease: "sine.inOut" }, 0);
+      tl.fromTo("#b2", { x: 0, y: 0 }, { x: -140, y: -100, duration: 9.5, ease: "sine.inOut" }, 0);
+      // 0.0 - 1.9: a spark of light becomes the app, piece by piece
+      tl.fromTo("#spark", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.35, ease: "back.out(2)" }, 0.1);
+      tl.to("#spark", { scale: 3, autoAlpha: 0, duration: 0.4, ease: "power2.in" }, 0.45);
+      tl.to("#orect", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 0.5);
+      tl.fromTo("#card", { autoAlpha: 0, scale: 0.96 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease }, 0.95);
+      tl.to("#outline", { autoAlpha: 0, duration: 0.3 }, 1.2);
+      tl.fromTo("#hdr", { autoAlpha: 0, scaleY: 0, transformOrigin: "50% 0%" }, { autoAlpha: 1, scaleY: 1, duration: 0.35, ease }, 1.1);
+      tl.fromTo("#hdt", { autoAlpha: 0, x: -20 }, { autoAlpha: 1, x: 0, duration: 0.3, ease }, 1.3);
+      tl.fromTo("#hero", { autoAlpha: 0, scale: 0.85 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 1.35);
+      tl.fromTo(["#l1", "#l2"], { autoAlpha: 0, scaleX: 0, transformOrigin: "0% 50%" }, { autoAlpha: 1, scaleX: 1, duration: 0.3, stagger: 0.1, ease }, 1.55);
+      tl.fromTo("#btn", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 1.8);
+      // 1.7 - 3.6: the benefit
+      tl.fromTo("#t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease }, 1.7);
+      tl.fromTo("#t2", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease }, 2.0);
+      tl.fromTo("#t3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 2.45);
+      tl.to("#btn", { scale: 0.94, duration: 0.12, yoyo: true, repeat: 1 }, 3.0);
+      tl.fromTo("#pub", { autoAlpha: 0, scale: 0.5, rotate: -8 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.45, ease: "back.out(2.2)" }, 3.2);
+      tl.to(["#t1", "#t2", "#t3"], { autoAlpha: 0, y: -30, duration: 0.35, stagger: 0.05, ease: "power2.in" }, 3.75);
+      // 4.0 - 6.2: it also automates the work around it
+      tl.to(["#card", "#pub"], { y: -80, duration: 0.6, ease: "power2.inOut" }, 3.9);
+      tl.fromTo("#t4", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease }, 4.15);
+      tl.set(".ln", { autoAlpha: 1 }, 4.35);
+      tl.fromTo(".ln", { strokeDasharray: 400, strokeDashoffset: 400 }, { strokeDashoffset: 0, duration: 0.5, stagger: 0.12, ease: "power2.out" }, 4.35);
+      tl.fromTo(".ic", { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.4, stagger: 0.15, ease: "back.out(2)" }, 4.7);
+      tl.fromTo(".icl", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.15, ease }, 4.85);
+      tl.to(".ic", { y: -10, duration: 0.4, yoyo: true, repeat: 1, stagger: 0.12, ease: "sine.inOut" }, 5.4);
+      // 6.2 - 9.5: everything gathers into the logo
+      tl.to(["#t4", ".icx", ".ln", "#pub"], { autoAlpha: 0, duration: 0.35, ease: "power2.in" }, 6.2);
+      tl.to("#card", { scale: 0.3, autoAlpha: 0, y: 40, duration: 0.55, ease: "power3.in" }, 6.25);
+      tl.fromTo("#logo", { autoAlpha: 0, scale: 0.3, rotate: -30 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.7, ease: "back.out(1.7)" }, 6.65);
+      tl.fromTo("#lgs1", { scale: 0, transformOrigin: "24px 22px" }, { scale: 1, duration: 0.45, ease: "back.out(2.5)" }, 6.95);
+      tl.fromTo("#lgs2", { scale: 0, transformOrigin: "35px 33.5px" }, { scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 7.15);
+      tl.fromTo("#wm", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.55, ease }, 7.2);
+      tl.fromTo("#tag", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.45, ease }, 7.6);
+      tl.fromTo("#by", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.45 }, 7.95);
+      tl.to("#logo", { scale: 1.04, duration: 0.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, 8.2);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

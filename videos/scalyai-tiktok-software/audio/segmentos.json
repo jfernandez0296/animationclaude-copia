@@ -1,0 +1,38 @@
+[
+ {
+  "id": "s1",
+  "start": 0.3,
+  "max": 3.4,
+  "text": "¿Tu negocio vive entre Excel, WhatsApp y cuadernos?"
+ },
+ {
+  "id": "s2",
+  "start": 4.1,
+  "max": 4.2,
+  "text": "En Scaly AI desarrollamos software a la medida: plataformas ERP y CRM."
+ },
+ {
+  "id": "s3",
+  "start": 9.3,
+  "max": 4.0,
+  "text": "Ventas, inventario y clientes, en un solo lugar."
+ },
+ {
+  "id": "s4",
+  "start": 13.7,
+  "max": 4.6,
+  "text": "Y un chatbot con IA que atiende a tus clientes en WhatsApp, a cualquier hora."
+ },
+ {
+  "id": "s5",
+  "start": 18.7,
+  "max": 3.6,
+  "text": "Todo conectado: el pedido queda registrado en tu sistema."
+ },
+ {
+  "id": "s6",
+  "start": 22.7,
+  "max": 4.2,
+  "text": "Scaly AI. Software e IA a tu medida. Conversemos de tu proyecto."
+ }
+]

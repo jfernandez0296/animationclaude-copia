@@ -1,0 +1,38 @@
+[
+ {
+  "id": "r1",
+  "start": 0.3,
+  "max": 4.2,
+  "text": "Rosa tiene una tienda, y un cuaderno que ya no le alcanza."
+ },
+ {
+  "id": "r2",
+  "start": 5.0,
+  "max": 6.0,
+  "text": "Anota ventas en Excel y pedidos en WhatsApp. Y entre tantos mensajes, algunos clientes se le pierden."
+ },
+ {
+  "id": "r3",
+  "start": 11.5,
+  "max": 6.5,
+  "text": "Un día le contó todo a Scaly AI. Primero, un ERP hecho a su medida, para tener su inventario claro."
+ },
+ {
+  "id": "r4",
+  "start": 18.5,
+  "max": 4.2,
+  "text": "Después, un CRM, para recordar a cada cliente por su nombre."
+ },
+ {
+  "id": "r5",
+  "start": 23.2,
+  "max": 5.2,
+  "text": "Y por separado, un chatbot con IA que atiende su WhatsApp mientras ella descansa."
+ },
+ {
+  "id": "r6",
+  "start": 28.9,
+  "max": 5.0,
+  "text": "Hoy Rosa vuelve a tener sus domingos. ¿Cuál es tu historia? Cuéntanosla."
+ }
+]

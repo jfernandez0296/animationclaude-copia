@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 400 600; font-style: normal; }
+      @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; font-style: normal; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); font-weight: 500 600; font-style: normal; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700 900; font-style: normal; }
+
+      /* Warmi Academy palette (sampled from the site recording) */
+      :root {
+        --stage: #faf7ff;
+        --ink: #170b2e;
+        --muted: #4b4560;
+        --violet: #5421a6;
+        --violet-2: #7c3aed;
+        --pink: #d74ac5;
+        --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+        --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--stage); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; color: var(--ink); font-family: var(--font-body); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="50" data-fps="30" data-width="1920" data-height="1080">
+      <div id="stage-bg" data-composition-id="stage-bg" data-composition-src="compositions/stage-bg.html" data-start="0" data-duration="50" data-track-index="0" data-width="1920" data-height="1080"></div>
+
+      <div
+        id="scene-gancho"
+        data-composition-id="scene-gancho"
+        data-composition-src="compositions/scene-gancho.html"
+        data-start="0"
+        data-duration="5.3"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="scene-programa"
+        data-composition-id="scene-programa"
+        data-composition-src="compositions/scene-programa.html"
+        data-start="4.5"
+        data-duration="7.0"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="scene-resultados"
+        data-composition-id="scene-resultados"
+        data-composition-src="compositions/scene-resultados.html"
+        data-start="11.0"
+        data-duration="7.5"
+        data-track-index="3"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="scene-paraquien"
+        data-composition-id="scene-paraquien"
+        data-composition-src="compositions/scene-paraquien.html"
+        data-start="18.0"
+        data-duration="6.5"
+        data-track-index="4"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="scene-programa-detalle"
+        data-composition-id="scene-programa-detalle"
+        data-composition-src="compositions/scene-programa-detalle.html"
+        data-start="24.0"
+        data-duration="6.5"
+        data-track-index="5"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="scene-facilitador"
+        data-composition-id="scene-facilitador"
+        data-composition-src="compositions/scene-facilitador.html"
+        data-start="30.0"
+        data-duration="6.5"
+        data-track-index="6"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="scene-precio"
+        data-composition-id="scene-precio"
+        data-composition-src="compositions/scene-precio.html"
+        data-start="36.0"
+        data-duration="5.7"
+        data-track-index="7"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        id="scene-cierre"
+        data-composition-id="scene-cierre"
+        data-composition-src="compositions/scene-cierre.html"
+        data-start="41.0"
+        data-duration="9.0"
+        data-track-index="8"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <audio id="voz-v1" src="audio/seg/v1.wav" data-start="0.3" data-duration="4.67" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v2" src="audio/seg/v2.wav" data-start="5.0" data-duration="6.41" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v3" src="audio/seg/v3.wav" data-start="11.6" data-duration="6.51" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v4" src="audio/seg/v4.wav" data-start="18.6" data-duration="5.32" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v5" src="audio/seg/v5.wav" data-start="24.6" data-duration="5.00" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v6" src="audio/seg/v6.wav" data-start="30.6" data-duration="5.80" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v7" src="audio/seg/v7.wav" data-start="36.5" data-duration="5.13" data-track-index="12" data-volume="1"></audio>
+      <audio id="voz-v8" src="audio/seg/v8.wav" data-start="42.0" data-duration="5.51" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica.wav" data-start="0" data-duration="50" data-track-index="13" data-volume="0.9"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="50" data-track-index="14" data-volume="0.5"></audio>
+    </div>
+
+    <script>
+      // Two transition families: circle reveals (opening, finale) and pushes (the sequence moves on).
+      const tl = gsap.timeline({ paused: true });
+
+      // 1 · hook -> program (4.5–5.2): circle growing from the centre.
+      tl.fromTo("#scene-programa", { clipPath: "circle(0% at 50% 50%)" }, { clipPath: "circle(150% at 50% 50%)", duration: 0.7, ease: "power2.inOut" }, 4.5);
+
+      const pushLeft = (from, to, t, d) => {
+        tl.to(from, { x: -1920, filter: "blur(10px)", duration: d, ease: "power3.inOut" }, t);
+        tl.fromTo(to, { x: 1920, filter: "blur(10px)" }, { x: 0, filter: "blur(0px)", duration: d, ease: "power3.inOut" }, t);
+      };
+      const pushUp = (from, to, t, d) => {
+        tl.to(from, { y: -1080, filter: "blur(10px)", duration: d, ease: "power3.inOut" }, t);
+        tl.fromTo(to, { y: 1080, filter: "blur(10px)" }, { y: 0, filter: "blur(0px)", duration: d, ease: "power3.inOut" }, t);
+      };
+      pushLeft("#scene-programa", "#scene-resultados", 11.0, 0.5);
+      pushUp("#scene-resultados", "#scene-paraquien", 18.0, 0.5);
+      pushLeft("#scene-paraquien", "#scene-programa-detalle", 24.0, 0.5);
+      pushUp("#scene-programa-detalle", "#scene-facilitador", 30.0, 0.5);
+      pushLeft("#scene-facilitador", "#scene-precio", 36.0, 0.5);
+
+      // 7 · price -> closing (41.0–41.7): circle reveal from the centre.
+      tl.fromTo("#scene-cierre", { clipPath: "circle(0% at 50% 50%)" }, { clipPath: "circle(150% at 50% 50%)", duration: 0.7, ease: "power2.inOut" }, 41.0);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
