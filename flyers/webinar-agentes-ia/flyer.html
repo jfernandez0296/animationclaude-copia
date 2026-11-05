@@ -43,6 +43,8 @@
   .photo { width: 290px; height: 290px; margin: 0 auto; border-radius: 50%; border: 8px solid var(--ec-white);
     box-shadow: 0 0 0 3px var(--ec-terracotta), var(--ec-shadow-card); background: var(--ec-terracotta-soft);
     display: grid; place-items: center; color: var(--ec-terracotta-dark); font: 600 18px/1.3 var(--ec-font-sans); letter-spacing: .1em; text-transform: uppercase; }
+  .photo { overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
   .role { margin-top: 26px; font: 700 16px/1 var(--ec-font-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ec-terracotta-dark); }
   .name { margin-top: 10px; font: 400 38px/1.1 var(--ec-font-display); }
 
@@ -79,7 +81,7 @@
       <div class="item"><span class="num">03</span><p>¿Cuándo debe la IA pasarle la conversación a tu equipo?</p></div>
     </div>
     <div class="speaker">
-      <div class="photo" id="photo">Foto del<br>ponente</div>
+      <div class="photo" id="photo"><img src="jaime.png" alt="Jaime Fernández Chávez"></div>
       <div class="role">Ponente</div>
       <div class="name">Jaime Fernández Chávez</div>
     </div>
